@@ -1,0 +1,37 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+.bg-container-login {
+  /* background-image: url("https://res.cloudinary.com/dvxkeeeqs/image/upload/v1724952773/1520180926563_jadgvd.jpg"); */
+  background-image: url("https://res.cloudinary.com/dvxkeeeqs/image/upload/v1729229000/image3_1_ac1jk3.jpg");
+  /* background-image: url("https://res.cloudinary.com/dvxkeeeqs/image/upload/v1728068174/technology-6701404_640_nb7r5n.png"); */
+  min-height: 100vh;
+  background-size: cover;
+  overflow: auto;
+  /* padding-top: 100px; */
+  padding-bottom: 100px;
+}
+@media screen and (min-width: 576px) {
+  .login-card {
+    width: 25%;
+  }
+}
+.login-user-input {
+  font-weight: 500;
+  padding-left: 10px;
+}
+.error-msg{
+  color: red;
+  font-size: 14px;
+  font-weight: 500;
+  background-color: white;
+  padding: 2px;
+  border-radius: 4px;
+  text-align: center;
+
+  span{
+    color: green;
+  }
+}

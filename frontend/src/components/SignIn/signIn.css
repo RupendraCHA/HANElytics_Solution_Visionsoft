@@ -1,0 +1,55 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+.bg-container-signup {
+  /* background-image: url("https://res.cloudinary.com/dvxkeeeqs/image/upload/v1724952773/1520180926563_jadgvd.jpg"); */
+  background-image: url("https://res.cloudinary.com/dvxkeeeqs/image/upload/v1729229000/image3_1_ac1jk3.jpg");
+  /* background-image: url("https://res.cloudinary.com/dvxkeeeqs/image/upload/v1728068174/technology-6701404_640_nb7r5n.png"); */
+  min-height: 100vh;
+  background-size: cover;
+  overflow: auto;
+  /* padding-top: 100px; */
+  padding-bottom: 100px;
+}
+
+@media screen and (min-width: 576px) {
+  .register-card {
+    width: 25%;
+  }
+}
+.register-user-input {
+  font-weight: 500;
+  padding-left: 10px;
+}
+.checkbox-container {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+.checkbox {
+  width: 15px;
+  height: 15px;
+  margin-right: 8px;
+}
+.checkbox-container p {
+  margin: 0;
+  color: white;
+}
+.error-msg{
+  color: red;
+  font-size: 14px;
+  font-weight: 500;
+  background-color: white;
+  padding: 2px;
+  border-radius: 4px;
+  text-align: center;
+
+  span{
+    color: green;
+  }
+}
+

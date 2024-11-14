@@ -1,0 +1,54 @@
+.home-bg{
+    background-image: url("https://res.cloudinary.com/dvxkeeeqs/image/upload/v1729244582/image4_wn3xcb.jpg");
+    background-size: cover;
+    height: 100vh;
+    display: flex;
+    padding: 30px;
+}
+.left{
+    /* flex: 1; */
+    display: flex;
+    flex-direction: column;
+    overflow: scroll;
+}
+.right{
+    flex: 1;
+    margin: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-decoration: none;
+
+    .simplify-heading{
+        padding: 20px;
+        color: #fff;
+        font-weight: bold;
+        text-align: center;
+    }
+    .button{
+        text-decoration: none;
+        color: #fff;
+        background-color: black;
+        border-radius: 15px;
+        border: none;
+        padding: 12px;
+        margin: 12px;
+        font-weight: bold;
+        font-size: 20px;
+        border: 2px solid white;
+    }
+    b{
+        color: white;
+        font-size: 11px;
+    }
+}
+.hanelytics-offerings{
+    width: 40vw;
+    border-radius: 20px;
+    margin: 20px;
+}
+::-webkit-scrollbar {
+    width: 10px;  /* Width of the scrollbar */
+    color: antiquewhite;
+}
