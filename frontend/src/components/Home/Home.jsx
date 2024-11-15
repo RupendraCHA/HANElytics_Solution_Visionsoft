@@ -1,13 +1,16 @@
 import axios from 'axios'
-import React, { useEffect } from 'react'
+import React, { useContext, useEffect } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 // import Navbar from '../Navbar/Navbar';
+import Header from "../Header/Header"
 import { toast } from 'react-toastify';
 import "./Home.css"
+import { StoreContext } from '../../context/StoreContext';
 
 function Home() {
 
     const navigate = useNavigate()
+    const {username, token} = useContext(StoreContext)
 
     // axios.defaults.withCredentials = true;
     // useEffect(() => {
@@ -36,7 +39,7 @@ function Home() {
 
     return (
         <>
-            {/* <Navbar /> */}
+            <Header />
             <div className='home-bg'>
                 <div className='right'>
                     <h1 className="simplify-heading">

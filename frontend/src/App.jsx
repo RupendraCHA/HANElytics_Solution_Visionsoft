@@ -9,7 +9,7 @@ import Login from './components/Login/Login'
 import SignUp from './components/SignIn/signUp';
 import InitialPage from './components/InitialPage/InitialPage';
 import Home from "./components/Home/Home"
-
+import NotFound from "./components/NotFound/NotFound"
 
 
 const App = () => {
@@ -22,8 +22,8 @@ const App = () => {
         <Route exact path='/home' element={<Home />}></Route>
         {/*<Route exact path='/dataModels' element={<DataModels />}></Route>
         <Route exact path='/dataModeling' element={<DataModeling />}></Route>
-        <Route exact path='/newChart' element={<NewChart />}></Route>
-        <Route path="*" element={<NotFound />}></Route> */}
+        <Route exact path='/newChart' element={<NewChart />}></Route> */}
+        <Route path="*" element={<NotFound />}></Route> 
       </Routes>
     </>
   )

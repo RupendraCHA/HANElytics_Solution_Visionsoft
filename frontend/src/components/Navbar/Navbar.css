@@ -1,0 +1,124 @@
+.navbar-container {
+  width: 100%;
+  margin: auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 100px 10px 100px;
+  background-color: #120ed8;
+  color: #fff;
+  border-bottom: 1px solid #fff;
+}
+.contacts {
+  display: flex;
+  flex-direction: row;
+  /* align-items: center; */
+  gap: 40px;
+}
+
+.contact-details,
+.email-info {
+  display: flex;
+  gap: 6px;
+}
+.social-icons {
+  display: flex;
+  gap: 28px;
+}
+.navbar-container p {
+  font-weight: bold;
+  font-size: 15px;
+  font-family: "Roboto";
+}
+.icon {
+  width: 20px;
+  height: 20px;
+  color: white;
+}
+.email-icon {
+  width: 22px;
+  height: 22px;
+  color: white;
+}
+.icons {
+  width: 26px;
+  height: 26px;
+}
+.login {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 40px;
+}
+.country-language {
+  display: flex;
+  /* align-items: center; */
+  gap: 40px;
+}
+.language,
+.country {
+  display: flex;
+  /* align-items: center; */
+  gap: 6px;
+}
+.selected-country {
+  height: 22px;
+  width: 120px;
+  border: 1px solid #603f3f;
+  font-size: 15px;
+  font-weight: 600;
+  border-radius: 4px;
+  font-family: "Roboto";
+  outline: none;
+  cursor: pointer;
+}
+.selected-country option {
+  font-size: 15px;
+  font-family: "Roboto";
+  padding: 2px;
+  font-weight: 600;
+  padding: 5px;
+}
+.signup-register {
+  display: flex;
+}
+.signup-register button {
+  width: 90px;
+  padding: 5px;
+  font-weight: 600;
+  border-radius: 15px;
+  margin-right: 12px;
+
+  outline: none;
+  cursor: pointer;
+}
+.home {
+  background-color: #494848;
+  color: #fff;
+  border: 2px solid #fff;
+  font-weight: bold;
+}
+.signup {
+  background-color: red;
+  color: #fff;
+  border: 2px solid #000;
+}
+#login {
+  text-decoration: none;
+  background-color: green;
+  border: 2px solid #fff;
+}
+.logout {
+  background-color: black;
+  color: #fff;
+  border: 1px solid red;
+}
+.select{
+  background-color: white;
+  color: blue;
+  border: 2px solid blue;
+  font-weight: bold;
+  border-radius: 15px;
+  padding: 0px 5px;
+  outline: none;
+}

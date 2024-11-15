@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 import axios from 'axios'
 import { useNavigate } from 'react-router-dom'
 import "./logIn.css"
-// import Navbar from '../Navbar/Navbar'
+import Navbar from '../Navbar/Navbar'
 import { toast } from 'react-toastify'
 import { StoreContext } from '../../context/StoreContext'
 
@@ -76,7 +76,7 @@ function Login() {
 
     return (
         <>
-            {/* <Navbar /> */}
+            <Navbar />
             <div className='bg-container-login d-flex justify-content-center align-items-center bg-secondary vh-100'>
                 <div className='bg-secondary p-4 text-white rounded-4 login-card' style={{ opacity: "0.9" }}>
                     <h2>Login</h2>
