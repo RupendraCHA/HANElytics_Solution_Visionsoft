@@ -2,7 +2,7 @@ import axios from 'axios'
 import React, { useContext, useEffect } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 // import Navbar from '../Navbar/Navbar';
-import Header from "../Header/Header"
+import Header from "../../components/Header/Header"
 import { toast } from 'react-toastify';
 import "./Home.css"
 import { StoreContext } from '../../context/StoreContext';

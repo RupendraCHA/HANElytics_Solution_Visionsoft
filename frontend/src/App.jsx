@@ -7,8 +7,8 @@ import { Routes, Route } from 'react-router-dom'
 //Pages
 import Login from './components/Login/Login'
 import SignUp from './components/SignIn/signUp';
-import InitialPage from './components/InitialPage/InitialPage';
-import Home from "./components/Home/Home"
+import InitialPage from './pages/InitialPage/InitialPage';
+import Home from "./pages/Home/Home"
 import NotFound from "./components/NotFound/NotFound"
 
 
