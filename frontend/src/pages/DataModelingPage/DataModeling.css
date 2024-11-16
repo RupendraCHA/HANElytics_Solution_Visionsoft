@@ -6,22 +6,20 @@
   overflow-y: scroll;
   overflow-x: scroll;
   /* padding-top: 100px; */
-  padding-bottom: 100px;
+  padding-bottom: 15px;
 }
 
-.website-header {
-  background-color: #000;
-  height: auto;
-  border: 2px solid white;
-  margin-top: 5px;
-  border-bottom: none;
+.website-header1 {
+  margin-top: 15px;
+
 }
 .header-container {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-top: 10px;
-  padding: 12px;
+  border: 2px solid white;
+  border-bottom: none;
+  background-color: #2431c3;
 }
 .website-heading {
   text-decoration: none;
@@ -41,7 +39,6 @@
 }
 .website-heading:hover {
   text-decoration: underline;
-  /* font-size: 45px; */
   transition: all 0.6s ease-in-out;
   color: #2e81a2;
 }
@@ -55,13 +52,15 @@
   justify-content: center;
   align-items: center;
   gap: 30px;
+  height: 100%;
+
 }
 .drop-down button {
   width: 80px;
   height: 40px;
   border: 1px solid #0e0e0e;
   background-color: #fff;
-  color: #000;
+  color: red;
   font-weight: 600;
   border-radius: 6px;
   box-shadow: 3px 3px 0px #fff;
@@ -69,6 +68,21 @@
 .drop-down button:hover {
   background-color: red;
   box-shadow: 3px 3px 0px #000;
+  color: white;
+}
+
+.icon-username{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  margin-top: 30px;
+}
+.username-text{
+  color: #fff;
+  font-size: 13px;
+  font-weight: 600;
 }
 .user-icon {
   width: 40px;
@@ -86,40 +100,20 @@
   }
 }
 .user-icon:hover {
-  background-color: blue;
+  background-color: black;
   color: #fff;
-  box-shadow: 3px 3px 0px #fff;
+  box-shadow: 3px 3px 0px #000;
   cursor: pointer;
 }
-#modeling-drop-option1 {
+#home-item {
   text-decoration: none;
-  font-size: 15px;
-  color: #000;
-  font-weight: 600;
-}
-#modeling-drop-option2 {
-  text-decoration: none;
-  font-size: 15px;
-  color: #c20d0d;
-  font-weight: 600;
-}
-#inventory {
-  text-decoration: none;
-  font-size: 15px;
-  color: #0abbe2;
-  font-weight: 600;
-}
-#revenue {
-  text-decoration: none;
-  font-size: 15px;
-  color: #0abbe2;
-  font-weight: 600;
-}
-#e-failure {
-  text-decoration: none;
-  font-size: 15px;
-  color: #0abbe2;
-  font-weight: 600;
+  font-size: 16px;
+  color: #fff;
+  font-weight: 500;
+  background-color: #000;
+  padding: 2px 10px;
+  border-radius: 3px;
+  margin: 5px;
 }
 
 .data-models-section-container {

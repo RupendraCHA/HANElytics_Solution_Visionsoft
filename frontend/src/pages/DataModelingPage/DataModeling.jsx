@@ -29,6 +29,16 @@ import ClinicalBarChart from '../../components/Charts/ClinicalCharts/ClinicalBar
 
 const DataModeling = () => {
 
+    const [username, setUsername] = useState("")
+
+    useEffect(() => {
+        const jwtToken = localStorage.getItem("token")
+
+        if (jwtToken) {
+            setUsername(localStorage.getItem("username"))
+        }
+    })
+
     // const inventory_model_datasets = [
     //     'Order History Data',
     //     'Order History with Demand Levels',
@@ -183,7 +193,7 @@ const DataModeling = () => {
         {
             key: 1,
             label: (
-                <a id='modeling-drop-option1' href="/home">
+                <a id='home-item' href="/home">
                     Go to Home
                 </a>
             )
@@ -192,7 +202,7 @@ const DataModeling = () => {
         {
             key: 2,
             label: (
-                <a id='inventory' onClick={getInventoryDataFromMongoDB}>
+                <a id='home-item' onClick={getInventoryDataFromMongoDB}>
                     1) Inventory Forecasting with live data
                 </a>
             )
@@ -200,7 +210,7 @@ const DataModeling = () => {
         {
             key: 3,
             label: (
-                <a id='revenue' onClick={getRevenueDataFromMongoDB}>
+                <a id='home-item' onClick={getRevenueDataFromMongoDB}>
                     2) Predicting Revenue Demand/Sensing
                 </a>
             )
@@ -208,7 +218,7 @@ const DataModeling = () => {
         {
             key: 4,
             label: (
-                <a id='e-failure' onClick={getEquipmentDataFromMongoDB}>
+                <a id='home-item' onClick={getEquipmentDataFromMongoDB}>
                     3) Equipment Failure Prediction
                 </a>
             )
@@ -216,7 +226,7 @@ const DataModeling = () => {
         {
             key: 5,
             label: (
-                <a id='inventory' onClick={getClinicalDataFromMongoDB}>
+                <a id='home-item' onClick={getClinicalDataFromMongoDB}>
                     4) Inventory Prediction With Clinical Data
                 </a>
             )
@@ -225,7 +235,7 @@ const DataModeling = () => {
         {
             key: 6,
             label: (
-                <a id='modeling-drop-option2' onClick={handleLogout}>
+                <a id='home-item' onClick={handleLogout}>
                     Logout
                 </a>
             )
@@ -234,17 +244,22 @@ const DataModeling = () => {
 
     return (<>
         <div className='data-modeling-container'>
-            <header className='container website-header'>
-                <div className='header-container'>
+            <header className='website-header1'>
+                <div className='container header-container'>
                     <Link to="/home" className='website-heading'>
                         <h1 >
                             HANELYTICS
                         </h1>
                     </Link>
                     <div className='drop-down'>
-                        <Dropdown menu={{ items }} trigger={['hover']}>
-                            <FaRegCircleUser className='user-icon' />
-                        </Dropdown>
+                        <div>
+                            <Dropdown menu={{ items }} trigger={['hover']} id='items-drop-menu'>
+                                <div className='icon-username'>
+                                    <FaRegCircleUser className='user-icon' />
+                                    <p className='username-text'>{username}</p>
+                                </div>
+                            </Dropdown>
+                        </div>
                         <div>
                             <button onClick={() => handleLogout()}>Logout</button>
                         </div>

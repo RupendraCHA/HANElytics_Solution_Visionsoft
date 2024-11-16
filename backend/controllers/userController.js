@@ -3,7 +3,7 @@ import jwt from "jsonwebtoken"
 import bcrypt from "bcryptjs"
 
 const createToken = (id) => {
-    return jwt.sign({id}, process.env.JWT_SECRET, {expires: "7d"})
+    return jwt.sign({id}, process.env.JWT_SECRET)
 }
 
 export const registerUser = async (req, res) => {

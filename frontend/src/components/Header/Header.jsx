@@ -61,8 +61,8 @@ const Header = () => {
     }
 
     return (
-        <div className='header-container'>
-            <Link to="/home" className='website-heading'>
+        <div className='home-container'>
+            <Link to="/home" className='home-heading'>
                 <h1 >
                     HANELYTICS
                 </h1>
