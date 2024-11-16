@@ -15,7 +15,7 @@ function Login() {
     })
     const navigate = useNavigate()
 
-    const {url, setToken, setUsername} = useContext(StoreContext)
+    const {url, setToken, setUsername, token, username} = useContext(StoreContext)
 
     const handleInputChange = (e) => {
         const name = e.target.name
@@ -28,29 +28,7 @@ function Login() {
 
     const [isExist, setExist] = useState(false)
     const [errorMsg, setErrorMsg] = useState("")
-    // const [existedEmail, accessEmail] = useState("")
-    // const [username, setUsername] = useState("")
-
-    // const handleSubmit = (e) => {
-    //     e.preventDefault()
-    //     axios.post(url + '/api/user/login', { email, password })
-    //         .then(result => {
-    //             console.log(result.data)
-    //             if (result.data.message === "Login Successful!") {
-    //                 toast.success(result.data.message)
-    //                 // navigate("/home")
-    //                 console.log("Login Successful")
-    //             } else {
-    //                 toast.error(result.data.message)
-    //                 // navigate("/login")
-    //             }
-    //             // else {
-    //             //     console.log("Enter Valid Details")
-    //             // }
-
-    //         })
-    //         .catch(err => console.log(err))
-    // }
+    
 
     const handleSubmit = async (e) => {
         e.preventDefault()
@@ -68,8 +46,6 @@ function Login() {
         }
         else {
             setErrorMsg(response.data.message)
-            // accessEmail(response.data.email)
-            // setUsername(response.data.email)
             setExist(true)
         }
     }

@@ -36,7 +36,7 @@ function ClinicalBarChart({ data }) {
         datasets: [
         {
             label: "Safety Stock",
-            data: data.slice(0,21).map((data) => data.Safety_Stock),
+            data: data.slice(0,21).map((data) => data.Safety_Stock_For_15_Days),
             backgroundColor: ["#801650"],
         },
         {

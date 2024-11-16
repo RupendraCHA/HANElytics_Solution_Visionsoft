@@ -8,8 +8,9 @@ import { StoreContext } from '../../context/StoreContext';
 
 function Home() {
 
+    const {token, username} = useContext(StoreContext)
+
     const navigate = useNavigate()
-    const {username, token} = useContext(StoreContext)
 
     return (
         <>

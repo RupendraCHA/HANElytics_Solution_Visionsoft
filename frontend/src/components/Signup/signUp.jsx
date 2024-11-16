@@ -50,7 +50,7 @@ function SignUp() {
             localStorage.setItem("username", response.data.name)
             setUsername(response.data.name)
             toast.success(`${response.data.name} Registered Successfully!`)
-            navigate("/login")
+            navigate("/home")
         }
         else {
             setErrorMsg(response.data.message)

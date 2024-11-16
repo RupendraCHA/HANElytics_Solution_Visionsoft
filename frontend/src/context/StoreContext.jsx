@@ -9,6 +9,14 @@ const StoreContextProvider = (props) => {
     const [token, setToken] = useState("")
     const [username, setUsername] = useState("")
 
+    useEffect(() => {
+        const jwtToken = localStorage.getItem("token")
+
+        if (jwtToken) {
+            setToken(jwtToken)
+            setUsername(localStorage.getItem("username"))
+        }
+    }, [])
 
 
     const contextValue = {

@@ -1,11 +1,10 @@
 import React, {useContext, useEffect, useState } from 'react'
 import "./DataModeling.css"
 import { FaRegCircleUser } from "react-icons/fa6";
-import axios from 'axios';
 import { Link, useNavigate } from 'react-router-dom';
 import { Dropdown } from "antd"
-// import Navbar from '../Navbar/Navbar.jsx';
 import { toast } from 'react-toastify';
+import axios from "axios"
 
 import {
     inventory_model_datasets,
@@ -15,7 +14,7 @@ import {
 } from './DatasetsInfo.jsx'
 
 
-// import { StoreContext } from '../context/StoreContext.jsx';
+import { StoreContext } from '../../context/StoreContext.jsx';
 import Table from "../../components/DataTable/Table.jsx"
 import InventoryPieChart from '../../components/Charts/InventoryCharts/InventoryPieChart/InventoryPieChart.jsx';
 import InventoryBarChart from '../../components/Charts/InventoryCharts/InventoryBarChart/InventoryBarChart.jsx';
@@ -29,50 +28,17 @@ import ClinicalBarChart from '../../components/Charts/ClinicalCharts/ClinicalBar
 
 const DataModeling = () => {
 
-    const [username, setUsername] = useState("")
+    const navigate = useNavigate()
+    const {url, token, username} = useContext(StoreContext)
 
-    useEffect(() => {
-        const jwtToken = localStorage.getItem("token")
+    
 
-        if (jwtToken) {
-            setUsername(localStorage.getItem("username"))
-        }
-    })
-
-    // const inventory_model_datasets = [
-    //     'Order History Data',
-    //     'Order History with Demand Levels',
-    //     'Product Information Data',
-    //     'Inventory Levels Data',
-    //     'Past Demand Information',
-    //     'Stock Movement in Warehouse',
-    //     'Warehouses Data',
-    //     'Daily Weather Forecast',
-    //     'Historical Weather Forecast'
-    // ]
-
-    // const revenue_model_datasets = ['Product Sales Data', 'Product Suppliers', 'Shipping Data', 'Manufacturing Costs Data']
-
-    // const equipment_model_datasets = ['Sensor Data', 'Failure Data', 'Maintenance Data', 'Operational Data', 'Test Data of Equipment Failure']
-    // const clinical_model_datasets = [
-    //     "Medication Names and Details",
-    //     "Orders and Transactions Data",
-    //     "Shipping History Data",
-    //     "Distribution Center Details",
-    //     "Distribution Center Inventory Levels Data",
-    //     "Historical Patient Data",
-    //     "Regulatory and Compliance Data",
-    //     "Lead Times Data"
-    // ]
-
-    // const datasetsNames = ["Order History", "Product Information", "Warehouse Information", "Past Demand", "Stock Movement", "Weather Data"]
     const [data, setData] = useState([])
     const [hideShow, setHideShow] = useState(true)
     const [inventoryData, setInventoryData] = useState(true)
     const [revenueData, setRevenueData] = useState(true)
     const [equipmentData1, setEquipmentData] = useState(true)
     const [clinicalData, setClinicalData] = useState(true)
-    const navigate = useNavigate()
     const [activeTab, setActiveTab] = useState('tab1');
     const [activeChartTab, setActiveChartTab] = useState('');
     const [showPieChart, setShowPieChart] = useState(false);
@@ -85,53 +51,35 @@ const DataModeling = () => {
     };
 
     axios.defaults.withCredentials = true;
+    
 
-    useEffect(() => {
-        axios.get("http://localhost:3001/home")
-            .then(result => {
-                console.log(result)
-                if (result.data !== "Successful") {
-                    navigate("/login")
-                } else {
-                    navigate("/dataModeling")
-                }
-            })
-            .catch(err => console.log(err))
-    }, [])
-
-    const handleLogout = () => {
-        // alert("Do you want to Log out!!")
-        axios.get("http://localhost:3001/logout")
-            .then(result => {
-                console.log(result.data)
-                if (result.data === "Logout Successful!") {
-                    toast.success(result.data)
-                    navigate("/login")
-                }
-            })
+    const handleModelLogout = async () => {
+        localStorage.removeItem("token")
+        localStorage.removeItem("username")
+        navigate("/login")
     }
 
     const getInventoryDataFromMongoDB = async () => {
-        await axios.get("http://localhost:3001/getInventoryData")
-            .then(result => {
-                const Array = result.data
-                // const largeArray = Array.from({ length: 634 }, (_, i) => i);
+        try {
+            const response = await axios.get(url + "/api/model/inventory")
+            const Array = response.data
                 setData(Array)
-                console.log(Array)
                 setInventoryData(false)
                 setRevenueData(true)
                 setEquipmentData(true)
                 setClinicalData(true)
                 setHideShow(false)
                 handleTabClick("tab1")
-            }).catch(err => console.log(err))
+        } catch (error) {
+            console.log(error)
+        }
+        
     }
 
     const getRevenueDataFromMongoDB = async () => {
-        await axios.get("http://localhost:3001/getRevenueData")
-            .then(result => {
-                const Array = result.data
-                // const largeArray = Array.from({ length: 634 }, (_, i) => i);
+            try {
+                const response = await axios.get( url + "/api/model/revenue")
+                const Array = response.data
                 setData(Array)
                 console.log(Array)
                 setRevenueData(false)
@@ -140,14 +88,15 @@ const DataModeling = () => {
                 setEquipmentData(true)
                 setClinicalData(true)
                 handleTabClick("tab1")
-            }).catch(err => console.log(err))
+            } catch (error) {
+                console.log(error)
+            }
     }
 
     const getEquipmentDataFromMongoDB = async () => {
-        await axios.get("http://localhost:3001/getEquipmentData")
-            .then(result => {
-                const Array = result.data
-                // const largeArray = Array.from({ length: 634 }, (_, i) => i);
+            try {
+                const response = await axios.get( url + "/api/model/equipment")
+                const Array = response.data
                 setData(Array)
                 console.log(Array)
                 setRevenueData(true)
@@ -156,14 +105,15 @@ const DataModeling = () => {
                 setEquipmentData(false)
                 setClinicalData(true)
                 handleTabClick("tab1")
-            }).catch(err => console.log(err))
+            } catch (error) {
+                console.log(error)
+            }
     }
 
     const getClinicalDataFromMongoDB = async () => {
-        await axios.get("http://localhost:3001/getClinicalData")
-            .then(result => {
-                const Array = result.data
-                // const largeArray = Array.from({ length: 634 }, (_, i) => i);
+            try {
+                const response = await axios.get( url + "/api/model/clinical")
+                const Array = response.data
                 setData(Array)
                 console.log(Array)
                 setRevenueData(true)
@@ -172,7 +122,9 @@ const DataModeling = () => {
                 setEquipmentData(true)
                 setClinicalData(false)
                 handleTabClick("tab1")
-            }).catch(err => console.log(err))
+            } catch (error) {
+                console.log(error)
+            }
     }
 
     const handleResultsData = () => {
@@ -235,7 +187,7 @@ const DataModeling = () => {
         {
             key: 6,
             label: (
-                <a id='home-item' onClick={handleLogout}>
+                <a id='home-item' onClick={handleModelLogout}>
                     Logout
                 </a>
             )
@@ -261,7 +213,7 @@ const DataModeling = () => {
                             </Dropdown>
                         </div>
                         <div>
-                            <button onClick={() => handleLogout()}>Logout</button>
+                            <button onClick={handleModelLogout}>Logout</button>
                         </div>
                     </div>
                 </div>
@@ -580,7 +532,7 @@ const DataModeling = () => {
                                     </div>
                                     {showPieChart && <div className='charts-container'>
                                         <div className='pie-chart'>
-                                        <EquipmentPieChart data={data} chartText={"Equipment Share of each Category"} pieChartData={equipmentPieData} />
+                                        <EquipmentPieChart data={data} />
                                         </div>
                                     </div>}
                                     <div className="button">

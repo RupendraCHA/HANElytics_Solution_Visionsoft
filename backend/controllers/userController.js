@@ -38,6 +38,8 @@ export const registerUser = async (req, res) => {
 
             const user = await newUser.save()
             const token = createToken(user._id)
+            // const token = jwt.sign({ email: user.email }, process.env.JWT_SECRET, { expiresIn: "7d" })
+            // res.cookie("token", token)
             res.json({success: true, token, name})
         } else {
             return res.json({success: false, message: "Enter Valid mail which ends with @gmail.com (or) @visionsoft.com"})
@@ -68,10 +70,17 @@ export const loginUser = async (req, res) => {
         }
 
         const token = createToken(user._id)
+        // const token = jwt.sign({ email: user.email }, process.env.JWT_SECRET, { expiresIn: "7d" })
+        // res.cookie("token", token)
         res.json({success: true, token, name: `${user.name}`, message: "Login Successful"})
     }
     catch (error) {
         console.log(error)
         res.json({success: false, message: "*Error*"})
     }
+}
+
+export const logout = async (req, res) => {
+    res.clearCookie("token")
+    return res.json("Logout Successful!")
 }

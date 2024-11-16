@@ -18,47 +18,23 @@ import { Dropdown } from "antd"
 const Header = () => {
 
     const navigate = useNavigate()
-    const [user, setUser] = useState("")
     const {username, token} = useContext(StoreContext)
 
-    useEffect(() => {
-        const jwtToken = localStorage.getItem("token")
-        if (jwtToken) {
-            setUser(localStorage.getItem("username"))
-        }
-    }, [token])
-
     const handleLogout = () => {
-        axios.get("http://localhost:3001/logout")
-            .then(result => {
-                if (result.data === "Logout Successful!") {
-                    localStorage.removeItem("token")
-                    localStorage.removeItem("username")
-                    toast.success(result.data)
-                    navigate("/login")
-                }
-            })
+        localStorage.removeItem("token")
+        localStorage.removeItem("username")
+        navigate("/login")
     }
-
     const items = [
         {
             key: 1,
             label: (
-                <a id='drop-option' href="/login">
+                <a id='drop-option' href="" onClick={handleLogout}>
                     Logout
                 </a>
             )
         }
     ]
-
-    const checkLoginOrNot = () => {
-        const jwtToken = localStorage.getItem("token")
-        if (jwtToken) {
-            navigate("/home")
-        }else {
-            navigate("/login")
-        }
-    }
 
     return (
         <div className='home-container'>
@@ -70,8 +46,8 @@ const Header = () => {
             <div className='user-container'>
                 <Dropdown menu={{ items }} trigger={['hover']}>
                         <div className='user-symbol'>
-                            <FaRegUserCircle className='user-icon' onClick={handleLogout}/>
-                            <p style={{color: "white"}}>{user}</p>
+                            <FaRegUserCircle className='user-icon' />
+                            <p style={{color: "white"}}>{username}</p>
                         </div>
                 </Dropdown>
                 

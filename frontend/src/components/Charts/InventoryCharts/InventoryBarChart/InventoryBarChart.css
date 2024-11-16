@@ -13,11 +13,13 @@
     /* width: 100vw; */
     overflow: scroll;
     /* padding-top: 30px; */
+    margin: 15px;
+
   }
   .b-chart{
     border: 3px solid blue;
     padding: 10px;
-    margin: 0px 0px 15px 0px;
+    margin: 15px;
     border-radius: 12px;
     background-color: white;
     width: 70vw;
