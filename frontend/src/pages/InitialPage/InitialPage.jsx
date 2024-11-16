@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import "./initialPage.css"
-import axios from 'axios'
+// import axios from 'axios'
 
 function InitialPage() {
     const navigate = useNavigate()

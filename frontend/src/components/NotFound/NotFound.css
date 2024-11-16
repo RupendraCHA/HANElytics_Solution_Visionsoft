@@ -3,6 +3,7 @@
   justify-content: center;
   align-items: center;
   height: 100vh;
+  background-color: rgba(8, 8, 58, 0.616);
 }
 .card {
   padding: 30px;
