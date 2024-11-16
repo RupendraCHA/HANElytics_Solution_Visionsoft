@@ -67,20 +67,6 @@ const Navbar = () => {
                     <Link to="/" style={{fontWeight: "bold"}}>
                         <button className='home'>Home</button>
                     </Link>
-                    {/* <Link to="/register">
-                        <button className='signup'>Sign up</button>
-                    </Link>
-                    <Link to="/login">
-                        <button id='login'>Login</button>
-                    </Link> */}
-                    <Link to="/login">
-                        <button className='logout'
-                            style={{ fontWeight: "700", backgroundColor: "white", color: "red"}}
-                            onClick={handleLogout}
-                        >
-                            Logout
-                        </button>
-                    </Link>
                 </div>
             </div>
         </div>
