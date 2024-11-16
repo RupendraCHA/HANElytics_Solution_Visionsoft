@@ -1,0 +1,24 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+  }
+  .bar-chart-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border-radius: 12px;
+    height: 100%;
+    /* width: 100vw; */
+    overflow: scroll;
+    /* padding-top: 30px; */
+  }
+  .b-chart{
+    border: 3px solid blue;
+    padding: 10px;
+    margin: 0px 0px 15px 0px;
+    border-radius: 12px;
+    background-color: white;
+    width: 70vw;
+  }

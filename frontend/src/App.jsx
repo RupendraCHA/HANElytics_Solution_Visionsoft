@@ -6,7 +6,7 @@ import { Routes, Route } from 'react-router-dom'
 
 //Pages
 import Login from './components/Login/Login'
-import SignUp from './components/SignIn/signUp';
+import SignUp from './components/Signup/signUp';
 import InitialPage from './pages/InitialPage/InitialPage';
 import Home from "./pages/Home/Home"
 import NotFound from "./components/NotFound/NotFound"
@@ -20,10 +20,9 @@ const App = () => {
         <Route exact path='/register' element={<SignUp />}></Route>
         <Route exact path='/login' element={<Login />}></Route>
         <Route exact path='/home' element={<Home />}></Route>
-        {/*<Route exact path='/dataModels' element={<DataModels />}></Route>
-        <Route exact path='/dataModeling' element={<DataModeling />}></Route>
-        <Route exact path='/newChart' element={<NewChart />}></Route> */}
-        <Route path="*" element={<NotFound />}></Route> 
+        {/*
+        <Route exact path='/dataModeling' element={<DataModeling />}></Route>*/}
+        <Route path="*" element={<NotFound />}></Route>
       </Routes>
     </>
   )

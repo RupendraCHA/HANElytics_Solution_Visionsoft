@@ -1,0 +1,23 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+  }
+  .pie-chart-container {
+    /* margin: 20px; */
+    display: flex;
+    /* flex-direction: column; */
+    justify-content: center;
+    align-items: center;
+    /* height: auto; */
+    background-color: #fff;
+    border-radius: 12px;
+    /* padding: 12px; */
+  }
+  .p-chart{
+    border: 3px solid blue;
+    padding: 10px;
+    margin: 5px;
+    border-radius: 12px;
+    background-color: #fff;
+  }

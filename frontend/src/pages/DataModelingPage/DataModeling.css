@@ -1,0 +1,454 @@
+.data-modeling-container {
+  background: url("https://res.cloudinary.com/dvxkeeeqs/image/upload/v1726505185/istockphoto-1407983911-612x612_hi0th1.jpg"),
+    rgba(76, 175, 80, 0.6);
+  min-height: 100vh;
+  background-size: cover;
+  overflow-y: scroll;
+  overflow-x: scroll;
+  /* padding-top: 100px; */
+  padding-bottom: 100px;
+}
+
+.website-header {
+  background-color: #000;
+  height: auto;
+  border: 2px solid white;
+  margin-top: 5px;
+  border-bottom: none;
+}
+.header-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 10px;
+  padding: 12px;
+}
+.website-heading {
+  text-decoration: none;
+  color: #fff;
+}
+.website-heading h1 {
+  color: #000;
+  font-family: "Roboto";
+  font-size: max(2.2vw, 32px);
+  font-weight: 600;
+  cursor: pointer;
+  border: 2px solid #000;
+  padding: 5px;
+  border-radius: 6px;
+  background-color: #fff;
+  letter-spacing: 2;
+}
+.website-heading:hover {
+  text-decoration: underline;
+  /* font-size: 45px; */
+  transition: all 0.6s ease-in-out;
+  color: #2e81a2;
+}
+@media screen and (max-width: 576px) {
+  .website-heading {
+    font-size: 30px;
+  }
+}
+.drop-down {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 30px;
+}
+.drop-down button {
+  width: 80px;
+  height: 40px;
+  border: 1px solid #0e0e0e;
+  background-color: #fff;
+  color: #000;
+  font-weight: 600;
+  border-radius: 6px;
+  box-shadow: 3px 3px 0px #fff;
+}
+.drop-down button:hover {
+  background-color: red;
+  box-shadow: 3px 3px 0px #000;
+}
+.user-icon {
+  width: 40px;
+  height: 40px;
+  color: #000;
+  background-color: #fff;
+  padding: 6px;
+  border-radius: 5px;
+  box-shadow: 3px 3px 0px #000;
+}
+@media screen and (max-width: 576px) {
+  .user-icon {
+    width: 35px;
+    height: 35px;
+  }
+}
+.user-icon:hover {
+  background-color: blue;
+  color: #fff;
+  box-shadow: 3px 3px 0px #fff;
+  cursor: pointer;
+}
+#modeling-drop-option1 {
+  text-decoration: none;
+  font-size: 15px;
+  color: #000;
+  font-weight: 600;
+}
+#modeling-drop-option2 {
+  text-decoration: none;
+  font-size: 15px;
+  color: #c20d0d;
+  font-weight: 600;
+}
+#inventory {
+  text-decoration: none;
+  font-size: 15px;
+  color: #0abbe2;
+  font-weight: 600;
+}
+#revenue {
+  text-decoration: none;
+  font-size: 15px;
+  color: #0abbe2;
+  font-weight: 600;
+}
+#e-failure {
+  text-decoration: none;
+  font-size: 15px;
+  color: #0abbe2;
+  font-weight: 600;
+}
+
+.data-models-section-container {
+  /* width: 100%; */
+  display: flex;
+  justify-content: space-between;
+  /* align-items: center; */
+  background-color: #fff;
+  height: auto;
+  border-top: 2px solid #000;
+  min-height: 100vh;
+  padding: 0;
+  width: 100%;
+}
+.workflows-section {
+  width: 25%;
+  background-color: #ffffffae;
+  text-align: center;
+  padding: 16px;
+  border-right:3px solid #000;
+}
+.use-case-heading {
+  color: #fff;
+  font-family: "Roboto";
+  font-weight: bold;
+  font-size: 32px;
+  margin-top: 25px;
+  background-color: #28323b;
+  padding: 8px;
+  border-radius: 12px;
+  cursor: pointer;
+  text-shadow: 1px 1px 1px #000;
+  border: 1px solid #000;
+}
+.use-case-heading:hover {
+  text-decoration: underline;
+  background-color: #000;
+  color: #fff;
+}
+.data-model-types {
+  display: flex;
+  flex-direction: column;
+}
+.model-name {
+  color: #000;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  text-align: left;
+  font-family: "Roboto";
+  font-size: 22px;
+  font-weight: 600;
+  background-color: lightgray;
+  padding: 10px;
+  border-radius: 12px;
+  border: 2px solid #000;
+  cursor: pointer;
+  line-height: 1.4;
+  font-family: "Roboto";
+}
+.model-name:hover {
+  text-decoration: underline;
+  transition: all 0.4s ease-in-out;
+  background-color: grey;
+  color: #000;
+  text-shadow: none;
+  padding: 12px;
+}
+.active {
+  text-decoration: underline;
+  line-height: 1.4;
+  color: #fff;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  text-align: left;
+  font-family: "Roboto";
+  font-size: 22px;
+  font-weight: 700;
+  background-color: #000;
+  padding: 10px;
+  border-radius: 12px;
+  cursor: pointer;
+  border: 3px solid white;
+  text-shadow: 0px 1px 1px #3d3737;
+}
+.model-datasets-active {
+  color: #fff;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  text-align: left;
+  font-family: "Roboto";
+  font-size: 22px;
+  font-weight: 700;
+  background-color: #fff;
+  padding: 10px;
+  border-radius: 12px;
+  cursor: pointer;
+}
+.datasets-section {
+  color: #310cb3;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  min-height: 100vh;
+  background-color: #fff;
+  opacity: 0.9;
+  border-right: 1px solid #4ba8a8;
+  padding: 12px;
+}
+ul {
+  padding: 0;
+  margin: 0;
+  list-style-type: none;
+}
+.compute-results {
+  background-color: #0ba9e8;
+  font-size: 18px;
+  border: none;
+  border-radius: 8px;
+  color: #fff;
+  font-family: "Roboto";
+  font-weight: 600;
+  padding: 5px;
+  margin: 20px 0 10px 0;
+}
+.compute-results:hover {
+  background-color: #000;
+  color: #fff;
+}
+.charts-section {
+  color: #310cb3;
+  flex: 5;
+  padding: 0 8px 0 8px;
+  width: 40%;
+  font-size: 35px;
+  font-weight: 600;
+  background-color: #fff;
+}
+.select-model-name {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  border: 2px solid #020230;
+}
+.charts-buttons{
+  padding: 10px 10px 10px 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-left: auto;
+  width: 50%;
+  gap: 40px;
+}
+.charts-container {
+  display: flex;
+  /* height: 100vh; */
+  /* width: 100%; */
+  overflow: scroll;
+  margin-bottom: 30px;
+}
+@media screen and (max-width: 768px) {
+  .charts-container {
+    flex-direction: column;
+  }
+}
+/* .charts-container::-webkit-scrollbar {
+  display: none;
+} */
+.pie-chart {
+  flex: 1.5;
+  border: 2px solid #000;
+  margin-top: 10px;
+  margin-left: 20px;
+  border-radius: 8px;
+  background-color: white;
+  /* overflow: scroll; */
+}
+.bar-chart {
+  flex: 1;
+  border: 2px solid #000;
+  margin-top: 10px;
+  margin-left: 10px;
+  border-radius: 8px;
+  background-color: white;
+}
+.results-heading {
+  margin-left: 20px;
+  font-family: "Roboto";
+  font-size: 26px;
+  font-weight: bold;
+  color: #000;
+  text-decoration: underline;
+}
+.table-container {
+  margin: 0 20px 20px 20px;
+  width: 98%;
+  overflow: auto;
+  height: 70vh;
+  border: 2px solid #000;
+  background-color: #fff;
+  padding: 15px;
+}
+
+.button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 10px;
+  gap: 20px;
+}
+.results {
+  font-weight: bold;
+}
+/* General tab button styling */
+
+/* General tab button styling */
+
+/* General tab button styling */
+
+.tab-buttons {
+  /* margin-bottom: 20px !important; */
+  display: flex !important;
+}
+.chart-tab{
+  color: #000;
+  background-color: grey;
+  font-size: 20px;
+  padding: 10px;
+  width: 150px;
+  height: 50px;
+  border: none;
+  border-radius: 12px;
+  /* font-weight: 500; */
+  border: 1px solid #000;
+}
+.chart-tab-active{
+  background-color: black;
+  color: #fff;
+  font-weight: 700;
+  border: 1px solid #fff;
+}
+.tab {
+  display: inline-block !important;
+  padding: 10px 10px !important; /* Consistent padding */
+  margin-right: 5px !important;
+  margin-left: 20px;
+  background-color: grey !important;
+  border: 1px solid #000 !important;
+  margin-top: 5px;
+  color: #000;
+  font-size: 28px;
+  border-radius: 8px;
+  font-family: "Roboto";
+  cursor: pointer !important;
+  outline: none !important;
+  flex: 1 !important;
+  /* font-weight: bold; */
+  box-sizing: border-box !important; /* Includes padding and border in the height */
+  transition: background-color 0.3s !important; /* Smooth transition for background color */
+}
+/* 2596be */
+.tab.activeTab {
+  background-color: #000 !important;
+  font-weight: bold !important;
+  border: 1px solid #fff !important;
+  /*Keeps the height uniform */
+  position: relative !important;
+  color: #fff;
+  font-weight: bold;
+  margin-top: 2px;
+  /* border-radius: 8px; */
+  background-color: #000 !important;
+  /* font-size: 38px; */
+  /* text-decoration: underline; */
+}
+
+/* Tab content styling */
+.charts-section.tab-content .content {
+  display: none;
+  padding: 15px;
+  border: 1px solid #ccc;
+  background-color: #000;
+}
+
+.charts-section.tab-content .content.active {
+  display: block;
+}
+.model-dataset {
+  background-color: #064af4bd;
+  padding: 12px;
+  margin: 8px 0px;
+  border-radius: 10px;
+  text-decoration: none;
+  color: #fff;
+  font-family: "Roboto";
+  box-shadow: 1px 1px solid #000 !important; 
+}
+.empty-bg-image {
+  background-image: url("https://res.cloudinary.com/dvxkeeeqs/image/upload/v1727805691/futuristic-digital-user-interface-dashboard_53876-115871_xeeybu.jpg");
+  height: 100%;
+  background-size: cover;
+  margin: 20px;
+  border-radius: 20px;
+  background-color: #000;
+}
+.select-text {
+  color: black;
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 20px;
+  font-family: "Roboto";
+  font-weight: 700;
+  font-size: 30px;
+  text-transform: capitalize;
+  border: 2px double #8e8d8d;
+  font-family: "Roboto";
+}
+.select-text:hover {
+  text-decoration: underline;
+}
+.info-bar {
+  background-color: #000;
+  color: #fff;
+}
+.tab-buttons span{
+  font-size: 16px;
+  /* margin-left: 5px; */
+  
+}
+/* background-image: linear-gradient(-225deg, #473B7B 0%, #3584A7 51%, #30D2BE 100%); */
