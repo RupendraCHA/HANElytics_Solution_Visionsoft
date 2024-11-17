@@ -6,6 +6,14 @@ import "./initialPage.css"
 function InitialPage() {
     const navigate = useNavigate()
     
+    useEffect(() => {
+        const jwtToken = localStorage.getItem("token")
+        if (jwtToken) {
+            navigate("/dataModeling")
+        }else {
+            navigate("/login")
+        }
+    },[])
 
     return (
         <>
