@@ -11,7 +11,7 @@ function InitialPage() {
         if (jwtToken) {
             navigate("/dataModeling")
         }else {
-            navigate("/login")
+            navigate("/")
         }
     },[])
 
