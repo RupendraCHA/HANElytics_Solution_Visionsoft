@@ -20,7 +20,7 @@ function Home() {
         }else {
             navigate("/login")
         }
-    })
+    },[])
 
 
     return (
