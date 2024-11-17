@@ -31,7 +31,17 @@ const DataModeling = () => {
     const navigate = useNavigate()
     const {url, token, username} = useContext(StoreContext)
 
-    
+    useEffect(() => {
+        const jwtToken = localStorage.getItem("token")
+
+        if (jwtToken) {
+            navigate("/home")
+        }else {
+            navigate("/login")
+        }
+    },[])
+
+    // Hello
 
     const [data, setData] = useState([])
     const [hideShow, setHideShow] = useState(true)
