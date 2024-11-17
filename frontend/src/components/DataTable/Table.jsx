@@ -146,7 +146,7 @@ const Table = (props) => {
                                         <td>{eachRow.Medication_Name}</td>
                                         <td>{eachRow.Predicted_Sales}</td>
                                         <td>{eachRow.Historical_Sales}</td>
-                                        <td>{eachRow.Safety_Stock}</td>
+                                        <td>{eachRow.Safety_Stock_For_15_Days}</td>
                                         <td>{eachRow.Reorder_Point_Quantity}</td>
                                     </tr>
                                 )
