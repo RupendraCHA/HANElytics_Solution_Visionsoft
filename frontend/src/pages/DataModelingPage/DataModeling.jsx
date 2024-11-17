@@ -35,7 +35,7 @@ const DataModeling = () => {
         const jwtToken = localStorage.getItem("token")
 
         if (jwtToken) {
-            navigate("/home")
+            navigate("/dataModeling")
         }else {
             navigate("/login")
         }
