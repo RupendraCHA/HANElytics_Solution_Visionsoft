@@ -5,19 +5,7 @@ import "./initialPage.css"
 
 function InitialPage() {
     const navigate = useNavigate()
-    // axios.defaults.withCredentials = true;
-    // useEffect(() => {
-    //     axios.get('http://localhost:3001/home')
-    //         .then(result => {
-    //             console.log(result)
-    //             if (result.data !== "Successful") {
-    //                 navigate("/")
-    //             } else {
-    //                 navigate("/home")
-    //             }
-    //         })
-    //         .catch(err => console.log(err))
-    // }, [])
+    
 
     return (
         <>

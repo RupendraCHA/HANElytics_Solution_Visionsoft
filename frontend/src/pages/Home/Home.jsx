@@ -9,8 +9,19 @@ import { StoreContext } from '../../context/StoreContext';
 function Home() {
 
     const {token, username} = useContext(StoreContext)
-
     const navigate = useNavigate()
+
+
+    useEffect(() => {
+        const jwtToken = localStorage.getItem("token")
+
+        if (jwtToken) {
+            navigate("/home")
+        }else {
+            navigate("/login")
+        }
+    })
+
 
     return (
         <>
