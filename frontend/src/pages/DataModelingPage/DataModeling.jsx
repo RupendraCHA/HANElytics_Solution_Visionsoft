@@ -71,7 +71,7 @@ const DataModeling = () => {
 
     const getInventoryDataFromMongoDB = async () => {
         try {
-            const response = await axios.get(url + "/api/model/inventory")
+            const response = await axios.get(url + "/api/model/inventory", {}, {headers: {token}})
             const Array = response.data
                 setData(Array)
                 setInventoryData(false)
