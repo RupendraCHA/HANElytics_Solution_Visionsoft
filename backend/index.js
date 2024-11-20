@@ -25,18 +25,7 @@ app.get("/", (req, res) => {
         <html>
         <head>
           <title>Hello from Node.js</title>
-          <style>
-            .api-container{
-                display: flex;
-                justify-content: center;
-                align-items: center;
-                background-color: black;
-            }
-            h1{
-                color: white;
-                font-weight: bold;
-            }
-          </style>
+          
         </head>
         <body>
             <div className="api-container">
