@@ -28,7 +28,7 @@ app.get("/", (req, res) => {
           
         </head>
         <body>
-            <div className="api-container">
+            <div style={{backgroundColor: "black", color: "white"}}>
                 <h1>You are Successfully started HANElytics Server</h1>
             </div>
         </body>
