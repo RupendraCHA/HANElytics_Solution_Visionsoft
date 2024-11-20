@@ -20,7 +20,17 @@ app.use("/api/user", userRouter)
 app.use("/api/model", dataModelResultsRouter)
 
 app.get("/", (req, res) => {
-    res.send("API is Working")
+    res.send(`
+        <!DOCTYPE html>
+        <html>
+        <head>
+          <title>Hello from Node.js</title>
+        </head>
+        <body>
+          <h1>Hello World!</h1>
+        </body>
+        </html>
+      `);
 })
 
 app.listen(port, () => {
