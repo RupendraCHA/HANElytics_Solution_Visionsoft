@@ -25,10 +25,14 @@ app.get("/", (req, res) => {
         <html>
         <head>
           <title>Hello from Node.js</title>
-          
+          <style>
+            h1{
+                color: blue;
+            }
+          </style>
         </head>
         <body>
-            <div style={{backgroundColor: "black", color: "white"}}>
+            <div>
                 <h1>You are Successfully started HANElytics Server</h1>
             </div>
         </body>
