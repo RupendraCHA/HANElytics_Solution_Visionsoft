@@ -26,8 +26,15 @@ app.get("/", (req, res) => {
         <head>
           <title>Hello from Node.js</title>
           <style>
+            div{
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                height: 100vh;
+                background-color: black;
+            }
             h1{
-                color: blue;
+                color: white;
             }
           </style>
         </head>
