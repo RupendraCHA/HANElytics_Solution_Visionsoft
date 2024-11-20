@@ -1,7 +1,7 @@
 import userModel from "../models/userModel.js"
 import jwt from "jsonwebtoken"
 import bcrypt from "bcryptjs"
-const nodemailer = require('nodemailer');
+import nodemailer from "nodemailer"
 
 const createToken = (id) => {
     return jwt.sign({id}, process.env.JWT_SECRET)
