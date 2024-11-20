@@ -5,6 +5,7 @@ import "./Table.css"
 const Table = (props) => {
     // eslint-disable-next-line react/prop-types
     const { data, inventoryData, revenueData, equipmentData1, clinicalData } = props
+    console.log(data)
 
     const convertToFixedDecimal = (number, roundedTo) => {
         let number1 = number.toFixed(roundedTo)

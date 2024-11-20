@@ -70,9 +70,12 @@ const DataModeling = () => {
     }
 
     const getInventoryDataFromMongoDB = async () => {
+        const jwtToken = localStorage.getItem("token")
+
         try {
-            const response = await axios.get(url + "/api/model/inventory", {}, {headers: {token}})
+            const response = await axios.get(url + "/api/model/inventory", {headers: {token: jwtToken}})
             const Array = response.data
+            console.log(Array)
                 setData(Array)
                 setInventoryData(false)
                 setRevenueData(true)
@@ -87,8 +90,10 @@ const DataModeling = () => {
     }
 
     const getRevenueDataFromMongoDB = async () => {
+        const jwtToken = localStorage.getItem("token")
+
             try {
-                const response = await axios.get( url + "/api/model/revenue")
+                const response = await axios.get( url + "/api/model/revenue", {headers: {token: jwtToken}})
                 const Array = response.data
                 setData(Array)
                 console.log(Array)
@@ -104,8 +109,10 @@ const DataModeling = () => {
     }
 
     const getEquipmentDataFromMongoDB = async () => {
+        const jwtToken = localStorage.getItem("token")
+
             try {
-                const response = await axios.get( url + "/api/model/equipment")
+                const response = await axios.get( url + "/api/model/equipment", {headers: {token: jwtToken}})
                 const Array = response.data
                 setData(Array)
                 console.log(Array)
@@ -121,11 +128,13 @@ const DataModeling = () => {
     }
 
     const getClinicalDataFromMongoDB = async () => {
+        const jwtToken = localStorage.getItem("token")
+
             try {
-                const response = await axios.get( url + "/api/model/clinical")
+                const response = await axios.get( url + "/api/model/clinical", {headers: {token: jwtToken}})
                 const Array = response.data
                 setData(Array)
-                console.log(Array)
+                // console.log(Array)
                 setRevenueData(true)
                 setHideShow(false)
                 setInventoryData(true)
@@ -160,7 +169,6 @@ const DataModeling = () => {
                 </a>
             )
         },
-
         {
             key: 2,
             label: (

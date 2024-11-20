@@ -18,11 +18,13 @@ import { Dropdown } from "antd"
 const Header = () => {
 
     const navigate = useNavigate()
-    const {username, token} = useContext(StoreContext)
+    const {username, token, setToken, setUsername} = useContext(StoreContext)
 
     const handleLogout = () => {
         localStorage.removeItem("token")
         localStorage.removeItem("username")
+        setToken("")
+        setUsername("")
         navigate("/login")
     }
     const items = [
