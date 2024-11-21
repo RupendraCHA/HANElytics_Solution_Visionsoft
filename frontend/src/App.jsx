@@ -11,6 +11,7 @@ import InitialPage from './pages/InitialPage/InitialPage';
 import Home from "./pages/Home/Home"
 import DataModeling from "./pages/DataModelingPage/DataModeling"
 import NotFound from "./components/NotFound/NotFound"
+import Registration from './components/Registration/Registration';
 
 
 const App = () => {
@@ -22,6 +23,7 @@ const App = () => {
         <Route exact path='/login' element={<Login />}></Route>
         <Route exact path='/home' element={<Home />}></Route>
         <Route exact path='/dataModeling' element={<DataModeling />}></Route>
+        <Route exact path='/registration' element={<Registration/>}></Route>
         <Route path="*" element={<NotFound />}></Route>
       </Routes>
     </>

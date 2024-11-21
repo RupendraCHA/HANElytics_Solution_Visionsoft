@@ -8,7 +8,6 @@ const createToken = (id) => {
 }
 
 
-
 // Configure the transporter with your email service
 const transporter = nodemailer.createTransport({
   host: 'smtp.office365.com', // SMTP host (e.g., for Office 365 or Exchange)
@@ -83,7 +82,6 @@ export const registerUser = async (req, res) => {
             res.json({success: true, token, name})
         } else {
             return res.json({success: false, message: "Enter Valid mail which ends with @gmail.com (or) @visionsoft.com"})
-
         }
     }
     catch (error) {
