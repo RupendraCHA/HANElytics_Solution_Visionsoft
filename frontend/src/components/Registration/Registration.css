@@ -2,11 +2,12 @@
     min-height: 100vh;
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    align-items: center;
+    /* justify-content: center;
+    align-items: center; */
     background-image: url("https://res.cloudinary.com/dvxkeeeqs/image/upload/v1729229000/image3_1_ac1jk3.jpg");
     background-repeat: no-repeat;
     background-size: cover;
+    /* filter: saturation(80%); */
     color: white;
 
     form{
@@ -25,6 +26,11 @@
             font-family: "Playfair Display";
             font-weight: bold;
             text-align: left;
+            background-color: white;
+            padding: 6px 20px;
+            color: black;
+            border-radius: 6px;
+            font-size: max(2vw, 18px);
         }
 
         .email{
@@ -53,33 +59,44 @@
     
     input {
         width: 30vw;
-        height: 40px;
+        height: 34px;
         padding-left: 12px;
         border: none;
+        font-size: 14px;
         outline: none;
         border-radius: 8px;
-        font-weight: 500;
-        background-color: white;
-        color: #000;
+        font-weight: 600;
+        background-color: lightgrey;
+        color: #ff0000;
     }
     .address{
         display: flex;
         justify-content: flex-start;
         align-items: flex-start;
         flex-direction: column;
-        p{
-            font-size: 28px;
+        margin-top: 15px;
+        h1{
+            font-size:max(1.5vw, 14px);
             margin-top: 40px;
-            padding: 0px;
-            margin-top: 10px;
+            /* padding: 0px; */
+            background-color: white;
+            color: black;
         }
     }
     .register{
-        font-size: 16px;
-        border: 2px solid white;
+        font-size: 20px;
+        /* border: 2px solid yellow; */
         border-radius: 6px;
-        padding: 6px 18px;
+        padding: 6px 50px;
         margin-top: 30px;
+        font-weight: 600;
+        background-color: red;
+        border: none;
+        color: white;
 
+    }
+    .register:hover{
+        opacity: 0.8;
+        filter: brightness(200%);
     }
 }
