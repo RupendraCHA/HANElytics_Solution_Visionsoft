@@ -42,11 +42,11 @@ const Registration = () => {
             <div className='input-container'>
                 <div>
                     <label for='firstname'>Firstname</label><br/>
-                    <input type='text' required placeholder='Enter Firstname' name='firstname' onClick={handleInputChange} id='firstname'/>
+                    <input type='text' required placeholder='Firstname' name='firstname' onClick={handleInputChange} id='firstname'/>
                 </div>
                 <div>
                     <label for='lastname'>Lastname</label><br/>
-                    <input type='text' required placeholder='Enter Lastname' onClick={handleInputChange} name='lastname' id='Lastname'/>
+                    <input type='text' required placeholder='Lastname' onClick={handleInputChange} name='lastname' id='Lastname'/>
                 </div>
             </div>
             <div className='input-container'>

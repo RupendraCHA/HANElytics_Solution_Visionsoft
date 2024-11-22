@@ -21,6 +21,8 @@
         /* opacity: 0.5; */
         /* filter: contrast(90%); */
         margin: 20px;
+        font-family: "Playfair Display";
+
 
         h1{
             font-family: "Playfair Display";
@@ -65,7 +67,7 @@
         font-size: 14px;
         outline: none;
         border-radius: 8px;
-        font-weight: 600;
+        font-weight: bold;
         background-color: lightgrey;
         color: #ff0000;
     }
@@ -77,6 +79,8 @@
         margin-top: 15px;
         h1{
             font-size:max(1.5vw, 14px);
+            font-family: "Playfair Display";
+
             margin-top: 40px;
             /* padding: 0px; */
             background-color: white;
