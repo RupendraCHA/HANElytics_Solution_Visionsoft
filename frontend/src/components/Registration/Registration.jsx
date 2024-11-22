@@ -4,8 +4,8 @@ import "./Registration.css"
 const Registration = () => {
   return (
     <div className='register-form'>
+        <h1>Register</h1>
         <form>
-            <h1>Register</h1>
             <div className='input-container'>
                 <div>
                     <label for='firstname'>Firstname</label><br/>
@@ -49,7 +49,7 @@ const Registration = () => {
                     </div>
                     <div>
                         <label for='country'>Country</label><br/>
-                        <input type='text' placeholder='Number' id='country'/>
+                        <input type='text' placeholder='Country' id='country'/>
                     </div>
                 </div>
                 <div>
@@ -57,6 +57,7 @@ const Registration = () => {
                     <input type='text' placeholder='zipcode' id='zipcode'/>
                 </div>
             </div>
+            <button className='register'>Register</button>
         </form>
     </div>
   )

@@ -117,7 +117,6 @@ function SignUp() {
                             <input type='checkbox' required className='checkbox' />
                             <p>I accept terms & conditions.</p>
                         </div>
-                        
                         <button type='submit' className='btn btn-warning w-100 rounded-0' style={{ fontWeight: "600" }}>
                             Register
                         </button>

@@ -1,6 +1,7 @@
 .register-form{
     min-height: 100vh;
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
     background-image: url("https://res.cloudinary.com/dvxkeeeqs/image/upload/v1729229000/image3_1_ac1jk3.jpg");
@@ -11,16 +12,19 @@
     form{
         display: flex;
         flex-direction: column;
-        justify-content: center;
+        justify-content: flex-start;
         align-items: center;
         margin: auto;
-        background-color: black;
+        /* background-color: black; */
         padding: 30px;
         /* opacity: 0.5; */
+        /* filter: contrast(90%); */
+        margin: 20px;
 
         h1{
             font-family: "Playfair Display";
             font-weight: bold;
+            text-align: left;
         }
 
         .email{
@@ -44,7 +48,7 @@
         font-size: 18px;
         font-family: "Playfair Display";
         font-weight: bold;
-        margin-top: 20px;
+        margin-top: 10px;
     }
     
     input {
@@ -66,6 +70,16 @@
         p{
             font-size: 28px;
             margin-top: 40px;
+            padding: 0px;
+            margin-top: 10px;
         }
+    }
+    .register{
+        font-size: 16px;
+        border: 2px solid white;
+        border-radius: 6px;
+        padding: 6px 18px;
+        margin-top: 30px;
+
     }
 }
