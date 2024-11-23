@@ -41,12 +41,12 @@ function SignUp() {
             ...data, [name]: value
         }))
 
-        console.log(data)
     }
 
     const handleSubmit = async (e) => {
         e.preventDefault()
         setExist(false)
+        console.log(data)
 
         const response = await axios.post(url + "/api/user/register", data)
 
@@ -54,9 +54,9 @@ function SignUp() {
             setExist(false)
             setToken(response.data.token)
             localStorage.setItem("token", response.data.token)
-            localStorage.setItem("username", response.data.name)
-            setUsername(response.data.name)
-            toast.success(`${response.data.name} Registered Successfully!`)
+            localStorage.setItem("username", response.data.firstname)
+            setUsername(response.data.firstname)
+            toast.success(`${response.data.firstname} Registered Successfully!`)
             navigate("/home")
         }
         else {
@@ -78,7 +78,7 @@ function SignUp() {
                             <div className='register-input-container'>
                                 <div className='register-input-label'>
                                     <label htmlFor="firstname">
-                                        <strong>Firstame</strong>
+                                        <strong>FIRSTNAME</strong>
                                     </label>
                                     <input type='text'
                                         placeholder='Firstname: Sachin'
@@ -91,7 +91,7 @@ function SignUp() {
                                 </div>
                                 <div className='register-input-label'>
                                     <label htmlFor="lastname">
-                                        <strong>Lastname</strong>
+                                        <strong>LASTNAME</strong>
                                     </label>
                                     <input type='text'
                                         placeholder='Lastname: Tendulkar'
@@ -106,7 +106,7 @@ function SignUp() {
                             <div className="register-input-container">
                                 <div className='register-input-label'>
                                     <label htmlFor="bussinessName">
-                                        <strong>Bussiness Name</strong>
+                                        <strong>ORGANIZATION NAME</strong>
                                     </label>
                                     <input type='text'
                                         placeholder='Enter Bussiness Name'
@@ -119,9 +119,9 @@ function SignUp() {
                                 </div>
                                 <div className='register-input-label'>
                                     <label htmlFor="contact">
-                                        <strong>Contact</strong>
+                                        <strong>CONTACT NUMBER</strong>
                                     </label>
-                                    <input type='tel'
+                                    <input type='text'
                                         placeholder='Contact Number'
                                         autoComplete='off'
                                         required
@@ -133,7 +133,7 @@ function SignUp() {
                             </div>
                             <div className='register-input-label'>
                                 <label htmlFor="email">
-                                    <strong>Email</strong>
+                                    <strong>EMAIL</strong>
                                 </label>
                                 <input type='text'
                                     placeholder='email address: example@gmail.com'
@@ -146,7 +146,7 @@ function SignUp() {
                             </div>
                             <div className='register-input-label'>
                                 <label htmlFor="password">
-                                    <strong>Password</strong>
+                                    <strong>PASSWORD</strong>
                                 </label>
                                 <input type='password'
                                     placeholder='Enter Password'
@@ -157,14 +157,14 @@ function SignUp() {
 
                                 />
                             </div>
-                            <h3>Address Info</h3>
+                            <h3>Bussiness Address Information</h3>
                             <div className='register-input-container'>
                                 <div className='register-input-label'>
                                     <label htmlFor="city">
-                                        <strong>City</strong>
+                                        <strong>CITY</strong>
                                     </label>
                                     <input type='text'
-                                        placeholder='Type city name'
+                                        placeholder='Type city name: Miami'
                                         autoComplete='off'
                                         required
                                         name='city'
@@ -173,10 +173,10 @@ function SignUp() {
                                 </div>
                                 <div className='register-input-label'>
                                     <label htmlFor="street">
-                                        <strong>Street</strong>
+                                        <strong>STREET</strong>
                                     </label>
                                     <input type='text'
-                                        placeholder='Type Street info'
+                                        placeholder='Type Street info: The Roads'
                                         autoComplete='off'
                                         required
                                         name='street'
@@ -187,10 +187,10 @@ function SignUp() {
                             <div className='register-input-container'>
                                 <div className='register-input-label'>
                                     <label htmlFor="state">
-                                        <strong>State</strong>
+                                        <strong>STATE</strong>
                                     </label>
                                     <input type='text'
-                                        placeholder='Enter state name'
+                                        placeholder='Enter state name: Florida'
                                         autoComplete='off'
                                         required
                                         name='state'
@@ -199,10 +199,10 @@ function SignUp() {
                                 </div>
                                 <div className='register-input-label'>
                                     <label htmlFor="country">
-                                        <strong>Country</strong>
+                                        <strong>COUNTRY</strong>
                                     </label>
                                     <input type='text'
-                                        placeholder='Enter country name'
+                                        placeholder='Enter country name: USA'
                                         autoComplete='off'
                                         required
                                         name='country'
@@ -212,10 +212,10 @@ function SignUp() {
                             </div>
                             <div className='register-input-label'>
                                 <label htmlFor="zipcode">
-                                    <strong>Zipcode</strong>
+                                    <strong>ZIPCODE</strong>
                                 </label>
                                 <input type='text'
-                                    placeholder='type zipcode'
+                                    placeholder='Type zipcode: 33129'
                                     autoComplete='off'
                                     required
                                     name='zipcode'
@@ -235,19 +235,18 @@ function SignUp() {
                             </div>
 
                             <div>
-                                <button type='submit' className='w-50'>
+                                <button type='submit' className='button-to-register'>
                                     Register
                                 </button>
                             </div>
-                            
                         </form>
                     </div>
-                        <div>
-                            <p className='text-white'>Already have an account?</p>
-                            <Link to="/login">
-                                <button>Login</button>
-                            </Link>
-                        </div>
+                    <div className='login-details'>
+                        <p>Already have an account?</p>
+                        <Link to="/login">
+                            <button>Login</button>
+                        </Link>
+                    </div>
                 </div>
             </div>
         </>

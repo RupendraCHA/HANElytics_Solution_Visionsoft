@@ -42,7 +42,7 @@ function InitialPage() {
                         Intelligence" & "Machine Learning" Solutions in Supply Chain, Injecting Data
                         From Diverse ERP & Non-ERP Sources.</h1>
                     <div className='text-center'>
-                        <h3 className='text-white'>Don't have an account, Create it by clicking register...</h3>
+                        <h2 className='text-white'>Don't have an account, Create it by clicking register...</h2>
                         <Link to="/register">
                             <button className='bg-warning rounded-4 p-2 text-white' style={{ fontWeight: 700 }}>
                                 Register Here
@@ -50,7 +50,7 @@ function InitialPage() {
                         </Link>
                     </div>
                     <div className='text-center mt-4'>
-                        <h3 className='text-white'>Already have an account, click to Login...</h3>
+                        <h2 className='text-white'>Already have an account, click to Login...</h2>
                         <Link to="/login">
                             <button className='bg-success rounded-4 p-2 text-white' style={{ fontWeight: 700 }}>
                                 Login Here
