@@ -31,6 +31,8 @@ const Registration = () => {
         setData(data => ({
             ...data, [name]: value
         }))
+        console.log(data)
+
     }
     
 
@@ -93,8 +95,8 @@ const Registration = () => {
                     <label for='zipcode'>Zipcode</label><br/>
                     <input type='text' required name='zipcode' onClick={handleInputChange} placeholder='zipcode' id='zipcode'/>
                 </div>
-            </div>
             <button type='submit' className='register'>Register</button>
+            </div>
         </form>
     </div>
   )

@@ -4,52 +4,67 @@
   box-sizing: border-box;
 }
 .bg-container-signup {
-  /* background-image: url("https://res.cloudinary.com/dvxkeeeqs/image/upload/v1724952773/1520180926563_jadgvd.jpg"); */
   background-image: url("https://res.cloudinary.com/dvxkeeeqs/image/upload/v1729229000/image3_1_ac1jk3.jpg");
-  /* background-image: url("https://res.cloudinary.com/dvxkeeeqs/image/upload/v1728068174/technology-6701404_640_nb7r5n.png"); */
   min-height: 100vh;
   background-size: cover;
-  overflow: auto;
-  /* padding-top: 100px; */
-  padding-bottom: 100px;
+  padding: 40px;
+}
+.register-card-container{
+  padding: 50px;
+  display: flex;
+  /* flex-direction: column; */
+  justify-content: space-between;
+  align-items: center;
+  /* height: 80vh; */
 }
 
-@media screen and (min-width: 576px) {
-  .register-card {
-    width: 25%;
+@media screen and (max-width: 768px){
+  .register-card-container{
+    flex-direction: column;
   }
 }
-.register-user-input {
-  font-weight: 500;
-  padding-left: 10px;
+.register-card{
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
 }
-.checkbox-container {
+form{
+  color: #fff;
+}
+.register-heading{
+  background-color: #fff;
+  padding: 8px 16px;
+  font-family: "Playfair Display";
+  font-weight: 700;
+  text-align: center;
+  font-size: max(2vw, 15px;)
+}
+.register-input-container{
   display: flex;
   justify-content: flex-start;
-  align-items: center;
+  gap: 100px;
+}
+h3{
+  background-color: #fff;
+  color: #000;
+  margin-top: 30px;
+}
+.register-input-label{
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  flex-direction: column;
   margin-top: 10px;
-  margin-bottom: 10px;
-}
-.checkbox {
-  width: 15px;
-  height: 15px;
-  margin-right: 8px;
-}
-.checkbox-container p {
-  margin: 0;
-  color: white;
-}
-.error-msg{
-  color: red;
-  font-size: 14px;
-  font-weight: 500;
-  background-color: white;
-  padding: 2px;
-  border-radius: 4px;
+  
+  input{
+  height: 40px;
+  width: 25vw;
+  padding-left: 12px;
+  border: none;
+  outline: none;
+  border-radius: 6px;
+  font-weight: 700;
+  caret-color: red;
   text-align: center;
-
-  span{
-    color: green;
   }
 }
-
