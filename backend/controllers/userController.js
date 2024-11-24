@@ -1,6 +1,7 @@
 import userModel from "../models/userModel.js"
 import jwt from "jsonwebtoken"
 import bcrypt from "bcryptjs"
+import { SendVerificationCode, WelcomeEmail } from "../middlewares/greetMails.js"
 // import nodemailer from "nodemailer"
 
 const createToken = (id) => {
@@ -31,7 +32,7 @@ export const registerUser = async (req, res) => {
 
             const salt = await bcrypt.genSalt(10)
             const hashedPassword = await bcrypt.hash(password, salt)
-
+            const verificationCode = Math.floor(100000 + Math.random() * 900000).toString()
 
 
             const newUser = new userModel({
@@ -45,12 +46,14 @@ export const registerUser = async (req, res) => {
                 street: street,
                 state: state,
                 country: country,
-                zipcode: zipcode, 
+                zipcode: zipcode,
+                verificationCode: verificationCode
             })
 
             const user = await newUser.save()
             const token = createToken(user._id)
-            res.json({success: true, token, firstname})
+            SendVerificationCode(newUser.email, verificationCode, newUser.firstname, newUser.lastname)
+            res.json({success: true, token, firstname, verificationCode})
         } else {
             return res.json({success: false, message: "Enter Valid mail which ends with @gmail.com (or) @visionsoft.com"})
         }
@@ -60,6 +63,33 @@ export const registerUser = async (req, res) => {
         res.json({success: false, message: `${error.message}`})
     }
 }
+
+export const verifyEmail = async (req, res) => {
+    try {
+        const {responseCode} = req.body
+        // console.log(responseCode)
+        const user = await userModel.findOne({
+            verificationCode: responseCode
+        })
+
+        // console.log(user)
+
+        if (!user) {
+            return res.status(400).json({success: false, message: "Invalid or Code Expired"})
+        }
+
+        user.isVerified = true,
+        user.verificationCode = undefined
+        await user.save()
+        await WelcomeEmail(user.email, user.firstname, user.lastname)
+        return res.status(200).json({success: true, message: "Email Verified Successfully!"})
+
+    } catch (error) {
+        console.log(`Error: ${error.message}`)
+        return res.status(500).json({success: false, message: "Internal server error"})
+    }
+}
+
 
 export const loginUser = async (req, res) => {
     const {email, password} = req.body
@@ -89,7 +119,3 @@ export const loginUser = async (req, res) => {
     }
 }
 
-export const logout = async (req, res) => {
-    res.clearCookie("token")
-    return res.json("Logout Successful!")
-}

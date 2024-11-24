@@ -29,6 +29,10 @@ function SignUp() {
     const [isExist, setExist] = useState(false)
     const [errorMsg, setErrorMsg] = useState("")
     const [existedEmail, accessEmail] = useState("")
+    const [isClickedRegister, setRegisterClick] = useState(true)
+    const [responseCode, setResponseCode] = useState('')
+    const [inputCode, setInputCode] = useState('')
+    const [codeError, setCodeError] = useState(false)
 
     const {url, setToken, setUsername} = useContext(StoreContext)
 
@@ -46,7 +50,7 @@ function SignUp() {
     const handleSubmit = async (e) => {
         e.preventDefault()
         setExist(false)
-        console.log(data)
+        // console.log(data)
 
         const response = await axios.post(url + "/api/user/register", data)
 
@@ -55,22 +59,44 @@ function SignUp() {
             setToken(response.data.token)
             localStorage.setItem("token", response.data.token)
             localStorage.setItem("username", response.data.firstname)
+            setResponseCode(response.data.verificationCode)
+            // console.log(response.data.verificationCode)
             setUsername(response.data.firstname)
-            toast.success(`${response.data.firstname} Registered Successfully!`)
-            navigate("/home")
+            setRegisterClick(false)
+            // navigate("/home")
         }
         else {
             setErrorMsg(response.data.message)
             accessEmail(response.data.email)
             setExist(true)
         }
+    }
 
+    const storeVerificationCode = (e) => {
+        setInputCode(e.target.value)
+        setCodeError(false)
+    }
+
+    const handleEmailVerification = async (responseCode) => {
+        // setRegisterClick(true)
+        if (inputCode === "") {
+            setCodeError(true)
+        }
+        else{
+            const response = await axios.post(url + "/api/user/verifyemail", {responseCode})
+            if (response.data.success === true){
+                toast.success(`${data.firstname} ${response.data.message}`)
+                navigate("/login")
+            }else {
+                toast.error(`${response.data.message}`)
+            }
+        }
     }
 
     return (
         <>
             <Navbar />
-            <div className='bg-container-signup'>
+            {isClickedRegister && <div className='bg-container-signup'>
                 <div className='register-card-container'>
                     <div className='register-card'>
                         <h2 className='register-heading'>Sign Up here to get Instant access to AI/ML Insights</h2>
@@ -248,7 +274,16 @@ function SignUp() {
                         </Link>
                     </div>
                 </div>
-            </div>
+            </div>}
+            {!isClickedRegister && <div className='verify-card-container'>
+                <div className='verify-card'>
+                    <div>Hey, {data.firstname} {data.lastname}</div>
+                    <h1>Code has been sent to your email address, Verify Your Email Address by entering it below</h1>
+                    <input type='text' placeholder='Enter your verification code' onChange={storeVerificationCode}/>
+                    {codeError && <p className='code-error'>*Enter Correct Code</p>}
+                    <button onClick={() => handleEmailVerification(responseCode)}>Verify</button>
+                </div>
+            </div>}
         </>
     )
 }

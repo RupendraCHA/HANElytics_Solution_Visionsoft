@@ -12,8 +12,9 @@ const userSchema = new mongoose.Schema({
     state: {type: String, required: true},
     country: {type: String, required: true},
     zipcode: {type: String, required: true},
-
-})
+    isVerified: {type: Boolean, default: false},
+    verificationCode: {type: String}
+}, {timestamps: true})
 
 const userModel = mongoose.models.consumers || mongoose.model("consumers", userSchema)
 

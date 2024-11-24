@@ -18,6 +18,7 @@ function Login() {
     const {url, setToken, setUsername, token, username} = useContext(StoreContext)
 
     const handleInputChange = (e) => {
+        setExist(false)
         const name = e.target.name
         const value = e.target.value
 
@@ -54,21 +55,24 @@ function Login() {
         <>
             <Navbar />
             <div className='bg-container-login d-flex justify-content-center align-items-center bg-secondary vh-100'>
-                <div className='bg-secondary p-4 text-white rounded-4 login-card' style={{ opacity: "0.9" }}>
+                <div className='login-page'>
+                    <h4>
+                        Explore Our HANElytics AI/ML Solutions
+                    </h4>
+                </div>
+                <div className='bg-success p-4 text-white login-card' style={{height: "60vh"}}>
                     <h2>Login</h2>
                     <form onSubmit={handleSubmit}>
                         <div className='mb-3'>
                             <label htmlFor="email">
                                 <strong>Email</strong>
                             </label>
-                            {/* <img src="https://res.cloudinary.com/dvxkeeeqs/image/upload/v1724411202/free-images_klxje8.jpg" className="w-100" /> */}
                             <input type='text'
                                 placeholder='Enter login address'
                                 autoComplete='off'
                                 name='email'
                                 required
                                 className='rounded-0 form-control login-user-input'
-                                // onChange={(e) => setEmail(e.target.value)}
                                 onChange={handleInputChange}
                             />
                         </div>
@@ -82,7 +86,6 @@ function Login() {
                                 required
                                 name='password'
                                 className='rounded-0 form-control login-user-input'
-                                // onChange={(e) => setPassword(e.target.value)}
                                 onChange={handleInputChange}
 
                             />
@@ -94,13 +97,13 @@ function Login() {
                         <button type='submit' className='btn btn-primary bg-primary w-100 rounded-0' style={{ fontWeight: "600" }}>
                             Login
                         </button>
-
-                    </form>
-                    {/* <p>{failed}</p> */}
-                    <p>Don't have an account?</p>
+                        <p style={{fontWeight: "bold"}}>Don't have an account?</p>
                     <Link to="/register" className='btn btn-default border w-100 bg-warning rounded-0 text-decoration-none' style={{ fontWeight: "600" }}>
                         Register
                     </Link>
+                    </form>
+                    {/* <p>{failed}</p> */}
+                    
 
                 </div>
             </div>

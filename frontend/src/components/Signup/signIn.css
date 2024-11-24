@@ -158,3 +158,72 @@ font-weight: 700;
   margin-top: 10px;
   padding: 5px 0px;
 }
+.verify-card-container{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background-image: url("https://res.cloudinary.com/dvxkeeeqs/image/upload/v1729229000/image3_1_ac1jk3.jpg");
+  background-size: cover;
+}
+.verify-card{
+  background-color: #000;
+  padding: 30px;
+  border-radius: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+
+  div{
+    background-color: #fff;
+    color: #000;
+    padding: 8px;
+    border-radius: 6px;
+    text-align: center;
+    font-weight: bold;
+  }
+
+  input{
+    padding: 12px;
+    height: 40px;
+    border: none;
+    outline: none;
+    border-radius: 10px;
+    width: 100%;
+    text-align: center;
+    color: red;
+    font-weight: bold;
+  }
+
+  h1{
+    font-family: "Playfair Display";
+    font-size: 16px;
+    font-weight: bold;
+    color: #fff;
+  }
+
+  button{
+    padding: 8px 24px;
+    background-color: green;
+    color: #fff;
+    border: none;
+    outline: none;
+    border-radius: 12px;
+    font-size: 20px;
+    font-weight: 600;
+  }
+
+  button:hover{
+    font-size: 22px;
+  }
+
+  .code-error{
+    background-color: #fff;
+    padding: 4px;
+    color: red;
+    font-weight: bold;
+    font-size: 12px;
+    text-align: center;
+    border-radius: 6px;
+  }
+}

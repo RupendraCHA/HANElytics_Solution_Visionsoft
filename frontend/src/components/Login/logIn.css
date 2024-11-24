@@ -4,18 +4,43 @@
   box-sizing: border-box;
 }
 .bg-container-login {
-  /* background-image: url("https://res.cloudinary.com/dvxkeeeqs/image/upload/v1724952773/1520180926563_jadgvd.jpg"); */
   background-image: url("https://res.cloudinary.com/dvxkeeeqs/image/upload/v1729229000/image3_1_ac1jk3.jpg");
-  /* background-image: url("https://res.cloudinary.com/dvxkeeeqs/image/upload/v1728068174/technology-6701404_640_nb7r5n.png"); */
   min-height: 100vh;
   background-size: cover;
   overflow: auto;
-  /* padding-top: 100px; */
   padding-bottom: 100px;
+  background-color: #000;
+}
+.login-page{
+  background-image: linear-gradient(to right, #000, green, #000);
+  height: 60vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 300px;
+  border-radius: 20px 0px 0px 20px;
+  h4{
+    width: 150px;
+    text-align: center;
+    color: white;
+    background-color: #000;
+    padding: 15px;
+    border-radius: 6px;
+    box-shadow: 2px 2px 2px green;
+  }
+}
+.login-card {
+  width: 25%;
+  border-radius: 0px 20px 20px 0px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 @media screen and (min-width: 576px) {
   .login-card {
     width: 25%;
+    border-radius: 0px 20px 20px 0px;
   }
 }
 .login-user-input {
@@ -35,3 +60,4 @@
     color: green;
   }
 }
+
