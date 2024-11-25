@@ -99,7 +99,7 @@ function SignUp() {
             {isClickedRegister && <div className='bg-container-signup'>
                 <div className='register-card-container'>
                     <div className='register-card'>
-                        <h2 className='register-heading'>Sign Up here to get Instant access to AI/ML Insights</h2>
+                        <h2 className='register-heading'>Sign Up now and get Instant access to AI/ML Insights</h2>
                         <form onSubmit={handleSubmit} >
                             <div className='register-input-container'>
                                 <div className='register-input-label'>
