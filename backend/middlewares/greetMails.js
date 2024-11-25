@@ -25,7 +25,7 @@ export const WelcomeEmail = async (email, firstname, lastname) => {
         const response = await transporter.sendMail({
             from: '"Visionsoft Inc." <chandaluri210@gmail.com>', // sender address
             to: email, // list of receivers
-            subject: `Hi ${fullname}, Explore HANElytics AI?ML Solutions`, // Subject line
+            subject: `Hi ${fullname}, Explore HANElytics AI/ML Solutions`, // Subject line
             text: "Welcome to Visionsoft Inc.", // plain text body
             html: Welcome_Email_Template.replace("{name}", fullname), // html body
           });

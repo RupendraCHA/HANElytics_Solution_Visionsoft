@@ -160,7 +160,6 @@ export const Welcome_Email_Template = `
               <p>Here’s how you can get started:</p>
               <ul>
                   <li>Explore our features and customize your experience.</li>
-                //   <li>Stay informed by checking out our blog for the latest updates and tips.</li>
                   <li>Reach out to our support team if you have any questions or need assistance.</li>
               </ul>
               <a href="https://hanelytics-solution-visionsoft-1.onrender.com/" class="button">Get Started</a>
