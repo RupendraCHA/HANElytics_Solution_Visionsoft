@@ -23,7 +23,7 @@ export const registerUser = async (req, res) => {
             return res.json({success: false, email: `*${exists.email}*`, message: ` email already exists`})
         }
 
-        if (email.endsWith("@gmail.com") || email.endsWith("@visionsoft.com")){
+        if (email.includes("@")){
 
             if (password.length < 8) {
                 return res.json({success: false, message: "*Enter a strong Password*"})
