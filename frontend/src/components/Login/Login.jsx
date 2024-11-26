@@ -132,7 +132,8 @@ function Login() {
                             Your Email
                         </label>
                         <input type='text' name='email' 
-                        placeholder='Enter your email' 
+                        placeholder='Enter your email'
+                        required
                         className='change-password'
                         onChange={handleInputChange}
                         />
@@ -144,7 +145,8 @@ function Login() {
                         <input 
                         type='password' 
                         name='newPassword' 
-                        placeholder='Enter new password' 
+                        placeholder='Enter new password'
+                        required
                         className='change-password'
                         onChange={handleInputChange}
                         
@@ -157,7 +159,8 @@ function Login() {
                         <input 
                         type='password' 
                         name='confirmPassword' 
-                        placeholder='Confirm new password' 
+                        placeholder='Confirm new password'
+                        required
                         className='change-password'
                         onChange={handleInputChange}
                         
