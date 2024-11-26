@@ -59,10 +59,22 @@ function Login() {
 
     const handleUpdatePassword = async (e) => {
         e.preventDefault()
-        const response = await axios.post(url + "/api/user/updatePassword", data)
+
+        try {
+            const response = await axios.post(url + "/api/user/updatePassword", data)
         // navigate("/login")
-        setChangePassword(true)
-        toast.success(response.data.message)
+        if (response.data.success){
+
+            setChangePassword(true)
+            toast.success(response.data.message)
+        }
+        else {
+            toast.error(response.data.message)
+        }
+        } catch (error) {
+            console.log(`Error: ${error.message}`)
+        }
+        
 
     }
 
