@@ -15,19 +15,21 @@ import InventoryBarChartItem from './../InventoryBarChartItem/InventoryBarChartI
 
 function InventoryBarChart({ barChartText, barChartData, labelsData, data }) {
 
+    const slicedData = data.slice(0,11)
+
     const [userData1, setUserData1] = useState({
-        labels: data.map((data) => data.Product_Name),
+        labels: slicedData.map((data) => data.Product_Name),
         datasets: [{
             label: "Historical Monthly Sales",
-            data: data.map((data) => data.Historical_Monthly_Sales),
+            data: slicedData.map((data) => data.Historical_Monthly_Sales),
             backgroundColor: ["#009E73"],
         }, {
             label: "Monthly Sales Prediction Without Live Data",
-            data: data.map((data) => data.Monthly_Sales_Prediction_without_live_data),
+            data: slicedData.map((data) => data.Monthly_Sales_Prediction_without_live_data),
             backgroundColor: ["#F0E442"]
         }, {
             label: "Monthly Sales Prediction With Live Data",
-            data: data.map((data) => data.Monthly_Sales_Prediction_with_live_data),
+            data: slicedData.map((data) => data.Monthly_Sales_Prediction_with_live_data),
             backgroundColor: ["#D55E00"]
         }
         
@@ -35,36 +37,36 @@ function InventoryBarChart({ barChartText, barChartData, labelsData, data }) {
     })
 
     const [userData2, setUserData2] = useState({
-        labels: data.map((data) => data.Product_Name),
+        labels: slicedData.map((data) => data.Product_Name),
         datasets: [{
             label: "Safety Stock Prediction Without Live Data",
-            data: data.map((data) => data.fifteen_Days_Buffer_Stock_Estimates_without_live_data),
+            data: slicedData.map((data) => data.fifteen_Days_Buffer_Stock_Estimates_without_live_data),
             backgroundColor: ["#0072B2"],
         }, {
             label: "Safety Stock Prediction With Live Data",
-            data: data.map((data) => data.fifteen_Days_Buffer_Stock_Estimates_with_live_data),
+            data: slicedData.map((data) => data.fifteen_Days_Buffer_Stock_Estimates_with_live_data),
             backgroundColor: ["#801650"]
         }, {
             label: "Reorder Quantity Prediction Without Live Data",
-            data: data.map((data) => data.Reorder_Quantity_Prediction_without_live_data),
+            data: slicedData.map((data) => data.Reorder_Quantity_Prediction_without_live_data),
             backgroundColor: ["#F46A25"]
         }, {
             label: "Reorder Quantity Prediction With Live Data",
-            data: data.map((data) => data.Reorder_Quantity_Prediction_with_live_data),
+            data: slicedData.map((data) => data.Reorder_Quantity_Prediction_with_live_data),
             backgroundColor: ["#3D3D3D"]
         }
         ]
     })
 
     const [userData3, setUserData3] = useState({
-        labels: data.map((data) => data.Product_Name),
+        labels: slicedData.map((data) => data.Product_Name),
         datasets: [{
             label: "Daily Sales Without Live Data",
-            data: data.map((data) => data.Daily_Sales_Prediction_without_live_data),
+            data: slicedData.map((data) => data.Daily_Sales_Prediction_without_live_data),
             backgroundColor: ["#A285D1"],
         }, {
             label: "Daily Sales With Live Data",
-            data: data.map((data) => data.Daily_Sales_Prediction_with_live_data),
+            data: slicedData.map((data) => data.Daily_Sales_Prediction_with_live_data),
             backgroundColor: ["#F0E442"]
         }
         ]

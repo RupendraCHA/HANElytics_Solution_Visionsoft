@@ -34,7 +34,6 @@ export const registerUser = async (req, res) => {
             const hashedPassword = await bcrypt.hash(password, salt)
             const verificationCode = Math.floor(100000 + Math.random() * 900000).toString()
 
-
             const newUser = new userModel({
                 firstname: firstname,
                 lastname: lastname,
@@ -90,6 +89,29 @@ export const verifyEmail = async (req, res) => {
     }
 }
 
+export const updatePassword = async (req, res) => {
+    try {
+        const {newPassword, email} = req.body
+
+        const user = await userModel.findOne({email})
+
+        if (user) {
+            const salt = await bcrypt.genSalt(10)
+            const hashedPassword = await bcrypt.hash(newPassword, salt)
+
+            user.password = hashedPassword
+
+            await user.save()
+            return res.status(200).json({success: true, message: "Password Updated Successfully!"})
+        }
+        else {
+            return res.status(400).json({success: false, message: "Email doesn't exist!"})
+        }
+
+    } catch (error) {
+        console.log(`Error: ${error.message}`)
+    }
+}
 
 export const loginUser = async (req, res) => {
     const {email, password} = req.body

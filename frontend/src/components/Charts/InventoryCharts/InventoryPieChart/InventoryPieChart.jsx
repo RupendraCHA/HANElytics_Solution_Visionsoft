@@ -8,7 +8,7 @@ import InventoryPieChartItem from '../InventoryPieChartItem/InventoryPieChartIte
 // ["#756432", "#ffaa00", "#323f4b", "#00ff00", "#020230"]
 function InventoryPieChart({ data }) {
 
-    const slicedData = data.slice(1,11)
+    const slicedData = data.slice(0,11)
     let backgroundColors1 = []
     let backgroundColors2 = []
     let borderColors = []

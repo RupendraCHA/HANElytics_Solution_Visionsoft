@@ -29,10 +29,12 @@ function Login() {
 
     const [isExist, setExist] = useState(false)
     const [errorMsg, setErrorMsg] = useState("")
+    const [changePassword, setChangePassword] = useState(true)
     
 
     const handleSubmit = async (e) => {
         e.preventDefault()
+        // console.log(data)
         setExist(false)
         const response = await axios.post(url + "/api/user/login", data)
 
@@ -51,17 +53,30 @@ function Login() {
         }
     }
 
+    const handleForgotPassword = (boolValue) => {
+        setChangePassword(boolValue)
+    }
+
+    const handleUpdatePassword = async (e) => {
+        e.preventDefault()
+        const response = await axios.post(url + "/api/user/updatePassword", data)
+        // navigate("/login")
+        setChangePassword(true)
+        toast.success(response.data.message)
+
+    }
+
     return (
         <>
             <Navbar />
-            <div className='bg-container-login d-flex justify-content-center align-items-center bg-secondary vh-100'>
+            {changePassword && <div className='bg-container-login d-flex justify-content-center align-items-center bg-secondary vh-100'>
                 <div className='login-page'>
                     <h4>
                         Explore Our HANElytics AI/ML Solutions
                     </h4>
                 </div>
                 <div className='bg-success p-4 text-white login-card' style={{height: "60vh"}}>
-                    <h2>Login</h2>
+                    <h2 style={{textAlign: "center"}}>Login</h2>
                     <form onSubmit={handleSubmit}>
                         <div className='mb-3'>
                             <label htmlFor="email">
@@ -97,6 +112,9 @@ function Login() {
                         <button type='submit' className='btn btn-primary bg-primary w-100 rounded-0' style={{ fontWeight: "600" }}>
                             Login
                         </button>
+                        <div className='forgot-password'>
+                            <span onClick={() => handleForgotPassword(false)}>Forgot Password</span>
+                        </div>
                         <p style={{fontWeight: "bold"}}>Don't have an account?</p>
                     <Link to="/register" className='btn btn-default border w-100 bg-warning rounded-0 text-decoration-none' style={{ fontWeight: "600" }}>
                         Register
@@ -106,7 +124,51 @@ function Login() {
                     
 
                 </div>
-            </div>
+            </div>}
+            {!changePassword && <div className='change-password-container'>
+                <form onSubmit={handleUpdatePassword} className='change-password-card'>
+                    <div>
+                        <label htmlFor='email'>
+                            Your Email
+                        </label>
+                        <input type='text' name='email' 
+                        placeholder='Enter your email' 
+                        className='change-password'
+                        onChange={handleInputChange}
+                        />
+                    </div>
+                    <div>
+                        <label htmlFor='newPassword'>
+                            New Password
+                        </label>
+                        <input 
+                        type='password' 
+                        name='newPassword' 
+                        placeholder='Enter new password' 
+                        className='change-password'
+                        onChange={handleInputChange}
+                        
+                        />
+                    </div>
+                    <div>
+                        <label htmlFor='confirmPassword'>
+                            Confirm Password
+                        </label>
+                        <input 
+                        type='password' 
+                        name='confirmPassword' 
+                        placeholder='Confirm new password' 
+                        className='change-password'
+                        onChange={handleInputChange}
+                        
+                        />
+                    </div>
+                    <button type="submit" className='update-password-button'>Update Password</button>
+                    <div className='go-to-login'>
+                        <span onClick={() => handleForgotPassword(true)}>Go to Login</span>
+                    </div>
+                </form>
+            </div>}
         </>
     )
 }

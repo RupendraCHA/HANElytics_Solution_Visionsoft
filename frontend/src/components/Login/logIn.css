@@ -30,22 +30,43 @@
   }
 }
 .login-card {
-  width: 25%;
+  width: 40%;
   border-radius: 0px 20px 20px 0px;
-  display: flex;
+  /* display: flex;
   flex-direction: column;
   justify-content: center;
-  align-items: center;
+  align-items: center; */
 }
 @media screen and (min-width: 576px) {
   .login-card {
-    width: 25%;
+    width: 30%;
     border-radius: 0px 20px 20px 0px;
   }
 }
 .login-user-input {
-  font-weight: 500;
+  font-weight: 700;
   padding-left: 10px;
+  color: black !important;
+}
+.forgot-password{
+  display: flex;
+  justify-content: flex-end;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+
+  span{
+
+    background-color: #fff;
+    color: black;
+    margin-top: 8px;
+    padding: 2px 10px;
+    border-radius: 4px;
+  }
+  span:hover{
+    text-decoration: underline;
+  }
+
 }
 .error-msg{
   color: red;
@@ -61,3 +82,77 @@
   }
 }
 
+.change-password-container{
+  background-image: url("https://res.cloudinary.com/dvxkeeeqs/image/upload/v1729229000/image3_1_ac1jk3.jpg");
+  min-height: 100vh;
+  background-size: cover;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+
+  .change-password-card{
+    background-color: #000;
+    padding: 40px 30px;
+    border-radius: 12px;
+    /* height: 40vh; */
+    width: 40%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    /* align-items: center; */
+    gap: 20px;
+
+    div{
+      display: flex;
+      flex-direction: column;
+
+      label{
+        font-size: 16px;
+        font-weight: 500;
+      }
+
+      input{
+        font-size: 16px;
+        padding: 10px;
+        border-radius: 6px;
+        border: 3px solid red;
+        outline: none;
+        font-weight: 600;
+        color: blue;
+      }
+    }
+  }
+  button{
+    background-color: blue;
+    color: white;
+    border: none;
+    outline: none;
+    padding: 12px;
+    font-size: 16px;
+    font-weight: bold;
+  }
+  .go-to-login{
+    display: flex;
+    /* justify-content: flex-end; */
+    align-items: flex-end;
+    span{
+      background-color: white;
+      color: black;
+      width: 100px;
+      text-align: center;
+      font-size: 16px;
+      font-weight: bold;
+      border-radius: 3px;
+
+    }
+
+    span:hover{
+      text-decoration: underline;
+      color: blue;
+      cursor: pointer;
+    }
+  }
+  
+  
+}
