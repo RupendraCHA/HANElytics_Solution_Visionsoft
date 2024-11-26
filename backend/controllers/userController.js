@@ -55,7 +55,7 @@ export const registerUser = async (req, res) => {
             SendVerificationCode(newUser.email, verificationCode, newUser.firstname, newUser.lastname)
             res.json({success: true, token, firstname, verificationCode})
         } else {
-            return res.json({success: false, message: "Enter Valid mail which ends with @gmail.com (or) @visionsoft.com"})
+            return res.json({success: false, message: "Enter Valid email"})
         }
     }
     catch (error) {
