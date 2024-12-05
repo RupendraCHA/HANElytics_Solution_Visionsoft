@@ -40,7 +40,7 @@ const Table = (props) => {
                                 <tr key={index}>
                                     <td>{index + 1}</td>
                                     {/* {eachRow.Product_ID} */}
-                                    <td>PUID00{index+1}</td>
+                                    <td>{eachRow.Product_ID}</td>
                                     <td>{eachRow.Product_Name}</td>
                                     <td>{eachRow.Order_Fulfillment_Time_in_days}</td>
                                     <td>{eachRow.Historical_Monthly_Sales}</td>
