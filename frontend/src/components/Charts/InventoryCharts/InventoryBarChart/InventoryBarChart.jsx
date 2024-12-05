@@ -40,11 +40,11 @@ function InventoryBarChart({ barChartText, barChartData, labelsData, data }) {
         labels: slicedData.map((data) => data.Product_Name),
         datasets: [{
             label: "Safety Stock Prediction Without Live Data",
-            data: slicedData.map((data) => data.fifteen_Days_Buffer_Stock_Estimates_without_live_data),
+            data: slicedData.map((data) => data.Safety_Stock_without_live_data),
             backgroundColor: ["#0072B2"],
         }, {
             label: "Safety Stock Prediction With Live Data",
-            data: slicedData.map((data) => data.fifteen_Days_Buffer_Stock_Estimates_with_live_data),
+            data: slicedData.map((data) => data.Safety_Stock_with_live_data),
             backgroundColor: ["#801650"]
         }, {
             label: "Reorder Quantity Prediction Without Live Data",
