@@ -3,7 +3,7 @@ import "./DataModeling.css"
 import { FaRegCircleUser } from "react-icons/fa6";
 import { Link, useNavigate } from 'react-router-dom';
 import { Dropdown } from "antd"
-import { toast } from 'react-toastify';
+// import { toast } from 'react-toastify';
 import axios from "axios"
 
 import {
@@ -89,7 +89,7 @@ const DataModeling = () => {
             const sapFields1 = addObjectsData()
             const objectDataForSAP = {
                 Process : "Create",
-                Automation_to_Hanlytic_np: sapFields1
+                Automation_to_Hanlytic_np: Array
             }
             console.log(objectDataForSAP)
             console.log(sapFields1)
