@@ -89,7 +89,7 @@ const DataModeling = () => {
             const sapFields1 = addObjectsData()
             const objectDataForSAP = {
                 Process : "Create",
-                Automation_to_Hanlytic_np: Array
+                Automation_to_Hanlytic_np: addObjectsData()
             }
             console.log(objectDataForSAP)
             console.log(sapFields1)
