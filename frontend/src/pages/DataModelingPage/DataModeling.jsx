@@ -77,9 +77,13 @@ const DataModeling = () => {
         const addObjectsData = (data) => {
             for (let i = 0; i < data.length; i++) {
                 const record = data[i]
-                sapFields.push({productID: record.Product_ID, productName:  record.Product_Name});
+                sapFields.push({
+                    Product_ID: record.Product_ID, 
+                    Product_name:  record.Product_Name, 
+                    Distribution_Center: record.Distribution_Center,
+                    Quantity: record.Reorder_Quantity_Prediction_with_live_data
+                });
             }
-
             return sapFields
         }
 
