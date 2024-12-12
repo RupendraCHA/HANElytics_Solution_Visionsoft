@@ -50,9 +50,9 @@ const DataModeling = () => {
     const [equipmentData1, setEquipmentData] = useState(true)
     const [clinicalData, setClinicalData] = useState(true)
     const [activeTab, setActiveTab] = useState('tab1');
-    const [activeChartTab, setActiveChartTab] = useState('');
+    // const [activeChartTab, setActiveChartTab] = useState('');
     const [showPieChart, setShowPieChart] = useState(false);
-    const [showResults, setShowResults] = useState(true)
+    const [showResults, setShowResults] = useState(true);
 
     const handleTabClick = (tab) => {
         setActiveTab(tab);
@@ -72,9 +72,27 @@ const DataModeling = () => {
     const getInventoryDataFromMongoDB = async () => {
         const jwtToken = localStorage.getItem("token")
 
+        const sapFields = []
+
+        const addObjectsData = () => {
+            for (let i = 0; i < data.length; i++) {
+                const record = data[i]
+                sapFields.push({productID: record.Product_ID, productName:  record.Product_Name});
+            }
+
+            return sapFields
+        }
+
         try {
             const response = await axios.get(url + "/api/model/inventory", {headers: {token: jwtToken}})
             const Array = response.data
+            const sapFields1 = addObjectsData()
+            const objectDataForSAP = {
+                Process : "Create",
+                Automation_to_Hanlytic_np: sapFields1
+            }
+            console.log(objectDataForSAP)
+            console.log(sapFields1)
             console.log(Array)
                 setData(Array)
                 setInventoryData(false)
