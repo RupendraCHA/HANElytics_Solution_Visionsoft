@@ -19,6 +19,8 @@ const Table = (props) => {
                         <th className='column-name'>S.No</th>
                         <th className='column-name'>Product_Identifier</th>
                         <th className='column-name'>Product_Name</th>
+                        <th className='column-name'>Distribution_Center_ID</th>
+                        <th className='column-name'>Distribution_Center</th>
                         <th title="Time required to transport the product" className='column-name'>Order_Fulfillment_Time (in Days)</th>
                         <th className='column-name'>Historical_Monthly_Sales</th>
                         <th className='column-name'>Monthly_Sales_Prediction<br />(Without Live Data)</th>
@@ -40,16 +42,18 @@ const Table = (props) => {
                                 <tr key={index}>
                                     <td>{index + 1}</td>
                                     {/* {eachRow.Product_ID} */}
-                                    <td>PUID00{index+1}</td>
+                                    <td>{eachRow.Product_ID}</td>
                                     <td>{eachRow.Product_Name}</td>
+                                    <td>{eachRow.Distribution_Center_ID}</td>
+                                    <td>{eachRow.Distribution_Center}</td>
                                     <td>{eachRow.Order_Fulfillment_Time_in_days}</td>
                                     <td>{eachRow.Historical_Monthly_Sales}</td>
                                     <td>{eachRow.Monthly_Sales_Prediction_without_live_data}</td>
                                     <td>{eachRow.Monthly_Sales_Prediction_with_live_data}</td>
                                     <td>{eachRow.Daily_Sales_Prediction_without_live_data}</td>
                                     <td>{eachRow.Daily_Sales_Prediction_with_live_data}</td>
-                                    <td>{eachRow.fifteen_Days_Buffer_Stock_Estimates_without_live_data}</td>
-                                    <td>{eachRow.fifteen_Days_Buffer_Stock_Estimates_with_live_data}</td>
+                                    <td>{eachRow.Safety_Stock_without_live_data}</td>
+                                    <td>{eachRow.Safety_Stock_with_live_data}</td>
                                     <td>{eachRow.Reorder_Quantity_Prediction_without_live_data}</td>
                                     <td>{eachRow.Reorder_Quantity_Prediction_with_live_data}</td>
                                 </tr>
