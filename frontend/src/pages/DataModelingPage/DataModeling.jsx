@@ -74,7 +74,7 @@ const DataModeling = () => {
 
         const sapFields = []
 
-        const addObjectsData = () => {
+        const addObjectsData = (data) => {
             for (let i = 0; i < data.length; i++) {
                 const record = data[i]
                 sapFields.push({productID: record.Product_ID, productName:  record.Product_Name});
@@ -86,13 +86,13 @@ const DataModeling = () => {
         try {
             const response = await axios.get(url + "/api/model/inventory", {headers: {token: jwtToken}})
             const Array = response.data
-            const sapFields1 = addObjectsData()
+            // const sapFields1 = addObjectsData()
             const objectDataForSAP = {
                 Process : "Create",
-                Automation_to_Hanlytic_np: addObjectsData()
+                Automation_to_Hanlytic_np: addObjectsData(Array)
             }
             console.log(objectDataForSAP)
-            console.log(sapFields1)
+            // console.log(sapFields1)
             console.log(Array)
                 setData(Array)
                 setInventoryData(false)
