@@ -19,6 +19,24 @@ export const AutomationToSAP = async (req, res) => {
     }
 }
 
+export const getOdata = async (req, res) => {
+    try {
+        const mongoURI = process.env.MONGO_URI
+
+        const client = new MongoClient(mongoURI)
+        await client.connect()
+
+        const database = client.db("HANElytics_Clients")
+        const collection = database.collection("automationdatas")
+
+        const allDocuments = await collection.find().toArray()
+        // console.log(allDocuments)
+        return res.json(allDocuments)
+    } catch (error) {
+        console.log(error)
+    }
+}
+
 export const InventoryModelResults = async (req, res) => {    
     try {
         const mongoURI = process.env.MONGO_URI
