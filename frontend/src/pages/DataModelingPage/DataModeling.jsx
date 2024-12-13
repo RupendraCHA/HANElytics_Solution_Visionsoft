@@ -1,4 +1,4 @@
-import React, {useContext, useEffect, useState } from 'react'
+import {useContext, useEffect, useState } from 'react'
 import "./DataModeling.css"
 import { FaRegCircleUser } from "react-icons/fa6";
 import { Link, useNavigate } from 'react-router-dom';
@@ -29,7 +29,7 @@ import ClinicalBarChart from '../../components/Charts/ClinicalCharts/ClinicalBar
 const DataModeling = () => {
 
     const navigate = useNavigate()
-    const {url, token, username} = useContext(StoreContext)
+    const {url, username} = useContext(StoreContext)
 
     useEffect(() => {
         const jwtToken = localStorage.getItem("token")
@@ -72,6 +72,10 @@ const DataModeling = () => {
     const getInventoryDataFromMongoDB = async () => {
         const jwtToken = localStorage.getItem("token")
 
+        const SAP_API_URL = 'http://52.38.202.58:8080/sap/opu/odata/VSHANEYA/HANELYTICS_SRV/AutomationSet'
+        const username1 = "Hanelytics"
+        const password1 = "Hanelytics@24"
+
         const sapFields = []
 
         const addObjectsData = (data) => {
@@ -87,11 +91,14 @@ const DataModeling = () => {
             return sapFields
         }
 
+        let objectDataForSAP;
+        
+
         try {
             const response = await axios.get(url + "/api/model/inventory", {headers: {token: jwtToken}})
             const Array = response.data
             // const sapFields1 = addObjectsData()
-            const objectDataForSAP = {
+            objectDataForSAP = {
                 Process : "Create",
                 Automation_to_Hanlytic_np: addObjectsData(Array)
             }
@@ -107,6 +114,23 @@ const DataModeling = () => {
                 handleTabClick("tab1")
         } catch (error) {
             console.log(error)
+        }
+
+        try {
+            const response = await axios.post(SAP_API_URL, objectDataForSAP, {
+                auth: {
+                    username: username1,
+                    password: password1
+                },
+                headers: {
+                    "Content-Type": "application/json"
+                }
+            })
+            console.log(`Data pushed successfully`, response.data);
+
+        } catch (error) {
+            console.error(`Failed to push data`, error.message);
+            
         }
         
     }

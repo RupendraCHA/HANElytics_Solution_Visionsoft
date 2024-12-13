@@ -61,7 +61,7 @@ const pushToSAP = async (data) => {
             const response = await axios.post(SAP_API_URL, payload, {
                 auth: {
                     username: SAP_USERNAME,
-                    password: SAP_PASSWORD 
+                    password: SAP_PASSWORD
                 },
                 headers: {
                     "Content-Type": "application/json"
