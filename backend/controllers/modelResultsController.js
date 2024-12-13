@@ -1,5 +1,23 @@
 
 import {MongoClient} from "mongodb"
+import AutomationData from "../models/odataModel";
+
+export const AutomationToSAP = async (req, res) => {
+    try {
+        const {Process, Automation_to_Hanlytic_np} = req.body
+
+        if (Array.isArray(Automation_to_Hanlytic_np)) {
+            const newData = new AutomationData({ Process, Automation_to_Hanlytic_np });
+            const savedData = await newData.save();
+            console.log("Data Stored successfully!")
+            res.status(201).json({ message: 'Data saved successfully!', data: savedData });
+        }else {
+            res.status(400).json({ message: 'Invalid data format for Automation_to_Hanlytic_np' });
+        }
+    } catch (error) {
+        res.status(400).json({ message: 'Error saving data', error });
+    }
+}
 
 export const InventoryModelResults = async (req, res) => {    
     try {

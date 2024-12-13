@@ -4,7 +4,8 @@ import {
     InventoryModelResults,
     RevenueModelResults,
     EquipmentModelResults,
-    ClinicalModelresults
+    ClinicalModelresults,
+    AutomationToSAP
 } from "../controllers/modelResultsController.js"
 
 import authMiddleware from "../middlewares/auth.js"
@@ -15,6 +16,7 @@ dataModelResultsRouter.get("/inventory",authMiddleware, InventoryModelResults)
 dataModelResultsRouter.get("/revenue", authMiddleware, RevenueModelResults)
 dataModelResultsRouter.get("/equipment", authMiddleware, EquipmentModelResults)
 dataModelResultsRouter.get("/clinical",authMiddleware, ClinicalModelresults)
+dataModelResultsRouter.post("/odata", AutomationToSAP)
 
 
 export default dataModelResultsRouter
