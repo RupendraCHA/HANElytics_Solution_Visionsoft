@@ -72,10 +72,10 @@ const DataModeling = () => {
     const getInventoryDataFromMongoDB = async () => {
         const jwtToken = localStorage.getItem("token")
 
-        const SAP_API_URL = 'https://hanelytics-solution-visionsoft.onrender.com/odata/VSHANEYA/HANELYTICS_SRV/AutomationSet'
-        // const username1 = "Hanelytics"
-        // const password1 = "Hanelytics@24"
- 
+        const SAP_API_URL = 'http://52.38.202.58:8080/sap/opu/odata/VSHANEYA/HANELYTICS_SRV/AutomationSet'
+        const username1 = "Hanelytics"
+        const password1 = "Hanelytics@24"
+
         const sapFields = []
 
         const addObjectsData = (data) => {
@@ -92,42 +92,17 @@ const DataModeling = () => {
         }
 
         let objectDataForSAP;
-
-        objectDataForSAP = {
-            Process : "Create",
-            Automation_to_Hanlytic_np: addObjectsData(Array)
-        }
-        console.log(objectDataForSAP)
-
-        async function postData(data) {
-            try {
-                const response = await fetch(SAP_API_URL, {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                    },
-                    body: JSON.stringify(data),
-                });
-        
-                if (!response.ok) {
-                    throw new Error('Failed to push data to SAP');
-                }
-        
-                const result = await response.json();
-                console.log('Data pushed successfully:', result);
-            } catch (error) {
-                console.error('Error:', error);
-            }
-        }
-        
-        postData(objectDataForSAP)
         
 
         try {
             const response = await axios.get(url + "/api/model/inventory", {headers: {token: jwtToken}})
             const Array = response.data
             // const sapFields1 = addObjectsData()
-            
+            objectDataForSAP = {
+                Process : "Create",
+                Automation_to_Hanlytic_np: addObjectsData(Array)
+            }
+            console.log(objectDataForSAP)
             // console.log(sapFields1)
             console.log(Array)
                 setData(Array)
@@ -141,21 +116,21 @@ const DataModeling = () => {
             console.log(error)
         }
 
-        // try {
-        //     const response1 = await axios.post(SAP_API_URL, objectDataForSAP, {
-        //         auth: {
-        //             username: username1,
-        //             password: password1
-        //         },
-        //         headers: {
-        //             "Content-Type": "application/json"
-        //         }
-        //     })
-        //     console.log(`Data pushed successfully`, response1.data);
+        try {
+            const response1 = await axios.post(SAP_API_URL, objectDataForSAP, {
+                auth: {
+                    username: username1,
+                    password: password1
+                },
+                headers: {
+                    "Content-Type": "application/json"
+                }
+            })
+            console.log(`Data pushed successfully`, response1.data);
 
-        // } catch (error) {
-        //     console.error(`Failed to push data into SAP`, error.message);
-        // }
+        } catch (error) {
+            console.error(`Failed to push data into SAP`, error.message);
+        }
         
     }
 
