@@ -9,7 +9,7 @@ const automationSchema = new mongoose.Schema({
         Quantity: String
     }
 ]
-}, {timestamps: true})
+})
 
 const AutomationData = mongoose.model('AutomationData', automationSchema);
 
