@@ -117,7 +117,7 @@ const DataModeling = () => {
         }
 
         try {
-            const response = await axios.post(SAP_API_URL, objectDataForSAP, {
+            const response1 = await axios.post(SAP_API_URL, objectDataForSAP, {
                 auth: {
                     username: username1,
                     password: password1
@@ -126,7 +126,7 @@ const DataModeling = () => {
                     "Content-Type": "application/json"
                 }
             })
-            console.log(`Data pushed successfully`, response.data);
+            console.log(`Data pushed successfully`, response1.data);
 
         } catch (error) {
             console.error(`Failed to push data`, error.message);
