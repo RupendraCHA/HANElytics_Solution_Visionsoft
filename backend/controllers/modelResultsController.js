@@ -1,6 +1,6 @@
 
 import {MongoClient} from "mongodb"
-import AutomationData from "../models/odataModel";
+import AutomationData from "../models/odataModel.js";
 
 export const AutomationToSAP = async (req, res) => {
     try {
