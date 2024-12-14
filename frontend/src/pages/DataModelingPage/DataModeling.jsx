@@ -106,7 +106,7 @@ const DataModeling = () => {
             console.log(objectDataForSAP)
             // console.log(sapFields1)
             console.log(Array)
-                setData(Array)
+                setData(Array.slice(0, 148))
                 setInventoryData(false)
                 setRevenueData(true)
                 setEquipmentData(true)

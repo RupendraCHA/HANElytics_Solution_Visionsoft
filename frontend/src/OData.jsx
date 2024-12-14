@@ -1,13 +1,13 @@
 
 // Steps to Push MongoDB Data to SAP Using REST API
 
-const axios = require('axios');
-
+import axios from 'axios'
 // npm install mongoose axios
 
 
 // MongoDB Connection and Schema
-const mongoose = require('mongoose');
+import  mongoose from 'mongoose'
+
 
 // MongoDB connection
 const mongoURI = "mongodb://localhost:27017/yourDatabase";
@@ -95,7 +95,6 @@ main();
 
 // Connection to MongoDB and Defining the Schema
 
-const mongoose = require('mongoose')
 
 
 // MongoDB Connection
