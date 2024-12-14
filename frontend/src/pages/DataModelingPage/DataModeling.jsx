@@ -100,13 +100,13 @@ const DataModeling = () => {
             // const sapFields1 = addObjectsData()
             objectDataForSAP = {
                 Process : "Create",
-                Automation_to_Hanlytic_np: addObjectsData(Array.slice(0, 148))
+                Automation_to_Hanlytic_np: addObjectsData(Array)
             }
             await axios.post(url + "/api/model/odata", objectDataForSAP)
             console.log(objectDataForSAP)
             // console.log(sapFields1)
             console.log(Array)
-                setData(Array.slice(0, 148))
+                setData(Array)
                 setInventoryData(false)
                 setRevenueData(true)
                 setEquipmentData(true)
