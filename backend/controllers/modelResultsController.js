@@ -40,7 +40,7 @@ export const getOdata = async (req, res) => {
         const database = client.db("HANElytics_Clients")
         const collection = database.collection("automationdatas")
 
-        const allDocuments = await collection.find().toArray()
+        const allDocuments = await collection.find({}).limit(140).toArray();
         // console.log(allDocuments)
         return res.json(allDocuments)
     } catch (error) {
