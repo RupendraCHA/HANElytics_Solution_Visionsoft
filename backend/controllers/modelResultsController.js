@@ -6,6 +6,17 @@ export const AutomationToSAP = async (req, res) => {
     try {
         const {Process, Automation_to_Hanlytic_np} = req.body
 
+        const mongoURI = process.env.MONGO_URI
+
+        const client = new MongoClient(mongoURI)
+        await client.connect()
+
+        const database = client.db("HANElytics_Clients")
+        const collection = database.collection("automationdatas")
+
+        const deleteResult = await collection.deleteMany({});
+        console.log(`${deleteResult.deletedCount} records deleted.`);
+
         if (Array.isArray(Automation_to_Hanlytic_np)) {
             const newData = new AutomationData({ Process, Automation_to_Hanlytic_np });
             const savedData = await newData.save();
