@@ -42,7 +42,7 @@ export const getOdata = async (req, res) => {
 
         const fieldsToInclude = { Product_ID: 1, Product_name: 1, Distribution_Center: 1, Quantity: 1, _id: 0 }
 
-        const allDocuments = await collection.find({}, {projection: fieldsToInclude}).limit(140).toArray();
+        const allDocuments = await collection.find({}, {projection: fieldsToInclude}).toArray();
         // console.log(allDocuments)
         return res.json(allDocuments)
     } catch (error) {
