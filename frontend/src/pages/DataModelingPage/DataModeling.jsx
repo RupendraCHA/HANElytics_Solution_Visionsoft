@@ -72,9 +72,9 @@ const DataModeling = () => {
     const getInventoryDataFromMongoDB = async () => {
         const jwtToken = localStorage.getItem("token")
 
-        // const SAP_API_URL = 'http://52.38.202.58:8080/sap/opu/odata/VSHANEYA/HANELYTICS_SRV/AutomationSet'
-        // const username1 = "Hanelytics"
-        // const password1 = "Hanelytics@24"
+        const SAP_API_URL = 'http://52.38.202.58:8080/sap/opu/odata/VSHANEYA/HANELYTICS_SRV/AutomationSet'
+        const username1 = "Hanelytics"
+        const password1 = "Hanelytics@24"
 
         const sapFields = []
 
@@ -117,21 +117,21 @@ const DataModeling = () => {
             console.log(error)
         }
 
-        // try {
-        //     const response1 = await axios.post(SAP_API_URL, objectDataForSAP, {
-        //         auth: {
-        //             username: username1,
-        //             password: password1
-        //         },
-        //         headers: {
-        //             "Content-Type": "application/json"
-        //         }
-        //     })
-        //     console.log(`Data pushed successfully`, response1.data);
+        try {
+            const response1 = await axios.post(SAP_API_URL, objectDataForSAP, {
+                auth: {
+                    username: username1,
+                    password: password1
+                },
+                headers: {
+                    "Content-Type": "application/json"
+                }
+            })
+            console.log(`Data pushed successfully`, response1.data);
 
-        // } catch (error) {
-        //     console.error(`Failed to push data into SAP`, error.message);
-        // }
+        } catch (error) {
+            console.error(`Failed to push data into SAP`, error.message);
+        }
         
     }
 
