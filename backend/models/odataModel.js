@@ -9,7 +9,8 @@ const automationSchema = new mongoose.Schema({
         Quantity: String
     }
 ]
-})
+},
+{ _id: false })
 
 const AutomationData = mongoose.model('AutomationData', automationSchema);
 
