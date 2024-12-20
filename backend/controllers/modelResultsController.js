@@ -1,11 +1,13 @@
 
 import {MongoClient} from "mongodb"
 import AutomationData from "../models/odataModel.js";
+import axios from "axios"
 
 export const AutomationToSAP = async (req, res) => {
     try {
         const {objectDataForSAP} = req.body
         const {Process, Automation_to_Hanlytic_np} = req.body
+
 
         const SAP_API_URL = 'http://52.38.202.58:8080/sap/opu/odata/VSHANEYA/HANELYTICS_SRV/AutomationSet'
         const username1 = "Hanelytics"
@@ -25,7 +27,8 @@ export const AutomationToSAP = async (req, res) => {
             return 
 
         } catch (error) {
-            console.error(`Failed to push data into SAP`, error.message);
+            // console.error(`Failed to push data into SAP`, error.message);
+            console.error(error);
         }
 
         const mongoURI = process.env.MONGO_URI

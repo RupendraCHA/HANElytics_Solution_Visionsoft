@@ -98,6 +98,7 @@ const DataModeling = () => {
             const response = await axios.get(url + "/api/model/inventory", {headers: {token: jwtToken}})
             const Array = response.data
             // const sapFields1 = addObjectsData()
+            // "Direct_process" : "",
             objectDataForSAP = {
                 Process : "Create",
                 Automation_to_Hanlytic_np: addObjectsData(Array)
