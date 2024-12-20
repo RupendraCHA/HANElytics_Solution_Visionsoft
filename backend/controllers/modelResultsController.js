@@ -4,7 +4,29 @@ import AutomationData from "../models/odataModel.js";
 
 export const AutomationToSAP = async (req, res) => {
     try {
+        const {objectDataForSAP} = req.body
         const {Process, Automation_to_Hanlytic_np} = req.body
+
+        const SAP_API_URL = 'http://52.38.202.58:8080/sap/opu/odata/VSHANEYA/HANELYTICS_SRV/AutomationSet'
+        const username1 = "Hanelytics"
+        const password1 = "Hanelytics@24"
+
+        try {
+            const response1 = await axios.post(SAP_API_URL, objectDataForSAP, {
+                auth: {
+                    username: username1,
+                    password: password1
+                },
+                headers: {
+                    "Content-Type": "application/json"
+                }
+            })
+            console.log(`Data pushed successfully`, response1.data);
+            return 
+
+        } catch (error) {
+            console.error(`Failed to push data into SAP`, error.message);
+        }
 
         const mongoURI = process.env.MONGO_URI
 
@@ -21,12 +43,12 @@ export const AutomationToSAP = async (req, res) => {
             const newData = new AutomationData({ Process, Automation_to_Hanlytic_np });
             const savedData = await newData.save();
             console.log("Data Stored successfully!")
-            res.status(201).json({ message: 'Data saved successfully!', data: savedData });
+            return res.status(201).json({ message: 'Data saved successfully!', data: savedData });
         }else {
-            res.status(400).json({ message: 'Invalid data format for Automation_to_Hanlytic_np' });
+            return res.status(400).json({ message: 'Invalid data format for Automation_to_Hanlytic_np' });
         }
     } catch (error) {
-        res.status(400).json({ message: 'Error saving data', error });
+        return res.status(400).json({ message: 'Error saving data', error });
     }
 }
 

@@ -102,7 +102,8 @@ const DataModeling = () => {
                 Process : "Create",
                 Automation_to_Hanlytic_np: addObjectsData(Array)
             }
-            await axios.post(url + "/api/model/odata", objectDataForSAP)
+           const result =  await axios.post(url + "/api/model/odata", objectDataForSAP)
+           console.log(result)
             console.log(objectDataForSAP)
             // console.log(sapFields1)
             console.log(Array)
