@@ -526,10 +526,10 @@ const DataModeling = () => {
                     <div className='data-model-types'>
                         
                         <h2 className={sendData1 === true ? 'model-name' : "active"} onClick={getInventoryDataFromMongoDB1}>
-                            Format the Reorder Point Quantity data as per SAP Requirements
+                            Destructure the Reorder Point Quantity data as per SAP Requirements
                         </h2>
                         <h2 className={sendData === true ? 'model-name' : "active"} onClick={sendDataToSAP}>
-                            Migrate Data From HANElytics to SAP S/4 HANA: Inter Company Sales
+                            Migrate Data From HANElytics System to SAP S/4 HANA: Inter Company Sales
                         </h2>
                         
                     </div>
@@ -556,7 +556,7 @@ const DataModeling = () => {
                         //     <h2 className='select-text'>Select the Data Model to view the results</h2>
                         // </div>
                         <div className='charts-section select-model-name empty-bg-image'>
-                            <h2 className='select-text'>Select any Tab,  to view Data Model Insights or for Data Migration</h2>
+                            <h2 className='select-text'>Select a Tab,  to view Data Model Insights or for Data Migration</h2>
                         </div>
                     )
                 }
