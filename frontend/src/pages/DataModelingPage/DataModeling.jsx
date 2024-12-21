@@ -556,7 +556,7 @@ const DataModeling = () => {
                         //     <h2 className='select-text'>Select the Data Model to view the results</h2>
                         // </div>
                         <div className='charts-section select-model-name empty-bg-image'>
-                            <h2 className='select-text'>Select any Tab to view Data Model Insights or Data Migration</h2>
+                            <h2 className='select-text'>Select any Tab,  to view Data Model Insights or for Data Migration</h2>
                         </div>
                     )
                 }
