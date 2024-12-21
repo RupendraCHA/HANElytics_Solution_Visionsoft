@@ -253,10 +253,40 @@ const DataModeling = () => {
 
     const getInventoryDataFromMongoDB = async () => {
         const jwtToken = localStorage.getItem("token")
+        // setHideShow(false)
+
+        try {
+            const response = await axios.get(url + "/api/model/inventory", {headers: {token: jwtToken}})
+            const Array = response.data
+            
+
+                setData(Array)
+                // setInventoryData(false)
+                setInventoryData(false)
+                setRevenueData(true)
+                setEquipmentData(true)
+                setClinicalData(true)
+                setSendData(true)
+                setSendData1(true)
+                setHideShow(false)
+                handleTabClick("tab1")
+        } catch (error) {
+            console.log(error)
+        }
+
+        
+    }
+    const getInventoryDataFromMongoDB1 = async () => {
+        const jwtToken = localStorage.getItem("token")
         setHideShow(false)
 
         setSendData1(false) // New
         setSendData(true) // New
+        // setInventoryData(false)
+        setInventoryData(true) // New
+        setRevenueData(true)
+        setEquipmentData(true)
+        setClinicalData(true)
         setSapText("Formatting the Data...") // New
 
         // const SAP_API_URL = 'http://52.38.202.58:8080/sap/opu/odata/VSHANEYA/HANELYTICS_SRV/AutomationSet'
@@ -283,6 +313,8 @@ const DataModeling = () => {
         try {
             const response = await axios.get(url + "/api/model/inventory", {headers: {token: jwtToken}})
             const Array = response.data
+            setData(Array)
+
             // const sapFields1 = addObjectsData()
             // "Direct_process" : "",
             objectDataForSAP = {
@@ -303,12 +335,7 @@ const DataModeling = () => {
                 setSapText("✔ Data Formating Successfull ✔") // New
             }
 
-                setData(Array)
-                // setInventoryData(false)
-                setInventoryData(true) // New
-                setRevenueData(true)
-                setEquipmentData(true)
-                setClinicalData(true)
+                
                 // setSendData(true)
 
                 setHideShow(false)
@@ -349,7 +376,7 @@ const DataModeling = () => {
                 setEquipmentData(true)
                 setClinicalData(true)
                 setSendData(true)
-
+                setSendData1(true)
                 handleTabClick("tab1")
             } catch (error) {
                 console.log(error)
@@ -370,7 +397,7 @@ const DataModeling = () => {
                 setEquipmentData(false)
                 setClinicalData(true)
                 setSendData(true)
-
+                setSendData1(true)
                 handleTabClick("tab1")
             } catch (error) {
                 console.log(error)
@@ -391,6 +418,7 @@ const DataModeling = () => {
                 setEquipmentData(true)
                 setClinicalData(false)
                 setSendData(true)
+                setSendData1(true)
 
                 handleTabClick("tab1")
             } catch (error) {
@@ -405,6 +433,7 @@ const DataModeling = () => {
         setEquipmentData(true)
         setClinicalData(true)
         setSendData(true)
+        setSendData1(true)
 
     }
 
@@ -495,16 +524,21 @@ const DataModeling = () => {
                     {/* <h1 className='use-case-heading' onClick={handleResultsData}>Data Models</h1> */}
                     <h1 className='use-case-heading' onClick={handleResultsData}>Migrate Data</h1>
                     <div className='data-model-types'>
-                        {/* <h2 className={inventoryData === true ? 'model-name' : "active"} onClick={getInventoryDataFromMongoDB}>
-                            Reorder Point Quantity & Safety Stock Predictions for Inventory with & without Live-Data
-                        </h2> */}
-                        <h2 className={sendData1 === true ? 'model-name' : "active"} onClick={getInventoryDataFromMongoDB}>
+                        
+                        <h2 className={sendData1 === true ? 'model-name' : "active"} onClick={getInventoryDataFromMongoDB1}>
                             Format the Reorder Point Quantity data as per SAP Requirements
                         </h2>
                         <h2 className={sendData === true ? 'model-name' : "active"} onClick={sendDataToSAP}>
                             Migrate Data From HANElytics to SAP S/4 HANA: Inter Company Sales
                         </h2>
-                        {/* <h2 className={revenueData === true ? 'model-name' : "active"} onClick={getRevenueDataFromMongoDB}>
+                        
+                    </div>
+                    <h1 className='use-case-heading' onClick={handleResultsData}>Data Models</h1>
+                    <div className='data-model-types'>
+                    <h2 className={inventoryData === true ? 'model-name' : "active"} onClick={getInventoryDataFromMongoDB}>
+                            Reorder Point Quantity & Safety Stock Predictions for Inventory with & without Live-Data
+                        </h2>
+                        <h2 className={revenueData === true ? 'model-name' : "active"} onClick={getRevenueDataFromMongoDB}>
                             Predictive Analytics for Revenue Demand Sensing Trends
                         </h2>
                         <h2 className={equipmentData1 === true ? 'model-name' : "active"} onClick={getEquipmentDataFromMongoDB}>
@@ -512,9 +546,9 @@ const DataModeling = () => {
                         </h2>
                         <h2 className={clinicalData === true ? 'model-name' : "active"} onClick={getClinicalDataFromMongoDB}>
                             Prediction of Reorder Point & Buffer Stock with Clinical Information
-                        </h2> */}
-
+                        </h2>
                     </div>
+
                 </section>
                 {
                     hideShow && (

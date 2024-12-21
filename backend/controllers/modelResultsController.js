@@ -87,7 +87,7 @@ export const AutomationToSAP = async (req, res) => {
         const collection = database.collection("automationdatas")
 
         const deleteResult = await collection.deleteMany({});
-        console.log(`${deleteResult.deletedCount} records deleted.`);
+        // console.log(`${deleteResult.deletedCount} records deleted.`);
 
         if (Array.isArray(Automation_to_Hanlytic_np)) {
             const newData = new AutomationData({ Process, Automation_to_Hanlytic_np });
