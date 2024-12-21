@@ -256,6 +256,7 @@ const DataModeling = () => {
         setHideShow(false)
 
         setSendData1(false) // New
+        setSendData(true) // New
         setSapText("Formatting the Data...") // New
 
         // const SAP_API_URL = 'http://52.38.202.58:8080/sap/opu/odata/VSHANEYA/HANELYTICS_SRV/AutomationSet'
@@ -312,7 +313,7 @@ const DataModeling = () => {
                 setHideShow(false)
                 handleTabClick("tab1")
         } catch (error) {
-            console.log(error.response.data.message)
+            console.log(error)
         }
 
         // try {
