@@ -491,7 +491,8 @@ const DataModeling = () => {
             </header>
             <div className='container data-models-section-container'>
                 <section className='workflows-section'>
-                    <h1 className='use-case-heading' onClick={handleResultsData}>Data Models</h1>
+                    {/* <h1 className='use-case-heading' onClick={handleResultsData}>Data Models</h1> */}
+                    <h1 className='use-case-heading' onClick={handleResultsData}>Migrate Data</h1>
                     <div className='data-model-types'>
                         {/* <h2 className={inventoryData === true ? 'model-name' : "active"} onClick={getInventoryDataFromMongoDB}>
                             Reorder Point Quantity & Safety Stock Predictions for Inventory with & without Live-Data
