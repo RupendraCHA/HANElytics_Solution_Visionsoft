@@ -279,7 +279,6 @@ const DataModeling = () => {
         }
 
         let objectDataForSAP;
-        
 
         try {
             const response = await axios.get(url + "/api/model/inventory", {headers: {token: jwtToken}})
@@ -300,7 +299,9 @@ const DataModeling = () => {
             // console.log(`Data:`, odataPayload)
             // console.log(sapFields1)
             // console.log(Array)
-            setSapText("✔ Data Formating Successfull ✔") // New
+            if (Array){
+                setSapText("✔ Data Formating Successfull ✔") // New
+            }
 
                 setData(Array)
                 // setInventoryData(false)

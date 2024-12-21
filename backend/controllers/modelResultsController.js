@@ -16,7 +16,7 @@ export const transferDataToSAP = async (req, res) => {
             const headers = {
                 'Content-Type': 'application/json', // Payload format
                 // "Content-Type": "application/xml",
-                // 'X-CSRF-Token': 'Fetch', 
+                // 'X-CSRF-Token': 'Fetch',
                 'X-Requested-With': 'X',
                 // Replace with actual CSRF token if required
                 'Authorization': 'Basic ' + Buffer.from(`${username1}:${password1}`).toString('base64') // Basic Auth
