@@ -3,34 +3,81 @@ import {MongoClient} from "mongodb"
 import AutomationData from "../models/odataModel.js";
 import axios from "axios"
 
-export const AutomationToSAP = async (req, res) => {
-    try {
-        const {objectDataForSAP} = req.body
-        const {Process, Automation_to_Hanlytic_np} = req.body
+export const transferDataToSAP = async (req, res) => {
 
-
-        const SAP_API_URL = 'http://52.38.202.58:8080/sap/opu/odata/VSHANEYA/HANELYTICS_SRV/AutomationSet'
-        const username1 = "Hanelytics"
-        const password1 = "Hanelytics@24"
-
+        // const {objectData} = req.body
+        const {odataPayload} = req.body
+  
         try {
-            const response1 = await axios.post(SAP_API_URL, objectDataForSAP, {
-                auth: {
-                    username: username1,
-                    password: password1
-                },
-                headers: {
-                    "Content-Type": "application/json"
-                }
-            })
-            console.log(`Data pushed successfully`, response1.data);
-            return 
+            const SAP_API_URL = 'http://52.38.202.58:8080/sap/opu/odata/VSHANEYA/HANELYTICS_SRV/AutomationSet'
+            const username1 = "Hanelytics"
+            const password1 = "Hanelytics@24"
 
+            const headers = {
+                'Content-Type': 'application/json', // Payload format
+                // "Content-Type": "application/xml",
+                // 'X-CSRF-Token': 'Fetch', 
+                'X-Requested-With': 'X',
+                // Replace with actual CSRF token if required
+                'Authorization': 'Basic ' + Buffer.from(`${username1}:${password1}`).toString('base64') // Basic Auth
+            };
+        
+            // const odataPayload1 =  JSON.stringify(odataPayload)
+            // const response1 = await axios.post(SAP_API_URL, objectData, { headers });
+            const response1 = await axios.post(SAP_API_URL, odataPayload, { headers });
+            console.log(`Data pushed successfully into the SAP System from HANElytics System`, response1.data);
+            return res.status(201).json({message: "✔✔✔ Data Transferred Successfully to the SAP System. ✔✔✔", success: true})
+            // const csrfResponse = await axios.get(SAP_API_URL, {
+            //     auth: {
+            //       username: username1,
+            //       password: password1,
+            //     },
+            //     headers: {
+            //       'X-CSRF-Token': 'Fetch',
+            //       'Content-Type': 'application/json',
+            //     },
+            //   });
+          
+            //   const csrfToken = csrfResponse.headers['x-csrf-token'];
+            //   const cookies = csrfResponse.headers['set-cookie'];
+          
+            //   console.log('CSRF Token:', csrfToken);
+
+            // const response1 = await axios.post(SAP_API_URL, objectDataForSAP, {
+            //     auth: {
+            //         username: username1,
+            //         password: password1
+            //     },
+            //     headers: {
+            //         // 'X-CSRF-Token': csrfToken,
+            //         'X-Requested-With': 'X',
+            //         // "Content-Type": "application/atom+xml; charset=utf-8",
+            //         // 'X-Requested-With': 'XMLHttpRequest',
+            //         // Cookie: cookies.join(';'),
+            //         "Content-Type": "application/json",
+            //         // "Content-Type": "application/xml",
+            //         // "Content-Type": "application/atom+xml",
+            //     }
+            // })
+            
         } catch (error) {
             // console.error(`Failed to push data into SAP`, error.message);
-            console.error(error);
+            // console.error(error)
+            console.log("---------------")
+            console.log(odataPayload)
+            console.error('Error pushing data to SAP:', error.response ? error.response.data : error.message);
+            // return res.status(400).json({ message: 'Error pushing data to SAP:' });
         }
+}
 
+export const AutomationToSAP = async (req, res) => {
+
+    const {Process, Automation_to_Hanlytic_np} = req.body
+
+    // console.log(objectDataForSAP)
+    try {
+
+        
         const mongoURI = process.env.MONGO_URI
 
         const client = new MongoClient(mongoURI)
@@ -50,9 +97,10 @@ export const AutomationToSAP = async (req, res) => {
         }else {
             return res.status(400).json({ message: 'Invalid data format for Automation_to_Hanlytic_np' });
         }
+        
     } catch (error) {
         return res.status(400).json({ message: 'Error saving data', error });
-    }
+    }  
 }
 
 export const getOdata = async (req, res) => {

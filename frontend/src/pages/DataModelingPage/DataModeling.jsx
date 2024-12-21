@@ -26,6 +26,8 @@ import ClinicalPieChart from '../../components/Charts/ClinicalCharts/ClinicalPie
 import ClinicalBarChart from '../../components/Charts/ClinicalCharts/ClinicalBarChart/ClinicalBarChart.jsx';
 
 
+
+
 const DataModeling = () => {
 
     const navigate = useNavigate()
@@ -49,10 +51,14 @@ const DataModeling = () => {
     const [revenueData, setRevenueData] = useState(true)
     const [equipmentData1, setEquipmentData] = useState(true)
     const [clinicalData, setClinicalData] = useState(true)
+    const [sendData, setSendData] = useState(true)
+    const [sendData1, setSendData1] = useState(true)
     const [activeTab, setActiveTab] = useState('tab1');
     // const [activeChartTab, setActiveChartTab] = useState('');
     const [showPieChart, setShowPieChart] = useState(false);
     const [showResults, setShowResults] = useState(true);
+    const [odataPayload, setOdataPayload] = useState({});
+    const [sapText, setSapText] = useState("Sending Data...")
 
     const handleTabClick = (tab) => {
         setActiveTab(tab);
@@ -69,12 +75,192 @@ const DataModeling = () => {
         navigate("/login")
     }
 
+    const sendDataToSAP = async () => { // New
+        const jwtToken = localStorage.getItem("token")
+        setSapText("Sending Data...")
+
+        setSendData(false)
+        setSendData1(true)
+        setInventoryData(true)
+        setRevenueData(true)
+        setHideShow(false) 
+        setEquipmentData(true)
+        setClinicalData(true)
+        const objectData = {
+            Process: "Create",
+            Direct_process: "",
+            Automation_to_Hanlytic_np: [
+              {
+                Product_ID: "PUID46",
+                Product_name: "Blood Pressure Monitor",
+                Distribution_Center: "Mao",
+                Quantity: "19872"
+              },
+              {
+                Product_ID: "PUID323",
+                Product_name: "ECG Machine",
+                Distribution_Center: "Mao",
+                Quantity: "44037"
+              },
+              {
+                Product_ID: "PUID564",
+                Product_name: "X-Ray Machine",
+                Distribution_Center: "Xianju",
+                Quantity: "60528"
+              },
+              {
+                Product_ID: "PUID785",
+                Product_name: "Ultrasound Device",
+                Distribution_Center: "Mao",
+                Quantity: "12420"
+              },
+              {
+                Product_ID: "PUID165",
+                Product_name: "X-Ray Machine",
+                Distribution_Center: "Naklo nad Notecia",
+                Quantity: "75096"
+              },
+              {
+                Product_ID: "PUID480",
+                Product_name: "MRI Machine",
+                Distribution_Center: "Gustavia",
+                Quantity: "19140"
+              },
+              {
+                Product_ID: "PUID585",
+                Product_name: "ECG Machine",
+                Distribution_Center: "Kathmandu",
+                Quantity: "17496"
+              },
+              {
+                Product_ID: "PUID633",
+                Product_name: "ECG Machine",
+                Distribution_Center: "Istanbul",
+                Quantity: "19620"
+              },
+              {
+                Product_ID: "PUID711",
+                Product_name: "ECG Machine",
+                Distribution_Center: "Naklo nad Notecia",
+                Quantity: "25524"
+              },
+              {
+                Product_ID: "PUID762",
+                Product_name: "Surgical Instruments",
+                Distribution_Center: "Naklo nad Notecia",
+                Quantity: "59217"
+              },
+              {
+                Product_ID: "PUID995",
+                Product_name: "Infusion Pump",
+                Distribution_Center: "Naklo nad Notecia",
+                Quantity: "45828"
+              },
+              {
+                Product_ID: "PUID6",
+                Product_name: "Stethoscope",
+                Distribution_Center: "Gustavia",
+                Quantity: "54390"
+              },
+              {
+                Product_ID: "PUID103",
+                Product_name: "Blood Pressure Monitor",
+                Distribution_Center: "Istanbul",
+                Quantity: "102974"
+              },
+              {
+                Product_ID: "PUID127",
+                Product_name: "Blood Pressure Monitor",
+                Distribution_Center: "Gustavia",
+                Quantity: "53208"
+              },
+              {
+                Product_ID: "PUID145",
+                Product_name: "Stethoscope",
+                Distribution_Center: "Bankra",
+                Quantity: "63360"
+              },
+              {
+                Product_ID: "PUID518",
+                Product_name: "Surgical Instruments",
+                Distribution_Center: "Gustavia",
+                Quantity: "50748"
+              },
+              {
+                Product_ID: "PUID552",
+                Product_name: "Infusion Pump",
+                Distribution_Center: "Lisbon",
+                Quantity: "28356"
+              },
+              {
+                Product_ID: "PUID627",
+                Product_name: "Ultrasound Device",
+                Distribution_Center: "Gustavia",
+                Quantity: "58284"
+              },
+              {
+                Product_ID: "PUID734",
+                Product_name: "X-Ray Machine",
+                Distribution_Center: "Mao",
+                Quantity: "83820"
+              },
+              {
+                Product_ID: "PUID779",
+                Product_name: "X-Ray Machine",
+                Distribution_Center: "Walbrzych",
+                Quantity: "124320"
+              },
+              {
+                Product_ID: "PUID64",
+                Product_name: "Blood Pressure Monitor",
+                Distribution_Center: "Kathmandu",
+                Quantity: "25692"
+              },
+              {
+                Product_ID: "PUID111",
+                Product_name: "Surgical Instruments",
+                Distribution_Center: "Merida",
+                Quantity: "65538"
+              },
+              {
+                Product_ID: "PUID112",
+                Product_name: "Defibrillator",
+                Distribution_Center: "Nalchik",
+                Quantity: "31920"
+              },
+              {
+                Product_ID: "PUID179",
+                Product_name: "Ventilator",
+                Distribution_Center: "Zhengzhou",
+                Quantity: "35350"
+              },
+              {
+                Product_ID: "PUID195",
+                Product_name: "X-Ray Machine",
+                Distribution_Center: "Gustavia",
+                Quantity: "60528"
+              }
+            ]
+        }
+        // const result =  await axios.post(url + "/api/model/dataToSap", {objectData})
+        const result =  await axios.post(url + "/api/model/dataToSap", {odataPayload}, {headers: {token: jwtToken}})
+        console.log(result.data)
+        if (result.data.success === true){
+            setSapText(result.data.message)
+        }
+        console.log(odataPayload)
+    }
+
     const getInventoryDataFromMongoDB = async () => {
         const jwtToken = localStorage.getItem("token")
+        setHideShow(false)
 
-        const SAP_API_URL = 'http://52.38.202.58:8080/sap/opu/odata/VSHANEYA/HANELYTICS_SRV/AutomationSet'
-        const username1 = "Hanelytics"
-        const password1 = "Hanelytics@24"
+        setSendData1(false) // New
+        setSapText("Formatting the Data...") // New
+
+        // const SAP_API_URL = 'http://52.38.202.58:8080/sap/opu/odata/VSHANEYA/HANELYTICS_SRV/AutomationSet'
+        // const username1 = "Hanelytics"
+        // const password1 = "Hanelytics@24"
 
         const sapFields = []
 
@@ -88,7 +274,7 @@ const DataModeling = () => {
                     Quantity: record.Reorder_Quantity_Prediction_with_live_data.toString()
                 });
             }
-            return sapFields
+            return sapFields.slice(0, 141)
         }
 
         let objectDataForSAP;
@@ -101,39 +287,49 @@ const DataModeling = () => {
             // "Direct_process" : "",
             objectDataForSAP = {
                 Process : "Create",
+                Direct_process : "",
                 Automation_to_Hanlytic_np: addObjectsData(Array)
             }
-           const result =  await axios.post(url + "/api/model/odata", objectDataForSAP)
-           console.log(result)
-            console.log(objectDataForSAP)
+            setOdataPayload(objectDataForSAP)
+            const result1 = await axios.post(url + "/api/model/odata", objectDataForSAP, {headers: {token: jwtToken}})
+            console.log(result1.data)
+        //    console.log(result)
+            // console.log(objectDataForSAP)
+            console.log(`Data:`, objectDataForSAP)
+            // console.log(`Data:`, odataPayload)
             // console.log(sapFields1)
-            console.log(Array)
+            // console.log(Array)
+            setSapText("✔ Data Formating Successfull ✔") // New
+
                 setData(Array)
-                setInventoryData(false)
+                // setInventoryData(false)
+                setInventoryData(true) // New
                 setRevenueData(true)
                 setEquipmentData(true)
                 setClinicalData(true)
+                // setSendData(true)
+
                 setHideShow(false)
                 handleTabClick("tab1")
         } catch (error) {
-            console.log(error)
+            console.log(error.response.data.message)
         }
 
-        try {
-            const response1 = await axios.post(SAP_API_URL, objectDataForSAP, {
-                auth: {
-                    username: username1,
-                    password: password1
-                },
-                headers: {
-                    "Content-Type": "application/json"
-                }
-            })
-            console.log(`Data pushed successfully`, response1.data);
+        // try {
+        //     const response1 = await axios.post(SAP_API_URL, objectDataForSAP, {
+        //         auth: {
+        //             username: username1,
+        //             password: password1
+        //         },
+        //         headers: {
+        //             "Content-Type": "application/json"
+        //         }
+        //     })
+        //     console.log(`Data pushed successfully`, response1.data);
 
-        } catch (error) {
-            console.error(`Failed to push data into SAP`, error.message);
-        }
+        // } catch (error) {
+        //     console.error(`Failed to push data into SAP`, error.message);
+        // }
         
     }
 
@@ -150,6 +346,8 @@ const DataModeling = () => {
                 setInventoryData(true)
                 setEquipmentData(true)
                 setClinicalData(true)
+                setSendData(true)
+
                 handleTabClick("tab1")
             } catch (error) {
                 console.log(error)
@@ -169,6 +367,8 @@ const DataModeling = () => {
                 setInventoryData(true)
                 setEquipmentData(false)
                 setClinicalData(true)
+                setSendData(true)
+
                 handleTabClick("tab1")
             } catch (error) {
                 console.log(error)
@@ -188,6 +388,8 @@ const DataModeling = () => {
                 setInventoryData(true)
                 setEquipmentData(true)
                 setClinicalData(false)
+                setSendData(true)
+
                 handleTabClick("tab1")
             } catch (error) {
                 console.log(error)
@@ -200,6 +402,8 @@ const DataModeling = () => {
         setHideShow(true)
         setEquipmentData(true)
         setClinicalData(true)
+        setSendData(true)
+
     }
 
     const handlePieChart = (tab) => {
@@ -288,10 +492,16 @@ const DataModeling = () => {
                 <section className='workflows-section'>
                     <h1 className='use-case-heading' onClick={handleResultsData}>Data Models</h1>
                     <div className='data-model-types'>
-                        <h2 className={inventoryData === true ? 'model-name' : "active"} onClick={getInventoryDataFromMongoDB}>
+                        {/* <h2 className={inventoryData === true ? 'model-name' : "active"} onClick={getInventoryDataFromMongoDB}>
                             Reorder Point Quantity & Safety Stock Predictions for Inventory with & without Live-Data
+                        </h2> */}
+                        <h2 className={sendData1 === true ? 'model-name' : "active"} onClick={getInventoryDataFromMongoDB}>
+                            Format the Reorder Point Quantity data as per SAP Requirements
                         </h2>
-                        <h2 className={revenueData === true ? 'model-name' : "active"} onClick={getRevenueDataFromMongoDB}>
+                        <h2 className={sendData === true ? 'model-name' : "active"} onClick={sendDataToSAP}>
+                            Migrate Data From HANElytics to SAP S/4 HANA: Inter Company Sales
+                        </h2>
+                        {/* <h2 className={revenueData === true ? 'model-name' : "active"} onClick={getRevenueDataFromMongoDB}>
                             Predictive Analytics for Revenue Demand Sensing Trends
                         </h2>
                         <h2 className={equipmentData1 === true ? 'model-name' : "active"} onClick={getEquipmentDataFromMongoDB}>
@@ -299,14 +509,31 @@ const DataModeling = () => {
                         </h2>
                         <h2 className={clinicalData === true ? 'model-name' : "active"} onClick={getClinicalDataFromMongoDB}>
                             Prediction of Reorder Point & Buffer Stock with Clinical Information
-                        </h2>
+                        </h2> */}
 
                     </div>
                 </section>
                 {
                     hideShow && (
+                        // <div className='charts-section select-model-name empty-bg-image'>
+                        //     <h2 className='select-text'>Select the Data Model to view the results</h2>
+                        // </div>
                         <div className='charts-section select-model-name empty-bg-image'>
-                            <h2 className='select-text'>Select the Data Model to view the results</h2>
+                            <h2 className='select-text'>Transfer Data to SAP System from HANElytics System</h2>
+                        </div>
+                    )
+                }
+                {
+                    !sendData1 && (
+                        <div className='charts-section select-model-name empty-bg-image'>
+                            <h2 className='select-text'>{sapText}</h2>
+                        </div>
+                    )
+                }
+                {
+                    !sendData && (
+                        <div className='charts-section select-model-name empty-bg-image'>
+                            <h2 className='select-text'>{sapText}</h2>
                         </div>
                     )
                 }
