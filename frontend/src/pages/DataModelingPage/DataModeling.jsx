@@ -248,6 +248,9 @@ const DataModeling = () => {
         if (result.data.success === true){
             setSapText(result.data.message)
         }
+        else{
+            setSapText("Kindly ensure all required systems are running!!")
+        }
         console.log(odataPayload)
     }
 
@@ -333,6 +336,9 @@ const DataModeling = () => {
             // console.log(Array)
             if (Array){
                 setSapText("✔ Data Formating Successfull ✔") // New
+            }
+            else{
+                setSapText("Enable backend Conncetions correctly!!")
             }
 
                 
