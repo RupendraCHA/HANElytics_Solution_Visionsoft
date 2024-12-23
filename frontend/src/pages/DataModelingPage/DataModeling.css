@@ -324,7 +324,27 @@ ul {
   background-color: #fff;
   padding: 15px;
 }
-
+.select-process{
+  text-align: left;
+  background-color: #323f4b;
+  padding: 10PX;
+  border-radius: 6px;
+  color: white;
+}
+.process-button{
+  display: flex;
+  justify-content: start;
+  gap: 10px;
+  align-items: center;
+  margin-bottom: 20px;
+  input{
+    width: 30px;
+    height: 30px;
+  }
+  label{
+    font-size: 20px;
+  }
+}
 .button {
   display: flex;
   justify-content: center;

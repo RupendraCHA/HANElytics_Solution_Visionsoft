@@ -59,6 +59,7 @@ const DataModeling = () => {
     const [showResults, setShowResults] = useState(true);
     const [odataPayload, setOdataPayload] = useState({});
     const [sapText, setSapText] = useState("Sending Data...")
+    const [process, setProcess] = useState("")
 
     const handleTabClick = (tab) => {
         setActiveTab(tab);
@@ -86,162 +87,162 @@ const DataModeling = () => {
         setHideShow(false) 
         setEquipmentData(true)
         setClinicalData(true)
-        const objectData = {
-            Process: "Create",
-            Direct_process: "",
-            Automation_to_Hanlytic_np: [
-              {
-                Product_ID: "PUID46",
-                Product_name: "Blood Pressure Monitor",
-                Distribution_Center: "Mao",
-                Quantity: "19872"
-              },
-              {
-                Product_ID: "PUID323",
-                Product_name: "ECG Machine",
-                Distribution_Center: "Mao",
-                Quantity: "44037"
-              },
-              {
-                Product_ID: "PUID564",
-                Product_name: "X-Ray Machine",
-                Distribution_Center: "Xianju",
-                Quantity: "60528"
-              },
-              {
-                Product_ID: "PUID785",
-                Product_name: "Ultrasound Device",
-                Distribution_Center: "Mao",
-                Quantity: "12420"
-              },
-              {
-                Product_ID: "PUID165",
-                Product_name: "X-Ray Machine",
-                Distribution_Center: "Naklo nad Notecia",
-                Quantity: "75096"
-              },
-              {
-                Product_ID: "PUID480",
-                Product_name: "MRI Machine",
-                Distribution_Center: "Gustavia",
-                Quantity: "19140"
-              },
-              {
-                Product_ID: "PUID585",
-                Product_name: "ECG Machine",
-                Distribution_Center: "Kathmandu",
-                Quantity: "17496"
-              },
-              {
-                Product_ID: "PUID633",
-                Product_name: "ECG Machine",
-                Distribution_Center: "Istanbul",
-                Quantity: "19620"
-              },
-              {
-                Product_ID: "PUID711",
-                Product_name: "ECG Machine",
-                Distribution_Center: "Naklo nad Notecia",
-                Quantity: "25524"
-              },
-              {
-                Product_ID: "PUID762",
-                Product_name: "Surgical Instruments",
-                Distribution_Center: "Naklo nad Notecia",
-                Quantity: "59217"
-              },
-              {
-                Product_ID: "PUID995",
-                Product_name: "Infusion Pump",
-                Distribution_Center: "Naklo nad Notecia",
-                Quantity: "45828"
-              },
-              {
-                Product_ID: "PUID6",
-                Product_name: "Stethoscope",
-                Distribution_Center: "Gustavia",
-                Quantity: "54390"
-              },
-              {
-                Product_ID: "PUID103",
-                Product_name: "Blood Pressure Monitor",
-                Distribution_Center: "Istanbul",
-                Quantity: "102974"
-              },
-              {
-                Product_ID: "PUID127",
-                Product_name: "Blood Pressure Monitor",
-                Distribution_Center: "Gustavia",
-                Quantity: "53208"
-              },
-              {
-                Product_ID: "PUID145",
-                Product_name: "Stethoscope",
-                Distribution_Center: "Bankra",
-                Quantity: "63360"
-              },
-              {
-                Product_ID: "PUID518",
-                Product_name: "Surgical Instruments",
-                Distribution_Center: "Gustavia",
-                Quantity: "50748"
-              },
-              {
-                Product_ID: "PUID552",
-                Product_name: "Infusion Pump",
-                Distribution_Center: "Lisbon",
-                Quantity: "28356"
-              },
-              {
-                Product_ID: "PUID627",
-                Product_name: "Ultrasound Device",
-                Distribution_Center: "Gustavia",
-                Quantity: "58284"
-              },
-              {
-                Product_ID: "PUID734",
-                Product_name: "X-Ray Machine",
-                Distribution_Center: "Mao",
-                Quantity: "83820"
-              },
-              {
-                Product_ID: "PUID779",
-                Product_name: "X-Ray Machine",
-                Distribution_Center: "Walbrzych",
-                Quantity: "124320"
-              },
-              {
-                Product_ID: "PUID64",
-                Product_name: "Blood Pressure Monitor",
-                Distribution_Center: "Kathmandu",
-                Quantity: "25692"
-              },
-              {
-                Product_ID: "PUID111",
-                Product_name: "Surgical Instruments",
-                Distribution_Center: "Merida",
-                Quantity: "65538"
-              },
-              {
-                Product_ID: "PUID112",
-                Product_name: "Defibrillator",
-                Distribution_Center: "Nalchik",
-                Quantity: "31920"
-              },
-              {
-                Product_ID: "PUID179",
-                Product_name: "Ventilator",
-                Distribution_Center: "Zhengzhou",
-                Quantity: "35350"
-              },
-              {
-                Product_ID: "PUID195",
-                Product_name: "X-Ray Machine",
-                Distribution_Center: "Gustavia",
-                Quantity: "60528"
-              }
-            ]
-        }
+        // const objectData = {
+        //     Process: "Create",
+        //     Direct_process: "",
+        //     Automation_to_Hanlytic_np: [
+        //       {
+        //         Product_ID: "PUID46",
+        //         Product_name: "Blood Pressure Monitor",
+        //         Distribution_Center: "Mao",
+        //         Quantity: "19872"
+        //       },
+        //       {
+        //         Product_ID: "PUID323",
+        //         Product_name: "ECG Machine",
+        //         Distribution_Center: "Mao",
+        //         Quantity: "44037"
+        //       },
+        //       {
+        //         Product_ID: "PUID564",
+        //         Product_name: "X-Ray Machine",
+        //         Distribution_Center: "Xianju",
+        //         Quantity: "60528"
+        //       },
+        //       {
+        //         Product_ID: "PUID785",
+        //         Product_name: "Ultrasound Device",
+        //         Distribution_Center: "Mao",
+        //         Quantity: "12420"
+        //       },
+        //       {
+        //         Product_ID: "PUID165",
+        //         Product_name: "X-Ray Machine",
+        //         Distribution_Center: "Naklo nad Notecia",
+        //         Quantity: "75096"
+        //       },
+        //       {
+        //         Product_ID: "PUID480",
+        //         Product_name: "MRI Machine",
+        //         Distribution_Center: "Gustavia",
+        //         Quantity: "19140"
+        //       },
+        //       {
+        //         Product_ID: "PUID585",
+        //         Product_name: "ECG Machine",
+        //         Distribution_Center: "Kathmandu",
+        //         Quantity: "17496"
+        //       },
+        //       {
+        //         Product_ID: "PUID633",
+        //         Product_name: "ECG Machine",
+        //         Distribution_Center: "Istanbul",
+        //         Quantity: "19620"
+        //       },
+        //       {
+        //         Product_ID: "PUID711",
+        //         Product_name: "ECG Machine",
+        //         Distribution_Center: "Naklo nad Notecia",
+        //         Quantity: "25524"
+        //       },
+        //       {
+        //         Product_ID: "PUID762",
+        //         Product_name: "Surgical Instruments",
+        //         Distribution_Center: "Naklo nad Notecia",
+        //         Quantity: "59217"
+        //       },
+        //       {
+        //         Product_ID: "PUID995",
+        //         Product_name: "Infusion Pump",
+        //         Distribution_Center: "Naklo nad Notecia",
+        //         Quantity: "45828"
+        //       },
+        //       {
+        //         Product_ID: "PUID6",
+        //         Product_name: "Stethoscope",
+        //         Distribution_Center: "Gustavia",
+        //         Quantity: "54390"
+        //       },
+        //       {
+        //         Product_ID: "PUID103",
+        //         Product_name: "Blood Pressure Monitor",
+        //         Distribution_Center: "Istanbul",
+        //         Quantity: "102974"
+        //       },
+        //       {
+        //         Product_ID: "PUID127",
+        //         Product_name: "Blood Pressure Monitor",
+        //         Distribution_Center: "Gustavia",
+        //         Quantity: "53208"
+        //       },
+        //       {
+        //         Product_ID: "PUID145",
+        //         Product_name: "Stethoscope",
+        //         Distribution_Center: "Bankra",
+        //         Quantity: "63360"
+        //       },
+        //       {
+        //         Product_ID: "PUID518",
+        //         Product_name: "Surgical Instruments",
+        //         Distribution_Center: "Gustavia",
+        //         Quantity: "50748"
+        //       },
+        //       {
+        //         Product_ID: "PUID552",
+        //         Product_name: "Infusion Pump",
+        //         Distribution_Center: "Lisbon",
+        //         Quantity: "28356"
+        //       },
+        //       {
+        //         Product_ID: "PUID627",
+        //         Product_name: "Ultrasound Device",
+        //         Distribution_Center: "Gustavia",
+        //         Quantity: "58284"
+        //       },
+        //       {
+        //         Product_ID: "PUID734",
+        //         Product_name: "X-Ray Machine",
+        //         Distribution_Center: "Mao",
+        //         Quantity: "83820"
+        //       },
+        //       {
+        //         Product_ID: "PUID779",
+        //         Product_name: "X-Ray Machine",
+        //         Distribution_Center: "Walbrzych",
+        //         Quantity: "124320"
+        //       },
+        //       {
+        //         Product_ID: "PUID64",
+        //         Product_name: "Blood Pressure Monitor",
+        //         Distribution_Center: "Kathmandu",
+        //         Quantity: "25692"
+        //       },
+        //       {
+        //         Product_ID: "PUID111",
+        //         Product_name: "Surgical Instruments",
+        //         Distribution_Center: "Merida",
+        //         Quantity: "65538"
+        //       },
+        //       {
+        //         Product_ID: "PUID112",
+        //         Product_name: "Defibrillator",
+        //         Distribution_Center: "Nalchik",
+        //         Quantity: "31920"
+        //       },
+        //       {
+        //         Product_ID: "PUID179",
+        //         Product_name: "Ventilator",
+        //         Distribution_Center: "Zhengzhou",
+        //         Quantity: "35350"
+        //       },
+        //       {
+        //         Product_ID: "PUID195",
+        //         Product_name: "X-Ray Machine",
+        //         Distribution_Center: "Gustavia",
+        //         Quantity: "60528"
+        //       }
+        //     ]
+        // }
         // const result =  await axios.post(url + "/api/model/dataToSap", {objectData})
         const result =  await axios.post(url + "/api/model/dataToSap", {odataPayload}, {headers: {token: jwtToken}})
         console.log(result.data)
@@ -449,6 +450,7 @@ const DataModeling = () => {
         setShowResults(false)
     }
 
+
     const items = [
         {
             key: 1,
@@ -534,6 +536,18 @@ const DataModeling = () => {
                         <h2 className={sendData1 === true ? 'model-name' : "active"} onClick={getInventoryDataFromMongoDB1}>
                             Destructure the Reorder Point Quantity data as per SAP Requirements
                         </h2>
+                        <div className='select-process'>
+                            <div className='process-button'>
+                                <input type='radio' id='select1' name='process' value="Application Server" onChange={e => setProcess(e.target.value)}/>
+                                <label htmlFor='select1'>Application Server</label>
+                            </div>
+                            <div className='process-button'>
+                                <input type='radio' id='select2' name='process' value="Direct Process" onChange={e => setProcess(e.target.value)}/>
+                                <label htmlFor='select2'>Direct Process</label>
+                            </div>
+                            <p>{process}</p>
+                            {/* <input type='radio' name='process' value="Direct Process" onChange={e => setProcess(e.target.value)}/> */}
+                        </div>
                         <h2 className={sendData === true ? 'model-name' : "active"} onClick={sendDataToSAP}>
                             Migrate Data From HANElytics System to SAP S/4 HANA: Inter Company Sales
                         </h2>
