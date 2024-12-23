@@ -59,7 +59,7 @@ const DataModeling = () => {
     const [showResults, setShowResults] = useState(true);
     const [odataPayload, setOdataPayload] = useState({});
     const [sapText, setSapText] = useState("Sending Data...")
-    const [process, setProcess] = useState("")
+    // const [process, setProcess] = useState("")
 
     const handleTabClick = (tab) => {
         setActiveTab(tab);
@@ -503,6 +503,19 @@ const DataModeling = () => {
         }
     ]
 
+{/* <div className='select-process'>
+    <div className='process-button'>
+        <input type='radio' id='select1' name='process' value="Application Server" onChange={e => setProcess(e.target.value)}/>
+        <label htmlFor='select1'>Application Server</label>
+    </div>
+    <div className='process-button'>
+        <input type='radio' id='select2' name='process' value="Direct Process" onChange={e => setProcess(e.target.value)}/>
+        <label htmlFor='select2'>Direct Process</label>
+    </div>
+    <p>{process}</p>
+    <input type='radio' name='process' value="Direct Process" onChange={e => setProcess(e.target.value)}/>
+</div> */}
+
     return (<>
         <div className='data-modeling-container'>
             <header className='website-header1'>
@@ -536,18 +549,6 @@ const DataModeling = () => {
                         <h2 className={sendData1 === true ? 'model-name' : "active"} onClick={getInventoryDataFromMongoDB1}>
                             Destructure the Reorder Point Quantity data as per SAP Requirements
                         </h2>
-                        <div className='select-process'>
-                            <div className='process-button'>
-                                <input type='radio' id='select1' name='process' value="Application Server" onChange={e => setProcess(e.target.value)}/>
-                                <label htmlFor='select1'>Application Server</label>
-                            </div>
-                            <div className='process-button'>
-                                <input type='radio' id='select2' name='process' value="Direct Process" onChange={e => setProcess(e.target.value)}/>
-                                <label htmlFor='select2'>Direct Process</label>
-                            </div>
-                            <p>{process}</p>
-                            {/* <input type='radio' name='process' value="Direct Process" onChange={e => setProcess(e.target.value)}/> */}
-                        </div>
                         <h2 className={sendData === true ? 'model-name' : "active"} onClick={sendDataToSAP}>
                             Migrate Data From HANElytics System to SAP S/4 HANA: Inter Company Sales
                         </h2>
