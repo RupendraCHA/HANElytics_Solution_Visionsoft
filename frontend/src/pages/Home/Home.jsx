@@ -33,7 +33,7 @@ function Home() {
                     </h1>
                     <Link to="/dataModeling" style={{textDecoration: "none"}}>
                         <button className='button'>
-                            Start Working With Data Models
+                            Start Viewing Data Model Insights and Work with Migration of Data
                         </button>
                     </Link>
                     <b>*Click here to start working with Data Models</b>
