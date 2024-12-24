@@ -64,7 +64,7 @@ export const transferDataToSAP = async (req, res) => {
             // console.error(`Failed to push data into SAP`, error.message);
             // console.error(error)
             console.log("---------------")
-            console.log(odataPayload)
+            console.log(odataPayload.slice(0, 3))
             console.error('Error pushing data to SAP:', error.response ? error.response.data : error.message);
             // return res.status(400).json({ message: 'Error pushing data to SAP:' });
         }

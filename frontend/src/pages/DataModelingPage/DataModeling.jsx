@@ -245,7 +245,7 @@ const DataModeling = () => {
         // }
         // const result =  await axios.post(url + "/api/model/dataToSap", {objectData})
         const result =  await axios.post(url + "/api/model/dataToSap", {odataPayload}, {headers: {token: jwtToken}})
-        console.log(result.data)
+        // console.log(result.data)
         if (result.data.success === true){
             setSapText(result.data.message)
         }
