@@ -36,7 +36,7 @@ function Home() {
                             Start Viewing Data Model Insights and Work with Migration of Data
                         </button>
                     </Link>
-                    <b>*Click here to start working with Data Models</b>
+                    <b>*Click here</b>
                 </div>
             </div >
         </>
