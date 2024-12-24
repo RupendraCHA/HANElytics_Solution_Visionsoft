@@ -323,7 +323,6 @@ const DataModeling = () => {
             // "Direct_process" : "",
             objectDataForSAP = {
                 Process : "Create",
-                Direct_process : "",
                 Automation_to_Hanlytic_np: addObjectsData(Array)
             }
             setOdataPayload(objectDataForSAP)
