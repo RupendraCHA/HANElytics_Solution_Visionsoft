@@ -4,6 +4,7 @@ import connectDB from "./config/db.js"
 import userRouter from "./routes/userRoute.js"
 import dataModelResultsRouter from "./routes/dataModelResults.js"
 import "dotenv/config.js"
+// import serverless from 'serverless-http'
 
 const app = express()
 const port = process.env.PORT
@@ -20,12 +21,12 @@ app.use(cors({
 app.use("/api/user", userRouter)
 app.use("/api/model", dataModelResultsRouter)
 
-app.get("/", (req, res) => {
+app.get("/start", (req, res) => {
     res.send(`
         <!DOCTYPE html>
         <html>
         <head>
-          <title>Hello from Node.js</title>
+          <title>HANElytics server</title>
           <style>
             div{
                 display: flex;
@@ -51,4 +52,5 @@ app.get("/", (req, res) => {
 app.listen(port, () => {
     console.log("Server is running suceesfully!!")
 })
-connectDB()
+// connectDB()
+// module.exports.handler = serverless(app)

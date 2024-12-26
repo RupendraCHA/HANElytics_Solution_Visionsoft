@@ -23,6 +23,7 @@
     "mongoose": "^8.8.1",
     "nodemailer": "^6.9.16",
     "nodemon": "^3.1.7",
+    "serverless-http": "^3.2.0",
     "stripe": "^17.3.1",
     "validator": "^13.12.0"
   }
