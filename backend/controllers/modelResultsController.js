@@ -27,38 +27,6 @@ export const transferDataToSAP = async (req, res) => {
             const response1 = await axios.post(SAP_API_URL, odataPayload, { headers });
             console.log(`Data pushed successfully into the SAP System from HANElytics System`, response1.data);
             return res.status(201).json({message: "✔✔✔ Data Transferred Successfully to the SAP System. ✔✔✔", success: true})
-            // const csrfResponse = await axios.get(SAP_API_URL, {
-            //     auth: {
-            //       username: username1,
-            //       password: password1,
-            //     },
-            //     headers: {
-            //       'X-CSRF-Token': 'Fetch',
-            //       'Content-Type': 'application/json',
-            //     },
-            //   });
-          
-            //   const csrfToken = csrfResponse.headers['x-csrf-token'];
-            //   const cookies = csrfResponse.headers['set-cookie'];
-          
-            //   console.log('CSRF Token:', csrfToken);
-
-            // const response1 = await axios.post(SAP_API_URL, objectDataForSAP, {
-            //     auth: {
-            //         username: username1,
-            //         password: password1
-            //     },
-            //     headers: {
-            //         // 'X-CSRF-Token': csrfToken,
-            //         'X-Requested-With': 'X',
-            //         // "Content-Type": "application/atom+xml; charset=utf-8",
-            //         // 'X-Requested-With': 'XMLHttpRequest',
-            //         // Cookie: cookies.join(';'),
-            //         "Content-Type": "application/json",
-            //         // "Content-Type": "application/xml",
-            //         // "Content-Type": "application/atom+xml",
-            //     }
-            // })
             
         } catch (error) {
             // console.error(`Failed to push data into SAP`, error.message);
