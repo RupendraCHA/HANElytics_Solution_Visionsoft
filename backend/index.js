@@ -52,5 +52,5 @@ app.get("/start", (req, res) => {
 app.listen(port, () => {
     console.log("Server is running suceesfully!!")
 })
-// connectDB()
+connectDB()
 // module.exports.handler = serverless(app)
