@@ -21,15 +21,15 @@ const Table = (props) => {
                         <th className='column-name'>Product_Name</th>
                         <th className='column-name'>Distribution_Center_ID</th>
                         <th className='column-name'>Distribution_Center</th>
-                        <th title="Time required to transport the product" className='column-name'>Order_Fulfillment_Time (in Days)</th>
+                        {/* <th title="Time required to transport the product" className='column-name'>Order_Fulfillment_Time (in Days)</th>
                         <th className='column-name'>Historical_Monthly_Sales</th>
                         <th className='column-name'>Monthly_Sales_Prediction<br />(Without Live Data)</th>
                         <th className='column-name'>Monthly_Sales_Prediction<br />(With Live Data)</th>
                         <th className='column-name'>Daily_Sales_Prediction<br />(Without Live Data)</th>
-                        <th className='column-name'>Daily_Sales_Prediction<br />(With Live Data)</th>
-                        <th className='column-name'>Safety_Stock<br />(Without Live Data)</th>
+                        <th className='column-name'>Daily_Sales_Prediction<br />(With Live Data)</th> */}
+                        {/* <th className='column-name'>Safety_Stock<br />(Without Live Data)</th> */}
                         <th className='column-name'>Safety_Stock<br />(With Live Data)</th>
-                        <th className='column-name'>Reorder_Quantity_Prediction<br />(Without live Data)</th>
+                        {/* <th className='column-name'>Reorder_Quantity_Prediction<br />(Without live Data)</th> */}
                         <th className='column-name'>Reorder_Quantity_Prediction<br />(With Live Data)</th>
                     </tr>
                 </thead>
@@ -46,15 +46,15 @@ const Table = (props) => {
                                     <td>{eachRow.Product_Name}</td>
                                     <td>{eachRow.Distribution_Center_ID}</td>
                                     <td>{eachRow.Distribution_Center}</td>
-                                    <td>{eachRow.Order_Fulfillment_Time_in_days}</td>
+                                    {/* <td>{eachRow.Order_Fulfillment_Time_in_days}</td>
                                     <td>{eachRow.Historical_Monthly_Sales}</td>
                                     <td>{eachRow.Monthly_Sales_Prediction_without_live_data}</td>
                                     <td>{eachRow.Monthly_Sales_Prediction_with_live_data}</td>
                                     <td>{eachRow.Daily_Sales_Prediction_without_live_data}</td>
-                                    <td>{eachRow.Daily_Sales_Prediction_with_live_data}</td>
-                                    <td>{eachRow.Safety_Stock_without_live_data}</td>
+                                    <td>{eachRow.Daily_Sales_Prediction_with_live_data}</td> */}
+                                    {/* <td>{eachRow.Safety_Stock_without_live_data}</td> */}
                                     <td>{eachRow.Safety_Stock_with_live_data}</td>
-                                    <td>{eachRow.Reorder_Quantity_Prediction_without_live_data}</td>
+                                    {/* <td>{eachRow.Reorder_Quantity_Prediction_without_live_data}</td> */}
                                     <td>{eachRow.Reorder_Quantity_Prediction_with_live_data}</td>
                                 </tr>
                             )

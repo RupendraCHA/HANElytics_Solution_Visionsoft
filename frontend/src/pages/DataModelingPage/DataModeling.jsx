@@ -84,7 +84,7 @@ const DataModeling = () => {
         setSendData1(true)
         setInventoryData(true)
         setRevenueData(true)
-        setHideShow(false) 
+        setHideShow(false)
         setEquipmentData(true)
         setClinicalData(true)
         // const objectData = {
