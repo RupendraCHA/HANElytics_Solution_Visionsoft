@@ -326,8 +326,8 @@ const DataModeling = () => {
                 Automation_to_Hanlytic_np: addObjectsData(Array)
             }
             setOdataPayload(objectDataForSAP)
-            const result1 = await axios.post(url + "/api/model/odata", objectDataForSAP, {headers: {token: jwtToken}})
-            console.log(result1.data)
+            // const result1 = await axios.post(url + "/api/model/odata", objectDataForSAP, {headers: {token: jwtToken}})
+            // console.log(result1.data)
         //    console.log(result)
             // console.log(objectDataForSAP)
             console.log(`Data:`, objectDataForSAP)

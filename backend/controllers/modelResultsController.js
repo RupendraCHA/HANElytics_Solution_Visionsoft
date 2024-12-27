@@ -38,38 +38,38 @@ export const transferDataToSAP = async (req, res) => {
         }
 }
 
-export const AutomationToSAP = async (req, res) => {
+// export const AutomationToSAP = async (req, res) => {
 
-    const {Process, Automation_to_Hanlytic_np} = req.body
+//     const {Process, Automation_to_Hanlytic_np} = req.body
 
-    // console.log(objectDataForSAP)
-    try {
+//     // console.log(objectDataForSAP)
+//     try {
 
         
-        const mongoURI = process.env.MONGO_URI
+//         const mongoURI = process.env.MONGO_URI
 
-        const client = new MongoClient(mongoURI)
-        await client.connect()
+//         const client = new MongoClient(mongoURI)
+//         await client.connect()
 
-        const database = client.db("HANElytics_Clients")
-        const collection = database.collection("automationdatas")
+//         const database = client.db("HANElytics_Clients")
+//         const collection = database.collection("automationdatas")
 
-        const deleteResult = await collection.deleteMany({});
-        // console.log(`${deleteResult.deletedCount} records deleted.`);
+//         const deleteResult = await collection.deleteMany({});
+//         // console.log(`${deleteResult.deletedCount} records deleted.`);
 
-        if (Array.isArray(Automation_to_Hanlytic_np)) {
-            const newData = new AutomationData({ Process, Automation_to_Hanlytic_np });
-            const savedData = await newData.save();
-            console.log("Data Stored successfully!")
-            return res.status(201).json({ message: 'Data saved successfully!', data: savedData });
-        }else {
-            return res.status(400).json({ message: 'Invalid data format for Automation_to_Hanlytic_np' });
-        }
+//         if (Array.isArray(Automation_to_Hanlytic_np)) {
+//             const newData = new AutomationData({ Process, Automation_to_Hanlytic_np });
+//             const savedData = await newData.save();
+//             console.log("Data Stored successfully!")
+//             return res.status(201).json({ message: 'Data saved successfully!', data: savedData });
+//         }else {
+//             return res.status(400).json({ message: 'Invalid data format for Automation_to_Hanlytic_np' });
+//         }
         
-    } catch (error) {
-        return res.status(400).json({ message: 'Error saving data', error });
-    }  
-}
+//     } catch (error) {
+//         return res.status(400).json({ message: 'Error saving data', error });
+//     }  
+// }
 
 export const getOdata = async (req, res) => {
     try {
