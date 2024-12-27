@@ -309,7 +309,7 @@ const DataModeling = () => {
                     Quantity: record.Reorder_Quantity_Prediction_with_live_data.toString()
                 });
             }
-            return sapFields
+            return sapFields.slice(0, 4)
         }
 
         let objectDataForSAP;
