@@ -309,7 +309,7 @@ const DataModeling = () => {
                     Quantity: record.Reorder_Quantity_Prediction_with_live_data.toString()
                 });
             }
-            return sapFields.slice
+            return sapFields
         }
 
         let objectDataForSAP;
@@ -318,6 +318,7 @@ const DataModeling = () => {
             const response = await axios.get(url + "/api/model/inventory", {headers: {token: jwtToken}})
             const Array = response.data
             setData(Array)
+            console.log(Array)
 
             // const sapFields1 = addObjectsData()
             // "Direct_process" : "",
