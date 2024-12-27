@@ -54,3 +54,5 @@ app.listen(port, () => {
 })
 connectDB()
 // module.exports.handler = serverless(app)
+
+// export const handler = serverless(app)
