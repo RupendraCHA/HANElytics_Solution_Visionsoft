@@ -264,7 +264,7 @@ const DataModeling = () => {
             const Array = response.data
             
 
-                setData(Array.slice(0, 4))
+                setData(Array)
                 // setInventoryData(false)
                 setInventoryData(false)
                 setRevenueData(true)
