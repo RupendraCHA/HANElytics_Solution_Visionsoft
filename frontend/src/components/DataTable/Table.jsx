@@ -45,7 +45,7 @@ const Table = (props) => {
                                     <td>{eachRow.Product_ID}</td>
                                     <td>{eachRow.Product_Name}</td>
                                     <td>{eachRow.Distribution_Center_ID}</td>
-                                    <td>{eachRow.Distribution_Center}</td>
+                                    <td>0002</td>
                                     {/* <td>{eachRow.Order_Fulfillment_Time_in_days}</td>
                                     <td>{eachRow.Historical_Monthly_Sales}</td>
                                     <td>{eachRow.Monthly_Sales_Prediction_without_live_data}</td>
