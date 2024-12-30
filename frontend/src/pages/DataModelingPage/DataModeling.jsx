@@ -264,7 +264,7 @@ const DataModeling = () => {
             const Array = response.data
             
 
-                setData(Array)
+                setData(Array.slice(0, 4))
                 // setInventoryData(false)
                 setInventoryData(false)
                 setRevenueData(true)
@@ -375,7 +375,7 @@ const DataModeling = () => {
             try {
                 const response = await axios.get( url + "/api/model/revenue", {headers: {token: jwtToken}})
                 const Array = response.data
-                setData(Array.slice(0,4))
+                setData(Array)
                 console.log(Array)
                 setRevenueData(false)
                 setHideShow(false)
