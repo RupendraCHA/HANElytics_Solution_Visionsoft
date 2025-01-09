@@ -1,31 +1,37 @@
-import express from "express"
-import cors from "cors"
-import connectDB from "./config/db.js"
-import userRouter from "./routes/userRoute.js"
-import dataModelResultsRouter from "./routes/dataModelResults.js"
-import "dotenv/config.js"
+import express from "express";
+import cors from "cors";
+import connectDB from "./config/db.js";
+import userRouter from "./routes/userRoute.js";
+import dataModelResultsRouter from "./routes/dataModelResults.js";
+import "dotenv/config.js";
 // import serverless from 'serverless-http'
 
-const app = express()
-const port = process.env.PORT
+const app = express();
+const port = process.env.PORT;
 
-app.use(express.json())
-app.use(cors({
+app.use(express.json());
+app.use(
+  cors({
     // origin: ["http://localhost:5173"],
     origin: ["https://hanelytics-solution-visionsoft-1.onrender.com"],
     methods: ["GET", "POST", "PUT", "DELETE"],
-    credentials: true
-}))
+    credentials: true,
+  })
+);
 
-
-app.use("/api/user", userRouter)
-app.use("/api/model", dataModelResultsRouter)
+app.use("/api/user", userRouter);
+app.use("/api/model", dataModelResultsRouter);
 
 app.get("/start", (req, res) => {
-    res.send(`
+  res.send(`
         <!DOCTYPE html>
         <html>
         <head>
+        <link
+      rel="icon"
+      type="image/svg+xml"
+      href="https://res.cloudinary.com/dvxkeeeqs/image/upload/v1727239316/vs_syjood.jpg"
+    />
           <title>HANElytics server</title>
           <style>
             div{
@@ -47,13 +53,12 @@ app.get("/start", (req, res) => {
         </body>
         </html>
       `);
-})
-
+});
 
 app.listen(port, () => {
-    console.log("Server is running suceesfully!!")
-})
-connectDB()
+  console.log("Server is running suceesfully!!");
+});
+connectDB();
 // module.exports.handler = serverless(app)
 
 // export const handler = serverless(app)
