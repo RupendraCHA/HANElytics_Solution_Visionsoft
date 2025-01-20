@@ -91,6 +91,8 @@ function SignUp() {
     }
   };
 
+  // Hanelytics
+
   return (
     <>
       <Navbar />
