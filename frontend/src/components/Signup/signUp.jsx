@@ -103,7 +103,7 @@ function SignUp() {
               <h2 className="register-heading">
                 Sign Up now and get Instant access to AI/ML Insights
               </h2>
-              <a href="https://ap-south-1nmrg96rqu.auth.ap-south-1.amazoncognito.com/login?client_id=1esfsaanp9ncgms41753687pd8&response_type=code&scope=email+openid+phone&redirect_uri=https%3A%2F%2Fdoi-demo-52o9.onrender.com%2Fhome">
+              <a href="https://ap-south-1nmrg96rqu.auth.ap-south-1.amazoncognito.com/login?client_id=1esfsaanp9ncgms41753687pd8&redirect_uri=https://hanelytics-solution-visionsoft-1.onrender.com/home&response_type=code&scope=email+openid+phone">
                 Sign In Using Cognito
               </a>
               <form onSubmit={handleSubmit}>
