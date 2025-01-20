@@ -11,15 +11,16 @@
   padding-bottom: 100px;
   background-color: #000;
 }
-.login-page{
-  background-image: linear-gradient(to right, #000, green, #000);
+.login-page {
+  /* background-image: linear-gradient(to right, #000, green, #000); */
   height: 60vh;
   display: flex;
   justify-content: center;
   align-items: center;
   width: 300px;
   border-radius: 20px 0px 0px 20px;
-  h4{
+  border-right: 1px solid #fff;
+  h4 {
     width: 150px;
     text-align: center;
     color: white;
@@ -48,28 +49,26 @@
   padding-left: 10px;
   color: black !important;
 }
-.forgot-password{
+.forgot-password {
   display: flex;
   justify-content: flex-end;
   font-size: 14px;
   font-weight: 600;
   cursor: pointer;
 
-  span{
-
+  span {
     background-color: #fff;
     color: black;
     margin-top: 8px;
     padding: 2px 10px;
     border-radius: 4px;
   }
-  span:hover{
+  span:hover {
     text-decoration: underline;
     color: blue;
   }
-
 }
-.error-msg{
+.error-msg {
   color: red;
   font-size: 14px;
   font-weight: 500;
@@ -78,12 +77,12 @@
   border-radius: 4px;
   text-align: center;
 
-  span{
+  span {
     color: green;
   }
 }
 
-.change-password-container{
+.change-password-container {
   background-image: url("https://res.cloudinary.com/dvxkeeeqs/image/upload/v1729229000/image3_1_ac1jk3.jpg");
   min-height: 100vh;
   background-size: cover;
@@ -92,7 +91,7 @@
   align-items: center;
   color: white;
 
-  .change-password-card{
+  .change-password-card {
     background-color: #000;
     padding: 40px 30px;
     border-radius: 12px;
@@ -104,16 +103,16 @@
     /* align-items: center; */
     gap: 20px;
 
-    div{
+    div {
       display: flex;
       flex-direction: column;
 
-      label{
+      label {
         font-size: 16px;
         font-weight: 500;
       }
 
-      input{
+      input {
         font-size: 16px;
         padding: 10px;
         border-radius: 6px;
@@ -124,7 +123,7 @@
       }
     }
   }
-  button{
+  button {
     background-color: blue;
     color: white;
     border: none;
@@ -133,11 +132,11 @@
     font-size: 16px;
     font-weight: bold;
   }
-  .go-to-login{
+  .go-to-login {
     display: flex;
     /* justify-content: flex-end; */
     align-items: flex-end;
-    span{
+    span {
       background-color: white;
       color: black;
       width: 100px;
@@ -145,15 +144,12 @@
       font-size: 16px;
       font-weight: bold;
       border-radius: 3px;
-
     }
 
-    span:hover{
+    span:hover {
       text-decoration: underline;
       color: blue;
       cursor: pointer;
     }
   }
-  
-  
 }
