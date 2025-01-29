@@ -7,15 +7,15 @@ export const transferDataToSAP = async (req, res) => {
   const { odataPayload } = req.body;
 
   try {
-    // const SAP_API_URL =
-    //   "http://52.38.202.58:8080/sap/opu/odata/VSHANEYA/HANELYTICS_SRV/AutomationSet";
-    // const username1 = "Hanelytics";
-    // const password1 = "Hanelytics@24";
-
     const SAP_API_URL =
-      "http://52.41.105.117:8000/sap/opu/odata/VSHANEYA/INTER_COMPANY_TRNS_SRV/AutomationSet";
-    const username1 = "HANELYTICS";
-    const password1 = "Welcome@12345";
+      "http://52.38.202.58:8080/sap/opu/odata/VSHANEYA/HANELYTICS_SRV/AutomationSet";
+    const username1 = "Hanelytics";
+    const password1 = "Hanelytics@24";
+
+    // const SAP_API_URL =
+    //   "http://52.41.105.117:8000/sap/opu/odata/VSHANEYA/INTER_COMPANY_TRNS_SRV/AutomationSet";
+    // const username1 = "HANELYTICS";
+    // const password1 = "Welcome@12345";
 
     const headers = {
       "Content-Type": "application/json", // Payload format

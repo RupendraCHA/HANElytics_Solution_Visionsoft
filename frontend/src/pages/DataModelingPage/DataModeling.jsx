@@ -322,14 +322,14 @@ const DataModeling = () => {
 
       // const sapFields1 = addObjectsData()
       // "Direct_process" : "",
-      // objectDataForSAP = {
-      //   Process: "Create",
-      //   Automation_to_Hanlytic_np: addObjectsData(Array),
-      // };
       objectDataForSAP = {
         Process: "Create",
-        Hanelytics_to_SAP_np: addObjectsData(Array),
+        Automation_to_Hanlytic_np: addObjectsData(Array),
       };
+      // objectDataForSAP = {
+      //   Process: "Create",
+      //   Hanelytics_to_SAP_np: addObjectsData(Array),
+      // };
       setOdataPayload(objectDataForSAP);
       // const result1 = await axios.post(url + "/api/model/odata", objectDataForSAP, {headers: {token: jwtToken}})
       // console.log(result1.data)
