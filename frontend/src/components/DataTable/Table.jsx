@@ -1,9 +1,12 @@
 // import React from 'react'
+import { useState } from "react"
 import "./Table.css"
 // import { revenueData } from './JsonData1'
 
 const Table = (props) => {
     // eslint-disable-next-line react/prop-types
+
+    const [showInventoryData, setInventoryData] = useState(false)
     const { data, inventoryData, revenueData, equipmentData1, clinicalData } = props
     console.log(data)
 
@@ -11,9 +14,28 @@ const Table = (props) => {
         let number1 = number.toFixed(roundedTo)
         return number1
     }
+
+    const getDisCenter = (id) => {
+        if (id === 0){
+            return 1
+        }else {
+            return id
+        }
+    }
+    // className={`tab ${activeTab === "tab1" ? "activeTab" : ""}`}
+
     return (
         <>
-            {!inventoryData && (<table className='table'>
+            <div className="migrate-inventory-container">
+                <div>
+                    <button className={`${showInventoryData === true ? "data-btn" : ""}`} onClick={() => setInventoryData(true)}>View Data for Migration</button>
+                </div>
+                <div>
+                    <button className={showInventoryData === false ? "data-btn" : ""} onClick={() => setInventoryData(false)}>View Data for Inventory</button>
+                </div>
+            </div>
+            {inventoryData === false && showInventoryData===false ? (
+                <table className='table'>
                 <thead >
                     <tr>
                         <th className='column-name'>S.No</th>
@@ -21,47 +43,96 @@ const Table = (props) => {
                         <th className='column-name'>Product_Name</th>
                         <th className='column-name'>Distribution_Center_ID</th>
                         <th className='column-name'>Distribution_Center</th>
-                        {/* <th title="Time required to transport the product" className='column-name'>Order_Fulfillment_Time (in Days)</th>
+                        <th title="Time required to transport the product" className='column-name'>Order_Fulfillment_Time (in Days)</th>
                         <th className='column-name'>Historical_Monthly_Sales</th>
                         <th className='column-name'>Monthly_Sales_Prediction<br />(Without Live Data)</th>
                         <th className='column-name'>Monthly_Sales_Prediction<br />(With Live Data)</th>
                         <th className='column-name'>Daily_Sales_Prediction<br />(Without Live Data)</th>
-                        <th className='column-name'>Daily_Sales_Prediction<br />(With Live Data)</th> */}
-                        {/* <th className='column-name'>Safety_Stock<br />(Without Live Data)</th> */}
+                        <th className='column-name'>Daily_Sales_Prediction<br />(With Live Data)</th>
+                        <th className='column-name'>Safety_Stock<br />(Without Live Data)</th>
                         <th className='column-name'>Safety_Stock<br />(With Live Data)</th>
-                        {/* <th className='column-name'>Reorder_Quantity_Prediction<br />(Without live Data)</th> */}
+                        <th className='column-name'>Reorder_Quantity_Prediction<br />(Without live Data)</th>
                         <th className='column-name'>Reorder_Quantity_Prediction<br />(With Live Data)</th>
                     </tr>
                 </thead>
                 <tbody>
                     {
-                        // eslint-disable-next-line react/prop-types
                         data.map((eachRow, index) => {
-                            {/* console.log(index) */ }
                             return (
                                 <tr key={index}>
                                     <td>{index + 1}</td>
                                     {/* {eachRow.Product_ID} */}
                                     <td>{eachRow.Product_ID}</td>
                                     <td>{eachRow.Product_Name}</td>
-                                    <td>0002</td>
-                                    <td>EC02 Plant</td>
-                                    {/* <td>{eachRow.Order_Fulfillment_Time_in_days}</td>
+                                    <td>{eachRow.Distribution_Center}</td>
+                                    <td>{getDisCenter(eachRow.Distribution_Center_ID)}</td>
+                                    {/* <td>0002</td>
+                                    <td>EC02 Plant</td> */}
+                                    <td>{eachRow.Order_Fulfillment_Time_in_days}</td>
                                     <td>{eachRow.Historical_Monthly_Sales}</td>
                                     <td>{eachRow.Monthly_Sales_Prediction_without_live_data}</td>
                                     <td>{eachRow.Monthly_Sales_Prediction_with_live_data}</td>
                                     <td>{eachRow.Daily_Sales_Prediction_without_live_data}</td>
-                                    <td>{eachRow.Daily_Sales_Prediction_with_live_data}</td> */}
-                                    {/* <td>{eachRow.Safety_Stock_without_live_data}</td> */}
+                                    <td>{eachRow.Daily_Sales_Prediction_with_live_data}</td>
+                                    <td>{eachRow.Safety_Stock_without_live_data}</td>
                                     <td>{eachRow.Safety_Stock_with_live_data}</td>
-                                    {/* <td>{eachRow.Reorder_Quantity_Prediction_without_live_data}</td> */}
+                                    <td>{eachRow.Reorder_Quantity_Prediction_without_live_data}</td>
                                     <td>{eachRow.Reorder_Quantity_Prediction_with_live_data}</td>
                                 </tr>
                             )
                         })
                     }
                 </tbody>
-            </table>)}
+                </table>
+        ) : <table className='table'>
+        <thead >
+            <tr>
+                <th className='column-name'>S.No</th>
+                <th className='column-name'>Product_Identifier</th>
+                <th className='column-name'>Product_Name</th>
+                <th className='column-name'>Distribution_Center_ID</th>
+                <th className='column-name'>Distribution_Center</th>
+                {/* <th title="Time required to transport the product" className='column-name'>Order_Fulfillment_Time (in Days)</th> */}
+                {/* <th className='column-name'>Historical_Monthly_Sales</th>
+                <th className='column-name'>Monthly_Sales_Prediction<br />(Without Live Data)</th>
+                <th className='column-name'>Monthly_Sales_Prediction<br />(With Live Data)</th>
+                <th className='column-name'>Daily_Sales_Prediction<br />(Without Live Data)</th>
+                <th className='column-name'>Daily_Sales_Prediction<br />(With Live Data)</th>
+                <th className='column-name'>Safety_Stock<br />(Without Live Data)</th> */}
+                <th className='column-name'>Safety_Stock<br />(With Live Data)</th>
+                {/* <th className='column-name'>Reorder_Quantity_Prediction<br />(Without live Data)</th> */}
+                <th className='column-name'>Reorder_Quantity_Prediction<br />(With Live Data)</th>
+            </tr>
+        </thead>
+        <tbody>
+            {
+                data.map((eachRow, index) => {
+                    return (
+                        <tr key={index}>
+                            <td>{index + 1}</td>
+                            {/* {eachRow.Product_ID} */}
+                            <td>{eachRow.Product_ID}</td>
+                            <td>{eachRow.Product_Name}</td>
+                            {/* <td>{eachRow.Distribution_Center}</td>
+                            <td>{eachRow.Distribution_Center_ID}</td> */}
+                            <td>0002</td>
+                            <td>EC02 Plant</td>
+                            {/* <td>{eachRow.Order_Fulfillment_Time_in_days}</td>
+                            <td>{eachRow.Historical_Monthly_Sales}</td>
+                            <td>{eachRow.Monthly_Sales_Prediction_without_live_data}</td>
+                            <td>{eachRow.Monthly_Sales_Prediction_with_live_data}</td>
+                            <td>{eachRow.Daily_Sales_Prediction_without_live_data}</td>
+                            <td>{eachRow.Daily_Sales_Prediction_with_live_data}</td>
+                            <td>{eachRow.Safety_Stock_without_live_data}</td> */}
+                            <td>{eachRow.Safety_Stock_with_live_data}</td>
+                            {/* <td>{eachRow.Reorder_Quantity_Prediction_without_live_data}</td> */}
+                            <td>{eachRow.Reorder_Quantity_Prediction_with_live_data}</td>
+                        </tr>
+                    )
+                })
+            }
+        </tbody>
+        </table>}
             {!revenueData && (
                 <table className='table'>
                     <thead >

@@ -27,3 +27,26 @@ thead th {
   top: 0;
   z-index: 1;
 }
+.migrate-inventory-container{
+  display: flex;
+  gap: 20px;
+  margin-bottom: 10px;
+
+  div{
+    button{
+      padding: 10px;
+      font-size: 20px;
+      font-weight: bold;
+      border-radius: 8px;
+      outline: none;
+      color: #fff;
+      box-shadow: 1px 1px 1px black;
+      background-color: #575555;
+      border: 1px solid #000;
+      position: sticky;
+    }
+    .data-btn{
+  background-color: #000;
+}
+  }
+}
