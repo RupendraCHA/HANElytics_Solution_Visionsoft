@@ -22,7 +22,7 @@ app.use(
 app.use("/api/user", userRouter);
 app.use("/api/model", dataModelResultsRouter);
 
-app.get("/start", (req, res) => {
+app.get("/", (req, res) => {
   res.send(`
         <!DOCTYPE html>
         <html>
