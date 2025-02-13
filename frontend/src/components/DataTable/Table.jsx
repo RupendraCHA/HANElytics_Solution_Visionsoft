@@ -26,15 +26,15 @@ const Table = (props) => {
 
     return (
         <>
-            <div className="migrate-inventory-container">
+            {/* <div className="migrate-inventory-container">
                 <div>
                     <button className={`${showInventoryData === true ? "data-btn" : ""}`} onClick={() => setInventoryData(true)}>View Data for Migration</button>
                 </div>
                 <div>
                     <button className={showInventoryData === false ? "data-btn" : ""} onClick={() => setInventoryData(false)}>View Data for Inventory</button>
                 </div>
-            </div>
-            {inventoryData === false && showInventoryData===false ? (
+            </div> */}
+            {inventoryData === false && (
                 <table className='table'>
                 <thead >
                     <tr>
@@ -84,55 +84,8 @@ const Table = (props) => {
                     }
                 </tbody>
                 </table>
-        ) : <table className='table'>
-        <thead >
-            <tr>
-                <th className='column-name'>S.No</th>
-                <th className='column-name'>Product_Identifier</th>
-                <th className='column-name'>Product_Name</th>
-                <th className='column-name'>Distribution_Center_ID</th>
-                <th className='column-name'>Distribution_Center</th>
-                {/* <th title="Time required to transport the product" className='column-name'>Order_Fulfillment_Time (in Days)</th> */}
-                {/* <th className='column-name'>Historical_Monthly_Sales</th>
-                <th className='column-name'>Monthly_Sales_Prediction<br />(Without Live Data)</th>
-                <th className='column-name'>Monthly_Sales_Prediction<br />(With Live Data)</th>
-                <th className='column-name'>Daily_Sales_Prediction<br />(Without Live Data)</th>
-                <th className='column-name'>Daily_Sales_Prediction<br />(With Live Data)</th>
-                <th className='column-name'>Safety_Stock<br />(Without Live Data)</th> */}
-                <th className='column-name'>Safety_Stock<br />(With Live Data)</th>
-                {/* <th className='column-name'>Reorder_Quantity_Prediction<br />(Without live Data)</th> */}
-                <th className='column-name'>Reorder_Quantity_Prediction<br />(With Live Data)</th>
-            </tr>
-        </thead>
-        <tbody>
-            {
-                data.map((eachRow, index) => {
-                    return (
-                        <tr key={index}>
-                            <td>{index + 1}</td>
-                            {/* {eachRow.Product_ID} */}
-                            <td>{eachRow.Product_ID}</td>
-                            <td>{eachRow.Product_Name}</td>
-                            {/* <td>{eachRow.Distribution_Center}</td>
-                            <td>{eachRow.Distribution_Center_ID}</td> */}
-                            <td>0002</td>
-                            <td>EC02 Plant</td>
-                            {/* <td>{eachRow.Order_Fulfillment_Time_in_days}</td>
-                            <td>{eachRow.Historical_Monthly_Sales}</td>
-                            <td>{eachRow.Monthly_Sales_Prediction_without_live_data}</td>
-                            <td>{eachRow.Monthly_Sales_Prediction_with_live_data}</td>
-                            <td>{eachRow.Daily_Sales_Prediction_without_live_data}</td>
-                            <td>{eachRow.Daily_Sales_Prediction_with_live_data}</td>
-                            <td>{eachRow.Safety_Stock_without_live_data}</td> */}
-                            <td>{eachRow.Safety_Stock_with_live_data}</td>
-                            {/* <td>{eachRow.Reorder_Quantity_Prediction_without_live_data}</td> */}
-                            <td>{eachRow.Reorder_Quantity_Prediction_with_live_data}</td>
-                        </tr>
-                    )
-                })
-            }
-        </tbody>
-        </table>}
+        ) 
+        }
             {!revenueData && (
                 <table className='table'>
                     <thead >
