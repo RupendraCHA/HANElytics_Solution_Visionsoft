@@ -20,7 +20,6 @@ const StoreContextProvider = (props) => {
         }
     }, [])
 
-
     const contextValue = {
         token,
         setToken,
