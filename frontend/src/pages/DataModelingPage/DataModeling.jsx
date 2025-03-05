@@ -355,18 +355,6 @@ const DataModeling = () => {
     },
   ];
 
-  const items1 = [
-    {
-      key: 0,
-      label: (
-        <a id="home-item" href="/home">
-          Go to Home
-        </a>
-        // <div>Hello</div>
-      ),
-    },
-  ]
-
   {
     /* <div className='select-process'>
     <div className='process-button'>
