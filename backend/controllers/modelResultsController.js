@@ -10,12 +10,12 @@ export const transferDataToSAP = async (req, res) => {
     const SAP_API_URL =
       "http://52.38.202.58:8080/sap/opu/odata/VSHANEYA/HANELYTICS_SRV/AutomationSet";
     const username1 = "Hanelytics";
-    const password1 = "Hanelytics@24";
+    const password1 = "Hanelytics@24"; // 2022 system
 
     // const SAP_API_URL =
     //   "http://52.41.105.117:8000/sap/opu/odata/VSHANEYA/INTER_COMPANY_TRNS_SRV/AutomationSet";
     // const username1 = "HANELYTICS";
-    // const password1 = "Welcome@12345";
+    // const password1 = "Welcome@12345"; // ECC System
 
     const headers = {
       "Content-Type": "application/json", // Payload format
@@ -44,8 +44,7 @@ export const transferDataToSAP = async (req, res) => {
     console.log("---------------");
     // console.log(odataPayload.slice(0, 3))
     console.error(
-      "Error pushing data to SAP:",
-      error ? error.response.data : error.message
+      "Error pushing data to SAP:", error.message
     );
     // ? error.response.data : error.message
     // return res.status(400).json({ message: 'Error pushing data to SAP:' });
