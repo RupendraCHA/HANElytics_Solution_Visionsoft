@@ -13,11 +13,11 @@ function Home() {
   useEffect(() => {
     const jwtToken = localStorage.getItem("token");
 
-    // if (jwtToken) {
-    //     navigate("/home")
-    // }else {
-    //     navigate("/login")
-    // }
+    if (jwtToken) {
+        navigate("/home")
+    }else {
+        navigate("/login")
+    }
   }, []);
 
   return (

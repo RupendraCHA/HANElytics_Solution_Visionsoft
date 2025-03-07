@@ -3,10 +3,11 @@ import "./DataModeling.css";
 import { FaRegCircleUser } from "react-icons/fa6";
 import { Link, useNavigate } from "react-router-dom";
 import { Dropdown } from "antd";
-// import { toast } from 'react-toastify';
+import { toast } from 'react-toastify';
 import axios from "axios";
 import { MdKeyboardArrowUp } from "react-icons/md";
-
+import { VscGraphScatter } from "react-icons/vsc";
+import { LuArrowUpRight } from "react-icons/lu";
 
 import {
   inventory_model_datasets,
@@ -33,11 +34,11 @@ const DataModeling = () => {
   useEffect(() => {
     const jwtToken = localStorage.getItem("token");
 
-    // if (jwtToken) {
-    //     navigate("/dataModeling")
-    // }else {
-    //     navigate("/login")
-    // }
+    if (jwtToken) {
+        navigate("/dataModeling")
+    }else {
+        navigate("/login")
+    }
   }, []);
 
   // Hello
@@ -58,7 +59,9 @@ const DataModeling = () => {
   const [sapText, setSapText] = useState("Sending Data...");
   // const [process, setProcess] = useState("")
 
-  const [isOpened, setIsOpened] = useState(false)
+  const [dataModelOpen, setDataModelOpen] = useState("");
+  const [migrateModelOpen, setMigrateModelOpen] = useState("");
+  const [isLoadingTrue, setIsLoadingTrue] = useState(false)
 
   const handleTabClick = (tab) => {
     setActiveTab(tab);
@@ -75,6 +78,8 @@ const DataModeling = () => {
   };
 
   const sendDataToSAP = async () => {
+    await getInventoryDataFromMongoDB1();
+    console.log("Data Formatted");
     // New
     const jwtToken = localStorage.getItem("token");
     setSapText("Sending Data...");
@@ -102,6 +107,7 @@ const DataModeling = () => {
   };
 
   const getInventoryDataFromMongoDB = async () => {
+    setIsLoadingTrue(true)
     const jwtToken = localStorage.getItem("token");
     // setHideShow(false)
 
@@ -110,6 +116,14 @@ const DataModeling = () => {
         headers: { token: jwtToken },
       });
       const Array = response.data;
+
+      if (Array) {
+        setIsLoadingTrue(false)
+        toast.success("Request Processed successfully!");
+      }
+
+      setDataModelOpen("");
+      setMigrateModelOpen("");
 
       setData(Array);
       // setInventoryData(false)
@@ -200,32 +214,22 @@ const DataModeling = () => {
     } catch (error) {
       console.log(error);
     }
-
-    // try {
-    //     const response1 = await axios.post(SAP_API_URL, objectDataForSAP, {
-    //         auth: {
-    //             username: username1,
-    //             password: password1
-    //         },
-    //         headers: {
-    //             "Content-Type": "application/json"
-    //         }
-    //     })
-    //     console.log(`Data pushed successfully`, response1.data);
-
-    // } catch (error) {
-    //     console.error(`Failed to push data into SAP`, error.message);
-    // }
   };
 
   const getRevenueDataFromMongoDB = async () => {
     const jwtToken = localStorage.getItem("token");
+    setIsLoadingTrue(true)
 
     try {
       const response = await axios.get(url + "/api/model/revenue", {
         headers: { token: jwtToken },
       });
       const Array = response.data;
+      if (Array) {
+        setIsLoadingTrue(false)
+        toast.success("Request Processed successfully!");
+      }
+
       setData(Array);
       console.log(Array);
       setRevenueData(false);
@@ -355,49 +359,140 @@ const DataModeling = () => {
     },
   ];
 
-  {
-    /* <div className='select-process'>
-    <div className='process-button'>
-        <input type='radio' id='select1' name='process' value="Application Server" onChange={e => setProcess(e.target.value)}/>
-        <label htmlFor='select1'>Application Server</label>
-    </div>
-    <div className='process-button'>
-        <input type='radio' id='select2' name='process' value="Direct Process" onChange={e => setProcess(e.target.value)}/>
-        <label htmlFor='select2'>Direct Process</label>
-    </div>
-    <p>{process}</p>
-    <input type='radio' name='process' value="Direct Process" onChange={e => setProcess(e.target.value)}/>
-</div> */
-  }
-
-
-  const handleIsOpen = (tabOpened) => {
-    if (isOpened === true){
-        setIsOpened(false)
-    }else {
-      setIsOpened(true)
+  const handleIsOpened = (tabContent) => {
+    //
+    if (dataModelOpen === "") {
+      setDataModelOpen(tabContent);
+      setMigrateModelOpen("");
+      setInventoryData(true);
+      setRevenueData(true);
+      setHideShow(true);
+      setEquipmentData(true);
+      setClinicalData(true);
+      setSendData(true);
+      setSendData1(true);
+    } else {
+      setDataModelOpen("");
     }
-  }
+  };
+  const handleMigrateData = (tabContent) => {
+    //
+    if (migrateModelOpen === "") {
+      setMigrateModelOpen(tabContent);
+      setDataModelOpen("");
+    } else {
+      setMigrateModelOpen("");
+    }
+  };
+
+  const closeAllPopups = () => {
+    setMigrateModelOpen("");
+    setDataModelOpen("");
+  };
 
   return (
     <>
-      <div className="data-modeling-container">
+      <div className="data-modeling-container p-5">
         <header className="website-header1">
-          <div className="container header-container">
+          {/* container */}
+          <div className="header-container">
             <Link to="/home" className="website-heading">
               <h1>HANELYTICS</h1>
             </Link>
-            {/* <div className="data-migrate-tabs">
-                <div>
-                  <button onClick={() => handleIsOpen("model-tab")} className="data-model-tabs1">Data Models <MdKeyboardArrowUp/></button>
-                  <button onClick={() => handleIsOpen("migrate-tab")} className="data-model-tabs1">Migrate Data <MdKeyboardArrowUp/></button>
-                  {isOpened && <div className="model-tab">
-                    <h1>Hello</h1>
-                </div>}
-                </div>
-                
-            </div> */}
-            
+            <div className="model-migrate-tabs">
+              <div style={{ position: "relative" }}>
+                <h4
+                  onClick={() => handleIsOpened("data-models")}
+                  style={{ color: "#000" }}
+                  className={`tabHeading ${
+                    dataModelOpen === "data-models" && "tab-heading"
+                  }`}
+                >
+                  Data Models
+                  <MdKeyboardArrowUp
+                    style={{ fontSize: "30px" }}
+                    className={`"arrow" ${
+                      dataModelOpen === "data-models" ? "arrow-down" : ""
+                    }`}
+                  />
+                </h4>
+                {dataModelOpen === "data-models" && (
+                  <div className="open-tab">
+                    {isLoadingTrue && <div className="spinner"></div>}
+                    <p onClick={getInventoryDataFromMongoDB}>
+                      {/* Predicting Reams of Paper, Ink and units of Quantity */}
+                      <LuArrowUpRight className="process-arrow" />
+                      NEWS Paper
+                    </p>
+                    <p
+                      onClick={getInventoryDataFromMongoDB}
+                    >
+                      {/* Reorder Point Quantity & Safety Stock Predictions for Inventory
+                    with & without Live-Data */}
+                    
+                      <LuArrowUpRight className="process-arrow" />
+                      Inventory
+                    </p>
+                    <p 
+                      onClick={getRevenueDataFromMongoDB}
+                    >
+                      {/* Predictive Analytics for Revenue Demand Sensing Trends */}
+                      <LuArrowUpRight className="process-arrow" />
+                      Revenue
+                    </p>
+                      <p
+                      onClick={getEquipmentDataFromMongoDB}
+                      >
+                      {/* Equipment Risk Detection and Failure Prevention With Predictive
+                    Analytics */}
+                      <LuArrowUpRight className="process-arrow" />
+                      Equipment
+                    </p>
+                    <p onClick={getClinicalDataFromMongoDB}>
+                      {/* Prediction of Reorder Point & Buffer Stock with Clinical
+                    Information */}
+                      
+                      <LuArrowUpRight className="process-arrow" />
+                      Clinical
+                    </p>
+                  </div>
+                )}
+              </div>
+              <div style={{ position: "relative" }}>
+                <h4
+                  onClick={() => handleMigrateData("migrate-data")}
+                  style={{ color: "#000" }}
+                  className={`tabHeading ${
+                    migrateModelOpen === "migrate-data" && "tab-heading"
+                  }`}
+                >
+                  Migrate Data
+                  <MdKeyboardArrowUp
+                    style={{ fontSize: "30px" }}
+                    className={`${
+                      migrateModelOpen === "migrate-data" ? "arrow-down" : ""
+                    }`}
+                  />
+                </h4>
+                {migrateModelOpen === "migrate-data" && (
+                  <div className="open-tab">
+                    {/* <p>
+                    <LuArrowUpRight className="process-arrow"/>
+                      Destructure the Reorder Point Quantity data as per SAP
+                    Requirements</p> */}
+                    <p onClick={sendDataToSAP}>
+                      <LuArrowUpRight className="process-arrow" />
+                      Migrate Inventory Data to SAP
+                      {/* From HANElytics System to SAP S/4 HANA: Inter
+                    Company Sales */}
+                    </p>
+                    {/* <p>Hello</p>
+                    <p>Hello</p>
+                    <p>Hello</p> */}
+                  </div>
+                )}
+              </div>
+            </div>
             <div className="drop-down">
               <div>
                 <Dropdown
@@ -417,9 +512,9 @@ const DataModeling = () => {
             </div>
           </div>
         </header>
-        <div className="container data-models-section-container">
+        {/* container */}
+        <div className="data-models-section-container" onClick={closeAllPopups}>
           <section className="workflows-section">
-            {/* <h1 className='use-case-heading' onClick={handleResultsData}>Data Models</h1> */}
             <h1 className="use-case-heading" onClick={handleResultsData}>
               Migrate Data
             </h1>
@@ -447,6 +542,12 @@ const DataModeling = () => {
                 className={inventoryData === true ? "model-name" : "active"}
                 onClick={getInventoryDataFromMongoDB}
               >
+                Predicting Reams of Paper, Ink and units of Quantity
+              </h2>
+              <h2
+                className={inventoryData === true ? "model-name" : "active"}
+                onClick={getInventoryDataFromMongoDB}
+              >
                 Reorder Point Quantity & Safety Stock Predictions for Inventory
                 with & without Live-Data
               </h2>
@@ -459,6 +560,8 @@ const DataModeling = () => {
               <h2
                 className={equipmentData1 === true ? "model-name" : "active"}
                 onClick={getEquipmentDataFromMongoDB}
+                
+
               >
                 Equipment Risk Detection and Failure Prevention With Predictive
                 Analytics

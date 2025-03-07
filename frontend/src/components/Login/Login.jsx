@@ -13,6 +13,7 @@ function Login() {
     password: "",
   });
   const navigate = useNavigate();
+  const [isHovered, setIsHovered] = useState(false);
 
   const { url, setToken, setUsername, token, username } =
     useContext(StoreContext);
@@ -78,12 +79,12 @@ function Login() {
       <Navbar />
       {changePassword && (
         <div className="bg-container-login d-flex justify-content-center align-items-center bg-secondary vh-100">
-          <div className="login-page bg-primary">
+          <div className="login-page" style={{ backgroundColor: "#1e66d9"}}>
             <h4>Explore Our HANElytics AI/ML Solutions</h4>
           </div>
           <div
-            className="bg-primary p-4 text-white login-card"
-            style={{ height: "60vh" }}
+            className="p-4 text-white login-card"
+            style={{ height: "60vh", backgroundColor: "#1e66d9" }}
           >
             <h2 style={{ textAlign: "center" }}>Login</h2>
             <form onSubmit={handleSubmit}>
@@ -117,9 +118,9 @@ function Login() {
               </div>
               {isExist === true ? <p className="error-msg">{errorMsg}</p> : ""}
               <button
+                className="btn btn-default border w-100  rounded-0 text-decoration-none"
+                style={{ fontWeight: "600", border: "none" }}
                 type="submit"
-                className="btn btn-primary bg-white w-100 rounded-0"
-                style={{ fontWeight: "600", color: "#000" }}
               >
                 Login
               </button>

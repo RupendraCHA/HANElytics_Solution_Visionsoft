@@ -10,6 +10,8 @@ import "./Navbar.css"
 import { Link, useNavigate } from 'react-router-dom';
 // import axios from 'axios';
 import { toast } from 'react-toastify';
+import { FaFacebookSquare } from "react-icons/fa";
+import { FaSquareXTwitter } from "react-icons/fa6";
 
 const Navbar = () => {
 
@@ -29,9 +31,18 @@ const Navbar = () => {
                     <p>|</p>
                 </div>
                 <div className='social-icons'>
-                    <FaLinkedin className='icons' />
-                    <IoLogoYoutube className='icons' />
-                    <GrInstagram className='icons' />
+                    <a href="https://www.facebook.com/visionsoftinfo/" target='_blank' style={{textDecoration: "none", color: "#fff"}}>
+                        <FaFacebookSquare className='icons' />
+                    </a>
+                    <a href="https://www.linkedin.com/company/vsoft-inc/posts/?feedView=all" target='_blank' style={{textDecoration: "none", color: "#fff"}}>
+                        <FaLinkedin className='icons' />
+                    </a>
+                    <a href="https://www.youtube.com/@anjireddy9084" target='_blank' style={{textDecoration: "none", color: "#fff"}}>
+                        <IoLogoYoutube className='icons' />
+                    </a>
+                    <a href="https://x.com/visionsoftinfo" target='_blank' style={{textDecoration: "none", color: "#fff"}}>
+                        <FaSquareXTwitter className='icons' />
+                    </a>
                 </div>
             </div>
             <div className='login'>

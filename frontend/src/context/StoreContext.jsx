@@ -4,8 +4,8 @@ export const StoreContext = createContext(null)
 
 const StoreContextProvider = (props) => {
 
-    // let url = "http://localhost:3001"
-    let url = "https://hanelytics-solution-visionsoft.onrender.com"
+    // let url = "http://localhost:3001" // Local
+    let url = "https://hanelytics-solution-visionsoft.onrender.com" // origin1
 
     const [token, setToken] = useState("")
     const [username, setUsername] = useState("")

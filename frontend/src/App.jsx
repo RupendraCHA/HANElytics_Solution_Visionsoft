@@ -12,6 +12,7 @@ import Home from "./pages/Home/Home"
 import DataModeling from "./pages/DataModelingPage/DataModeling"
 import NotFound from "./components/NotFound/NotFound"
 import Registration from './components/Registration/Registration';
+import Navbar from './components/Navbar/Navbar';
 
 
 const App = () => {

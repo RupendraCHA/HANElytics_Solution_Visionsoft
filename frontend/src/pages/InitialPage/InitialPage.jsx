@@ -17,7 +17,7 @@ function InitialPage() {
 
     return (
         <>
-        <div className='bg-image-container'>
+        <div className='bg-image-container' style={{height: "100vh"}}>
             <div className='bg-container-initial'>
                 <div className='container responsive-container'>
                     <div>
@@ -26,38 +26,36 @@ function InitialPage() {
                     </div>
                     <div className='d-flex flex-row'>
                         <div className='button-size'>
-                            <Link to="/register" className='bg-warning rounded-4 p-2 text-white'
-                                style={{ fontWeight: 500, textDecoration: "none" }}>Sign Up</Link>
+                            <Link to="/register" className='bg-warning rounded-2 p-2 text-white'
+                                style={{ fontWeight: 500, textDecoration: "none", }}>Sign Up</Link>
                         </div>
                         <div>
-                            <Link to="/login" className='bg-success rounded-4 p-2 text-white' style={{ fontWeight: 500, textDecoration: "none" }}>
+                            <Link to="/login" className='bg-success rounded-2 p-2 text-white' style={{ fontWeight: 500, textDecoration: "none" }}>
                                 Login
                             </Link>
                         </div>
                         {/* <h1>Data Modeling</h1> */}
                     </div>
                 </div>
-                <div className='d-flex flex-column justify-content-center align-items-center'>
-                    <h1 className='text-center'>"Artificial
-                        Intelligence" & "Machine Learning" Solutions in Supply Chain, Injecting Data
+                <div className='d-flex flex-column justify-content-center align-items-center header-text-container'>
+                    <h1 className='text-center' style={{fontSize: "46px", color: "white", marginBottom: "20px"}}>Artificial
+                        Intelligence & Machine Learning Solutions in Supply Chain, Injecting Data
                         From Diverse ERP & Non-ERP Sources.</h1>
-                    <div className='text-center'>
-                        <h2 className='text-white'>Don't have an account, Create it by clicking register...</h2>
+                    <div className='text-center '>
+                        {/* <h2 className='text-white'>Don't have an account, Create it by clicking register...</h2> */}
                         <Link to="/register">
-                            <button className='bg-warning rounded-4 p-2 text-white' style={{ fontWeight: 700 }}>
-                                Register Here
+                            <button className='bg-warning rounded-2 p-2 text-white m-2' style={{ fontWeight: 700, border:"none" }}>
+                                Register
                             </button>
                         </Link>
-                    </div>
-                    <div className='text-center mt-4'>
-                        <h2 className='text-white'>Already have an account, click to Login...</h2>
                         <Link to="/login">
-                            <button className='bg-success rounded-4 p-2 text-white' style={{ fontWeight: 700 }}>
-                                Login Here
+                            <button className='bg-success rounded-2 p-2 text-white' style={{ fontWeight: 700, border:"none" }}>
+                                Login
                             </button>
                         </Link>
                     </div>
                 </div>
+                
             </div>
         </div> 
         </>
