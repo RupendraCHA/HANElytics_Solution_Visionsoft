@@ -3,17 +3,20 @@ import "./DataModeling.css";
 import { FaRegCircleUser } from "react-icons/fa6";
 import { Link, useNavigate } from "react-router-dom";
 import { Dropdown } from "antd";
-import { toast } from 'react-toastify';
+import { toast } from "react-toastify";
 import axios from "axios";
 import { MdKeyboardArrowUp } from "react-icons/md";
 import { VscGraphScatter } from "react-icons/vsc";
 import { LuArrowUpRight } from "react-icons/lu";
-
+import { FaDatabase } from "react-icons/fa6";
+import { MdInsertChartOutlined } from "react-icons/md";
 import {
+  news_paper_model_datasets,
   inventory_model_datasets,
   revenue_model_datasets,
   equipment_model_datasets,
   clinical_model_datasets,
+  dataOfNEWS,
 } from "./DatasetsInfo.jsx";
 
 import { StoreContext } from "../../context/StoreContext.jsx";
@@ -35,9 +38,9 @@ const DataModeling = () => {
     const jwtToken = localStorage.getItem("token");
 
     if (jwtToken) {
-        navigate("/dataModeling")
-    }else {
-        navigate("/login")
+      navigate("/dataModeling");
+    } else {
+      navigate("/login");
     }
   }, []);
 
@@ -49,19 +52,48 @@ const DataModeling = () => {
   const [revenueData, setRevenueData] = useState(true);
   const [equipmentData1, setEquipmentData] = useState(true);
   const [clinicalData, setClinicalData] = useState(true);
+  const [newsPaperData, setNewsPaperData] = useState(true);
   const [sendData, setSendData] = useState(true);
   const [sendData1, setSendData1] = useState(true);
+  const [sendData2, setSendData2] = useState(true);
   const [activeTab, setActiveTab] = useState("tab1");
   // const [activeChartTab, setActiveChartTab] = useState('');
   const [showPieChart, setShowPieChart] = useState(false);
   const [showResults, setShowResults] = useState(true);
   const [odataPayload, setOdataPayload] = useState({});
+  const [odataPayload1, setOdataPayload1] = useState({});
   const [sapText, setSapText] = useState("Sending Data...");
   // const [process, setProcess] = useState("")
 
   const [dataModelOpen, setDataModelOpen] = useState("");
   const [migrateModelOpen, setMigrateModelOpen] = useState("");
-  const [isLoadingTrue, setIsLoadingTrue] = useState(false)
+  const [isLoadingTrue, setIsLoadingTrue] = useState(false);
+  const [loadModelData, setLoadModelData] = useState(false);
+
+  // useEffect(() => {
+  //   getInventoryDataFromMongoDB1()
+  // }, [])
+
+  const getDataAndInsightsButtons = () => {
+    return (
+      <div className="tab-buttons">
+        <button
+          className={`tab ${activeTab === "tab1" ? "activeTab" : ""}`}
+          onClick={() => handleTabClick("tab1")}
+        >
+          <FaDatabase className="process-arrow model-sources" />
+          Data Resources <span>(utilized)</span>
+        </button>
+        <button
+          className={`tab ${activeTab === "tab2" ? "activeTab" : ""}`}
+          onClick={() => handleTabClick("tab2")}
+        >
+          <MdInsertChartOutlined className="process-arrow model-insights" />
+          View Model Results
+        </button>
+      </div>
+    );
+  };
 
   const handleTabClick = (tab) => {
     setActiveTab(tab);
@@ -78,14 +110,25 @@ const DataModeling = () => {
   };
 
   const sendDataToSAP = async () => {
-    await getInventoryDataFromMongoDB1();
+    // await getInventoryDataFromMongoDB1();
+    setIsLoadingTrue(true);
+    setLoadModelData(false);
+    setDataModelOpen("");
+    setMigrateModelOpen("");
+
     console.log("Data Formatted");
     // New
     const jwtToken = localStorage.getItem("token");
-    setSapText("Sending Data...");
+    setSapText(
+      "Migrating data from HANElytics to SAP for Inter Company Sales..."
+    );
 
     setSendData(false);
     setSendData1(true);
+    setSendData2(true);
+
+    setNewsPaperData(true);
+
     setInventoryData(true);
     setRevenueData(true);
     setHideShow(false);
@@ -99,6 +142,7 @@ const DataModeling = () => {
     );
     // console.log(result.data)
     if (result.data.success === true) {
+      setIsLoadingTrue(false);
       setSapText(result.data.message);
     } else {
       setSapText("Kindly ensure all required systems are running!!");
@@ -106,8 +150,96 @@ const DataModeling = () => {
     console.log(odataPayload);
   };
 
+  const sendDataToSAP1 = async () => {
+    setIsLoadingTrue(true);
+    setLoadModelData(false);
+    setDataModelOpen("");
+    setMigrateModelOpen("");
+
+    console.log(odataPayload1, "111");
+    console.log("Data Formatted");
+    // New
+    const jwtToken = localStorage.getItem("token");
+    setSapText(
+      "Migrating data from HANElytics to SAP for Procurement to Vendor..."
+    );
+
+    setSendData(true);
+    setSendData1(true);
+    setSendData2(false);
+    setNewsPaperData(true);
+    setInventoryData(true);
+    setRevenueData(true);
+    setHideShow(false); //
+    setEquipmentData(true);
+    setClinicalData(true);
+
+    const result = await axios.post(
+      url + "/api/model/dataToSap1",
+      { odataPayload1 },
+      { headers: { token: jwtToken } }
+    );
+    console.log(result.data);
+    if (result.data.success === true) {
+      setIsLoadingTrue(false);
+      setSapText(result.data.message);
+    } else {
+      setSapText(result.data.message);
+      setIsLoadingTrue(false);
+
+      // setSapText("Kindly ensure all required systems are running!!");
+    }
+    console.log(odataPayload);
+  };
+
+  const getNewsPaperDataFromMongoDB = async () => {
+    try {
+      console.log("News Paper Data");
+      if (!newsPaperData) {
+        setNewsPaperData(true);
+      }
+      setDataModelOpen("");
+      setMigrateModelOpen("");
+      setIsLoadingTrue(true);
+      setLoadModelData(true);
+      setHideShow(false);
+      setInventoryData(true);
+      setRevenueData(true);
+      setEquipmentData(true);
+      setClinicalData(true);
+      setSendData(true);
+      setSendData1(true);
+      setSendData2(true);
+
+      setTimeout(() => {
+        setNewsPaperData(false);
+        setLoadModelData(false);
+        setData(dataOfNEWS);
+        handleTabClick("tab1");
+      }, 3000);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   const getInventoryDataFromMongoDB = async () => {
-    setIsLoadingTrue(true)
+    if (!inventoryData) {
+      setInventoryData(true);
+    }
+    setDataModelOpen("");
+    setMigrateModelOpen("");
+    setIsLoadingTrue(true);
+    setLoadModelData(true);
+    setHideShow(false);
+    setNewsPaperData(true);
+
+    setRevenueData(true);
+    setEquipmentData(true);
+    setClinicalData(true);
+    setSendData(true);
+    setSendData1(true);
+    setSendData2(true);
+
     const jwtToken = localStorage.getItem("token");
     // setHideShow(false)
 
@@ -118,45 +250,43 @@ const DataModeling = () => {
       const Array = response.data;
 
       if (Array) {
-        setIsLoadingTrue(false)
-        toast.success("Request Processed successfully!");
-      }
+        setIsLoadingTrue(false);
+        setLoadModelData(false);
 
-      setDataModelOpen("");
-      setMigrateModelOpen("");
+        // toast.success("Request Processed successfully!");
+      }
 
       setData(Array);
       // setInventoryData(false)
       setInventoryData(false);
-      setRevenueData(true);
-      setEquipmentData(true);
-      setClinicalData(true);
-      setSendData(true);
-      setSendData1(true);
-      setHideShow(false);
       handleTabClick("tab1");
     } catch (error) {
       console.log(error);
     }
   };
   const getInventoryDataFromMongoDB1 = async () => {
+    setIsLoadingTrue(true);
+    setDataModelOpen("");
+    setMigrateModelOpen("");
     const jwtToken = localStorage.getItem("token");
     setHideShow(false);
 
     setSendData1(false); // New
     setSendData(true); // New
-    // setInventoryData(false)
+    setSendData2(true); // New
+    setNewsPaperData(true);
     setInventoryData(true); // New
     setRevenueData(true);
     setEquipmentData(true);
     setClinicalData(true);
-    setSapText("Formatting the Data..."); // New
+    setSapText("destructuring  the Data..."); // New
 
     // const SAP_API_URL = 'http://52.38.202.58:8080/sap/opu/odata/VSHANEYA/HANELYTICS_SRV/AutomationSet'
     // const username1 = "Hanelytics"
     // const password1 = "Hanelytics@24"
 
     const sapFields = [];
+    const sapFields1 = [];
 
     const addObjectsData = (data) => {
       for (let i = 0; i < data.length; i++) {
@@ -171,8 +301,31 @@ const DataModeling = () => {
       }
       return sapFields.slice(0, 4);
     };
+    const addObjectsData1 = (data) => {
+      let material;
+      for (let i = 0; i < data.length; i++) {
+        if (i === 0) {
+          material = "Paper";
+        } else if (i === 1) {
+          material = "Ink";
+        }
+        const record = data[i];
+
+        sapFields1.push({
+          Material: material,
+          // Material: "Paper",
+          Supplier: "",
+          Distribution_Center: `IB01`,
+          Quantity:
+            record.Reorder_Quantity_Prediction_with_live_data.toString(),
+        });
+      }
+      // console.log(sapFields1.slice(1, 10))
+      return sapFields1.slice(0, 2);
+    };
 
     let objectDataForSAP;
+    let objectDataForSAP1;
 
     try {
       const response = await axios.get(url + "/api/model/inventory", {
@@ -188,28 +341,33 @@ const DataModeling = () => {
         Process: "Create",
         Automation_to_Hanlytic_np: addObjectsData(Array),
       };
+      objectDataForSAP1 = {
+        Process: "Create",
+        Automation_to_Hanlytic_np: addObjectsData1(Array.slice(0, 2)),
+      };
       // objectDataForSAP = {
       //   Process: "Create",
       //   Hanelytics_to_SAP_np: addObjectsData(Array),
       // };
       setOdataPayload(objectDataForSAP);
+      setOdataPayload1(objectDataForSAP1);
       // const result1 = await axios.post(url + "/api/model/odata", objectDataForSAP, {headers: {token: jwtToken}})
       // console.log(result1.data)
       //    console.log(result)
       // console.log(objectDataForSAP)
       console.log(`Data:`, objectDataForSAP);
-      // console.log(`Data:`, odataPayload)
-      // console.log(sapFields1)
-      // console.log(Array)
+      console.log(`Data1:`, objectDataForSAP1);
       if (Array) {
-        setSapText("✔ Data Formating Successfull ✔"); // New
+        setIsLoadingTrue(false);
+
+        setSapText("✔ Destructuring of data completed successfully ✔"); // New
       } else {
         setSapText("Enable backend Conncetions correctly!!");
       }
 
       // setSendData(true)
 
-      setHideShow(false);
+      // setHideShow(false);
       handleTabClick("tab1");
     } catch (error) {
       console.log(error);
@@ -217,8 +375,22 @@ const DataModeling = () => {
   };
 
   const getRevenueDataFromMongoDB = async () => {
+    if (!revenueData) {
+      setRevenueData(true);
+    }
     const jwtToken = localStorage.getItem("token");
-    setIsLoadingTrue(true)
+    setIsLoadingTrue(true);
+    setDataModelOpen("");
+    setMigrateModelOpen("");
+    setHideShow(false);
+    setLoadModelData(true);
+    setNewsPaperData(true);
+    setInventoryData(true);
+    setEquipmentData(true);
+    setClinicalData(true);
+    setSendData(true);
+    setSendData1(true);
+    setSendData2(true);
 
     try {
       const response = await axios.get(url + "/api/model/revenue", {
@@ -226,19 +398,17 @@ const DataModeling = () => {
       });
       const Array = response.data;
       if (Array) {
-        setIsLoadingTrue(false)
-        toast.success("Request Processed successfully!");
+        setIsLoadingTrue(false);
+        setLoadModelData(false);
+
+        // toast.success("Request Processed successfully!");
       }
 
       setData(Array);
+
       console.log(Array);
       setRevenueData(false);
-      setHideShow(false);
-      setInventoryData(true);
-      setEquipmentData(true);
-      setClinicalData(true);
-      setSendData(true);
-      setSendData1(true);
+
       handleTabClick("tab1");
     } catch (error) {
       console.log(error);
@@ -246,6 +416,22 @@ const DataModeling = () => {
   };
 
   const getEquipmentDataFromMongoDB = async () => {
+    if (!equipmentData1) {
+      setEquipmentData(true);
+    }
+    setDataModelOpen("");
+    setMigrateModelOpen("");
+    setIsLoadingTrue(true);
+    setHideShow(false);
+    setLoadModelData(true);
+    setNewsPaperData(true);
+    setRevenueData(true);
+    setInventoryData(true);
+    setClinicalData(true);
+    setSendData(true);
+    setSendData1(true);
+    setSendData2(true);
+
     const jwtToken = localStorage.getItem("token");
 
     try {
@@ -253,15 +439,15 @@ const DataModeling = () => {
         headers: { token: jwtToken },
       });
       const Array = response.data;
+      if (Array) {
+        setIsLoadingTrue(false);
+        setLoadModelData(false);
+        // toast.success("Request Processed successfully!");
+      }
       setData(Array);
       console.log(Array);
-      setRevenueData(true);
-      setHideShow(false);
-      setInventoryData(true);
+
       setEquipmentData(false);
-      setClinicalData(true);
-      setSendData(true);
-      setSendData1(true);
       handleTabClick("tab1");
     } catch (error) {
       console.log(error);
@@ -269,6 +455,23 @@ const DataModeling = () => {
   };
 
   const getClinicalDataFromMongoDB = async () => {
+    if (!clinicalData) {
+      setClinicalData(true);
+    }
+    setDataModelOpen("");
+    setMigrateModelOpen("");
+    setIsLoadingTrue(true);
+    setHideShow(false);
+    setLoadModelData(true);
+    setNewsPaperData(true);
+
+    setRevenueData(true);
+    setInventoryData(true);
+    setEquipmentData(true);
+    setSendData(true);
+    setSendData1(true);
+    setSendData2(true);
+
     const jwtToken = localStorage.getItem("token");
 
     try {
@@ -276,16 +479,16 @@ const DataModeling = () => {
         headers: { token: jwtToken },
       });
       const Array = response.data;
+      if (Array) {
+        setIsLoadingTrue(false);
+        setLoadModelData(false);
+
+        // toast.success("Request Processed successfully!");
+      }
       setData(Array);
       // console.log(Array)
-      setRevenueData(true);
-      setHideShow(false);
-      setInventoryData(true);
-      setEquipmentData(true);
-      setClinicalData(false);
-      setSendData(true);
-      setSendData1(true);
 
+      setClinicalData(false);
       handleTabClick("tab1");
     } catch (error) {
       console.log(error);
@@ -293,6 +496,8 @@ const DataModeling = () => {
   };
 
   const handleResultsData = () => {
+    setNewsPaperData(true);
+
     setInventoryData(true);
     setRevenueData(true);
     setHideShow(true);
@@ -300,6 +505,7 @@ const DataModeling = () => {
     setClinicalData(true);
     setSendData(true);
     setSendData1(true);
+    setSendData2(true);
   };
 
   const handlePieChart = (tab) => {
@@ -368,6 +574,8 @@ const DataModeling = () => {
       setRevenueData(true);
       setHideShow(true);
       setEquipmentData(true);
+      setNewsPaperData(true);
+
       setClinicalData(true);
       setSendData(true);
       setSendData1(true);
@@ -379,6 +587,16 @@ const DataModeling = () => {
     //
     if (migrateModelOpen === "") {
       setMigrateModelOpen(tabContent);
+      setInventoryData(true);
+      setRevenueData(true);
+      setHideShow(true);
+      setEquipmentData(true);
+      setNewsPaperData(true);
+
+      setClinicalData(true);
+      setSendData(true);
+      setSendData1(true);
+
       setDataModelOpen("");
     } else {
       setMigrateModelOpen("");
@@ -388,6 +606,12 @@ const DataModeling = () => {
   const closeAllPopups = () => {
     setMigrateModelOpen("");
     setDataModelOpen("");
+  };
+
+  const getLoadingModelText = () => {
+    if (!newsPaperData) {
+      return "News Paper Model";
+    }
   };
 
   return (
@@ -418,42 +642,34 @@ const DataModeling = () => {
                 </h4>
                 {dataModelOpen === "data-models" && (
                   <div className="open-tab">
-                    {isLoadingTrue && <div className="spinner"></div>}
+                    {/* {isLoadingTrue  && <div className="spinner"></div>} */}
+                    <p onClick={getNewsPaperDataFromMongoDB}>
+                      <LuArrowUpRight className="process-arrow" />
+                      {/* NEWS Paper */}
+                      Predicting NEWS Paper Quantity of Demand for Distribution
+                      Center
+                    </p>
                     <p onClick={getInventoryDataFromMongoDB}>
-                      {/* Predicting Reams of Paper, Ink and units of Quantity */}
                       <LuArrowUpRight className="process-arrow" />
-                      NEWS Paper
+                      {/* Inventory */}
+                      Reorder Point Quantity & Safety Stock Predictions for
+                      Inventory with & without Live-Data
                     </p>
-                    <p
-                      onClick={getInventoryDataFromMongoDB}
-                    >
-                      {/* Reorder Point Quantity & Safety Stock Predictions for Inventory
-                    with & without Live-Data */}
-                    
+                    <p onClick={getRevenueDataFromMongoDB}>
                       <LuArrowUpRight className="process-arrow" />
-                      Inventory
+                      {/* Revenue */}
+                      Predictive Analytics for Revenue Demand Sensing Trends
                     </p>
-                    <p 
-                      onClick={getRevenueDataFromMongoDB}
-                    >
-                      {/* Predictive Analytics for Revenue Demand Sensing Trends */}
+                    <p onClick={getEquipmentDataFromMongoDB}>
                       <LuArrowUpRight className="process-arrow" />
-                      Revenue
-                    </p>
-                      <p
-                      onClick={getEquipmentDataFromMongoDB}
-                      >
-                      {/* Equipment Risk Detection and Failure Prevention With Predictive
-                    Analytics */}
-                      <LuArrowUpRight className="process-arrow" />
-                      Equipment
+                      Equipment Risk Detection and Failure Prevention With
+                      Predictive Analytics
                     </p>
                     <p onClick={getClinicalDataFromMongoDB}>
-                      {/* Prediction of Reorder Point & Buffer Stock with Clinical
-                    Information */}
-                      
                       <LuArrowUpRight className="process-arrow" />
-                      Clinical
+                      {/* Clinical */}
+                      Prediction of Reorder Point & Buffer Stock with Clinical
+                      Information
                     </p>
                   </div>
                 )}
@@ -476,35 +692,34 @@ const DataModeling = () => {
                 </h4>
                 {migrateModelOpen === "migrate-data" && (
                   <div className="open-tab">
-                    {/* <p>
-                    <LuArrowUpRight className="process-arrow"/>
-                      Destructure the Reorder Point Quantity data as per SAP
-                    Requirements</p> */}
+                    <p onClick={getInventoryDataFromMongoDB1}>
+                      <LuArrowUpRight className="process-arrow" />
+                      Destructure the Data
+                    </p>
+                    <p onClick={sendDataToSAP1}>
+                      <LuArrowUpRight className="process-arrow" />
+                      Procurement to Vendor
+                    </p>
                     <p onClick={sendDataToSAP}>
                       <LuArrowUpRight className="process-arrow" />
-                      Migrate Inventory Data to SAP
-                      {/* From HANElytics System to SAP S/4 HANA: Inter
-                    Company Sales */}
+                      Inter Company Sales
                     </p>
-                    {/* <p>Hello</p>
-                    <p>Hello</p>
-                    <p>Hello</p> */}
                   </div>
                 )}
               </div>
             </div>
             <div className="drop-down">
               <div>
-                <Dropdown
+                {/* <Dropdown
                   menu={{ items }}
                   trigger={["hover"]}
                   id="items-drop-menu"
-                >
-                  <div className="icon-username">
-                    <FaRegCircleUser className="user-icon" />
-                    <p className="username-text">{username}</p>
-                  </div>
-                </Dropdown>
+                > */}
+                <div className="icon-username">
+                  <FaRegCircleUser className="user-icon" />
+                  <p className="username-text">{username}</p>
+                </div>
+                {/* </Dropdown> */}
               </div>
               <div>
                 <button onClick={handleModelLogout}>Logout</button>
@@ -523,31 +738,41 @@ const DataModeling = () => {
                 className={sendData1 === true ? "model-name" : "active"}
                 onClick={getInventoryDataFromMongoDB1}
               >
-                Destructure the Reorder Point Quantity data as per SAP
-                Requirements
+                <LuArrowUpRight className="process-arrow" />
+                Destructure the Data
+              </h2>
+              <h2
+                className={sendData2 === true ? "model-name" : "active"}
+                onClick={sendDataToSAP1}
+              >
+                <LuArrowUpRight className="process-arrow" />
+                Procurement to Vendor
               </h2>
               <h2
                 className={sendData === true ? "model-name" : "active"}
                 onClick={sendDataToSAP}
               >
-                Migrate Data From HANElytics System to SAP S/4 HANA: Inter
-                Company Sales
+                <LuArrowUpRight className="process-arrow" />
+                Inter Company Sales
               </h2>
+              {/* Migrate Data From HANElytics System to SAP S/4 HANA:  */}
             </div>
             <h1 className="use-case-heading" onClick={handleResultsData}>
               Data Models
             </h1>
             <div className="data-model-types">
               <h2
-                className={inventoryData === true ? "model-name" : "active"}
-                onClick={getInventoryDataFromMongoDB}
+                className={newsPaperData === true ? "model-name" : "active"}
+                onClick={getNewsPaperDataFromMongoDB}
               >
-                Predicting Reams of Paper, Ink and units of Quantity
+                <LuArrowUpRight className="process-arrow" />
+                Predicting NEWS Paper Quantity of Demand for Distribution Center
               </h2>
               <h2
                 className={inventoryData === true ? "model-name" : "active"}
                 onClick={getInventoryDataFromMongoDB}
               >
+                <LuArrowUpRight className="process-arrow" />
                 Reorder Point Quantity & Safety Stock Predictions for Inventory
                 with & without Live-Data
               </h2>
@@ -555,14 +780,14 @@ const DataModeling = () => {
                 className={revenueData === true ? "model-name" : "active"}
                 onClick={getRevenueDataFromMongoDB}
               >
+                <LuArrowUpRight className="process-arrow" />
                 Predictive Analytics for Revenue Demand Sensing Trends
               </h2>
               <h2
                 className={equipmentData1 === true ? "model-name" : "active"}
                 onClick={getEquipmentDataFromMongoDB}
-                
-
               >
+                <LuArrowUpRight className="process-arrow" />
                 Equipment Risk Detection and Failure Prevention With Predictive
                 Analytics
               </h2>
@@ -570,6 +795,7 @@ const DataModeling = () => {
                 className={clinicalData === true ? "model-name" : "active"}
                 onClick={getClinicalDataFromMongoDB}
               >
+                <LuArrowUpRight className="process-arrow" />
                 Prediction of Reorder Point & Buffer Stock with Clinical
                 Information
               </h2>
@@ -585,32 +811,227 @@ const DataModeling = () => {
               </h2>
             </div>
           )}
+          {loadModelData && (
+            <div
+              className="charts-section select-model-name empty-bg-image"
+              style={{ backgroundImage: "none", backgroundColor: "#fff" }}
+            >
+              <div>
+                {isLoadingTrue && <div className="spinner"></div>}
+                <h2 className="select-text">
+                  One moment, Loading AI / ML Predicted data...
+                </h2>
+              </div>
+            </div>
+          )}
           {!sendData1 && (
-            <div className="charts-section select-model-name empty-bg-image">
-              <h2 className="select-text">{sapText}</h2>
+            <div
+              className="charts-section select-model-name empty-bg-image"
+              style={{ backgroundImage: "none", backgroundColor: "#fff" }}
+            >
+              <div>
+                {isLoadingTrue && <div className="spinner"></div>}
+                <h2 className="select-text">{sapText}</h2>
+              </div>
             </div>
           )}
           {!sendData && (
-            <div className="charts-section select-model-name empty-bg-image">
-              <h2 className="select-text">{sapText}</h2>
+            <div
+              className="charts-section select-model-name empty-bg-image"
+              style={{ backgroundImage: "none", backgroundColor: "#fff" }}
+            >
+              <div>
+                {isLoadingTrue && <div className="spinner"></div>}
+                <h2 className="select-text">{sapText}</h2>
+              </div>
+            </div>
+          )}
+          {!sendData2 && (
+            <div
+              className="charts-section select-model-name empty-bg-image"
+              style={{ backgroundImage: "none", backgroundColor: "#fff" }}
+            >
+              <div>
+                {isLoadingTrue && <div className="spinner"></div>}
+                <h2 className="select-text">{sapText}</h2>
+              </div>
+            </div>
+          )}
+          {!newsPaperData && (
+            <div className="charts-section">
+              {getDataAndInsightsButtons()}
+              <div className="tab-content">
+                {activeTab === "tab1" && (
+                  <>
+                    <div id="tab1" className="content model-datasets-active">
+                      {news_paper_model_datasets.map((eachDataset, index) => {
+                        return (
+                          <li key={index} className="model-dataset">
+                            {eachDataset}
+                          </li>
+                        );
+                      })}
+                    </div>
+                    <div className="button">
+                      <button
+                        className="text-right btn btn-primary"
+                        onClick={handleResultsData}
+                      >
+                        Back
+                      </button>
+                      <button
+                        onClick={() => handleTabClick("tab2")}
+                        className="btn btn-success results"
+                      >
+                        View Model Insights
+                      </button>
+                    </div>
+                  </>
+                )}
+                {activeTab === "tab2" && (
+                  <div id="tab2" className="content">
+                    <div className="charts-buttons">
+                      {/* <button
+                        className={`chart-tab ${
+                          activeTab === "tab3" ? "chart-tab-active" : ""
+                        }`}
+                        onClick={() => handlePieChart("tab3")}
+                      >
+                        Pie Chart
+                      </button> */}
+                      {/* <button
+                        className={`chart-tab ${
+                          activeTab === "tab4" ? "chart-tab-active" : ""
+                        }`}
+                        onClick={() => handlePieChart("tab4")}
+                      >
+                        Bar Chart
+                      </button> */}
+                    </div>
+                    {showResults && (
+                      <>
+                        <h1 className="results-heading">Results:</h1>
+                        <div className="table-container">
+                          <Table
+                            data={data}
+                            newsPaperData={newsPaperData}
+                            inventoryData={inventoryData}
+                            revenueData={revenueData}
+                            equipmentData1={equipmentData1}
+                            clinicalData={clinicalData}
+                          />
+                        </div>
+                      </>
+                    )}
+                    <div className="button">
+                      <button
+                        className="text-right btn btn-primary"
+                        onClick={handleResultsData}
+                      >
+                        Back
+                      </button>
+                      <button
+                        onClick={() => handleTabClick("tab1")}
+                        className="btn btn-dark results"
+                      >
+                        Data Resources <span>(utilized)</span>
+                      </button>
+                    </div>
+                  </div>
+                )}
+                {activeTab === "tab3" && (
+                  <div id="tab2" className="content">
+                    <div className="charts-buttons">
+                      <button
+                        className={`chart-tab ${
+                          activeTab === "tab3" ? "chart-tab-active" : ""
+                        }`}
+                        onClick={() => handlePieChart("tab3")}
+                      >
+                        Pie Chart
+                      </button>
+                      <button
+                        className={`chart-tab ${
+                          activeTab === "tab4" ? "chart-tab-active" : ""
+                        }`}
+                        onClick={() => handlePieChart("tab4")}
+                      >
+                        Bar Chart
+                      </button>
+                    </div>
+                    {showPieChart && (
+                      <div className="charts-container">
+                        <div className="pie-chart">
+                          <InventoryPieChart data={data} />
+                          {/* <NewChart data={data} chartText={"Product with Lead Times"} pieChartData={inventoryPieData} /> */}
+                        </div>
+                      </div>
+                    )}
+                    <div className="button">
+                      <button
+                        className="text-right btn btn-primary"
+                        onClick={handleResultsData}
+                      >
+                        Back
+                      </button>
+                      <button
+                        onClick={() => handleTabClick("tab1")}
+                        className="btn btn-dark results"
+                      >
+                        Data Resources <span>(utilized)</span>
+                      </button>
+                    </div>
+                  </div>
+                )}
+                {activeTab === "tab4" && (
+                  <div id="tab2" className="content">
+                    <div className="charts-buttons">
+                      <button
+                        className={`chart-tab ${
+                          activeTab === "tab3" ? "chart-tab-active" : ""
+                        }`}
+                        onClick={() => handlePieChart("tab3")}
+                      >
+                        Pie Chart
+                      </button>
+                      <button
+                        className={`chart-tab ${
+                          activeTab === "tab4" ? "chart-tab-active" : ""
+                        }`}
+                        onClick={() => handlePieChart("tab4")}
+                      >
+                        Bar Chart
+                      </button>
+                    </div>
+                    {showPieChart && (
+                      <div className="charts-container">
+                        <div className="bar-chart">
+                          <InventoryBarChart data={data} />
+                        </div>
+                      </div>
+                    )}
+                    <div className="button">
+                      <button
+                        className="text-right btn btn-primary"
+                        onClick={handleResultsData}
+                      >
+                        Back
+                      </button>
+                      <button
+                        onClick={() => handleTabClick("tab1")}
+                        className="btn btn-dark results"
+                      >
+                        Data Resources <span>(utilized)</span>
+                      </button>
+                    </div>
+                  </div>
+                )}
+              </div>
             </div>
           )}
           {!inventoryData && (
             <div className="charts-section">
-              <div className="tab-buttons">
-                <button
-                  className={`tab ${activeTab === "tab1" ? "activeTab" : ""}`}
-                  onClick={() => handleTabClick("tab1")}
-                >
-                  Data Resources <span>(utilized)</span>
-                </button>
-                <button
-                  className={`tab ${activeTab === "tab2" ? "activeTab" : ""}`}
-                  onClick={() => handleTabClick("tab2")}
-                >
-                  View Model Results
-                </button>
-              </div>
+              {getDataAndInsightsButtons()}
 
               <div className="tab-content">
                 {activeTab === "tab1" && (
@@ -666,6 +1087,7 @@ const DataModeling = () => {
                         <div className="table-container">
                           <Table
                             data={data}
+                            newsPaperData={newsPaperData}
                             inventoryData={inventoryData}
                             revenueData={revenueData}
                             equipmentData1={equipmentData1}
@@ -782,21 +1204,7 @@ const DataModeling = () => {
           )}
           {!revenueData && (
             <div className="charts-section">
-              <div className="tab-buttons">
-                <button
-                  className={`tab ${activeTab === "tab1" ? "activeTab" : ""}`}
-                  onClick={() => handleTabClick("tab1")}
-                >
-                  Data Resources <span>(utilized)</span>
-                </button>
-                <button
-                  className={`tab ${activeTab === "tab2" ? "activeTab" : ""}`}
-                  onClick={() => handleTabClick("tab2")}
-                >
-                  View Model Insights
-                </button>
-              </div>
-
+              {getDataAndInsightsButtons()}
               <div className="tab-content">
                 {activeTab === "tab1" && (
                   <>
@@ -851,6 +1259,7 @@ const DataModeling = () => {
                         <div className="table-container">
                           <Table
                             data={data}
+                            newsPaperData={newsPaperData}
                             inventoryData={inventoryData}
                             revenueData={revenueData}
                             equipmentData1={equipmentData1}
@@ -973,20 +1382,8 @@ const DataModeling = () => {
           )}
           {!equipmentData1 && (
             <div className="charts-section">
-              <div className="tab-buttons">
-                <button
-                  className={`tab ${activeTab === "tab1" ? "activeTab" : ""}`}
-                  onClick={() => handleTabClick("tab1")}
-                >
-                  Data Resources <span>(utilized)</span>
-                </button>
-                <button
-                  className={`tab ${activeTab === "tab2" ? "activeTab" : ""}`}
-                  onClick={() => handleTabClick("tab2")}
-                >
-                  View Model Insights
-                </button>
-              </div>
+              {getDataAndInsightsButtons()}
+
               <div className="tab-content">
                 {activeTab === "tab1" && (
                   <>
@@ -1041,6 +1438,7 @@ const DataModeling = () => {
                         <div className="table-container">
                           <Table
                             data={data}
+                            newsPaperData={newsPaperData}
                             inventoryData={inventoryData}
                             revenueData={revenueData}
                             equipmentData1={equipmentData1}
@@ -1157,20 +1555,8 @@ const DataModeling = () => {
           {!clinicalData && (
             <div className="charts-section">
               {/* Tab buttons */}
-              <div className="tab-buttons">
-                <button
-                  className={`tab ${activeTab === "tab1" ? "activeTab" : ""}`}
-                  onClick={() => handleTabClick("tab1")}
-                >
-                  Data Resources <span>(utilized)</span>
-                </button>
-                <button
-                  className={`tab ${activeTab === "tab2" ? "activeTab" : ""}`}
-                  onClick={() => handleTabClick("tab2")}
-                >
-                  View Model Insights
-                </button>
-              </div>
+
+              {getDataAndInsightsButtons()}
 
               {/* Tab content */}
               <div className="tab-content">
@@ -1227,6 +1613,7 @@ const DataModeling = () => {
                         <div className="table-container">
                           <Table
                             data={data}
+                            newsPaperData={newsPaperData}
                             inventoryData={inventoryData}
                             revenueData={revenueData}
                             equipmentData1={equipmentData1}

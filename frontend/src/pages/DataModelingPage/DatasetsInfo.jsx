@@ -1,3 +1,11 @@
+export const news_paper_model_datasets = [
+    'News Paper Production',
+    'Inventory Supply Chain',
+    'Historical Distribution',
+    'External Factors',
+    'Sales Subscription',
+    'Consumers Information'
+]
 export const inventory_model_datasets = [
     'Order History Data',
     'Order History with Demand Levels',
@@ -23,3 +31,23 @@ export const clinical_model_datasets = [
     "Regulatory and Compliance Data",
     "Lead Times Data"
 ]
+
+export const  dataOfNEWS = [
+    {
+      Process: 'Create',
+      Automation_to_Hanlytic_np: [
+        {
+          Material: 'Paper',
+          Supplier: '',
+          Distribution_Center: 'IB01',
+          Quantity: '53559'
+        },
+        {
+          Material: 'Ink',
+          Supplier: '',
+          Distribution_Center: 'IB01',
+          Quantity: '116550'
+        }
+      ]
+    }
+  ]

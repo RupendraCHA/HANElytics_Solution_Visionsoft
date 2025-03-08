@@ -7,7 +7,8 @@ import {
     ClinicalModelresults,
     // AutomationToSAP,
     getOdata,
-    transferDataToSAP
+    transferDataToSAP,
+    transferDataToSAP1
 } from "../controllers/modelResultsController.js"
 
 import authMiddleware from "../middlewares/auth.js"
@@ -20,6 +21,7 @@ dataModelResultsRouter.get("/equipment", authMiddleware, EquipmentModelResults)
 dataModelResultsRouter.get("/clinical",authMiddleware, ClinicalModelresults)
 // dataModelResultsRouter.post("/odata",authMiddleware, AutomationToSAP)
 dataModelResultsRouter.post("/dataToSap",authMiddleware, transferDataToSAP)
+dataModelResultsRouter.post("/dataToSap1",authMiddleware, transferDataToSAP1)
 dataModelResultsRouter.get("/odataResults", getOdata)
 
 

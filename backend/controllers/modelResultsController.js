@@ -6,11 +6,29 @@ export const transferDataToSAP = async (req, res) => {
   // const {objectData} = req.body
   const { odataPayload } = req.body;
 
+//   const odataPayload = {
+//     "Process" : "Create",
+//     "Automation_to_Hanlytic_np" : [
+//    {
+//     "Material" : "000000000000000151",
+//     "Supplier" : " 0000200070",
+//     "Distribution_Center" : "DC05",
+//    "Quantity" : "100.00"
+//     }
+//  ]
+// }
+
   try {
     const SAP_API_URL =
       "http://52.38.202.58:8080/sap/opu/odata/VSHANEYA/HANELYTICS_SRV/AutomationSet";
     const username1 = "Hanelytics";
     const password1 = "Hanelytics@24"; // 2022 system
+  //   const SAP_API_URL =
+  //     "http://52.38.202.58:8080/sap/opu/odata/VSHANEYA/HANELYTICS_THRT_SRV/AutomationSet";
+  //   const username1 = "vamshib";
+  //   const password1 = "Anjaneya@209"; // 2022 system
+
+    
 
     // const SAP_API_URL =
     //   "http://52.41.105.117:8000/sap/opu/odata/VSHANEYA/INTER_COMPANY_TRNS_SRV/AutomationSet";
@@ -19,16 +37,12 @@ export const transferDataToSAP = async (req, res) => {
 
     const headers = {
       "Content-Type": "application/json", // Payload format
-      // "Content-Type": "application/xml",
-      // 'X-CSRF-Token': 'Fetch',
+
       "X-Requested-With": "X",
-      // Replace with actual CSRF token if required
       Authorization:
         "Basic " + Buffer.from(`${username1}:${password1}`).toString("base64"), // Basic Auth
     };
 
-    // const odataPayload1 =  JSON.stringify(odataPayload)
-    // const response1 = await axios.post(SAP_API_URL, objectData, { headers });
     const response1 = await axios.post(SAP_API_URL, odataPayload, { headers });
     console.log(
       `Data pushed successfully into the SAP System from HANElytics System`,
@@ -44,12 +58,110 @@ export const transferDataToSAP = async (req, res) => {
     console.log("---------------");
     // console.log(odataPayload.slice(0, 3))
     console.error(
-      "Error pushing data to SAP:", error
+      "Error pushing data to SAP:", error.message
     );
     // ? error.response.data : error.message
     // return res.status(400).json({ message: 'Error pushing data to SAP:' });
   }
 };
+
+export const transferDataToSAP1 = async (req, res) => {
+  // const {objectData} = req.body
+  const { odataPayload1 } = req.body;
+  console.log(odataPayload1)
+
+//   const odataPayload = {
+//     "Process" : "Create",
+//     "Automation_to_Hanlytic_np" : [
+//    {
+//     "Material" : "000000000000000151",
+//     "Supplier" : " 0000200070",
+//     "Distribution_Center" : "DC05",
+//    "Quantity" : "100.00"
+//     }
+//  ]
+// }
+
+  try {
+    // const SAP_API_URL =
+    //   "http://52.38.202.58:8080/sap/opu/odata/VSHANEYA/HANELYTICS_SRV/AutomationSet";
+    // const username1 = "Rupendra";
+    // const password1 = "R###vsoft1234"; // 2022 system
+    const SAP_API_URL =
+      "http://52.38.202.58:8080/sap/opu/odata/VSHANEYA/HANELYTICS_THRT_SRV/AutomationSet";
+    const username1 = "vamshib";
+    const password1 = "Anjaneya@209"; // 2022 system
+  //   async function getCsrfToken() {
+  //     const response = await axios.get('http://52.38.202.58:8080/sap/opu/odata/VSHANEYA/HANELYTICS_THRT_SRV/AutomationSet', {
+  //         headers: {
+  //           'Authorization':
+  //           "Basic " + Buffer.from(`${username1}:${password1}`).toString("base64"),
+  //             'X-CSRF-Token': 'Fetch'
+  //         }
+  //     });
+  
+  //     return response.headers['x-csrf-token'];
+  // }
+  // const csrfToken = await getCsrfToken();
+// await axios.post(
+//     'http://52.38.202.58:8080/sap/opu/odata/VSHANEYA/HANELYTICS_THRT_SRV/AutomationSet',
+//     data,
+//     {
+//         headers: {
+//             'Authorization': `Basic ${encodedCredentials}`,
+//             'X-CSRF-Token': csrfToken,
+//             'Content-Type': 'application/json'
+//         }
+//     }
+// );
+    
+
+    // const SAP_API_URL =
+    //   "http://52.41.105.117:8000/sap/opu/odata/VSHANEYA/INTER_COMPANY_TRNS_SRV/AutomationSet";
+    // const username1 = "HANELYTICS";
+    // const password1 = "Welcome@12345"; // ECC System
+
+    const headers = {
+      "Content-Type": "application/json", // Payload format
+      "X-Requested-With": "X",
+      // Replace with actual CSRF token if required
+      Authorization:
+        "Basic " + Buffer.from(`${username1}:${password1}`).toString("base64"), // Basic Auth
+    };
+
+    const response1 = await axios.post(SAP_API_URL, odataPayload1, { headers });
+    console.log(
+      `Data pushed successfully into the SAP System from HANElytics System`,
+      response1.data
+    );
+    if (response1){
+      return res.status(201).json({
+        message: "✔✔✔ Data Transferred Successfully to the SAP System. ✔✔✔",
+        success: true,
+      });
+    }else {
+      return res.status(500).json({
+        message: "Check SAP Odata port started or not...",
+        success: false,
+      }); 
+    }
+    
+  } catch (error) {
+    
+    
+    console.log("---------------");
+    // console.log(odataPayload.slice(0, 3))
+    console.error(
+      "Error pushing data to SAP:", error
+    );
+    console.log("Check Your SAP OData Service started or not...")
+    return res.status(500).json({
+      message: "Check SAP Odata port started or not...",
+      success: false,
+    });
+  }
+};
+
 
 export const getOdata = async (req, res) => {
   try {
