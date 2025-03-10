@@ -199,6 +199,25 @@ export const InventoryModelResults = async (req, res) => {
   }
 };
 
+export const InventoryModelResults1 = async (req, res) => {
+  try {
+    const mongoURI = process.env.MONGO_URI;
+
+    const client = new MongoClient(mongoURI);
+    await client.connect();
+
+    const database = client.db("Inventory_Predictions_Database_Unique");
+    const collection = database.collection("Predicted_Results_Unique");
+
+    const allDocuments = await collection.find().toArray();
+
+    // console.log(allDocuments)
+    return res.json(allDocuments);
+  } catch (error) {
+    console.log(error);
+  }
+};
+
 export const RevenueModelResults = async (req, res) => {
   try {
     const mongoURI = process.env.MONGO_URI;

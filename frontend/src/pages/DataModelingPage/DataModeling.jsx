@@ -211,12 +211,23 @@ const DataModeling = () => {
       setSendData1(true);
       setSendData2(true);
 
-      setTimeout(() => {
+    const jwtToken = localStorage.getItem("token");
+
+
+      const response = await axios.get(url + "/api/model/inventory1", {
+        headers: { token: jwtToken },
+      });
+
+      const Array = response.data
+
+      if (Array){
         setNewsPaperData(false);
         setLoadModelData(false);
-        setData(dataOfNEWS);
+      }
+      
+        setData(Array);
         handleTabClick("tab1");
-      }, 3000);
+      
     } catch (error) {
       console.log(error);
     }
@@ -264,29 +275,42 @@ const DataModeling = () => {
       console.log(error);
     }
   };
+
   const getInventoryDataFromMongoDB1 = async () => {
     setIsLoadingTrue(true);
     setDataModelOpen("");
     setMigrateModelOpen("");
+    setNewsPaperData(true);
+
     const jwtToken = localStorage.getItem("token");
     setHideShow(false);
 
     setSendData1(false); // New
     setSendData(true); // New
     setSendData2(true); // New
-    setNewsPaperData(true);
     setInventoryData(true); // New
     setRevenueData(true);
     setEquipmentData(true);
     setClinicalData(true);
-    setSapText("destructuring  the Data..."); // New
+    setSapText("One moment, Destructuring the Data..."); // New
 
     // const SAP_API_URL = 'http://52.38.202.58:8080/sap/opu/odata/VSHANEYA/HANELYTICS_SRV/AutomationSet'
     // const username1 = "Hanelytics"
     // const password1 = "Hanelytics@24"
 
     const sapFields = [];
-    const sapFields1 = [];
+    const sapFields1 = [{
+      Material: 'PUID1',
+      Supplier: '',
+      Distribution_Center: 'IB01',
+      Quantity: '29800'
+    },
+    {
+      Material: 'PUID2',
+      Supplier: '',
+      Distribution_Center: 'IB01',
+      Quantity: '46780'
+    }];
 
     const addObjectsData = (data) => {
       for (let i = 0; i < data.length; i++) {
@@ -304,24 +328,25 @@ const DataModeling = () => {
     const addObjectsData1 = (data) => {
       let material;
       for (let i = 0; i < data.length; i++) {
-        if (i === 0) {
-          material = "Paper";
-        } else if (i === 1) {
-          material = "Ink";
-        }
+        // if (i === 0) {
+        //   material = "Paper";
+        // } else if (i === 1) {
+        //   material = "Ink";
+        // }
         const record = data[i];
 
         sapFields1.push({
-          Material: material,
+          Material: `PUID${i+3}`,
+          // Material: record.Product_Name,
           // Material: "Paper",
           Supplier: "",
-          Distribution_Center: `IB01`,
+          Distribution_Center: `${record.Distribution_Center_ID === 0 ? "IB02" : "IB02"}`,
           Quantity:
             record.Reorder_Quantity_Prediction_with_live_data.toString(),
         });
       }
       // console.log(sapFields1.slice(1, 10))
-      return sapFields1.slice(0, 2);
+      return sapFields1;
     };
 
     let objectDataForSAP;
@@ -335,6 +360,10 @@ const DataModeling = () => {
       setData(Array);
       console.log(Array);
 
+      const response1 = await axios.get(url + "/api/model/inventory1", {
+        headers: { token: jwtToken },
+      });
+
       // const sapFields1 = addObjectsData()
       // "Direct_process" : "",
       objectDataForSAP = {
@@ -343,7 +372,7 @@ const DataModeling = () => {
       };
       objectDataForSAP1 = {
         Process: "Create",
-        Automation_to_Hanlytic_np: addObjectsData1(Array.slice(0, 2)),
+        Automation_to_Hanlytic_np: addObjectsData1(response1.data),
       };
       // objectDataForSAP = {
       //   Process: "Create",
@@ -623,7 +652,7 @@ const DataModeling = () => {
             <Link to="/home" className="website-heading">
               <h1>HANELYTICS</h1>
             </Link>
-            <div className="model-migrate-tabs">
+            {/* <div className="model-migrate-tabs">
               <div style={{ position: "relative" }}>
                 <h4
                   onClick={() => handleIsOpened("data-models")}
@@ -642,22 +671,18 @@ const DataModeling = () => {
                 </h4>
                 {dataModelOpen === "data-models" && (
                   <div className="open-tab">
-                    {/* {isLoadingTrue  && <div className="spinner"></div>} */}
                     <p onClick={getNewsPaperDataFromMongoDB}>
                       <LuArrowUpRight className="process-arrow" />
-                      {/* NEWS Paper */}
-                      Predicting NEWS Paper Quantity of Demand for Distribution
+                      Predicting Quantity of Demand for Distribution
                       Center
                     </p>
                     <p onClick={getInventoryDataFromMongoDB}>
                       <LuArrowUpRight className="process-arrow" />
-                      {/* Inventory */}
                       Reorder Point Quantity & Safety Stock Predictions for
                       Inventory with & without Live-Data
                     </p>
                     <p onClick={getRevenueDataFromMongoDB}>
                       <LuArrowUpRight className="process-arrow" />
-                      {/* Revenue */}
                       Predictive Analytics for Revenue Demand Sensing Trends
                     </p>
                     <p onClick={getEquipmentDataFromMongoDB}>
@@ -667,7 +692,6 @@ const DataModeling = () => {
                     </p>
                     <p onClick={getClinicalDataFromMongoDB}>
                       <LuArrowUpRight className="process-arrow" />
-                      {/* Clinical */}
                       Prediction of Reorder Point & Buffer Stock with Clinical
                       Information
                     </p>
@@ -707,7 +731,7 @@ const DataModeling = () => {
                   </div>
                 )}
               </div>
-            </div>
+            </div> */}
             <div className="drop-down">
               <div>
                 {/* <Dropdown
@@ -766,7 +790,7 @@ const DataModeling = () => {
                 onClick={getNewsPaperDataFromMongoDB}
               >
                 <LuArrowUpRight className="process-arrow" />
-                Predicting NEWS Paper Quantity of Demand for Distribution Center
+                Predicting Quantity of Demand for Distribution Center
               </h2>
               <h2
                 className={inventoryData === true ? "model-name" : "active"}

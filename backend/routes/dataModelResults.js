@@ -8,7 +8,8 @@ import {
     // AutomationToSAP,
     getOdata,
     transferDataToSAP,
-    transferDataToSAP1
+    transferDataToSAP1,
+    InventoryModelResults1
 } from "../controllers/modelResultsController.js"
 
 import authMiddleware from "../middlewares/auth.js"
@@ -16,6 +17,7 @@ import authMiddleware from "../middlewares/auth.js"
 const dataModelResultsRouter = express.Router()
 
 dataModelResultsRouter.get("/inventory",authMiddleware, InventoryModelResults)
+dataModelResultsRouter.get("/inventory1",authMiddleware, InventoryModelResults1)
 dataModelResultsRouter.get("/revenue", authMiddleware, RevenueModelResults)
 dataModelResultsRouter.get("/equipment", authMiddleware, EquipmentModelResults)
 dataModelResultsRouter.get("/clinical",authMiddleware, ClinicalModelresults)

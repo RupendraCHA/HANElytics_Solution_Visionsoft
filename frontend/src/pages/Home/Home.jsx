@@ -26,7 +26,7 @@ function Home() {
       <div className="home-bg">
         <div className="right">
           <h1 className="simplify-heading">
-            Simplify AI/ML predictions effortlessly with Hanelytics.
+            Simplify AI/ML predictions effortlessly with HANElytics.
           </h1>
           <Link to="/dataModeling" style={{ textDecoration: "none" }}>
             <button className="button">
