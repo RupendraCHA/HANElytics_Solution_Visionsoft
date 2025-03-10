@@ -341,7 +341,7 @@ const DataModeling = () => {
           // Material: record.Product_Name,
           // Material: "Paper",
           Supplier: "",
-          Distribution_Center: `${record.Distribution_Center_ID === 0 ? "IB02" : "IB02"}`,
+          Distribution_Center: `${record.Distribution_Center_ID === 0 ? "IB01" : "IB01"}`,
           Quantity:
             record.Reorder_Quantity_Prediction_with_live_data.toString(),
         });
