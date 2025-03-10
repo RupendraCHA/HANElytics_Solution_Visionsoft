@@ -40,7 +40,7 @@ const Table = (props) => {
                     <tr>
                         <th className='column-name'>S.No</th>
                         <th className='column-name'>Product_ID</th>
-                        <th className='column-name'>Material</th>
+                        {/* <th className='column-name'>Material</th> */}
                         <th className='column-name'>Distribution Center</th>
                         <th className='column-name'>Quantity</th>
                         {/* <th className='column-name'>Product_Identifier</th>
@@ -63,14 +63,14 @@ const Table = (props) => {
                 <tr>
                         <td>1</td>
                         <td>PUID1</td>
-                        <td>Paper</td>
+                        {/* <td>Paper</td> */}
                         <td>IB01</td>
                         <td>29800</td>
                     </tr>
                     <tr>
                         <td>2</td>
                         <td>PUID2</td>
-                        <td>Ink</td>
+                        {/* <td>Ink</td> */}
                         <td>IB01</td>
                         <td>46780</td>
                     </tr>
@@ -80,7 +80,7 @@ const Table = (props) => {
                                 <tr key={index}>
                                     <td>{index + 3}</td>
                                     <td>PUID{index + 3}</td>
-                                    <td>{eachRow.Product_Name}</td>
+                                    {/* <td>{eachRow.Product_Name}</td> */}
                                     <td>{eachRow.Distribution_Center && "IB01"}</td>
                                     <td>{eachRow.Reorder_Quantity_Prediction_with_live_data}</td>
                                     {/* <td>{eachRow.Product_ID}</td>
