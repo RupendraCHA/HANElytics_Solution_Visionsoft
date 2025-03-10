@@ -29,6 +29,7 @@ import EquipmentPieChart from "../../components/Charts/EquipmentCharts/Equipment
 import EquipmentBarChart from "../../components/Charts/EquipmentCharts/EquipmentBarChart/EquipmentBarChart.jsx";
 import ClinicalPieChart from "../../components/Charts/ClinicalCharts/ClinicalPieChart/ClinicalPieChart.jsx";
 import ClinicalBarChart from "../../components/Charts/ClinicalCharts/ClinicalBarChart/ClinicalBarChart.jsx";
+import NewsPieChart from "../../components/Charts/NewsPaperCharts/NewsPieChart/NewsPieChart.jsx";
 
 const DataModeling = () => {
   const navigate = useNavigate();
@@ -915,14 +916,14 @@ const DataModeling = () => {
                 {activeTab === "tab2" && (
                   <div id="tab2" className="content">
                     <div className="charts-buttons">
-                      {/* <button
+                      <button
                         className={`chart-tab ${
                           activeTab === "tab3" ? "chart-tab-active" : ""
                         }`}
                         onClick={() => handlePieChart("tab3")}
                       >
                         Pie Chart
-                      </button> */}
+                      </button> 
                       {/* <button
                         className={`chart-tab ${
                           activeTab === "tab4" ? "chart-tab-active" : ""
@@ -974,19 +975,19 @@ const DataModeling = () => {
                       >
                         Pie Chart
                       </button>
-                      <button
+                      {/* <button
                         className={`chart-tab ${
                           activeTab === "tab4" ? "chart-tab-active" : ""
                         }`}
                         onClick={() => handlePieChart("tab4")}
                       >
                         Bar Chart
-                      </button>
+                      </button> */}
                     </div>
                     {showPieChart && (
                       <div className="charts-container">
                         <div className="pie-chart">
-                          <InventoryPieChart data={data} />
+                          <NewsPieChart data={data} />
                           {/* <NewChart data={data} chartText={"Product with Lead Times"} pieChartData={inventoryPieData} /> */}
                         </div>
                       </div>
