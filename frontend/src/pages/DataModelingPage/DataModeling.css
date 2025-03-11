@@ -151,7 +151,8 @@
   font-weight: bold;
   font-size: 32px;
   margin-top: 25px;
-  background-color: #28323b;
+  /* background-color: #28323b; */
+  background-color: #120ed8;
   padding: 8px;
   border-radius: 12px;
   cursor: pointer;
@@ -160,7 +161,7 @@
 }
 .use-case-heading:hover {
   text-decoration: underline;
-  background-color: #000;
+  background-color:#1b19a4ca;
   color: #fff;
 }
 .data-model-types {
