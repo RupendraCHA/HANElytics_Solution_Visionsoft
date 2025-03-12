@@ -209,10 +209,16 @@ export const InventoryModelResults1 = async (req, res) => {
     const database = client.db("Inventory_Predictions_Database_Unique");
     const collection = database.collection("Predicted_Results_Unique");
 
+    const database1 = client.db("News_Paper_Quantity_Predictions");
+    const collection1 = database1.collection("Predicted_Results");
+
+    const allDocuments1 = await collection1.find().toArray()
+    console.log(allDocuments1)
+
     const allDocuments = await collection.find().toArray();
 
     // console.log(allDocuments)
-    return res.json(allDocuments);
+    return res.json(allDocuments1);
   } catch (error) {
     console.log(error);
   }

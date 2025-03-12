@@ -38,11 +38,18 @@ const Table = (props) => {
                 <table className='table'>
                 <thead >
                     <tr>
-                        <th className='column-name'>S.No</th>
+                        {/* <th className='column-name'>S.No</th>
                         <th className='column-name'>Product_ID</th>
-                        {/* <th className='column-name'>Material</th> */}
                         <th className='column-name'>Distribution Center</th>
-                        <th className='column-name'>Quantity</th>
+                        <th className='column-name'>Quantity</th> */}
+                        
+                        <td className='column-name'>S.No</td>
+                        <td className='column-name'>Distribution_Center_ID</td>
+                        <td className='column-name'>Historical NEWS Paper Demand</td>
+                        <td className='column-name'>Predicted NEWS Paper Demand</td>
+                        <td className='column-name'>Reams of Paper</td>
+                        <td className='column-name'>Ink in liters</td>
+                        
                         {/* <th className='column-name'>Product_Identifier</th>
                         <th className='column-name'>Product_Name</th>
                         <th className='column-name'>Distribution_Center_ID</th>
@@ -60,44 +67,53 @@ const Table = (props) => {
                     </tr>
                 </thead>
                 <tbody>
-                <tr>
+                {/* <tr>
                         <td>1</td>
                         <td>PUID1</td>
-                        {/* <td>Paper</td> */}
                         <td>IB01</td>
                         <td>29800</td>
                     </tr>
                     <tr>
                         <td>2</td>
                         <td>PUID2</td>
-                        {/* <td>Ink</td> */}
                         <td>IB01</td>
                         <td>46780</td>
-                    </tr>
+                    </tr> */}
                     {
                         data.map((eachRow, index) => {
-                            return (
-                                <tr key={index}>
-                                    <td>{index + 3}</td>
-                                    <td>PUID{index + 3}</td>
-                                    {/* <td>{eachRow.Product_Name}</td> */}
-                                    <td>{eachRow.Distribution_Center && "IB01"}</td>
-                                    <td>{eachRow.Reorder_Quantity_Prediction_with_live_data}</td>
-                                    {/* <td>{eachRow.Product_ID}</td>
-                                    <td>{eachRow.Product_Name}</td>
-                                    <td>{eachRow.Distribution_Center}</td>
-                                    <td>{getDisCenter(eachRow.Distribution_Center_ID)}</td>
+                            // return (
+                            //     <tr key={index}>
+                            //         <td>{index + 3}</td>
+                            //         <td>PUID{index + 3}</td>
+                            //         {/* <td>{eachRow.Product_Name}</td> */}
+                            //         <td>{eachRow.Distribution_Center && "IB01"}</td>
+                            //         <td>{eachRow.Reorder_Quantity_Prediction_with_live_data}</td>
+                            //         {/* <td>{eachRow.Product_ID}</td>
+                            //         <td>{eachRow.Product_Name}</td>
+                            //         <td>{eachRow.Distribution_Center}</td>
+                            //         <td>{getDisCenter(eachRow.Distribution_Center_ID)}</td>
                                     
-                                    <td>{eachRow.Order_Fulfillment_Time_in_days}</td>
-                                    <td>{eachRow.Historical_Monthly_Sales}</td>
-                                    <td>{eachRow.Monthly_Sales_Prediction_without_live_data}</td>
-                                    <td>{eachRow.Monthly_Sales_Prediction_with_live_data}</td>
-                                    <td>{eachRow.Daily_Sales_Prediction_without_live_data}</td>
-                                    <td>{eachRow.Daily_Sales_Prediction_with_live_data}</td>
-                                    <td>{eachRow.Safety_Stock_without_live_data}</td>
-                                    <td>{eachRow.Safety_Stock_with_live_data}</td>
-                                    <td>{eachRow.Reorder_Quantity_Prediction_without_live_data}</td>
-                                    <td>{eachRow.Reorder_Quantity_Prediction_with_live_data}</td> */}
+                            //         <td>{eachRow.Order_Fulfillment_Time_in_days}</td>
+                            //         <td>{eachRow.Historical_Monthly_Sales}</td>
+                            //         <td>{eachRow.Monthly_Sales_Prediction_without_live_data}</td>
+                            //         <td>{eachRow.Monthly_Sales_Prediction_with_live_data}</td>
+                            //         <td>{eachRow.Daily_Sales_Prediction_without_live_data}</td>
+                            //         <td>{eachRow.Daily_Sales_Prediction_with_live_data}</td>
+                            //         <td>{eachRow.Safety_Stock_without_live_data}</td>
+                            //         <td>{eachRow.Safety_Stock_with_live_data}</td>
+                            //         <td>{eachRow.Reorder_Quantity_Prediction_without_live_data}</td>
+                            //         <td>{eachRow.Reorder_Quantity_Prediction_with_live_data}</td> */}
+                            //     </tr>
+                            // )
+
+                            return(
+                                <tr key={index}>
+                                    <td>{index+1}</td>
+                                    <td>{eachRow.Distribution_Center_ID}</td>
+                                    <td>{eachRow.Historical_News_Paper_Demand}</td>
+                                    <td>{eachRow.Predicted_NEWS_Paper_Demand_Quantity}</td>
+                                    <td>{eachRow.Predicted_Reams_Of_Paper}</td>
+                                    <td>{eachRow.Ink_required_Predicted_liters}</td>
                                 </tr>
                             )
                         })
