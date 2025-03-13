@@ -11,6 +11,7 @@ import { LuArrowUpRight } from "react-icons/lu";
 import { FaDatabase } from "react-icons/fa6";
 import { MdInsertChartOutlined } from "react-icons/md";
 import { MdInfo } from "react-icons/md";
+import { SiSap } from "react-icons/si";
 
 
 import {
@@ -365,34 +366,34 @@ const DataModeling = () => {
       for (let i = 0; i < data.length; i++) {
         const record = data[i];
 
-        // sapFields1.push(
-        //   {
-        //       Material: "Paper",
-        //       Supplier: "",
-        //       Distribution_Center: `${record.Distribution_Center_ID.slice(0,2)+record.Distribution_Center_ID.slice(3,5)}`,
-        //       Quantity: record.Predicted_Reams_Of_Paper.toString()
-        // },
-        // {
-        //       Material: "Ink",
-        //       Supplier: "",
-        //       Distribution_Center: `${record.Distribution_Center_ID.slice(0,2)+record.Distribution_Center_ID.slice(3,5)}`,
-        //       Quantity: record.Ink_required_Predicted_liters.toString()
-        // }
         sapFields1.push(
           {
               Material: "Paper",
               Supplier: "",
-              Distribution_Center: `IB01`,
-              // Quantity: record.Predicted_Reams_Of_Paper.toString()
-              Quantity: "12822"
+              Distribution_Center: `${record.Distribution_Center_ID.slice(0,2)+record.Distribution_Center_ID.slice(3,5)}`,
+              Quantity: record.Predicted_Reams_Of_Paper.toString()
         },
         {
               Material: "Ink",
               Supplier: "",
-              Distribution_Center: `IB01`,
-              // Quantity: record.Ink_required_Predicted_liters.toString()
-              Quantity: "6667"
+              Distribution_Center: `${record.Distribution_Center_ID.slice(0,2)+record.Distribution_Center_ID.slice(3,5)}`,
+              Quantity: record.Ink_required_Predicted_liters.toString()
         }
+        // sapFields1.push(
+        //   {
+        //       Material: "Paper",
+        //       Supplier: "",
+        //       Distribution_Center: `IB01`,
+        //       // Quantity: record.Predicted_Reams_Of_Paper.toString()
+        //       Quantity: "12822"
+        // },
+        // {
+        //       Material: "Ink",
+        //       Supplier: "",
+        //       Distribution_Center: `IB01`,
+        //       // Quantity: record.Ink_required_Predicted_liters.toString()
+        //       Quantity: "6667"
+        // }
       )
       }
 
