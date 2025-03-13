@@ -50,3 +50,6 @@ thead th {
 }
   }
 }
+td {
+  letter-spacing: 0.5px;
+}
