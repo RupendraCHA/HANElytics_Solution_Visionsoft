@@ -43,12 +43,15 @@ const Table = (props) => {
                         <th className='column-name'>Distribution Center</th>
                         <th className='column-name'>Quantity</th> */}
                         
+                        {/* // Updated Data */}
                         <td className='column-name'>S.No</td>
                         <td className='column-name'>Distribution_Center_ID</td>
-                        <td className='column-name'>Historical NEWS Paper Demand</td>
-                        <td className='column-name'>Predicted NEWS Paper Demand</td>
-                        <td className='column-name'>Reams of Paper</td>
-                        <td className='column-name'>Ink in liters</td>
+                        {/* <td className='column-name'>Historical NEWS Paper Demand</td> */}
+                        {/* <td className='column-name'>Predicted NEWS Paper Demand</td> */}
+                        <td className='column-name'>Predicted Reams of Paper</td>
+                        <td className='column-name'>Predicted Ink in liters</td>
+
+                        {/* // Updated Data End */}
                         
                         {/* <th className='column-name'>Product_Identifier</th>
                         <th className='column-name'>Product_Name</th>
@@ -85,10 +88,10 @@ const Table = (props) => {
                             //     <tr key={index}>
                             //         <td>{index + 3}</td>
                             //         <td>PUID{index + 3}</td>
-                            //         {/* <td>{eachRow.Product_Name}</td> */}
+                            //         <td>{eachRow.Product_Name}</td>
                             //         <td>{eachRow.Distribution_Center && "IB01"}</td>
                             //         <td>{eachRow.Reorder_Quantity_Prediction_with_live_data}</td>
-                            //         {/* <td>{eachRow.Product_ID}</td>
+                            //         <td>{eachRow.Product_ID}</td>
                             //         <td>{eachRow.Product_Name}</td>
                             //         <td>{eachRow.Distribution_Center}</td>
                             //         <td>{getDisCenter(eachRow.Distribution_Center_ID)}</td>
@@ -102,20 +105,25 @@ const Table = (props) => {
                             //         <td>{eachRow.Safety_Stock_without_live_data}</td>
                             //         <td>{eachRow.Safety_Stock_with_live_data}</td>
                             //         <td>{eachRow.Reorder_Quantity_Prediction_without_live_data}</td>
-                            //         <td>{eachRow.Reorder_Quantity_Prediction_with_live_data}</td> */}
+                            //         <td>{eachRow.Reorder_Quantity_Prediction_with_live_data}</td>
                             //     </tr>
                             // )
+
+                            // Updated Data
 
                             return(
                                 <tr key={index}>
                                     <td>{index+1}</td>
-                                    <td>{eachRow.Distribution_Center_ID}</td>
-                                    <td>{eachRow.Historical_News_Paper_Demand}</td>
-                                    <td>{eachRow.Predicted_NEWS_Paper_Demand_Quantity}</td>
+                                    <td>{eachRow.Distribution_Center_ID.slice(0,2)+eachRow.Distribution_Center_ID.slice(3,5)}</td>
+                                    {/* <td>{eachRow.Historical_News_Paper_Demand}</td> */}
+                                    {/* <td>{eachRow.Predicted_NEWS_Paper_Demand_Quantity}</td> */}
                                     <td>{eachRow.Predicted_Reams_Of_Paper}</td>
                                     <td>{eachRow.Ink_required_Predicted_liters}</td>
                                 </tr>
                             )
+
+                            // Updated Data End
+
                         })
                     }
                     

@@ -30,6 +30,7 @@ import EquipmentBarChart from "../../components/Charts/EquipmentCharts/Equipment
 import ClinicalPieChart from "../../components/Charts/ClinicalCharts/ClinicalPieChart/ClinicalPieChart.jsx";
 import ClinicalBarChart from "../../components/Charts/ClinicalCharts/ClinicalBarChart/ClinicalBarChart.jsx";
 import NewsPieChart from "../../components/Charts/NewsPaperCharts/NewsPieChart/NewsPieChart.jsx";
+import NewsBarChart from "../../components/Charts/NewsPaperCharts/NewsBarChart/NewswBarChart.jsx";
 
 const DataModeling = () => {
   const navigate = useNavigate();
@@ -227,6 +228,8 @@ const DataModeling = () => {
       }
       
         setData(Array);
+      console.log(Array);
+
         handleTabClick("tab1");
       
     } catch (error) {
@@ -300,18 +303,19 @@ const DataModeling = () => {
     // const password1 = "Hanelytics@24"
 
     const sapFields = [];
-    const sapFields1 = [{
-      Material: 'PUID1',
-      Supplier: '',
-      Distribution_Center: 'IB01',
-      Quantity: '29800'
-    },
-    {
-      Material: 'PUID2',
-      Supplier: '',
-      Distribution_Center: 'IB01',
-      Quantity: '46780'
-    }];
+    // const sapFields1 = [{
+    //   Material: 'PUID1',
+    //   Supplier: '',
+    //   Distribution_Center: 'IB01',
+    //   Quantity: '29800'
+    // },
+    // {
+    //   Material: 'PUID2',
+    //   Supplier: '',
+    //   Distribution_Center: 'IB01',
+    //   Quantity: '46780'
+    // }];
+    let sapFields1 = []
 
     const addObjectsData = (data) => {
       for (let i = 0; i < data.length; i++) {
@@ -326,30 +330,53 @@ const DataModeling = () => {
       }
       return sapFields.slice(0, 4);
     };
+    // const addObjectsData1 = (data) => {
+    //   let material;
+    //   for (let i = 0; i < data.length; i++) {
+    //     // if (i === 0) {
+    //     //   material = "Paper";
+    //     // } else if (i === 1) {
+    //     //   material = "Ink";
+    //     // }
+    //     const record = data[i];
+
+    //     sapFields1.push({
+    //       Material: `PUID${i+3}`,
+    //       // Material: record.Product_Name,
+    //       // Material: "Paper",
+    //       Supplier: "",
+    //       Distribution_Center: `${record.Distribution_Center_ID === 0 ? "IB01" : "IB01"}`,
+    //       Quantity:
+    //         record.Reorder_Quantity_Prediction_with_live_data.toString(),
+    //     });
+    //   }
+    //   // console.log(sapFields1.slice(1, 10))
+    //   return sapFields1;
+    // };
+
     const addObjectsData1 = (data) => {
-      let material;
       for (let i = 0; i < data.length; i++) {
-        // if (i === 0) {
-        //   material = "Paper";
-        // } else if (i === 1) {
-        //   material = "Ink";
-        // }
         const record = data[i];
 
-        sapFields1.push({
-          Material: `PUID${i+3}`,
-          // Material: record.Product_Name,
-          // Material: "Paper",
-          Supplier: "",
-          Distribution_Center: `${record.Distribution_Center_ID === 0 ? "IB01" : "IB01"}`,
-          Quantity:
-            record.Reorder_Quantity_Prediction_with_live_data.toString(),
-        });
+        sapFields1.push(
+          {
+              Material: "Paper",
+              Supplier: "",
+              Distribution_Center: `${record.Distribution_Center_ID.slice(0,2)+record.Distribution_Center_ID.slice(3,5)}`,
+              Quantity: record.Predicted_Reams_Of_Paper.toString()
+        },
+        {
+              Material: "Ink",
+              Supplier: "",
+              Distribution_Center: `${record.Distribution_Center_ID.slice(0,2)+record.Distribution_Center_ID.slice(3,5)}`,
+              Quantity: record.Ink_required_Predicted_liters.toString()
+        }
+      )
       }
-      // console.log(sapFields1.slice(1, 10))
-      return sapFields1;
-    };
 
+      return sapFields1;
+
+    }
     let objectDataForSAP;
     let objectDataForSAP1;
 
@@ -364,6 +391,8 @@ const DataModeling = () => {
       const response1 = await axios.get(url + "/api/model/inventory1", {
         headers: { token: jwtToken },
       });
+
+      // console.log(response1.data)
 
       // const sapFields1 = addObjectsData()
       // "Direct_process" : "",
@@ -791,7 +820,7 @@ const DataModeling = () => {
                 onClick={getNewsPaperDataFromMongoDB}
               >
                 <LuArrowUpRight className="process-arrow" />
-                Predicting Quantity of Demand for Distribution Center
+                Predicting Reams of Paper & Ink of NEWS Paper for each Distribution Center
               </h2>
               <h2
                 className={inventoryData === true ? "model-name" : "active"}
@@ -924,14 +953,14 @@ const DataModeling = () => {
                       >
                         Pie Chart
                       </button> 
-                      {/* <button
+                      <button
                         className={`chart-tab ${
                           activeTab === "tab4" ? "chart-tab-active" : ""
                         }`}
                         onClick={() => handlePieChart("tab4")}
                       >
                         Bar Chart
-                      </button> */}
+                      </button>
                     </div>
                     {showResults && (
                       <>
@@ -975,14 +1004,14 @@ const DataModeling = () => {
                       >
                         Pie Chart
                       </button>
-                      {/* <button
+                      <button
                         className={`chart-tab ${
                           activeTab === "tab4" ? "chart-tab-active" : ""
                         }`}
                         onClick={() => handlePieChart("tab4")}
                       >
                         Bar Chart
-                      </button> */}
+                      </button>
                     </div>
                     {showPieChart && (
                       <div className="charts-container">
@@ -1031,7 +1060,7 @@ const DataModeling = () => {
                     {showPieChart && (
                       <div className="charts-container">
                         <div className="bar-chart">
-                          <InventoryBarChart data={data} />
+                          <NewsBarChart data={data} />
                         </div>
                       </div>
                     )}

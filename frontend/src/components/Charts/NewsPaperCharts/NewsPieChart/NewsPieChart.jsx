@@ -53,25 +53,30 @@ function NewsPieChart({ data }) {
     const bgColors2 = [ "#167505", "#86ca03", "#51356d", "#aa59e7", "#fef291", "#dceb85","#ddcc5f","#171d13","#837d8e","#7382a7","#e09069","#a47da0","#773759","#60e6aa","#b0f2fe","#73e2b3"
     ]
 
+    // const [userData1, setUserData1] = useState({
+    //     // 
+    //     labels: slicedData.map((data) => data.Product_ID),
+    //     datasets: [{
+    //         // label: "Sales Data",
+    //         data: slicedData.map((data) => data.Reorder_Quantity_Prediction_with_live_data),
+    //         backgroundColor: bgColor1,
+    //         borderColor: "white",
+    //         borderWidth: 1,
+    //         hoverOffset: 30,
+    //     },
+    //     ]
+    // })
     const [userData1, setUserData1] = useState({
         // 
-        labels: slicedData.map((data) => data.Product_ID),
+        labels: data.map((data) => data.Distribution_Center_ID),
         datasets: [{
             // label: "Sales Data",
-            data: slicedData.map((data) => data.Reorder_Quantity_Prediction_with_live_data),
+            data: data.map((data) => data.Predicted_NEWS_Paper_Demand_Quantity),
             backgroundColor: bgColor1,
             borderColor: "white",
             borderWidth: 1,
             hoverOffset: 30,
         },
-        // {
-        //     // label: "Sales Data",
-        //     data: slicedData.map((data) => data.Historical_Monthly_Sales),
-        //     backgroundColor: bgColors2,
-        //     borderColor: "white",
-        //     borderWidth: 1,
-        //     hoverOffset: 30
-        // }
         ]
     })
 
