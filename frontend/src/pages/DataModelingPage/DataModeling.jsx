@@ -383,13 +383,15 @@ const DataModeling = () => {
               Material: "Paper",
               Supplier: "",
               Distribution_Center: `IB01`,
-              Quantity: record.Predicted_Reams_Of_Paper.toString()
+              // Quantity: record.Predicted_Reams_Of_Paper.toString()
+              Quantity: "1282"
         },
         {
               Material: "Ink",
               Supplier: "",
               Distribution_Center: `IB01`,
-              Quantity: record.Ink_required_Predicted_liters.toString()
+              // Quantity: record.Ink_required_Predicted_liters.toString()
+              Quantity: "666"
         }
       )
       }
