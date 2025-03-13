@@ -813,7 +813,7 @@ const DataModeling = () => {
         <div className="data-models-section-container" onClick={closeAllPopups}>
           <section className="workflows-section">
             <h1 className="use-case-heading" onClick={handleResultsData}>
-              Migrate Data
+              Data Migration
             </h1>
             <div className="data-model-types">
               <h2
