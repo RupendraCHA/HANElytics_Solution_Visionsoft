@@ -138,6 +138,7 @@ export const transferDataToSAP1 = async (req, res) => {
       return res.status(201).json({
         message: "✔✔✔ Data Transferred Successfully to the SAP System. ✔✔✔",
         success: true,
+        data: odataPayload1
       });
     }else {
       return res.status(500).json({

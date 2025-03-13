@@ -10,6 +10,9 @@ import { VscGraphScatter } from "react-icons/vsc";
 import { LuArrowUpRight } from "react-icons/lu";
 import { FaDatabase } from "react-icons/fa6";
 import { MdInsertChartOutlined } from "react-icons/md";
+import { MdInfo } from "react-icons/md";
+
+
 import {
   news_paper_model_datasets,
   inventory_model_datasets,
@@ -71,6 +74,8 @@ const DataModeling = () => {
   const [migrateModelOpen, setMigrateModelOpen] = useState("");
   const [isLoadingTrue, setIsLoadingTrue] = useState(false);
   const [loadModelData, setLoadModelData] = useState(false);
+  const [showImage, setShowImage] = useState(false)
+  const [procureData, setProcureData] = useState([])
 
   // useEffect(() => {
   //   getInventoryDataFromMongoDB1()
@@ -185,6 +190,8 @@ const DataModeling = () => {
     if (result.data.success === true) {
       setIsLoadingTrue(false);
       setSapText(result.data.message);
+      console.log(result.data.data)
+      setProcureData(result.data.data)
     } else {
       setSapText(result.data.message);
       setIsLoadingTrue(false);
@@ -358,23 +365,36 @@ const DataModeling = () => {
       for (let i = 0; i < data.length; i++) {
         const record = data[i];
 
+        // sapFields1.push(
+        //   {
+        //       Material: "Paper",
+        //       Supplier: "",
+        //       Distribution_Center: `${record.Distribution_Center_ID.slice(0,2)+record.Distribution_Center_ID.slice(3,5)}`,
+        //       Quantity: record.Predicted_Reams_Of_Paper.toString()
+        // },
+        // {
+        //       Material: "Ink",
+        //       Supplier: "",
+        //       Distribution_Center: `${record.Distribution_Center_ID.slice(0,2)+record.Distribution_Center_ID.slice(3,5)}`,
+        //       Quantity: record.Ink_required_Predicted_liters.toString()
+        // }
         sapFields1.push(
           {
               Material: "Paper",
               Supplier: "",
-              Distribution_Center: `${record.Distribution_Center_ID.slice(0,2)+record.Distribution_Center_ID.slice(3,5)}`,
+              Distribution_Center: `IB01`,
               Quantity: record.Predicted_Reams_Of_Paper.toString()
         },
         {
               Material: "Ink",
               Supplier: "",
-              Distribution_Center: `${record.Distribution_Center_ID.slice(0,2)+record.Distribution_Center_ID.slice(3,5)}`,
+              Distribution_Center: `IB01`,
               Quantity: record.Ink_required_Predicted_liters.toString()
         }
       )
       }
 
-      return sapFields1;
+      return sapFields1.slice(0,2);
 
     }
     let objectDataForSAP;
@@ -673,6 +693,14 @@ const DataModeling = () => {
     }
   };
 
+  const handleInfo = () => {
+    if (showImage === false){
+      setShowImage(true)
+    }else{
+      setShowImage(false)
+    }
+  }
+
   return (
     <>
       <div className="data-modeling-container p-5">
@@ -820,7 +848,7 @@ const DataModeling = () => {
                 onClick={getNewsPaperDataFromMongoDB}
               >
                 <LuArrowUpRight className="process-arrow" />
-                Predicting Reams of Paper & Ink of NEWS Paper for each Distribution Center
+                Predicting Reams of Paper & Ink for Demanded Quantity of NEWS Paper to each Distribution Center
               </h2>
               <h2
                 className={inventoryData === true ? "model-name" : "active"}
@@ -886,6 +914,8 @@ const DataModeling = () => {
               <div>
                 {isLoadingTrue && <div className="spinner"></div>}
                 <h2 className="select-text">{sapText}</h2>
+              
+
               </div>
             </div>
           )}
@@ -938,6 +968,7 @@ const DataModeling = () => {
                         className="btn btn-success results"
                       >
                         View Model Insights
+
                       </button>
                     </div>
                   </>
@@ -945,7 +976,10 @@ const DataModeling = () => {
                 {activeTab === "tab2" && (
                   <div id="tab2" className="content">
                     <div className="charts-buttons">
-                      <button
+                      <div style={{display: "flex", justifyContent: "flex-end", cursor: "pointer", color: "black"}} onClick={handleInfo}>
+                        <MdInfo/>
+                      </div>
+                      {/* <button
                         className={`chart-tab ${
                           activeTab === "tab3" ? "chart-tab-active" : ""
                         }`}
@@ -960,7 +994,7 @@ const DataModeling = () => {
                         onClick={() => handlePieChart("tab4")}
                       >
                         Bar Chart
-                      </button>
+                      </button> */}
                     </div>
                     {showResults && (
                       <>
@@ -974,6 +1008,8 @@ const DataModeling = () => {
                             equipmentData1={equipmentData1}
                             clinicalData={clinicalData}
                           />
+                      {showImage && <img style={{width: "100%"}} src="https://res.cloudinary.com/dvxkeeeqs/image/upload/v1741880873/Calculations_t7glwj.png"/>}
+
                         </div>
                       </>
                     )}

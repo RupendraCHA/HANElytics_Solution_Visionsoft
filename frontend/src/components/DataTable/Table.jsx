@@ -47,7 +47,7 @@ const Table = (props) => {
                         <td className='column-name'>S.No</td>
                         <td className='column-name'>Distribution_Center_ID</td>
                         {/* <td className='column-name'>Historical NEWS Paper Demand</td> */}
-                        {/* <td className='column-name'>Predicted NEWS Paper Demand</td> */}
+                        <td className='column-name'>Predicted NEWS Papers Demand</td>
                         <td className='column-name'>Predicted Reams of Paper</td>
                         <td className='column-name'>Predicted Ink in liters</td>
 
@@ -83,7 +83,7 @@ const Table = (props) => {
                         <td>46780</td>
                     </tr> */}
                     {
-                        data.map((eachRow, index) => {
+                        data.slice(0,1).map((eachRow, index) => {
                             // return (
                             //     <tr key={index}>
                             //         <td>{index + 3}</td>
@@ -113,10 +113,11 @@ const Table = (props) => {
 
                             return(
                                 <tr key={index}>
-                                    <td>{index+1}</td>
-                                    <td>{eachRow.Distribution_Center_ID.slice(0,2)+eachRow.Distribution_Center_ID.slice(3,5)}</td>
+                                    <td>{index+2}</td>
+                                    {/* <td>{eachRow.Distribution_Center_ID.slice(0,2)+eachRow.Distribution_Center_ID.slice(3,5)}</td> */}
+                                    <td>IB01</td>
                                     {/* <td>{eachRow.Historical_News_Paper_Demand}</td> */}
-                                    {/* <td>{eachRow.Predicted_NEWS_Paper_Demand_Quantity}</td> */}
+                                    <td>{eachRow.Predicted_NEWS_Paper_Demand_Quantity}</td>
                                     <td>{eachRow.Predicted_Reams_Of_Paper}</td>
                                     <td>{eachRow.Ink_required_Predicted_liters}</td>
                                 </tr>
