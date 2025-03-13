@@ -384,14 +384,14 @@ const DataModeling = () => {
               Supplier: "",
               Distribution_Center: `IB01`,
               // Quantity: record.Predicted_Reams_Of_Paper.toString()
-              Quantity: "1282"
+              Quantity: "12822"
         },
         {
               Material: "Ink",
               Supplier: "",
               Distribution_Center: `IB01`,
               // Quantity: record.Ink_required_Predicted_liters.toString()
-              Quantity: "666"
+              Quantity: "6667"
         }
       )
       }
