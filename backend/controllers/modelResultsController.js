@@ -92,8 +92,10 @@ export const transferDataToSAP1 = async (req, res) => {
     // const username1 = "vamshib";
     // const password1 = "Anjaneya@209";
     //  // 2022 system
-    const username1 = "Hanelytics";
-    const password1 = "Hanelytics@24";
+    // const username1 = "Hanelytics";
+    // const password1 = "Hanelytics@24";
+    const username1 = "HANEYA_RPA";
+    const password1 = "Haneya@1234";
   //   async function getCsrfToken() {
   //     const response = await axios.get('http://52.38.202.58:8080/sap/opu/odata/VSHANEYA/HANELYTICS_THRT_SRV/AutomationSet', {
   //         headers: {
