@@ -590,3 +590,16 @@ ul {
   margin-left: 5px;
   /* margin-bottom: 6px; */
 }
+.stp{
+  border: 1px solid #0522e1;
+  padding: 2px 10px;
+  border-radius: 6px;
+  background-color: #0522e1;
+  color: #fff;
+  font-size: 20px;
+}
+.sap{
+  font-size: 50px;
+  color: #0451e0;
+  padding: 2px;
+}

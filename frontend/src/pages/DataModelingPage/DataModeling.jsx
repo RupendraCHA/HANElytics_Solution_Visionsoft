@@ -13,7 +13,6 @@ import { MdInsertChartOutlined } from "react-icons/md";
 import { MdInfo } from "react-icons/md";
 import { SiSap } from "react-icons/si";
 
-
 import {
   news_paper_model_datasets,
   inventory_model_datasets,
@@ -75,8 +74,8 @@ const DataModeling = () => {
   const [migrateModelOpen, setMigrateModelOpen] = useState("");
   const [isLoadingTrue, setIsLoadingTrue] = useState(false);
   const [loadModelData, setLoadModelData] = useState(false);
-  const [showImage, setShowImage] = useState(false)
-  const [procureData, setProcureData] = useState([])
+  const [showImage, setShowImage] = useState(false);
+  const [procureData, setProcureData] = useState([]);
 
   // useEffect(() => {
   //   getInventoryDataFromMongoDB1()
@@ -191,8 +190,8 @@ const DataModeling = () => {
     if (result.data.success === true) {
       setIsLoadingTrue(false);
       setSapText(result.data.message);
-      console.log(result.data.data)
-      setProcureData(result.data.data)
+      console.log(result.data.data);
+      setProcureData(result.data.data);
     } else {
       setSapText(result.data.message);
       setIsLoadingTrue(false);
@@ -221,25 +220,23 @@ const DataModeling = () => {
       setSendData1(true);
       setSendData2(true);
 
-    const jwtToken = localStorage.getItem("token");
-
+      const jwtToken = localStorage.getItem("token");
 
       const response = await axios.get(url + "/api/model/inventory1", {
         headers: { token: jwtToken },
       });
 
-      const Array = response.data
+      const Array = response.data;
 
-      if (Array){
+      if (Array) {
         setNewsPaperData(false);
         setLoadModelData(false);
       }
-      
-        setData(Array);
+
+      setData(Array);
       console.log(Array);
 
-        handleTabClick("tab1");
-      
+      handleTabClick("tab1");
     } catch (error) {
       console.log(error);
     }
@@ -323,7 +320,7 @@ const DataModeling = () => {
     //   Distribution_Center: 'IB01',
     //   Quantity: '46780'
     // }];
-    let sapFields1 = []
+    let sapFields1 = [];
 
     const addObjectsData = (data) => {
       for (let i = 0; i < data.length; i++) {
@@ -368,38 +365,43 @@ const DataModeling = () => {
 
         sapFields1.push(
           {
-              Material: "Paper",
-              Supplier: "",
-              Distribution_Center: `${record.Distribution_Center_ID.slice(0,2)+record.Distribution_Center_ID.slice(3,5)}`,
-              Quantity: record.Predicted_Reams_Of_Paper.toString()
-        },
-        {
-              Material: "Ink",
-              Supplier: "",
-              Distribution_Center: `${record.Distribution_Center_ID.slice(0,2)+record.Distribution_Center_ID.slice(3,5)}`,
-              Quantity: record.Ink_required_Predicted_liters.toString()
-        }
-        // sapFields1.push(
-        //   {
-        //       Material: "Paper",
-        //       Supplier: "",
-        //       Distribution_Center: `IB01`,
-        //       // Quantity: record.Predicted_Reams_Of_Paper.toString()
-        //       Quantity: "12822"
-        // },
-        // {
-        //       Material: "Ink",
-        //       Supplier: "",
-        //       Distribution_Center: `IB01`,
-        //       // Quantity: record.Ink_required_Predicted_liters.toString()
-        //       Quantity: "6667"
-        // }
-      )
+            Material: "Paper",
+            Supplier: "",
+            Distribution_Center: `${
+              record.Distribution_Center_ID.slice(0, 2) +
+              record.Distribution_Center_ID.slice(3, 5)
+            }`,
+            Quantity: record.Predicted_Reams_Of_Paper.toString(),
+          },
+          {
+            Material: "Ink",
+            Supplier: "",
+            Distribution_Center: `${
+              record.Distribution_Center_ID.slice(0, 2) +
+              record.Distribution_Center_ID.slice(3, 5)
+            }`,
+            Quantity: record.Ink_required_Predicted_liters.toString(),
+          }
+          // sapFields1.push(
+          //   {
+          //       Material: "Paper",
+          //       Supplier: "",
+          //       Distribution_Center: `IB01`,
+          //       // Quantity: record.Predicted_Reams_Of_Paper.toString()
+          //       Quantity: "12822"
+          // },
+          // {
+          //       Material: "Ink",
+          //       Supplier: "",
+          //       Distribution_Center: `IB01`,
+          //       // Quantity: record.Ink_required_Predicted_liters.toString()
+          //       Quantity: "6667"
+          // }
+        );
       }
 
-      return sapFields1.slice(0,2);
-
-    }
+      return sapFields1.slice(0, 2);
+    };
     let objectDataForSAP;
     let objectDataForSAP1;
 
@@ -697,12 +699,12 @@ const DataModeling = () => {
   };
 
   const handleInfo = () => {
-    if (showImage === false){
-      setShowImage(true)
-    }else{
-      setShowImage(false)
+    if (showImage === false) {
+      setShowImage(true);
+    } else {
+      setShowImage(false);
     }
-  }
+  };
 
   return (
     <>
@@ -851,7 +853,8 @@ const DataModeling = () => {
                 onClick={getNewsPaperDataFromMongoDB}
               >
                 <LuArrowUpRight className="process-arrow" />
-                Predicting Reams of Paper & Ink for Demanded Quantity of NEWS Paper to each Distribution Center
+                Predicting Reams of Paper & Ink for Demanded Quantity of NEWS
+                Paper to each Distribution Center
               </h2>
               <h2
                 className={inventoryData === true ? "model-name" : "active"}
@@ -917,8 +920,6 @@ const DataModeling = () => {
               <div>
                 {isLoadingTrue && <div className="spinner"></div>}
                 <h2 className="select-text">{sapText}</h2>
-              
-
               </div>
             </div>
           )}
@@ -940,7 +941,15 @@ const DataModeling = () => {
             >
               <div>
                 {isLoadingTrue && <div className="spinner"></div>}
-                <h2 className="select-text">{sapText}</h2>
+                <h2 className="select-text">
+                  {sapText}{" "}
+                  {sapText === "✓✓ Data Transferred Successfully" && (
+                    <>
+                      from <span className="stp">HANElytics</span> to{" "}
+                      <SiSap className="sap" />
+                    </>
+                  )}
+                </h2>
               </div>
             </div>
           )}
@@ -971,7 +980,6 @@ const DataModeling = () => {
                         className="btn btn-success results"
                       >
                         View Model Insights
-
                       </button>
                     </div>
                   </>
@@ -979,8 +987,16 @@ const DataModeling = () => {
                 {activeTab === "tab2" && (
                   <div id="tab2" className="content">
                     <div className="charts-buttons">
-                      <div style={{display: "flex", justifyContent: "flex-end", cursor: "pointer", color: "black"}} onClick={handleInfo}>
-                        <MdInfo/>
+                      <div
+                        style={{
+                          display: "flex",
+                          justifyContent: "flex-end",
+                          cursor: "pointer",
+                          color: "black",
+                        }}
+                        onClick={handleInfo}
+                      >
+                        <MdInfo />
                       </div>
                       {/* <button
                         className={`chart-tab ${
@@ -1011,8 +1027,12 @@ const DataModeling = () => {
                             equipmentData1={equipmentData1}
                             clinicalData={clinicalData}
                           />
-                      {showImage && <img style={{width: "100%"}} src="https://res.cloudinary.com/dvxkeeeqs/image/upload/v1741880873/Calculations_t7glwj.png"/>}
-
+                          {showImage && (
+                            <img
+                              style={{ width: "100%" }}
+                              src="https://res.cloudinary.com/dvxkeeeqs/image/upload/v1741880873/Calculations_t7glwj.png"
+                            />
+                          )}
                         </div>
                       </>
                     )}
