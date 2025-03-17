@@ -367,19 +367,13 @@ const DataModeling = () => {
           {
             Material: "Paper",
             Supplier: "",
-            Distribution_Center: `${
-              record.Distribution_Center_ID.slice(0, 2) +
-              record.Distribution_Center_ID.slice(3, 5)
-            }`,
+            Distribution_Center: `IB01`,
             Quantity: record.Predicted_Reams_Of_Paper.toString(),
           },
           {
             Material: "Ink",
             Supplier: "",
-            Distribution_Center: `${
-              record.Distribution_Center_ID.slice(0, 2) +
-              record.Distribution_Center_ID.slice(3, 5)
-            }`,
+            Distribution_Center: `IB01`,
             Quantity: record.Ink_required_Predicted_liters.toString(),
           }
           // sapFields1.push(
