@@ -26,7 +26,7 @@ const App = () => {
       <Route exact path='/home' element={<Home />}></Route>
       <Route exact path='/dataModeling' element={<DataModeling />}></Route>
       <Route exact path='/registration' element={<Registration />}></Route>
-      <Route exact path='/dashbords' element={<PowerBiDashboard />}></Route>
+      <Route exact path='/dashboards' element={<PowerBiDashboard />}></Route>
       <Route path="*" element={<NotFound />}></Route>
     </Routes>
   </>
