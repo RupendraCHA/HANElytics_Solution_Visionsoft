@@ -77,6 +77,7 @@ const DataModeling = () => {
   const [showImage, setShowImage] = useState(false);
   const [procureData, setProcureData] = useState([]);
 
+
   // useEffect(() => {
   //   getInventoryDataFromMongoDB1()
   // }, [])
@@ -714,16 +715,14 @@ const DataModeling = () => {
                 <h4
                   onClick={() => handleIsOpened("data-models")}
                   style={{ color: "#000" }}
-                  className={`tabHeading ${
-                    dataModelOpen === "data-models" && "tab-heading"
-                  }`}
+                  className={`tabHeading ${dataModelOpen === "data-models" && "tab-heading"
+                    }`}
                 >
                   Data Models
                   <MdKeyboardArrowUp
                     style={{ fontSize: "30px" }}
-                    className={`"arrow" ${
-                      dataModelOpen === "data-models" ? "arrow-down" : ""
-                    }`}
+                    className={`"arrow" ${dataModelOpen === "data-models" ? "arrow-down" : ""
+                      }`}
                   />
                 </h4>
                 {dataModelOpen === "data-models" && (
@@ -759,16 +758,14 @@ const DataModeling = () => {
                 <h4
                   onClick={() => handleMigrateData("migrate-data")}
                   style={{ color: "#000" }}
-                  className={`tabHeading ${
-                    migrateModelOpen === "migrate-data" && "tab-heading"
-                  }`}
+                  className={`tabHeading ${migrateModelOpen === "migrate-data" && "tab-heading"
+                    }`}
                 >
                   Migrate Data
                   <MdKeyboardArrowUp
                     style={{ fontSize: "30px" }}
-                    className={`${
-                      migrateModelOpen === "migrate-data" ? "arrow-down" : ""
-                    }`}
+                    className={`${migrateModelOpen === "migrate-data" ? "arrow-down" : ""
+                      }`}
                   />
                 </h4>
                 {migrateModelOpen === "migrate-data" && (
@@ -788,6 +785,7 @@ const DataModeling = () => {
                   </div>
                 )}
               </div>
+              <h4 onClick={() => navigate("/dashboards")} className="tabHeading tab-heding" style={{ color: "#000" }}>Power BI Reports</h4>
             </div>
             <div className="drop-down">
               <div>
@@ -1050,17 +1048,15 @@ const DataModeling = () => {
                   <div id="tab2" className="content">
                     <div className="charts-buttons">
                       <button
-                        className={`chart-tab ${
-                          activeTab === "tab3" ? "chart-tab-active" : ""
-                        }`}
+                        className={`chart-tab ${activeTab === "tab3" ? "chart-tab-active" : ""
+                          }`}
                         onClick={() => handlePieChart("tab3")}
                       >
                         Pie Chart
                       </button>
                       <button
-                        className={`chart-tab ${
-                          activeTab === "tab4" ? "chart-tab-active" : ""
-                        }`}
+                        className={`chart-tab ${activeTab === "tab4" ? "chart-tab-active" : ""
+                          }`}
                         onClick={() => handlePieChart("tab4")}
                       >
                         Bar Chart
@@ -1094,17 +1090,15 @@ const DataModeling = () => {
                   <div id="tab2" className="content">
                     <div className="charts-buttons">
                       <button
-                        className={`chart-tab ${
-                          activeTab === "tab3" ? "chart-tab-active" : ""
-                        }`}
+                        className={`chart-tab ${activeTab === "tab3" ? "chart-tab-active" : ""
+                          }`}
                         onClick={() => handlePieChart("tab3")}
                       >
                         Pie Chart
                       </button>
                       <button
-                        className={`chart-tab ${
-                          activeTab === "tab4" ? "chart-tab-active" : ""
-                        }`}
+                        className={`chart-tab ${activeTab === "tab4" ? "chart-tab-active" : ""
+                          }`}
                         onClick={() => handlePieChart("tab4")}
                       >
                         Bar Chart
@@ -1172,17 +1166,15 @@ const DataModeling = () => {
                   <div id="tab2" className="content">
                     <div className="charts-buttons">
                       <button
-                        className={`chart-tab ${
-                          activeTab === "tab3" ? "chart-tab-active" : ""
-                        }`}
+                        className={`chart-tab ${activeTab === "tab3" ? "chart-tab-active" : ""
+                          }`}
                         onClick={() => handlePieChart("tab3")}
                       >
                         Pie Chart
                       </button>
                       <button
-                        className={`chart-tab ${
-                          activeTab === "tab4" ? "chart-tab-active" : ""
-                        }`}
+                        className={`chart-tab ${activeTab === "tab4" ? "chart-tab-active" : ""
+                          }`}
                         onClick={() => handlePieChart("tab4")}
                       >
                         Bar Chart
@@ -1223,17 +1215,15 @@ const DataModeling = () => {
                   <div id="tab2" className="content">
                     <div className="charts-buttons">
                       <button
-                        className={`chart-tab ${
-                          activeTab === "tab3" ? "chart-tab-active" : ""
-                        }`}
+                        className={`chart-tab ${activeTab === "tab3" ? "chart-tab-active" : ""
+                          }`}
                         onClick={() => handlePieChart("tab3")}
                       >
                         Pie Chart
                       </button>
                       <button
-                        className={`chart-tab ${
-                          activeTab === "tab4" ? "chart-tab-active" : ""
-                        }`}
+                        className={`chart-tab ${activeTab === "tab4" ? "chart-tab-active" : ""
+                          }`}
                         onClick={() => handlePieChart("tab4")}
                       >
                         Bar Chart
@@ -1267,17 +1257,15 @@ const DataModeling = () => {
                   <div id="tab2" className="content">
                     <div className="charts-buttons">
                       <button
-                        className={`chart-tab ${
-                          activeTab === "tab3" ? "chart-tab-active" : ""
-                        }`}
+                        className={`chart-tab ${activeTab === "tab3" ? "chart-tab-active" : ""
+                          }`}
                         onClick={() => handlePieChart("tab3")}
                       >
                         Pie Chart
                       </button>
                       <button
-                        className={`chart-tab ${
-                          activeTab === "tab4" ? "chart-tab-active" : ""
-                        }`}
+                        className={`chart-tab ${activeTab === "tab4" ? "chart-tab-active" : ""
+                          }`}
                         onClick={() => handlePieChart("tab4")}
                       >
                         Bar Chart
@@ -1344,17 +1332,15 @@ const DataModeling = () => {
                   <div id="tab2" className="content">
                     <div className="charts-buttons">
                       <button
-                        className={`chart-tab ${
-                          activeTab === "tab3" ? "chart-tab-active" : ""
-                        }`}
+                        className={`chart-tab ${activeTab === "tab3" ? "chart-tab-active" : ""
+                          }`}
                         onClick={() => handlePieChart("tab3")}
                       >
                         Pie Chart
                       </button>
                       <button
-                        className={`chart-tab ${
-                          activeTab === "tab4" ? "chart-tab-active" : ""
-                        }`}
+                        className={`chart-tab ${activeTab === "tab4" ? "chart-tab-active" : ""
+                          }`}
                         onClick={() => handlePieChart("tab4")}
                       >
                         Bar Chart
@@ -1395,17 +1381,15 @@ const DataModeling = () => {
                   <div id="tab2" className="content">
                     <div className="charts-buttons">
                       <button
-                        className={`chart-tab ${
-                          activeTab === "tab3" ? "chart-tab-active" : ""
-                        }`}
+                        className={`chart-tab ${activeTab === "tab3" ? "chart-tab-active" : ""
+                          }`}
                         onClick={() => handlePieChart("tab3")}
                       >
                         Pie Chart
                       </button>
                       <button
-                        className={`chart-tab ${
-                          activeTab === "tab4" ? "chart-tab-active" : ""
-                        }`}
+                        className={`chart-tab ${activeTab === "tab4" ? "chart-tab-active" : ""
+                          }`}
                         onClick={() => handlePieChart("tab4")}
                       >
                         Bar Chart
@@ -1439,17 +1423,15 @@ const DataModeling = () => {
                   <div id="tab2" className="content">
                     <div className="charts-buttons">
                       <button
-                        className={`chart-tab ${
-                          activeTab === "tab3" ? "chart-tab-active" : ""
-                        }`}
+                        className={`chart-tab ${activeTab === "tab3" ? "chart-tab-active" : ""
+                          }`}
                         onClick={() => handlePieChart("tab3")}
                       >
                         Pie Chart
                       </button>
                       <button
-                        className={`chart-tab ${
-                          activeTab === "tab4" ? "chart-tab-active" : ""
-                        }`}
+                        className={`chart-tab ${activeTab === "tab4" ? "chart-tab-active" : ""
+                          }`}
                         onClick={() => handlePieChart("tab4")}
                       >
                         Bar Chart
@@ -1523,17 +1505,15 @@ const DataModeling = () => {
                   <div id="tab2" className="content">
                     <div className="charts-buttons">
                       <button
-                        className={`chart-tab ${
-                          activeTab === "tab3" ? "chart-tab-active" : ""
-                        }`}
+                        className={`chart-tab ${activeTab === "tab3" ? "chart-tab-active" : ""
+                          }`}
                         onClick={() => handlePieChart("tab3")}
                       >
                         Pie Chart
                       </button>
                       <button
-                        className={`chart-tab ${
-                          activeTab === "tab4" ? "chart-tab-active" : ""
-                        }`}
+                        className={`chart-tab ${activeTab === "tab4" ? "chart-tab-active" : ""
+                          }`}
                         onClick={() => handlePieChart("tab4")}
                       >
                         Bar Chart
@@ -1574,17 +1554,15 @@ const DataModeling = () => {
                   <div id="tab2" className="content">
                     <div className="charts-buttons">
                       <button
-                        className={`chart-tab ${
-                          activeTab === "tab3" ? "chart-tab-active" : ""
-                        }`}
+                        className={`chart-tab ${activeTab === "tab3" ? "chart-tab-active" : ""
+                          }`}
                         onClick={() => handlePieChart("tab3")}
                       >
                         Pie Chart
                       </button>
                       <button
-                        className={`chart-tab ${
-                          activeTab === "tab4" ? "chart-tab-active" : ""
-                        }`}
+                        className={`chart-tab ${activeTab === "tab4" ? "chart-tab-active" : ""
+                          }`}
                         onClick={() => handlePieChart("tab4")}
                       >
                         Bar Chart
@@ -1617,17 +1595,15 @@ const DataModeling = () => {
                   <div id="tab2" className="content">
                     <div className="charts-buttons">
                       <button
-                        className={`chart-tab ${
-                          activeTab === "tab3" ? "chart-tab-active" : ""
-                        }`}
+                        className={`chart-tab ${activeTab === "tab3" ? "chart-tab-active" : ""
+                          }`}
                         onClick={() => handlePieChart("tab3")}
                       >
                         Pie Chart
                       </button>
                       <button
-                        className={`chart-tab ${
-                          activeTab === "tab4" ? "chart-tab-active" : ""
-                        }`}
+                        className={`chart-tab ${activeTab === "tab4" ? "chart-tab-active" : ""
+                          }`}
                         onClick={() => handlePieChart("tab4")}
                       >
                         Bar Chart
@@ -1698,17 +1674,15 @@ const DataModeling = () => {
                   <div id="tab2" className="content">
                     <div className="charts-buttons">
                       <button
-                        className={`chart-tab ${
-                          activeTab === "tab3" ? "chart-tab-active" : ""
-                        }`}
+                        className={`chart-tab ${activeTab === "tab3" ? "chart-tab-active" : ""
+                          }`}
                         onClick={() => handlePieChart("tab3")}
                       >
                         Pie Chart
                       </button>
                       <button
-                        className={`chart-tab ${
-                          activeTab === "tab4" ? "chart-tab-active" : ""
-                        }`}
+                        className={`chart-tab ${activeTab === "tab4" ? "chart-tab-active" : ""
+                          }`}
                         onClick={() => handlePieChart("tab4")}
                       >
                         Bar Chart
@@ -1749,17 +1723,15 @@ const DataModeling = () => {
                   <div id="tab2" className="content">
                     <div className="charts-buttons">
                       <button
-                        className={`chart-tab ${
-                          activeTab === "tab3" ? "chart-tab-active" : ""
-                        }`}
+                        className={`chart-tab ${activeTab === "tab3" ? "chart-tab-active" : ""
+                          }`}
                         onClick={() => handlePieChart("tab3")}
                       >
                         Pie Chart
                       </button>
                       <button
-                        className={`chart-tab ${
-                          activeTab === "tab4" ? "chart-tab-active" : ""
-                        }`}
+                        className={`chart-tab ${activeTab === "tab4" ? "chart-tab-active" : ""
+                          }`}
                         onClick={() => handlePieChart("tab4")}
                       >
                         Bar Chart
@@ -1792,17 +1764,15 @@ const DataModeling = () => {
                   <div id="tab2" className="content">
                     <div className="charts-buttons">
                       <button
-                        className={`chart-tab ${
-                          activeTab === "tab3" ? "chart-tab-active" : ""
-                        }`}
+                        className={`chart-tab ${activeTab === "tab3" ? "chart-tab-active" : ""
+                          }`}
                         onClick={() => handlePieChart("tab3")}
                       >
                         Pie Chart
                       </button>
                       <button
-                        className={`chart-tab ${
-                          activeTab === "tab4" ? "chart-tab-active" : ""
-                        }`}
+                        className={`chart-tab ${activeTab === "tab4" ? "chart-tab-active" : ""
+                          }`}
                         onClick={() => handlePieChart("tab4")}
                       >
                         Bar Chart
