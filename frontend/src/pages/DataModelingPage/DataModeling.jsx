@@ -709,7 +709,7 @@ const DataModeling = () => {
             <Link to="/home" className="website-heading">
               <h1>HANELYTICS</h1>
             </Link>
-            {/* <div className="model-migrate-tabs">
+            <div className="model-migrate-tabs">
               <div style={{ position: "relative" }}>
                 <h4
                   onClick={() => handleIsOpened("data-models")}
@@ -788,7 +788,7 @@ const DataModeling = () => {
                   </div>
                 )}
               </div>
-            </div> */}
+            </div>
             <div className="drop-down">
               <div>
                 {/* <Dropdown
