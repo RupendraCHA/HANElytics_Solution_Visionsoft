@@ -13,7 +13,7 @@ const port = process.env.PORT;
 app.use(express.json());
 app.use(
   cors({
-    // origin: ["http://localhost:5175"],
+    // origin: ["http://localhost:5173"],
     origin: ["https://hanelytics-solution-visionsoft-1.onrender.com"], // origin
     methods: ["GET", "POST", "PUT", "DELETE"],
     credentials: true,
