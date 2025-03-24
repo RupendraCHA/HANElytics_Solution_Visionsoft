@@ -48,6 +48,34 @@ const PowerBiDashboard = () => {
         }
     ]
 
+    const orderToCash = [
+        {
+            headerText: "ORDERS",
+            dataText: "order",
+            url: "https://app.powerbi.com/groups/84691a96-fa30-4e99-8ebf-da73b935661b/reports/12256cd6-0191-4734-b9e2-26fb5da6f018/519f2f1b088001690a92?experience=power-bi&clientSideAuth=0",
+        },
+
+        {
+            headerText: "DELIVERY",
+            dataText: "delivery",
+            url: "https://app.powerbi.com/groups/84691a96-fa30-4e99-8ebf-da73b935661b/reports/a55c32db-32a9-42d9-8a3b-b4acb5d156c3/aa6705bbc3b7ef0d4147?experience=power-bi&clientSideAuth=0",
+        },
+
+        {
+            headerText: "BILLING",
+            dataText: "billing",
+            url: "https://app.powerbi.com/groups/84691a96-fa30-4e99-8ebf-da73b935661b/reports/39b627f4-0188-4651-890f-d03aa68c9ab3/ce8017ebff5ddce17665?experience=power-bi&clientSideAuth=0",
+        }
+    ]
+    const procurement = [
+        {
+            headerText: "PO HEADER",
+            dataText: "purchase",
+            url: "https://app.powerbi.com/groups/84691a96-fa30-4e99-8ebf-da73b935661b/reports/0c34af53-228f-49e3-a217-c7942da55d86/9399d3c37b14e9f48649?experience=power-bi&clientSideAuth=0",
+        }
+    ]
+
+
     return (
         // <MsalProvider instance={msalInstance}>
         <div className="dashboard-container">
@@ -67,6 +95,38 @@ const PowerBiDashboard = () => {
                         })}
                     </div>
                 </div >
+
+                <div className="dashboard-container">
+                    <h1 className="dashboard-title">ORDER TO CASH</h1>
+                    <div className="dashboard-section">
+                        {orderToCash.map((type) => {
+                            return (
+                                <div key={type.dataText} className="dashboard-card">
+                                    <h1 className="card-title">{type.headerText}</h1>
+                                    <button className="dashboard-button" onClick={() => login(`${type.dataText}, ${type.url}`)}>
+                                        <a href={type.url} target='_blank'>Click to View</a>
+                                    </button>
+                                </div>
+                            )
+                        })}
+                    </div>
+                </div>
+                <div className="dashboard-container">
+                    <h1 className="dashboard-title">PROCUREMENT</h1>
+                    <div className="dashboard-section">
+                        {procurement.map((type) => {
+                            return (
+                                <div key={type.dataText} className="dashboard-card">
+                                    <h1 className="card-title">{type.headerText}</h1>
+                                    <button className="dashboard-button" onClick={() => login(`${type.dataText}, ${type.url}`)} >
+                                        <a href={type.url} target='_blank'>Click to View</a>
+                                    </button>
+                                </div>
+                            )
+                        })}
+                    </div>
+                </div>
+
 
             </div >
         </div >
