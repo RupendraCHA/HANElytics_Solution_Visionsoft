@@ -92,7 +92,7 @@ const PowerBiDashboard = () => {
             </Link>
             <div className="dashboard-tabs">
               <h1 onClick={() => showDashboards("")} className={`powerbi-dashboard-tab-item ${activeDashboard === "" ? "active-dashboard-btn" : ""}`}>View All</h1>
-              <h1 onClick={() => showDashboards("HANElytics")} className={`powerbi-dashboard-tab-item ${activeDashboard === "HANElytics" ? "active-dashboard-btn" : ""}`}>AI/ML Models</h1>
+              <h1 onClick={() => showDashboards("HANElytics")} className={`powerbi-dashboard-tab-item ${activeDashboard === "HANElytics" ? "active-dashboard-btn" : ""}`}>AI/ML Insights</h1>
               <h1 onClick={() => showDashboards("OrderToCash")} className={`powerbi-dashboard-tab-item ${activeDashboard === "OrderToCash" ? "active-dashboard-btn" : ""}`}>Order to Cash</h1>
               <h1 onClick={() => showDashboards("Procurement")} className={`powerbi-dashboard-tab-item ${activeDashboard === "Procurement" ? "active-dashboard-btn" : ""}`}>Procurement</h1>
           </div>
