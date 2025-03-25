@@ -13,10 +13,10 @@
     text-decoration: none;
     color: #fff;
   }
-  .home-heading h1 {
+  .header-home-heading h1 {
     color: #000;
     font-family: "Roboto";
-    font-size: max(2.2vw, 32px);
+    font-size: 28px;
     font-weight: 600;
     cursor: pointer;
     border: 2px solid #000;
@@ -36,7 +36,7 @@
   }
 
 .user-symbol{
-    margin-top: 20px;
+    /* margin-top: 20px; */
     text-align: center;
     text-decoration: none;
 

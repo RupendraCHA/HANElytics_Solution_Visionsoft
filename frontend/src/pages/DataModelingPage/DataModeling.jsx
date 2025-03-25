@@ -703,11 +703,11 @@ const DataModeling = () => {
 
   return (
     <>
-      <div className="data-modeling-container p-5">
+      <div className="data-modeling-container p-4">
         <header className="website-header1">
           {/* container */}
           <div className="header-container">
-            <Link to="/home" className="website-heading">
+            <Link to="/home" className="datamodels-website-heading">
               <h1>HANELYTICS</h1>
             </Link>
             <div className="model-migrate-tabs">
@@ -789,16 +789,11 @@ const DataModeling = () => {
             </div>
             <div className="drop-down">
               <div>
-                {/* <Dropdown
-                  menu={{ items }}
-                  trigger={["hover"]}
-                  id="items-drop-menu"
-                > */}
+                
                 <div className="icon-username">
                   <FaRegCircleUser className="user-icon" />
                   <p className="username-text">{username}</p>
                 </div>
-                {/* </Dropdown> */}
               </div>
               <div>
                 <button onClick={handleModelLogout}>Logout</button>

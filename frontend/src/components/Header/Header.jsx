@@ -40,7 +40,7 @@ const Header = () => {
 
     return (
         <div className='home-container'>
-            <Link to="/home" className='home-heading'>
+            <Link to="/home" className='header-home-heading'>
                 <h1 >
                     HANELYTICS
                 </h1>

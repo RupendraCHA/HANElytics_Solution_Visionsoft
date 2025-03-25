@@ -29,10 +29,10 @@
   color: #fff;
 }
 
-.website-heading h1 {
+.datamodels-website-heading h1 {
   color: #000;
   font-family: "Roboto";
-  font-size: max(2.2vw, 32px);
+  font-size: 28px;
   font-weight: 600;
   cursor: pointer;
   border: 2px solid #000;
