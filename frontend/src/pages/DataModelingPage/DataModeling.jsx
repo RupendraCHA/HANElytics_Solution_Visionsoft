@@ -711,7 +711,7 @@ const DataModeling = () => {
               <h1>HANELYTICS</h1>
             </Link>
             <div className="model-migrate-tabs">
-              {/* <div style={{ position: "relative" }}>
+              <div style={{ position: "relative" }}>
                 <h4
                   onClick={() => handleIsOpened("data-models")}
                   style={{ color: "#000" }}
@@ -784,7 +784,7 @@ const DataModeling = () => {
                     </p>
                   </div>
                 )}
-              </div> */}
+              </div>
               <h4 onClick={() => navigate("/dashboards")} className="tabHeading tab-heding" style={{ color: "#000" }}>Power BI Reports</h4>
             </div>
             <div className="drop-down">

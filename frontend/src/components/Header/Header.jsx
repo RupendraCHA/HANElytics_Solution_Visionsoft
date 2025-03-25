@@ -52,7 +52,6 @@ const Header = () => {
                             <p style={{color: "white"}}>{username}</p>
                         </div>
                 </Dropdown>
-                
             </div>
         </div>
     )
