@@ -108,7 +108,7 @@ const PowerBiDashboard = () => {
         <div className="container reporting dashboards">
           <div>
             {activeDashboard === "" && <><div>
-                <h1 className="dashboard-title">HANElytics AI/ML Driven Dashboards:</h1>
+                <h1 className="dashboard-title">AI/ML Driven Insights:</h1>
                 <div className="dashboard-section">
                   {HANElyticsDashboards.map((type) => {
                     return (
@@ -166,7 +166,7 @@ const PowerBiDashboard = () => {
               </div>
               </>}
               {activeDashboard === "HANElytics" && <div >
-                <h1 className="dashboard-title">HANElytics AI/ML Driven Dashboards:</h1>
+                <h1 className="dashboard-title">AI/ML Driven Insights:</h1>
                 <div className="dashboard-section">
                   {HANElyticsDashboards.map((type) => {
                     return (
