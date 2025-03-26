@@ -3,8 +3,9 @@
     margin: 0;
     font-family: 'poppins', sans-serif;
     box-sizing: border-box;
-} 
-.bi-home-heading h1{
+}
+
+.bi-home-heading h1 {
     color: #000;
     font-family: "Roboto";
     font-weight: 600;
@@ -15,22 +16,23 @@
     background-color: #fff;
     font-size: 28px;
 }
-.power-bidashboards{
+
+.power-bidashboards {
     display: flex;
     flex-direction: column;
 }
 
-.bi-reporting-dashboards{
-  /* background-image: url("https://res.cloudinary.com/dvxkeeeqs/image/upload/v1727805691/futuristic-digital-user-interface-dashboard_53876-115871_xeeybu.jpg"); */
+.bi-reporting-dashboards {
+    /* background-image: url("https://res.cloudinary.com/dvxkeeeqs/image/upload/v1727805691/futuristic-digital-user-interface-dashboard_53876-115871_xeeybu.jpg"); */
     /* background-image: url("../../assets/PowerBIBg.jpg"); */
     /* background: linear-gradient(to left, #0d62cbbf, #658ebfbf); */
     background-size: cover;
     min-height: 100vh;
-    object-fit:cover;
+    object-fit: cover;
 }
 
 .dashboard-title {
-    font-size: 1.8rem;
+    font-size: 22px;
     font-weight: 600;
     margin-bottom: 20px;
     padding-top: 20px;
@@ -39,9 +41,11 @@
     align-items: center;
 
 }
-.dashboard-title:hover{
+
+.dashboard-title:hover {
     text-decoration: underline;
 }
+
 .dashboard-section {
     display: flex;
     gap: 50px;
@@ -68,8 +72,8 @@
 
 .dashboard-card {
     background-color: white;
-    height: 55vh;
-    width: 30%;
+    /* height: 65vh; */
+    width: 25%;
     display: flex;
     align-items: center;
     flex-direction: column;
@@ -88,15 +92,16 @@
 }
 
 .card-title {
-    font-size: 18px;
+    font-size: 16px;
     font-weight: bold;
     text-align: center;
     padding: 12px;
     margin-top: 10px;
     color: #fff;
-    
+
 }
-.bi-header-text{
+
+.bi-header-text {
     height: 8vh;
     /* border-bottom: 2px solid #0736df; */
     border-bottom: 2px solid #000;
@@ -109,10 +114,9 @@
     border-top-right-radius: 12px;
 }
 
-.dashboard-button {
-    padding:12px;
+.bi-dashboard-button {
+    padding: 12px;
     background-color: #0d62cb7e;
-    color: #fff;
     font-weight: bold;
     font-size: 16px;
     box-shadow: 0 4px 6px #0000004d;
@@ -125,50 +129,54 @@
     border-top: 2px solid #000;
 }
 
-.dashboard-button:hover {
-    background-color: #1405ebcd;
+.bi-dashboard-button:hover {
+    background-color: #1405eb;
     color: #fff;
 
-    a:hover{
-      color: #fff;
+    a:hover {
+        color: #fff;
     }
 }
 
-.dashboard-button a {
+.bi-dashboard-button a {
     text-decoration: none;
     color: #000;
     border-radius: 12px;
 }
 
-.dashboard-tabs{
+.dashboard-tabs {
     display: flex;
     padding: 4px;
     border-radius: 12px;
     color: #fff;
     gap: 4px;
 }
-.powerbi-dashboard-tab-item{
+
+.powerbi-dashboard-tab-item {
     padding: 4px 8px;
     border-radius: 6px;
     font-weight: 600;
     color: #fff;
-    font-size: 16px;
+    font-size: 13px;
     display: flex;
     align-items: center;
     justify-content: center;
     gap: 2px;
     cursor: pointer;
 }
-.powerbi-dashboard-tab-item:hover{
+
+.powerbi-dashboard-tab-item:hover {
     transition: transform 0.2s ease-in-out;
-    transform: scale(1.05) ;
+    transform: scale(1.05);
 }
-.active-dashboard-btn{
+
+.active-dashboard-btn {
     text-decoration: underline;
     background-color: #fff;
     color: #000;
     border-color: #fff;
 }
+
 .bi-home-container {
     /* margin: auto; */
     display: flex;
@@ -178,12 +186,14 @@
     background-color: #2431c3;
     color: #fff;
     border-bottom: 1px solid #fff;
-  }
-  .home-heading {
+}
+
+.home-heading {
     text-decoration: none;
     color: #fff;
-  }
-  .home-heading h1 {
+}
+
+.home-heading h1 {
     color: #000;
     font-family: "Roboto";
     font-size: max(2.2vw, 32px);
@@ -193,52 +203,56 @@
     padding: 5px;
     border-radius: 6px;
     background-color: #fff;
-  }
+}
 
 
 
-.bi-user-container{
+.bi-user-container {
     display: flex;
     justify-content: center;
     align-items: center;
-  }
+}
 
-.bi-user-symbol{
+.bi-user-symbol {
     text-align: center;
     text-decoration: none;
 
-    p{
+    p {
         font-size: 12px;
         font-weight: 600;
     }
 }
-.dashboard-data-model-image{
-    width: 50px;
+
+.dashboard-data-model-image {
+    width: 35px;
     border-radius: 6px;
     margin-right: 5px;
 }
-.dashboard-data-model-image-tab{
+
+.dashboard-data-model-image-tab {
     width: 20px;
     border-radius: 10%;
 
 }
+
 .bi-arrow-down {
     transition: transform 0.75s;
     transform: rotate(180deg);
-  }
-  
-  .bi-arrow {
+}
+
+.bi-arrow {
     font-weight: 700;
     font-size: 22px;
-  }
-  .bi-drop-down {
+}
+
+.bi-drop-down {
     display: flex;
     gap: 30px;
     padding-top: 20px;
-  
-  }
-  
-  .bi-drop-down button {
+
+}
+
+.bi-drop-down button {
     width: 80px;
     height: 40px;
     border: 1px solid #0e0e0e;
@@ -247,28 +261,28 @@
     font-weight: 600;
     border-radius: 6px;
     box-shadow: 3px 3px 0px #fff;
-  }
-  
-  .bi-drop-down button:hover {
+}
+
+.bi-drop-down button:hover {
     background-color: red;
     box-shadow: 3px 3px 0px #000;
     color: white;
-  }
-  
-  .bi-icon-username {
+}
+
+.bi-icon-username {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-  }
-  
-  .bi-username-text {
+}
+
+.bi-username-text {
     color: #fff;
     font-size: 13px;
     font-weight: 600;
-  }
-  
-  .bi-user-icon {
+}
+
+.bi-user-icon {
     width: 40px;
     height: 40px;
     color: #000;
@@ -276,4 +290,4 @@
     padding: 6px;
     border-radius: 5px;
     box-shadow: 3px 3px 0px #000;
-  }
+}

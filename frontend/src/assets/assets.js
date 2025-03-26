@@ -6,6 +6,8 @@ import AiMl_pic from "./AIMLModels.webp"
 import Finance_pic from "./Finance.webp"
 import ViewAll_pic from "./viewAll.webp"
 import powerBiBG_pic from "./PowerBIBg.jpg"
+import Inventory_pic from "./Inventory.jpg"
+import Revenue_pic from "./Revenue.avif"
 
 
 export const assets = {
@@ -15,5 +17,7 @@ export const assets = {
     AiMl_pic,
     Finance_pic,
     ViewAll_pic,
-    powerBiBG_pic
+    powerBiBG_pic,
+    Inventory_pic,
+    Revenue_pic
 }
