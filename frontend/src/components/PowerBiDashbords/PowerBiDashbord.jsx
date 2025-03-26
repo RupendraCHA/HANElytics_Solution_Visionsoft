@@ -10,6 +10,7 @@ import { MdKeyboardArrowUp } from "react-icons/md";
 
 const PowerBiDashboard = () => {
   const [activeDashboard, setActiveDashboard] = useState("");
+  const [isMsgOpened, setMsgOpened] = useState(false);
   const navigate = useNavigate();
   const { username, token, setToken, setUsername } = useContext(StoreContext);
 
@@ -247,12 +248,26 @@ const PowerBiDashboard = () => {
     navigate("/login");
   };
 
+  const openMsg = () => {
+    if (isMsgOpened === false){
+      setMsgOpened(true)
+    }else{
+      setMsgOpened(false)
+    }
+  }
+
   return (
     <div className="power-bi-dashboards">
       <div className="bi-home-container">
         <Link to="/home" className="bi-home-heading">
           <h1>HANELYTICS</h1>
         </Link>
+        {/* <div style={{position: "relative"}}>
+          <h1 onClick={openMsg} style={{cursor: "pointer"}}>Hello</h1>
+          {isMsgOpened && <div style={{position: "absolute", top: "50px"}}>
+            <p>Welcome Rupendra</p>
+          </div>}
+        </div> */}
         <div className="dashboard-tabs">
           <h1
             onClick={() => showDashboards("")}
