@@ -12,7 +12,7 @@ import Paper_ink_pic from "./Paper_ink.jpg"
 import sales_pic from "./SalesOrder.jpg"
 import Outbound_Delivery_pic from "./OutboundDelivery.png"
 import Billing_pic from "./Billing & Invoicing.png"
-import Supplier_Order_pic from "./Procurement.jpg"
+import Supplier_Order_pic from "./procurement1.jpg"
 
 
 
