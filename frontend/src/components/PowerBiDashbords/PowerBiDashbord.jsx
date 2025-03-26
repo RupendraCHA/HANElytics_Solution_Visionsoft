@@ -33,7 +33,7 @@ const PowerBiDashboard = () => {
       headerText: "Predicted Reams of Paper & Ink",
       dataText: "reports",
       url: "https://app.powerbi.com/groups/7235dce4-8159-49bc-ab3f-223406e7937b/reports/cdc28a63-1551-4b0c-8385-1150e1dd46ce/8c4854b8de780c3490e6?experience=power-bi&clientSideAuth=0",
-      image: `${assets.Inventory_pic}`
+      image: `${assets.Paper_ink_pic}`
     },
   ];
 
@@ -42,21 +42,21 @@ const PowerBiDashboard = () => {
       headerText: "Sales Order Processing",
       dataText: "order",
       url: "https://app.powerbi.com/groups/84691a96-fa30-4e99-8ebf-da73b935661b/reports/12256cd6-0191-4734-b9e2-26fb5da6f018/519f2f1b088001690a92?experience=power-bi&clientSideAuth=0",
-      image: `${assets.Inventory_pic}`
+      image: `${assets.sales_pic}`
     },
 
     {
       headerText: "Outbound Delivery Processing",
       dataText: "delivery",
       url: "https://app.powerbi.com/groups/84691a96-fa30-4e99-8ebf-da73b935661b/reports/a55c32db-32a9-42d9-8a3b-b4acb5d156c3/aa6705bbc3b7ef0d4147?experience=power-bi&clientSideAuth=0",
-      image: `${assets.Inventory_pic}`
+      image: `${assets.Outbound_Delivery_pic}`
     },
 
     {
       headerText: "Billing & Invoicing",
       dataText: "billing",
       url: "https://app.powerbi.com/groups/84691a96-fa30-4e99-8ebf-da73b935661b/reports/39b627f4-0188-4651-890f-d03aa68c9ab3/ce8017ebff5ddce17665?experience=power-bi&clientSideAuth=0",
-      image: `${assets.Inventory_pic}`
+      image: `${assets.Billing_pic}`
     },
   ];
   const procurement = [
@@ -64,7 +64,7 @@ const PowerBiDashboard = () => {
       headerText: "Supplier Order Overview",
       dataText: "purchase",
       url: "https://app.powerbi.com/groups/84691a96-fa30-4e99-8ebf-da73b935661b/reports/0c34af53-228f-49e3-a217-c7942da55d86/9399d3c37b14e9f48649?experience=power-bi&clientSideAuth=0",
-      image: `${assets.Inventory_pic}`
+      image: `${assets.Supplier_Order_pic}`
     },
   ];
 
@@ -91,7 +91,7 @@ const PowerBiDashboard = () => {
                   <div className="bi-header-text">
                     <h1 className="card-title">{type.headerText}</h1>
                   </div>
-                  <div width={"100vw"}><img src={type.image} alt={type.headerText} width={"100%"} /></div>
+                  <div width={"100vw"}><img style={{ filter: "brightness(95%)" }} src={type.image} alt={type.headerText} width={"100%"} /></div>
                   <button
                     className="bi-dashboard-button"
                     onClick={() => login(`${type.dataText}, ${type.url}`)}
@@ -124,7 +124,7 @@ const PowerBiDashboard = () => {
                   <div className="bi-header-text">
                     <h1 className="card-title">{type.headerText}</h1>
                   </div>
-                  <div width={"100vw"}><img src={type.image} alt={type.headerText} width={"100%"} /></div>
+                  <div width={"100vw"}><img style={{ filter: "brightness(95%)" }} src={type.image} alt={type.headerText} width={"100%"} /></div>
 
                   <button className="bi-dashboard-button">
                     <a href={type.url} target="_blank">
@@ -155,7 +155,7 @@ const PowerBiDashboard = () => {
                   <div className="bi-header-text">
                     <h1 className="card-title">{type.headerText}</h1>
                   </div>
-                  <div width={"100vw"}><img src={type.image} alt={type.headerText} width={"100%"} /></div>
+                  <div width={"100vw"}><img style={{ filter: "brightness(95%)" }} src={type.image} alt={type.headerText} width={"100%"} /></div>
                   <button
                     className="bi-dashboard-button"
                     onClick={() => login(`${type.dataText}, ${type.url}`)}
@@ -188,7 +188,7 @@ const PowerBiDashboard = () => {
                   <div className="bi-header-text">
                     <h1 className="card-title">{type.headerText}</h1>
                   </div>
-                  <div width={"100vw"}><img src={type.image} alt={type.headerText} width={"100%"} /></div>
+                  <div width={"100vw"}><img style={{ filter: "brightness(95%)" }} src={type.image} alt={type.headerText} width={"100%"} /></div>
 
                   <button
                     className="bi-dashboard-button"
@@ -222,7 +222,7 @@ const PowerBiDashboard = () => {
                   <div className="bi-header-text">
                     <h1 className="card-title">{type.headerText}</h1>
                   </div>
-                  <div width={"100vw"}><img src={type.image} alt={type.headerText} width={"100%"} /></div>
+                  <div width={"100vw"}><img style={{ filter: "brightness(95%)" }} src={type.image} alt={type.headerText} width={"100%"} /></div>
 
                   <button
                     className="bi-dashboard-button"

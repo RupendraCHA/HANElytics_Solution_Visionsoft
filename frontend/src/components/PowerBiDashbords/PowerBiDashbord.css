@@ -25,7 +25,8 @@
 .bi-reporting-dashboards {
     /* background-image: url("https://res.cloudinary.com/dvxkeeeqs/image/upload/v1727805691/futuristic-digital-user-interface-dashboard_53876-115871_xeeybu.jpg"); */
     /* background-image: url("../../assets/PowerBIBg.jpg"); */
-    /* background: linear-gradient(to left, #0d62cbbf, #658ebfbf); */
+    /* background: linear-gradient(to left, #fff, #426fb2bf); */
+    background-color: #fff;
     background-size: cover;
     min-height: 100vh;
     object-fit: cover;
@@ -130,7 +131,7 @@
 }
 
 .bi-dashboard-button:hover {
-    background-color: #1405eb;
+    background-color: #1405ebe1;
     color: #fff;
 
     a:hover {
