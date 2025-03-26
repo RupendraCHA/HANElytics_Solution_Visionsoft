@@ -79,8 +79,10 @@ const PowerBiDashboard = () => {
             {HANElyticsDashboards.map((type) => {
               return (
                 <div key={type.dataText} className="dashboard-card">
-                  <h1 className="card-title">{type.headerText}</h1>
-                  <hr style={{height: "2px", border:"2px solid #000"}}/>
+                  <div className="bi-header-text">
+                    <h1 className="card-title">{type.headerText}</h1>
+                  </div>
+                  <div width={"100vw"}><img src={assets.OrderToCash_pic} alt="OTC" width={"100%"}/></div>
                   <button
                     className="dashboard-button"
                     onClick={() => login(`${type.dataText}, ${type.url}`)}
@@ -110,7 +112,11 @@ const PowerBiDashboard = () => {
             {orderToCash.map((type) => {
               return (
                 <div key={type.dataText} className="dashboard-card">
-                  <h1 className="card-title">{type.headerText}</h1>
+                  <div className="bi-header-text">
+                    <h1 className="card-title">{type.headerText}</h1>
+                  </div>
+                  <div width={"100vw"}><img src={assets.OrderToCash_pic} alt="OTC" width={"100%"}/></div>
+
                   <button className="dashboard-button">
                     <a href={type.url} target="_blank">
                       View Dashboard
@@ -137,7 +143,10 @@ const PowerBiDashboard = () => {
             {procurement.map((type) => {
               return (
                 <div key={type.dataText} className="dashboard-card">
-                  <h1 className="card-title">{type.headerText}</h1>
+                  <div className="bi-header-text">
+                    <h1 className="card-title">{type.headerText}</h1>
+                  </div>
+                  <div width={"100vw"}><img src={assets.OrderToCash_pic} alt="OTC" width={"100%"}/></div>
                   <button
                     className="dashboard-button"
                     onClick={() => login(`${type.dataText}, ${type.url}`)}
@@ -167,7 +176,10 @@ const PowerBiDashboard = () => {
             {procurement.map((type) => {
               return (
                 <div key={type.dataText} className="dashboard-card">
-                  <h1 className="card-title">{type.headerText}</h1>
+                  <div className="bi-header-text">
+                    <h1 className="card-title">{type.headerText}</h1>
+                  </div>
+                  <div width={"100vw"}><img src={assets.OrderToCash_pic} alt="OTC" width={"100%"}/></div>
                   <button
                     className="dashboard-button"
                     onClick={() => login(`${type.dataText}, ${type.url}`)}
@@ -197,7 +209,10 @@ const PowerBiDashboard = () => {
             {procurement.map((type) => {
               return (
                 <div key={type.dataText} className="dashboard-card">
-                  <h1 className="card-title">{type.headerText}</h1>
+                  <div className="bi-header-text">
+                    <h1 className="card-title">{type.headerText}</h1>
+                  </div>
+                  <div width={"100vw"}><img src={assets.OrderToCash_pic} alt="OTC" width={"100%"}/></div>
                   <button
                     className="dashboard-button"
                     onClick={() => login(`${type.dataText}, ${type.url}`)}

@@ -18,11 +18,12 @@
 .power-bidashboards{
     display: flex;
     flex-direction: column;
-    
 }
 
 .bi-reporting-dashboards{
-  background-image: url("https://res.cloudinary.com/dvxkeeeqs/image/upload/v1727805691/futuristic-digital-user-interface-dashboard_53876-115871_xeeybu.jpg");
+  /* background-image: url("https://res.cloudinary.com/dvxkeeeqs/image/upload/v1727805691/futuristic-digital-user-interface-dashboard_53876-115871_xeeybu.jpg"); */
+    /* background-image: url("../../assets/PowerBIBg.jpg"); */
+    /* background: linear-gradient(to left, #0d62cbbf, #658ebfbf); */
     background-size: cover;
     min-height: 100vh;
     object-fit:cover;
@@ -33,7 +34,7 @@
     font-weight: 600;
     margin-bottom: 20px;
     padding-top: 20px;
-    color: #fff;
+    color: #000;
     display: flex;
     align-items: center;
 
@@ -42,7 +43,6 @@
     text-decoration: underline;
 }
 .dashboard-section {
-    /* width: 100%; */
     display: flex;
     gap: 50px;
 
@@ -68,56 +68,78 @@
 
 .dashboard-card {
     background-color: white;
-    padding: 20px 0px 20px 0px;
-    height: 50vh;
-    /* width: 400px; */
-    width: 33%;
+    height: 55vh;
+    width: 30%;
     display: flex;
     align-items: center;
     flex-direction: column;
-    /* justify-content: center; */
     justify-content: space-between;
-    /* gap: 20px; */
     border-radius: 16px;
     box-shadow: 0 4px 10px #4e4ec566;
     transition: transform 0.2s ease-in-out;
     margin-bottom: 20px;
     flex-wrap: wrap;
-    padding: 12px;
+    /* padding: 10px 0px; */
+    /* padding-top: 10px; */
 }
 
 .dashboard-card:hover {
-    transform: scale(1.03);
+    transform: scale(1.01);
 }
 
 .card-title {
-    font-size: 20px;
+    font-size: 18px;
     font-weight: bold;
     text-align: center;
+    padding: 12px;
+    margin-top: 10px;
+    color: #fff;
+    
+}
+.bi-header-text{
+    height: 8vh;
+    /* border-bottom: 2px solid #0736df; */
+    border-bottom: 2px solid #000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    background-color: #0d62cb;
+    border-top-left-radius: 12px;
+    border-top-right-radius: 12px;
 }
 
 .dashboard-button {
     padding:12px;
-    background-color: #2c67b0;
+    background-color: #0d62cb7e;
     color: #fff;
     font-weight: bold;
-    font-size: 14px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
-    border-radius: 12px;
+    font-size: 16px;
+    box-shadow: 0 4px 6px #0000004d;
+    border-bottom-left-radius: 12px;
+    border-bottom-right-radius: 12px;
     border: none;
     cursor: pointer;
     transition: background-color 0.3s ease-in-out;
+    width: 100%;
+    border-top: 2px solid #000;
 }
 
 .dashboard-button:hover {
-    background-color: #1e4b80;
+    background-color: #1405ebcd;
+    color: #fff;
+
+    a:hover{
+      color: #fff;
+    }
 }
 
 .dashboard-button a {
     text-decoration: none;
-    color: #fff;
+    color: #000;
     border-radius: 12px;
 }
+
 .dashboard-tabs{
     display: flex;
     padding: 4px;
