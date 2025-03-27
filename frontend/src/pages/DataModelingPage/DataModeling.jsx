@@ -714,7 +714,7 @@ const DataModeling = () => {
               <div style={{ position: "relative" }}>
                 <h4
                   onClick={() => handleIsOpened("data-models")}
-                  style={{ color: "#fff", fontSize: "14px" }}
+                  style={{ color: "#000", fontSize: "14px" }}
                   className={`tabHeading ${dataModelOpen === "data-models" && "tab-heading"
                     }`}
                 >
@@ -757,7 +757,7 @@ const DataModeling = () => {
               <div style={{ position: "relative" }}>
                 <h4
                   onClick={() => handleMigrateData("migrate-data")}
-                  style={{ color: "#fff", fontSize: "14px" }}
+                  style={{ color: "#000", fontSize: "14px" }}
                   className={`tabHeading ${migrateModelOpen === "migrate-data" && "tab-heading"
                     }`}
                 >
@@ -785,7 +785,7 @@ const DataModeling = () => {
                   </div>
                 )}
               </div>
-              <h4 onClick={() => navigate("/dashboards")} className="tabHeading tab-heding" style={{ color: "#fff", fontSize: "14px" }}>Power BI Reports</h4>
+              <h4 onClick={() => navigate("/dashboards")} className="tabHeading tab-heding" style={{ color: "#000", fontSize: "14px" }}>Power BI Reports</h4>
             </div>
             <div className="drop-down">
               <div>

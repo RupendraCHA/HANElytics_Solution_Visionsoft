@@ -295,21 +295,24 @@
 .bi-tabs-list{
     position: relative;
     display: flex;
+
 }
 .bi-tab-list-heading{
     cursor: pointer;
     font-size: 13px;
-    background-color: #2e2424cd;
-    color: #fff;
+    background-color: #fff;
+    color: #000;
     padding: 2px 8px;
     border-radius: 8px;
     font-weight: 600;
     border: 1px solid #fff;
+  box-shadow: 2px 2px 2px #0e0e0e;
+
 }
 .bi-tab-list-heading:hover{
-    text-decoration: underline;
-    background-color: #000;
+    background-color: #808080;
 }
+
 .bi-arrow-1{
     font-size: 28px;
     font-weight: 600;
@@ -318,7 +321,7 @@
     position: absolute;
     top: 50px;
     z-index: 10;
-    background-color: #3b3b40;
+    background-color: #323436;
     padding: 12px;
     width: 20vw;
     border-radius: 10px;
@@ -327,10 +330,10 @@
     gap: 20px;
 }
 .insights-btn{
-    color: #fff;
+    color: #000;
     margin-left: 10px;
     font-size: 13px;
-    background-color: #2e2424cd;
+    background-color: #fff;
     padding: 2px 10px;
     border: 1px solid #fff;
     border-radius: 8px;
@@ -338,11 +341,12 @@
     font-weight: 600;
     display: flex;
     align-items: center;
+  box-shadow: 2px 2px 2px #0e0e0e;
+
 }
 .insights-btn:hover{
     text-decoration: underline;
-    background-color: #000;
-    color: #fff;
+    background-color: #808080;
 }
 .insights-icon{
     font-size: 18px;
