@@ -974,7 +974,7 @@ const DataModeling = () => {
                 {activeTab === "tab2" && (
                   <div id="tab2" className="content">
                     <div className="charts-buttons">
-                      <div
+                      {/* <div
                         style={{
                           display: "flex",
                           justifyContent: "flex-end",
@@ -984,8 +984,8 @@ const DataModeling = () => {
                         onClick={handleInfo}
                       >
                         <MdInfo />
-                      </div>
-                      {/* <button
+                      </div> */}
+                      <button
                         className={`chart-tab ${
                           activeTab === "tab3" ? "chart-tab-active" : ""
                         }`}
@@ -1000,7 +1000,7 @@ const DataModeling = () => {
                         onClick={() => handlePieChart("tab4")}
                       >
                         Bar Chart
-                      </button> */}
+                      </button>
                     </div>
                     {showResults && (
                       <>

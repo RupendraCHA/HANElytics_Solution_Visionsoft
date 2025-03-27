@@ -109,18 +109,61 @@ const PowerBiDashboard = () => {
       image: `${assets.General_Ledger_pic}`
     },
     {
-      headerText: "Account Payable",
+      headerText: "Account Receivables",
+      dataText: "purchase",
+      url: "https://app.powerbi.com/groups/me/reports/61332e4f-41f9-45f2-bf2b-28f6508591ae/1f55804984a696482416?experience=power-bi&clientSideAuth=0",
+      image: `${assets.Accounts_receivable_pic}`
+    },
+    {
+      headerText: "Account Paybles",
       dataText: "purchase",
       url: "https://app.powerbi.com/groups/me/reports/d88fd1c6-d635-4ead-864c-b4971b81e11b/153be76ec304a615ddb5?experience=power-bi&clientSideAuth=0",
       image: `${assets.Accounts_payable_pic}`
     },
-    {
-      headerText: "Account Receivable",
-      dataText: "purchase",
-      url: "https://app.powerbi.com/groups/me/reports/d88fd1c6-d635-4ead-864c-b4971b81e11b/153be76ec304a615ddb5?experience=power-bi&clientSideAuth=0",
-      image: `${assets.Accounts_receivable_pic}`
-    },
+    
   ];
+
+  const tabsList = [{
+    activeText: "",
+    imageUrl: `${assets.ViewAll_pic}`,
+    altText: "ViewAllImage",
+    tabName: "View All"
+
+  },{
+    activeText: "HANElytics",
+    imageUrl: `${assets.AiMl_pic}`,
+    altText: "AIMLImage",
+    tabName: "AI/ML Models"
+    
+  },
+  {
+    activeText: "OrderToCash",
+    imageUrl: `${assets.OrderToCash_pic}`,
+    altText: "OrderToCashImage",
+    tabName: "Order to Cash"
+  },
+  {
+    activeText: "Procurement",
+    imageUrl: `${assets.Procurement_pic}`,
+    altText: "ProcurementImage",
+    tabName: "Procurement"
+  },
+  
+  {
+    activeText: "Finance",
+    imageUrl: `${assets.Finance_pic}`,
+    altText: "FinanceImageImage",
+    tabName: "Finance"
+
+  },
+  {
+    activeText: "Manufacturing",
+    imageUrl: `${assets.Manufacturing_pic}`,
+    altText: "ManufacturingImage",
+    tabName: "Manufacturing"
+
+  },
+]
 
   const showDashboards = (activeTab) => {
     setActiveDashboard(activeTab);
@@ -322,102 +365,25 @@ const PowerBiDashboard = () => {
           </div>}
         </div> */}
         <div className="dashboard-tabs">
-          <h1
-            onClick={() => showDashboards("")}
-            className={`powerbi-dashboard-tab-item ${activeDashboard === "" ? "active-dashboard-btn" : ""
+          {tabsList.map((eachTab) => (
+            <h1
+            onClick={() => showDashboards(`${eachTab.activeText}`)}
+            className={`powerbi-dashboard-tab-item ${activeDashboard === `${eachTab.activeText}` ? "active-dashboard-btn" : ""
               }`}
           >
             <img
-              src={assets.ViewAll_pic}
-              alt="vIEWaLLImage"
+              src={eachTab.imageUrl}
+              alt={`${eachTab.altText}`}
               className="dashboard-data-model-image-tab"
             />
-            View All
+            {eachTab.tabName}
             <MdKeyboardArrowUp
-              className={`bi-arrow ${activeDashboard === "" ? "bi-arrow-down" : ""
+              className={`bi-arrow ${activeDashboard === `${eachTab.activeText}` ? "bi-arrow-down" : ""
                 }`}
             />
           </h1>
-          <h1
-            onClick={() => showDashboards("HANElytics")}
-            className={`powerbi-dashboard-tab-item ${activeDashboard === "HANElytics" ? "active-dashboard-btn" : ""
-              }`}
-          >
-            <img
-              src={assets.AiMl_pic}
-              alt="AIMLImage"
-              className="dashboard-data-model-image-tab"
-            />
-            AI/ML Models
-            <MdKeyboardArrowUp
-              className={`bi-arrow ${activeDashboard === "HANElytics" ? "bi-arrow-down" : ""
-                }`}
-            />
-          </h1>
-          <h1
-            onClick={() => showDashboards("OrderToCash")}
-            className={`powerbi-dashboard-tab-item ${activeDashboard === "OrderToCash" ? "active-dashboard-btn" : ""
-              }`}
-          >
-            <img
-              src={assets.OrderToCash_pic}
-              alt="OrderToCashImage"
-              className="dashboard-data-model-image-tab"
-            />
-            Order to Cash
-            <MdKeyboardArrowUp
-              className={`bi-arrow ${activeDashboard === "OrderToCash" ? "bi-arrow-down" : ""
-                }`}
-            />
-          </h1>
-          <h1
-            onClick={() => showDashboards("Procurement")}
-            className={`powerbi-dashboard-tab-item ${activeDashboard === "Procurement" ? "active-dashboard-btn" : ""
-              }`}
-          >
-            <img
-              src={assets.Procurement_pic}
-              alt="ProcurementImage"
-              className="dashboard-data-model-image-tab"
-            />
-            Procurement
-            <MdKeyboardArrowUp
-              className={`bi-arrow ${activeDashboard === "Procurement" ? "bi-arrow-down" : ""
-                }`}
-            />
-          </h1>
-          <h1
-            onClick={() => showDashboards("Manufacturing")}
-            className={`powerbi-dashboard-tab-item ${activeDashboard === "Manufacturing" ? "active-dashboard-btn" : ""
-              }`}
-          >
-            <img
-              src={assets.Manufacturing_pic}
-              alt="ProcurementImage"
-              className="dashboard-data-model-image-tab"
-            />
-            Manufacturing
-            <MdKeyboardArrowUp
-              className={`bi-arrow ${activeDashboard === "Manufacturing" ? "bi-arrow-down" : ""
-                }`}
-            />
-          </h1>
-          <h1
-            onClick={() => showDashboards("Finance")}
-            className={`powerbi-dashboard-tab-item ${activeDashboard === "Finance" ? "active-dashboard-btn" : ""
-              }`}
-          >
-            <img
-              src={assets.Finance_pic}
-              alt="ProcurementImage"
-              className="dashboard-data-model-image-tab"
-            />
-            Finance
-            <MdKeyboardArrowUp
-              className={`bi-arrow ${activeDashboard === "Finance" ? "bi-arrow-down" : ""
-                }`}
-            />
-          </h1>
+          ))}
+          
         </div>
         <div className="bi-drop-down">
           <div className="bi-icon-username">
@@ -437,8 +403,8 @@ const PowerBiDashboard = () => {
                 {getDashboards("HANElytics")}
                 {getDashboards("OrderToCash")}
                 {getDashboards("Procurement")}
-                {getDashboards("Manufacturing")}
                 {getDashboards("Finance")}
+                {getDashboards("Manufacturing")}
               </>
             )}
             {activeDashboard === "HANElytics" && (
@@ -450,10 +416,11 @@ const PowerBiDashboard = () => {
             {activeDashboard === "Procurement" && (
               <>{getDashboards("Procurement")}</>
             )}
+            {activeDashboard === "Finance" && <>{getDashboards("Finance")}</>}
+
             {activeDashboard === "Manufacturing" && (
               <>{getDashboards("Manufacturing")}</>
             )}
-            {activeDashboard === "Finance" && <>{getDashboards("Finance")}</>}
           </div>
         </div>
       </div>
