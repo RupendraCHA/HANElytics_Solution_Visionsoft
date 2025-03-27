@@ -147,14 +147,14 @@
 
 .dashboard-tabs {
     display: flex;
-    padding: 4px;
+    padding: 2px;
     border-radius: 12px;
     color: #fff;
-    gap: 4px;
+    gap: 2px;
 }
 
 .powerbi-dashboard-tab-item {
-    padding: 4px 8px;
+    padding: 4px 6px;
     border-radius: 6px;
     font-weight: 600;
     color: #fff;
@@ -243,7 +243,7 @@
 
 .bi-arrow {
     font-weight: 700;
-    font-size: 22px;
+    font-size: 18px;
 }
 
 .bi-drop-down {
