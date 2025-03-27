@@ -703,7 +703,7 @@ const DataModeling = () => {
 
   return (
     <>
-      <div className="data-modeling-container p-4">
+      <div className="data-modeling-container">
         <header className="website-header1">
           {/* container */}
           <div className="header-container">

@@ -4,21 +4,19 @@
   min-height: 100vh;
   background-size: cover;
   overflow-y: scroll;
-  overflow-x: scroll;
-  /* padding-top: 100px; */
-  padding-bottom: 15px;
+  /* overflow-x: scroll; */
+  padding-left: 5px;
 }
 
 .website-header1 {
-  margin-top: 15px;
-
+  /* margin-top: 15px; */
 }
 
 .header-container {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  border: 2px solid white;
+  /* border: 2px solid white; */
   border-bottom: none;
   background-color: #2431c3;
   padding: 0px 10px;
