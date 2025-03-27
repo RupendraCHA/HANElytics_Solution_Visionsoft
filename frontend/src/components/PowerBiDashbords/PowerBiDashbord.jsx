@@ -7,6 +7,8 @@ import { FaRegUserCircle } from "react-icons/fa";
 import { StoreContext } from "../../context/StoreContext";
 import { assets } from "../../assets/assets.js";
 import { MdKeyboardArrowUp } from "react-icons/md";
+import { LuArrowUpRight } from "react-icons/lu";
+
 
 const PowerBiDashboard = () => {
   const [activeDashboard, setActiveDashboard] = useState("");
@@ -167,6 +169,8 @@ const PowerBiDashboard = () => {
 
   const showDashboards = (activeTab) => {
     setActiveDashboard(activeTab);
+    setMsgOpened(false)
+
   };
 
   const getDashboards = (activeDash) => {
@@ -358,12 +362,37 @@ const PowerBiDashboard = () => {
         <Link to="/home" className="bi-home-heading">
           <h1>HANELYTICS</h1>
         </Link>
-        {/* <div style={{position: "relative"}}>
-          <h1 onClick={openMsg} style={{cursor: "pointer"}}>Hello</h1>
-          {isMsgOpened && <div style={{position: "absolute", top: "50px"}}>
-            <p>Welcome Rupendra</p>
+        {/* <div className="bi-tabs-list">
+          <h1 onClick={openMsg} className={`bi-tab-list-heading`}>View Categories
+          <MdKeyboardArrowUp
+                className={`bi-arrow-1 ${isMsgOpened === true ? "bi-arrow-down" : ""
+                  }`}
+              />
+          </h1>
+          {isMsgOpened && <div className="bi-tab-list-view">
+            {tabsList.map((eachTab) => (
+            <div style={{display: "flex", justifyContent: "space-between"}}>
+              <h1
+              onClick={() => showDashboards(`${eachTab.activeText}`)}
+              className={`powerbi-dashboard-tab-item ${activeDashboard === `${eachTab.activeText}` ? "active-dashboard-btn" : ""
+                }`}
+                        >
+              <img
+                src={eachTab.imageUrl}
+                alt={`${eachTab.altText}`}
+                className="dashboard-data-model-image-tab"
+              />
+              {eachTab.tabName}
+              <MdKeyboardArrowUp
+                className={`bi-arrow ${activeDashboard === `${eachTab.activeText}` ? "bi-arrow-down" : ""
+                  }`}
+              />
+                        </h1>
+            </div>
+          ))}
           </div>}
         </div> */}
+        
         <div className="dashboard-tabs">
           {tabsList.map((eachTab) => (
             <h1
@@ -383,6 +412,10 @@ const PowerBiDashboard = () => {
             />
           </h1>
           ))}
+          <h1 className="insights-btn" onClick={() => navigate("/dataModeling")}>
+            Go to Previous
+            <LuArrowUpRight className="insights-icon"/>
+            </h1>
           
         </div>
         <div className="bi-drop-down">

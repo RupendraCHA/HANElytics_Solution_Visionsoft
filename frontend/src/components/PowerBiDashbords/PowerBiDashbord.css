@@ -292,3 +292,51 @@
     border-radius: 5px;
     box-shadow: 3px 3px 0px #000;
 }
+.bi-tabs-list{
+    position: relative;
+}
+.bi-tab-list-heading{
+    cursor: pointer;
+    font-size: 18px;
+    background-color: #fff;
+    color: #000;
+    padding: 4px 8px;
+    border-radius: 8px;
+}
+.bi-arrow-1{
+    font-size: 34px;
+    font-weight: 600;
+}
+.bi-tab-list-view{
+    position: absolute;
+    top: 50px;
+    z-index: 10;
+    background-color: #3b3b40;
+    padding: 12px;
+    width: 20vw;
+    border-radius: 10px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+}
+.insights-btn{
+    color: #fff;
+    margin-left: 10px;
+    font-size: 13px;
+    background-color: #000;
+    padding: 4px 10px;
+    border: 1px solid #fff;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+}
+.insights-btn:hover{
+    text-decoration: underline;
+    background-color: #0d62cb;
+    color: #fff;
+}
+.insights-icon{
+    font-size: 18px;
+}
