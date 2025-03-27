@@ -701,8 +701,9 @@ const DataModeling = () => {
     }
   };
 
+  
   return (
-    <>
+    <> 
       <div className="data-modeling-container">
         <header className="website-header1">
           {/* container */}
