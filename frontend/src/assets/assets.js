@@ -13,6 +13,9 @@ import sales_pic from "./SalesOrder.jpg"
 import Outbound_Delivery_pic from "./OutboundDelivery.png"
 import Billing_pic from "./Billing & Invoicing.png"
 import Supplier_Order_pic from "./procurement1.jpg"
+import Accounts_receivable_pic from "./Accounts receivable.png"
+import Accounts_payable_pic from "./Accounts payable.png"
+
 
 
 
@@ -34,5 +37,7 @@ export const assets = {
     sales_pic,
     Outbound_Delivery_pic,
     Billing_pic,
-    Supplier_Order_pic
+    Supplier_Order_pic,
+    Accounts_receivable_pic,
+    Accounts_payable_pic
 }

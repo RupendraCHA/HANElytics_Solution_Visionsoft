@@ -112,13 +112,13 @@ const PowerBiDashboard = () => {
       headerText: "Account Payable",
       dataText: "purchase",
       url: "https://app.powerbi.com/groups/me/reports/d88fd1c6-d635-4ead-864c-b4971b81e11b/153be76ec304a615ddb5?experience=power-bi&clientSideAuth=0",
-      image: `${assets.Supplier_Order_pic}`
+      image: `${assets.Accounts_payable_pic}`
     },
     {
       headerText: "Account Receivable",
       dataText: "purchase",
       url: "https://app.powerbi.com/groups/me/reports/d88fd1c6-d635-4ead-864c-b4971b81e11b/153be76ec304a615ddb5?experience=power-bi&clientSideAuth=0",
-      image: `${assets.Supplier_Order_pic}`
+      image: `${assets.Accounts_receivable_pic}`
     },
   ];
 
