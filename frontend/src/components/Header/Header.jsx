@@ -40,7 +40,7 @@ const Header = () => {
 
     return (
         <div className='home-container'>
-            <Link to="/home" className='home-heading'>
+            <Link to="/home" className='header-home-heading'>
                 <h1 >
                     HANELYTICS
                 </h1>
@@ -52,7 +52,6 @@ const Header = () => {
                             <p style={{color: "white"}}>{username}</p>
                         </div>
                 </Dropdown>
-                
             </div>
         </div>
     )

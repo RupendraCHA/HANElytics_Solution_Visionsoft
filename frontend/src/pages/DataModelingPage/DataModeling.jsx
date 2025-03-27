@@ -10,6 +10,9 @@ import { VscGraphScatter } from "react-icons/vsc";
 import { LuArrowUpRight } from "react-icons/lu";
 import { FaDatabase } from "react-icons/fa6";
 import { MdInsertChartOutlined } from "react-icons/md";
+import { MdInfo } from "react-icons/md";
+import { SiSap } from "react-icons/si";
+
 import {
   news_paper_model_datasets,
   inventory_model_datasets,
@@ -29,6 +32,8 @@ import EquipmentPieChart from "../../components/Charts/EquipmentCharts/Equipment
 import EquipmentBarChart from "../../components/Charts/EquipmentCharts/EquipmentBarChart/EquipmentBarChart.jsx";
 import ClinicalPieChart from "../../components/Charts/ClinicalCharts/ClinicalPieChart/ClinicalPieChart.jsx";
 import ClinicalBarChart from "../../components/Charts/ClinicalCharts/ClinicalBarChart/ClinicalBarChart.jsx";
+import NewsPieChart from "../../components/Charts/NewsPaperCharts/NewsPieChart/NewsPieChart.jsx";
+import NewsBarChart from "../../components/Charts/NewsPaperCharts/NewsBarChart/NewswBarChart.jsx";
 
 const DataModeling = () => {
   const navigate = useNavigate();
@@ -69,6 +74,9 @@ const DataModeling = () => {
   const [migrateModelOpen, setMigrateModelOpen] = useState("");
   const [isLoadingTrue, setIsLoadingTrue] = useState(false);
   const [loadModelData, setLoadModelData] = useState(false);
+  const [showImage, setShowImage] = useState(false);
+  const [procureData, setProcureData] = useState([]);
+
 
   // useEffect(() => {
   //   getInventoryDataFromMongoDB1()
@@ -183,6 +191,8 @@ const DataModeling = () => {
     if (result.data.success === true) {
       setIsLoadingTrue(false);
       setSapText(result.data.message);
+      console.log(result.data.data);
+      setProcureData(result.data.data);
     } else {
       setSapText(result.data.message);
       setIsLoadingTrue(false);
@@ -211,23 +221,23 @@ const DataModeling = () => {
       setSendData1(true);
       setSendData2(true);
 
-    const jwtToken = localStorage.getItem("token");
-
+      const jwtToken = localStorage.getItem("token");
 
       const response = await axios.get(url + "/api/model/inventory1", {
         headers: { token: jwtToken },
       });
 
-      const Array = response.data
+      const Array = response.data;
 
-      if (Array){
+      if (Array) {
         setNewsPaperData(false);
         setLoadModelData(false);
       }
-      
-        setData(Array);
-        handleTabClick("tab1");
-      
+
+      setData(Array);
+      console.log(Array);
+
+      handleTabClick("tab1");
     } catch (error) {
       console.log(error);
     }
@@ -299,18 +309,19 @@ const DataModeling = () => {
     // const password1 = "Hanelytics@24"
 
     const sapFields = [];
-    const sapFields1 = [{
-      Material: 'PUID1',
-      Supplier: '',
-      Distribution_Center: 'IB01',
-      Quantity: '29800'
-    },
-    {
-      Material: 'PUID2',
-      Supplier: '',
-      Distribution_Center: 'IB01',
-      Quantity: '46780'
-    }];
+    // const sapFields1 = [{
+    //   Material: 'PUID1',
+    //   Supplier: '',
+    //   Distribution_Center: 'IB01',
+    //   Quantity: '29800'
+    // },
+    // {
+    //   Material: 'PUID2',
+    //   Supplier: '',
+    //   Distribution_Center: 'IB01',
+    //   Quantity: '46780'
+    // }];
+    let sapFields1 = [];
 
     const addObjectsData = (data) => {
       for (let i = 0; i < data.length; i++) {
@@ -325,30 +336,67 @@ const DataModeling = () => {
       }
       return sapFields.slice(0, 4);
     };
+    // const addObjectsData1 = (data) => {
+    //   let material;
+    //   for (let i = 0; i < data.length; i++) {
+    //     // if (i === 0) {
+    //     //   material = "Paper";
+    //     // } else if (i === 1) {
+    //     //   material = "Ink";
+    //     // }
+    //     const record = data[i];
+
+    //     sapFields1.push({
+    //       Material: `PUID${i+3}`,
+    //       // Material: record.Product_Name,
+    //       // Material: "Paper",
+    //       Supplier: "",
+    //       Distribution_Center: `${record.Distribution_Center_ID === 0 ? "IB01" : "IB01"}`,
+    //       Quantity:
+    //         record.Reorder_Quantity_Prediction_with_live_data.toString(),
+    //     });
+    //   }
+    //   // console.log(sapFields1.slice(1, 10))
+    //   return sapFields1;
+    // };
+
     const addObjectsData1 = (data) => {
-      let material;
       for (let i = 0; i < data.length; i++) {
-        // if (i === 0) {
-        //   material = "Paper";
-        // } else if (i === 1) {
-        //   material = "Ink";
-        // }
         const record = data[i];
 
-        sapFields1.push({
-          Material: `PUID${i+3}`,
-          // Material: record.Product_Name,
-          // Material: "Paper",
-          Supplier: "",
-          Distribution_Center: `${record.Distribution_Center_ID === 0 ? "IB02" : "IB02"}`,
-          Quantity:
-            record.Reorder_Quantity_Prediction_with_live_data.toString(),
-        });
+        sapFields1.push(
+          {
+            Material: "Paper",
+            Supplier: "",
+            Distribution_Center: `IB01`,
+            Quantity: record.Predicted_Reams_Of_Paper.toString(),
+          },
+          {
+            Material: "Ink",
+            Supplier: "",
+            Distribution_Center: `IB01`,
+            Quantity: record.Ink_required_Predicted_liters.toString(),
+          }
+          // sapFields1.push(
+          //   {
+          //       Material: "Paper",
+          //       Supplier: "",
+          //       Distribution_Center: `IB01`,
+          //       // Quantity: record.Predicted_Reams_Of_Paper.toString()
+          //       Quantity: "12822"
+          // },
+          // {
+          //       Material: "Ink",
+          //       Supplier: "",
+          //       Distribution_Center: `IB01`,
+          //       // Quantity: record.Ink_required_Predicted_liters.toString()
+          //       Quantity: "6667"
+          // }
+        );
       }
-      // console.log(sapFields1.slice(1, 10))
-      return sapFields1;
-    };
 
+      return sapFields1.slice(0, 2);
+    };
     let objectDataForSAP;
     let objectDataForSAP1;
 
@@ -363,6 +411,8 @@ const DataModeling = () => {
       const response1 = await axios.get(url + "/api/model/inventory1", {
         headers: { token: jwtToken },
       });
+
+      // console.log(response1.data)
 
       // const sapFields1 = addObjectsData()
       // "Direct_process" : "",
@@ -643,30 +693,36 @@ const DataModeling = () => {
     }
   };
 
+  const handleInfo = () => {
+    if (showImage === false) {
+      setShowImage(true);
+    } else {
+      setShowImage(false);
+    }
+  };
+
   return (
     <>
-      <div className="data-modeling-container p-5">
+      <div className="data-modeling-container p-4">
         <header className="website-header1">
           {/* container */}
           <div className="header-container">
-            <Link to="/home" className="website-heading">
+            <Link to="/home" className="datamodels-website-heading">
               <h1>HANELYTICS</h1>
             </Link>
-            {/* <div className="model-migrate-tabs">
+            <div className="model-migrate-tabs">
               <div style={{ position: "relative" }}>
                 <h4
                   onClick={() => handleIsOpened("data-models")}
                   style={{ color: "#000" }}
-                  className={`tabHeading ${
-                    dataModelOpen === "data-models" && "tab-heading"
-                  }`}
+                  className={`tabHeading ${dataModelOpen === "data-models" && "tab-heading"
+                    }`}
                 >
                   Data Models
                   <MdKeyboardArrowUp
                     style={{ fontSize: "30px" }}
-                    className={`"arrow" ${
-                      dataModelOpen === "data-models" ? "arrow-down" : ""
-                    }`}
+                    className={`"arrow" ${dataModelOpen === "data-models" ? "arrow-down" : ""
+                      }`}
                   />
                 </h4>
                 {dataModelOpen === "data-models" && (
@@ -702,16 +758,14 @@ const DataModeling = () => {
                 <h4
                   onClick={() => handleMigrateData("migrate-data")}
                   style={{ color: "#000" }}
-                  className={`tabHeading ${
-                    migrateModelOpen === "migrate-data" && "tab-heading"
-                  }`}
+                  className={`tabHeading ${migrateModelOpen === "migrate-data" && "tab-heading"
+                    }`}
                 >
                   Migrate Data
                   <MdKeyboardArrowUp
                     style={{ fontSize: "30px" }}
-                    className={`${
-                      migrateModelOpen === "migrate-data" ? "arrow-down" : ""
-                    }`}
+                    className={`${migrateModelOpen === "migrate-data" ? "arrow-down" : ""
+                      }`}
                   />
                 </h4>
                 {migrateModelOpen === "migrate-data" && (
@@ -731,19 +785,15 @@ const DataModeling = () => {
                   </div>
                 )}
               </div>
-            </div> */}
+              <h4 onClick={() => navigate("/dashboards")} className="tabHeading tab-heding" style={{ color: "#000" }}>Power BI Reports</h4>
+            </div>
             <div className="drop-down">
               <div>
-                {/* <Dropdown
-                  menu={{ items }}
-                  trigger={["hover"]}
-                  id="items-drop-menu"
-                > */}
+                
                 <div className="icon-username">
                   <FaRegCircleUser className="user-icon" />
                   <p className="username-text">{username}</p>
                 </div>
-                {/* </Dropdown> */}
               </div>
               <div>
                 <button onClick={handleModelLogout}>Logout</button>
@@ -755,7 +805,7 @@ const DataModeling = () => {
         <div className="data-models-section-container" onClick={closeAllPopups}>
           <section className="workflows-section">
             <h1 className="use-case-heading" onClick={handleResultsData}>
-              Migrate Data
+              Data Migration
             </h1>
             <div className="data-model-types">
               <h2
@@ -790,7 +840,8 @@ const DataModeling = () => {
                 onClick={getNewsPaperDataFromMongoDB}
               >
                 <LuArrowUpRight className="process-arrow" />
-                Predicting Quantity of Demand for Distribution Center
+                Predicting Reams of Paper & Ink for Demanded Quantity of NEWS
+                Paper to each Distribution Center
               </h2>
               <h2
                 className={inventoryData === true ? "model-name" : "active"}
@@ -877,7 +928,15 @@ const DataModeling = () => {
             >
               <div>
                 {isLoadingTrue && <div className="spinner"></div>}
-                <h2 className="select-text">{sapText}</h2>
+                <h2 className="select-text">
+                  {sapText}{" "}
+                  {sapText === "✓✓ Data Transferred Successfully" && (
+                    <>
+                      from <span className="stp">HANElytics</span> to{" "}
+                      <SiSap className="sap" />
+                    </>
+                  )}
+                </h2>
               </div>
             </div>
           )}
@@ -915,6 +974,17 @@ const DataModeling = () => {
                 {activeTab === "tab2" && (
                   <div id="tab2" className="content">
                     <div className="charts-buttons">
+                      <div
+                        style={{
+                          display: "flex",
+                          justifyContent: "flex-end",
+                          cursor: "pointer",
+                          color: "black",
+                        }}
+                        onClick={handleInfo}
+                      >
+                        <MdInfo />
+                      </div>
                       {/* <button
                         className={`chart-tab ${
                           activeTab === "tab3" ? "chart-tab-active" : ""
@@ -922,8 +992,8 @@ const DataModeling = () => {
                         onClick={() => handlePieChart("tab3")}
                       >
                         Pie Chart
-                      </button> */}
-                      {/* <button
+                      </button> 
+                      <button
                         className={`chart-tab ${
                           activeTab === "tab4" ? "chart-tab-active" : ""
                         }`}
@@ -944,6 +1014,12 @@ const DataModeling = () => {
                             equipmentData1={equipmentData1}
                             clinicalData={clinicalData}
                           />
+                          {showImage && (
+                            <img
+                              style={{ width: "100%" }}
+                              src="https://res.cloudinary.com/dvxkeeeqs/image/upload/v1741880873/Calculations_t7glwj.png"
+                            />
+                          )}
                         </div>
                       </>
                     )}
@@ -967,17 +1043,15 @@ const DataModeling = () => {
                   <div id="tab2" className="content">
                     <div className="charts-buttons">
                       <button
-                        className={`chart-tab ${
-                          activeTab === "tab3" ? "chart-tab-active" : ""
-                        }`}
+                        className={`chart-tab ${activeTab === "tab3" ? "chart-tab-active" : ""
+                          }`}
                         onClick={() => handlePieChart("tab3")}
                       >
                         Pie Chart
                       </button>
                       <button
-                        className={`chart-tab ${
-                          activeTab === "tab4" ? "chart-tab-active" : ""
-                        }`}
+                        className={`chart-tab ${activeTab === "tab4" ? "chart-tab-active" : ""
+                          }`}
                         onClick={() => handlePieChart("tab4")}
                       >
                         Bar Chart
@@ -986,7 +1060,7 @@ const DataModeling = () => {
                     {showPieChart && (
                       <div className="charts-container">
                         <div className="pie-chart">
-                          <InventoryPieChart data={data} />
+                          <NewsPieChart data={data} />
                           {/* <NewChart data={data} chartText={"Product with Lead Times"} pieChartData={inventoryPieData} /> */}
                         </div>
                       </div>
@@ -1011,17 +1085,15 @@ const DataModeling = () => {
                   <div id="tab2" className="content">
                     <div className="charts-buttons">
                       <button
-                        className={`chart-tab ${
-                          activeTab === "tab3" ? "chart-tab-active" : ""
-                        }`}
+                        className={`chart-tab ${activeTab === "tab3" ? "chart-tab-active" : ""
+                          }`}
                         onClick={() => handlePieChart("tab3")}
                       >
                         Pie Chart
                       </button>
                       <button
-                        className={`chart-tab ${
-                          activeTab === "tab4" ? "chart-tab-active" : ""
-                        }`}
+                        className={`chart-tab ${activeTab === "tab4" ? "chart-tab-active" : ""
+                          }`}
                         onClick={() => handlePieChart("tab4")}
                       >
                         Bar Chart
@@ -1030,7 +1102,7 @@ const DataModeling = () => {
                     {showPieChart && (
                       <div className="charts-container">
                         <div className="bar-chart">
-                          <InventoryBarChart data={data} />
+                          <NewsBarChart data={data} />
                         </div>
                       </div>
                     )}
@@ -1089,17 +1161,15 @@ const DataModeling = () => {
                   <div id="tab2" className="content">
                     <div className="charts-buttons">
                       <button
-                        className={`chart-tab ${
-                          activeTab === "tab3" ? "chart-tab-active" : ""
-                        }`}
+                        className={`chart-tab ${activeTab === "tab3" ? "chart-tab-active" : ""
+                          }`}
                         onClick={() => handlePieChart("tab3")}
                       >
                         Pie Chart
                       </button>
                       <button
-                        className={`chart-tab ${
-                          activeTab === "tab4" ? "chart-tab-active" : ""
-                        }`}
+                        className={`chart-tab ${activeTab === "tab4" ? "chart-tab-active" : ""
+                          }`}
                         onClick={() => handlePieChart("tab4")}
                       >
                         Bar Chart
@@ -1140,17 +1210,15 @@ const DataModeling = () => {
                   <div id="tab2" className="content">
                     <div className="charts-buttons">
                       <button
-                        className={`chart-tab ${
-                          activeTab === "tab3" ? "chart-tab-active" : ""
-                        }`}
+                        className={`chart-tab ${activeTab === "tab3" ? "chart-tab-active" : ""
+                          }`}
                         onClick={() => handlePieChart("tab3")}
                       >
                         Pie Chart
                       </button>
                       <button
-                        className={`chart-tab ${
-                          activeTab === "tab4" ? "chart-tab-active" : ""
-                        }`}
+                        className={`chart-tab ${activeTab === "tab4" ? "chart-tab-active" : ""
+                          }`}
                         onClick={() => handlePieChart("tab4")}
                       >
                         Bar Chart
@@ -1184,17 +1252,15 @@ const DataModeling = () => {
                   <div id="tab2" className="content">
                     <div className="charts-buttons">
                       <button
-                        className={`chart-tab ${
-                          activeTab === "tab3" ? "chart-tab-active" : ""
-                        }`}
+                        className={`chart-tab ${activeTab === "tab3" ? "chart-tab-active" : ""
+                          }`}
                         onClick={() => handlePieChart("tab3")}
                       >
                         Pie Chart
                       </button>
                       <button
-                        className={`chart-tab ${
-                          activeTab === "tab4" ? "chart-tab-active" : ""
-                        }`}
+                        className={`chart-tab ${activeTab === "tab4" ? "chart-tab-active" : ""
+                          }`}
                         onClick={() => handlePieChart("tab4")}
                       >
                         Bar Chart
@@ -1261,17 +1327,15 @@ const DataModeling = () => {
                   <div id="tab2" className="content">
                     <div className="charts-buttons">
                       <button
-                        className={`chart-tab ${
-                          activeTab === "tab3" ? "chart-tab-active" : ""
-                        }`}
+                        className={`chart-tab ${activeTab === "tab3" ? "chart-tab-active" : ""
+                          }`}
                         onClick={() => handlePieChart("tab3")}
                       >
                         Pie Chart
                       </button>
                       <button
-                        className={`chart-tab ${
-                          activeTab === "tab4" ? "chart-tab-active" : ""
-                        }`}
+                        className={`chart-tab ${activeTab === "tab4" ? "chart-tab-active" : ""
+                          }`}
                         onClick={() => handlePieChart("tab4")}
                       >
                         Bar Chart
@@ -1312,17 +1376,15 @@ const DataModeling = () => {
                   <div id="tab2" className="content">
                     <div className="charts-buttons">
                       <button
-                        className={`chart-tab ${
-                          activeTab === "tab3" ? "chart-tab-active" : ""
-                        }`}
+                        className={`chart-tab ${activeTab === "tab3" ? "chart-tab-active" : ""
+                          }`}
                         onClick={() => handlePieChart("tab3")}
                       >
                         Pie Chart
                       </button>
                       <button
-                        className={`chart-tab ${
-                          activeTab === "tab4" ? "chart-tab-active" : ""
-                        }`}
+                        className={`chart-tab ${activeTab === "tab4" ? "chart-tab-active" : ""
+                          }`}
                         onClick={() => handlePieChart("tab4")}
                       >
                         Bar Chart
@@ -1356,17 +1418,15 @@ const DataModeling = () => {
                   <div id="tab2" className="content">
                     <div className="charts-buttons">
                       <button
-                        className={`chart-tab ${
-                          activeTab === "tab3" ? "chart-tab-active" : ""
-                        }`}
+                        className={`chart-tab ${activeTab === "tab3" ? "chart-tab-active" : ""
+                          }`}
                         onClick={() => handlePieChart("tab3")}
                       >
                         Pie Chart
                       </button>
                       <button
-                        className={`chart-tab ${
-                          activeTab === "tab4" ? "chart-tab-active" : ""
-                        }`}
+                        className={`chart-tab ${activeTab === "tab4" ? "chart-tab-active" : ""
+                          }`}
                         onClick={() => handlePieChart("tab4")}
                       >
                         Bar Chart
@@ -1440,17 +1500,15 @@ const DataModeling = () => {
                   <div id="tab2" className="content">
                     <div className="charts-buttons">
                       <button
-                        className={`chart-tab ${
-                          activeTab === "tab3" ? "chart-tab-active" : ""
-                        }`}
+                        className={`chart-tab ${activeTab === "tab3" ? "chart-tab-active" : ""
+                          }`}
                         onClick={() => handlePieChart("tab3")}
                       >
                         Pie Chart
                       </button>
                       <button
-                        className={`chart-tab ${
-                          activeTab === "tab4" ? "chart-tab-active" : ""
-                        }`}
+                        className={`chart-tab ${activeTab === "tab4" ? "chart-tab-active" : ""
+                          }`}
                         onClick={() => handlePieChart("tab4")}
                       >
                         Bar Chart
@@ -1491,17 +1549,15 @@ const DataModeling = () => {
                   <div id="tab2" className="content">
                     <div className="charts-buttons">
                       <button
-                        className={`chart-tab ${
-                          activeTab === "tab3" ? "chart-tab-active" : ""
-                        }`}
+                        className={`chart-tab ${activeTab === "tab3" ? "chart-tab-active" : ""
+                          }`}
                         onClick={() => handlePieChart("tab3")}
                       >
                         Pie Chart
                       </button>
                       <button
-                        className={`chart-tab ${
-                          activeTab === "tab4" ? "chart-tab-active" : ""
-                        }`}
+                        className={`chart-tab ${activeTab === "tab4" ? "chart-tab-active" : ""
+                          }`}
                         onClick={() => handlePieChart("tab4")}
                       >
                         Bar Chart
@@ -1534,17 +1590,15 @@ const DataModeling = () => {
                   <div id="tab2" className="content">
                     <div className="charts-buttons">
                       <button
-                        className={`chart-tab ${
-                          activeTab === "tab3" ? "chart-tab-active" : ""
-                        }`}
+                        className={`chart-tab ${activeTab === "tab3" ? "chart-tab-active" : ""
+                          }`}
                         onClick={() => handlePieChart("tab3")}
                       >
                         Pie Chart
                       </button>
                       <button
-                        className={`chart-tab ${
-                          activeTab === "tab4" ? "chart-tab-active" : ""
-                        }`}
+                        className={`chart-tab ${activeTab === "tab4" ? "chart-tab-active" : ""
+                          }`}
                         onClick={() => handlePieChart("tab4")}
                       >
                         Bar Chart
@@ -1615,17 +1669,15 @@ const DataModeling = () => {
                   <div id="tab2" className="content">
                     <div className="charts-buttons">
                       <button
-                        className={`chart-tab ${
-                          activeTab === "tab3" ? "chart-tab-active" : ""
-                        }`}
+                        className={`chart-tab ${activeTab === "tab3" ? "chart-tab-active" : ""
+                          }`}
                         onClick={() => handlePieChart("tab3")}
                       >
                         Pie Chart
                       </button>
                       <button
-                        className={`chart-tab ${
-                          activeTab === "tab4" ? "chart-tab-active" : ""
-                        }`}
+                        className={`chart-tab ${activeTab === "tab4" ? "chart-tab-active" : ""
+                          }`}
                         onClick={() => handlePieChart("tab4")}
                       >
                         Bar Chart
@@ -1666,17 +1718,15 @@ const DataModeling = () => {
                   <div id="tab2" className="content">
                     <div className="charts-buttons">
                       <button
-                        className={`chart-tab ${
-                          activeTab === "tab3" ? "chart-tab-active" : ""
-                        }`}
+                        className={`chart-tab ${activeTab === "tab3" ? "chart-tab-active" : ""
+                          }`}
                         onClick={() => handlePieChart("tab3")}
                       >
                         Pie Chart
                       </button>
                       <button
-                        className={`chart-tab ${
-                          activeTab === "tab4" ? "chart-tab-active" : ""
-                        }`}
+                        className={`chart-tab ${activeTab === "tab4" ? "chart-tab-active" : ""
+                          }`}
                         onClick={() => handlePieChart("tab4")}
                       >
                         Bar Chart
@@ -1709,17 +1759,15 @@ const DataModeling = () => {
                   <div id="tab2" className="content">
                     <div className="charts-buttons">
                       <button
-                        className={`chart-tab ${
-                          activeTab === "tab3" ? "chart-tab-active" : ""
-                        }`}
+                        className={`chart-tab ${activeTab === "tab3" ? "chart-tab-active" : ""
+                          }`}
                         onClick={() => handlePieChart("tab3")}
                       >
                         Pie Chart
                       </button>
                       <button
-                        className={`chart-tab ${
-                          activeTab === "tab4" ? "chart-tab-active" : ""
-                        }`}
+                        className={`chart-tab ${activeTab === "tab4" ? "chart-tab-active" : ""
+                          }`}
                         onClick={() => handlePieChart("tab4")}
                       >
                         Bar Chart

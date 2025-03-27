@@ -38,11 +38,21 @@ const Table = (props) => {
                 <table className='table'>
                 <thead >
                     <tr>
-                        <th className='column-name'>S.No</th>
+                        {/* <th className='column-name'>S.No</th>
                         <th className='column-name'>Product_ID</th>
-                        {/* <th className='column-name'>Material</th> */}
                         <th className='column-name'>Distribution Center</th>
-                        <th className='column-name'>Quantity</th>
+                        <th className='column-name'>Quantity</th> */}
+                        
+                        {/* // Updated Data */}
+                        <td className='column-name'>S.No</td>
+                        <td className='column-name'>Distribution_Center_ID</td>
+                        {/* <td className='column-name'>Historical NEWS Paper Demand</td> */}
+                        <td className='column-name'>Predicted NEWS Papers Demand</td>
+                        <td className='column-name'>Predicted Reams of Paper</td>
+                        <td className='column-name'>Predicted Ink in liters</td>
+
+                        {/* // Updated Data End */}
+                        
                         {/* <th className='column-name'>Product_Identifier</th>
                         <th className='column-name'>Product_Name</th>
                         <th className='column-name'>Distribution_Center_ID</th>
@@ -60,46 +70,70 @@ const Table = (props) => {
                     </tr>
                 </thead>
                 <tbody>
-                <tr>
+                {/* 730414 12822 6667 */}
+                {/* <tr>
                         <td>1</td>
                         <td>PUID1</td>
-                        {/* <td>Paper</td> */}
                         <td>IB01</td>
                         <td>29800</td>
                     </tr>
                     <tr>
                         <td>2</td>
                         <td>PUID2</td>
-                        {/* <td>Ink</td> */}
                         <td>IB01</td>
                         <td>46780</td>
+                    </tr> */}
+                    <tr>
+                        <td>1</td>
+                        {/* <td>PUID1</td> */}
+                        <td>IB01</td>
+                        <td>730414</td>
+                        <td>12822</td>
+                        <td>6667</td>
                     </tr>
                     {
-                        data.map((eachRow, index) => {
-                            return (
-                                <tr key={index}>
-                                    <td>{index + 3}</td>
-                                    <td>PUID{index + 3}</td>
-                                    {/* <td>{eachRow.Product_Name}</td> */}
-                                    <td>{eachRow.Distribution_Center && "IB01"}</td>
-                                    <td>{eachRow.Reorder_Quantity_Prediction_with_live_data}</td>
-                                    {/* <td>{eachRow.Product_ID}</td>
-                                    <td>{eachRow.Product_Name}</td>
-                                    <td>{eachRow.Distribution_Center}</td>
-                                    <td>{getDisCenter(eachRow.Distribution_Center_ID)}</td>
+                        data.slice(1,data.length).map((eachRow, index) => {
+                            // return (
+                            //     <tr key={index}>
+                            //         <td>{index + 3}</td>
+                            //         <td>PUID{index + 3}</td>
+                            //         <td>{eachRow.Product_Name}</td>
+                            //         <td>{eachRow.Distribution_Center && "IB01"}</td>
+                            //         <td>{eachRow.Reorder_Quantity_Prediction_with_live_data}</td>
+                            //         <td>{eachRow.Product_ID}</td>
+                            //         <td>{eachRow.Product_Name}</td>
+                            //         <td>{eachRow.Distribution_Center}</td>
+                            //         <td>{getDisCenter(eachRow.Distribution_Center_ID)}</td>
                                     
-                                    <td>{eachRow.Order_Fulfillment_Time_in_days}</td>
-                                    <td>{eachRow.Historical_Monthly_Sales}</td>
-                                    <td>{eachRow.Monthly_Sales_Prediction_without_live_data}</td>
-                                    <td>{eachRow.Monthly_Sales_Prediction_with_live_data}</td>
-                                    <td>{eachRow.Daily_Sales_Prediction_without_live_data}</td>
-                                    <td>{eachRow.Daily_Sales_Prediction_with_live_data}</td>
-                                    <td>{eachRow.Safety_Stock_without_live_data}</td>
-                                    <td>{eachRow.Safety_Stock_with_live_data}</td>
-                                    <td>{eachRow.Reorder_Quantity_Prediction_without_live_data}</td>
-                                    <td>{eachRow.Reorder_Quantity_Prediction_with_live_data}</td> */}
+                            //         <td>{eachRow.Order_Fulfillment_Time_in_days}</td>
+                            //         <td>{eachRow.Historical_Monthly_Sales}</td>
+                            //         <td>{eachRow.Monthly_Sales_Prediction_without_live_data}</td>
+                            //         <td>{eachRow.Monthly_Sales_Prediction_with_live_data}</td>
+                            //         <td>{eachRow.Daily_Sales_Prediction_without_live_data}</td>
+                            //         <td>{eachRow.Daily_Sales_Prediction_with_live_data}</td>
+                            //         <td>{eachRow.Safety_Stock_without_live_data}</td>
+                            //         <td>{eachRow.Safety_Stock_with_live_data}</td>
+                            //         <td>{eachRow.Reorder_Quantity_Prediction_without_live_data}</td>
+                            //         <td>{eachRow.Reorder_Quantity_Prediction_with_live_data}</td>
+                            //     </tr>
+                            // )
+
+                            // Updated Data
+
+                            return(
+                                <tr key={index}>
+                                    <td>{index+2}</td>
+                                    <td>{eachRow.Distribution_Center_ID.slice(0,2)+eachRow.Distribution_Center_ID.slice(3,5)}</td>
+                                    {/* <td>IB01</td> */}
+                                    {/* <td>{eachRow.Historical_News_Paper_Demand}</td> */}
+                                    <td>{eachRow.Predicted_NEWS_Paper_Demand_Quantity}</td>
+                                    <td>{eachRow.Predicted_Reams_Of_Paper}</td>
+                                    <td>{eachRow.Ink_required_Predicted_liters}</td>
                                 </tr>
                             )
+
+                            // Updated Data End
+
                         })
                     }
                     

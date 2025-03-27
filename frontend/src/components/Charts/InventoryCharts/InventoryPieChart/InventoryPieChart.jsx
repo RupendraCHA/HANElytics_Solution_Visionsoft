@@ -46,31 +46,13 @@ function InventoryPieChart({ data }) {
         ]
     })
 
-    // const [userData2, setUserData2] = useState({
-    //     // 
-    //     labels: slicedData.map((data) => data.Product_Name),
-    //     datasets: [{
-    //         // label: "Sales Data",
-    //         data: slicedData.map((data) => data.Historical_Monthly_Sales),
-    //         backgroundColor: backgroundColors2,
-    //         borderColor: backgroundColors2,
-    //         borderWidth: 1,
-    //         hoverOffset: 30
-    //     }
-    //     ]
-    // })
-
-    // console.log()
-
     return (
         <div className='pie-chart-container'>
             
             <div className="p-chart">
                 <InventoryPieChartItem chartData={userData1} chartText={"Product Name and its Lead times in Days & Historical Sales"} />
             </div>
-            {/* <div className="p-chart">
-                <InventoryPieChartItem chartData={userData2} chartText={"Product Name and its Historical Monthly Sales"} />
-            </div> */}
+            
         </div>
     )
 }
@@ -78,16 +60,4 @@ function InventoryPieChart({ data }) {
 export default InventoryPieChart
 
 
-// {
-//     label: "Safety Stock",
-//     data: usersData.map((data) => data.safetyStock),
-//     backgroundColor: ["#000", "#fff", "#aaa", "#55852c", "#14c49e", "#07de2b", "#086acc", "#810fab"],
-//     borderColor: "white",
-//     borderWidth: 1
-// }, {
-//     label: "Reorder Point Quantity",
-//     data: usersData.map((data) => data.reorderPointQuantity),
-//     backgroundColor: ["#fcba03", "#8c8a54", "#0c04b0", "#55852c", "#14c49e", "#07de2b", "#086acc", "#810fab"],
-//     borderColor: "white",
-//     borderWidth: 1
-// }
+

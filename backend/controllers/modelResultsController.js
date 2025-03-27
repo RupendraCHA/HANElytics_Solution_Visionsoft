@@ -89,8 +89,13 @@ export const transferDataToSAP1 = async (req, res) => {
     // const password1 = "R###vsoft1234"; // 2022 system
     const SAP_API_URL =
       "http://52.38.202.58:8080/sap/opu/odata/VSHANEYA/HANELYTICS_THRT_SRV/AutomationSet";
-    const username1 = "vamshib";
-    const password1 = "Anjaneya@209"; // 2022 system
+    // const username1 = "vamshib";
+    // const password1 = "Anjaneya@209";
+    //  // 2022 system
+    // const username1 = "Hanelytics";
+    // const password1 = "Hanelytics@24";
+    const username1 = "HANEYA_RPA";
+    const password1 = "Haneya@1234";
   //   async function getCsrfToken() {
   //     const response = await axios.get('http://52.38.202.58:8080/sap/opu/odata/VSHANEYA/HANELYTICS_THRT_SRV/AutomationSet', {
   //         headers: {
@@ -136,8 +141,9 @@ export const transferDataToSAP1 = async (req, res) => {
     );
     if (response1){
       return res.status(201).json({
-        message: "✔✔✔ Data Transferred Successfully to the SAP System. ✔✔✔",
+        message: "✓✓ Data Transferred Successfully",
         success: true,
+        data: odataPayload1
       });
     }else {
       return res.status(500).json({
@@ -209,10 +215,16 @@ export const InventoryModelResults1 = async (req, res) => {
     const database = client.db("Inventory_Predictions_Database_Unique");
     const collection = database.collection("Predicted_Results_Unique");
 
+    const database1 = client.db("News_Paper_Quantity_Predictions");
+    const collection1 = database1.collection("Predicted_Results");
+
+    const allDocuments1 = await collection1.find().toArray()
+    console.log(allDocuments1)
+
     const allDocuments = await collection.find().toArray();
 
     // console.log(allDocuments)
-    return res.json(allDocuments);
+    return res.json(allDocuments1);
   } catch (error) {
     console.log(error);
   }
