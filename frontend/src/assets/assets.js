@@ -11,10 +11,18 @@ import Revenue_pic from "./Revenue.avif"
 import Paper_ink_pic from "./Paper_ink.jpg"
 import sales_pic from "./SalesOrder.jpg"
 import Outbound_Delivery_pic from "./OutboundDelivery.png"
-import Billing_pic from "./Billing & Invoicing.png"
+import Billing_pic from "./Billing & Invoicing.jpg"
 import Supplier_Order_pic from "./procurement1.jpg"
-import Accounts_receivable_pic from "./Accounts receivable.png"
-import Accounts_payable_pic from "./Accounts payable.png"
+import Purchase_Requisition_pic from "./Purchase_Requisition.jpg"
+import Goods_Receipt_pic from "./Goods_Receipt.webp"
+import Controlling_pic from "./Controlling.webp"
+import Production_planning_pic from "./Production_planning.jpg"
+import Material_management_pic from "./Material_management.jpg"
+import General_Ledger_pic from "./General_Ledger.jpg"
+
+
+
+
 
 
 
@@ -37,7 +45,5 @@ export const assets = {
     sales_pic,
     Outbound_Delivery_pic,
     Billing_pic,
-    Supplier_Order_pic,
-    Accounts_receivable_pic,
-    Accounts_payable_pic
+    Supplier_Order_pic
 }
