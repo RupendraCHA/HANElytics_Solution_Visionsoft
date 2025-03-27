@@ -21,6 +21,7 @@ import Material_management_pic from "./Material_Management.jpg"
 import General_Ledger_pic from "./General_Ledger.jpg"
 import Accounts_payable_pic from "./Accounts payable.png"
 import Accounts_receivable_pic from "./Accounts receivable.png"
+import BGImage_pic from "./BGImage.jpg"
 
 
 
@@ -48,6 +49,6 @@ export const assets = {
     Material_management_pic,
     General_Ledger_pic,
     Accounts_payable_pic,
-    Accounts_receivable_pic
-
+    Accounts_receivable_pic,
+    BGImage_pic
 }

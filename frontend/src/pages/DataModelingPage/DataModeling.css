@@ -575,7 +575,10 @@ ul {
   font-weight: 600;
   /* color: #000; */
 }
+.tabHeading:hover{
+  background-color: #ddd9d9;
 
+}
 
 
 .tab-heading {
