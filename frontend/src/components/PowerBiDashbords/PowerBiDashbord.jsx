@@ -67,6 +67,59 @@ const PowerBiDashboard = () => {
       url: "https://app.powerbi.com/groups/84691a96-fa30-4e99-8ebf-da73b935661b/reports/0c34af53-228f-49e3-a217-c7942da55d86/9399d3c37b14e9f48649?experience=power-bi&clientSideAuth=0",
       image: `${assets.Supplier_Order_pic}`
     },
+    {
+      headerText: "Goods Receipt",
+      dataText: "purchase",
+      url: "https://app.powerbi.com/groups/me/reports/d88fd1c6-d635-4ead-864c-b4971b81e11b/153be76ec304a615ddb5?experience=power-bi&clientSideAuth=0",
+      image: `${assets.Billing_pic}`
+    },
+    {
+      headerText: "Purchase Requisition",
+      dataText: "purchase",
+      url: "https://app.powerbi.com/groups/me/reports/092a96f6-27cd-41fd-9d6c-798733cfd586/f3156d802d9e138dabba?experience=power-bi&clientSideAuth=0",
+      image: `${assets.Inventory_pic}`
+    },
+  ];
+  const manufacturing = [
+    {
+      headerText: "Controlling",
+      dataText: "purchase",
+      url: "https://app.powerbi.com/groups/84691a96-fa30-4e99-8ebf-da73b935661b/reports/0c34af53-228f-49e3-a217-c7942da55d86/9399d3c37b14e9f48649?experience=power-bi&clientSideAuth=0",
+      image: `${assets.Supplier_Order_pic}`
+    },
+    {
+      headerText: "Material Management",
+      dataText: "purchase",
+      url: "https://app.powerbi.com/groups/me/reports/d88fd1c6-d635-4ead-864c-b4971b81e11b/153be76ec304a615ddb5?experience=power-bi&clientSideAuth=0",
+      image: `${assets.Supplier_Order_pic}`
+    },
+    {
+      headerText: "Production Planning",
+      dataText: "purchase",
+      url: "https://app.powerbi.com/groups/me/reports/d88fd1c6-d635-4ead-864c-b4971b81e11b/153be76ec304a615ddb5?experience=power-bi&clientSideAuth=0",
+      image: `${assets.Supplier_Order_pic}`
+    },
+    
+  ];
+  const finance = [
+    {
+      headerText: "General Ledger",
+      dataText: "purchase",
+      url: "https://app.powerbi.com/groups/84691a96-fa30-4e99-8ebf-da73b935661b/reports/0c34af53-228f-49e3-a217-c7942da55d86/9399d3c37b14e9f48649?experience=power-bi&clientSideAuth=0",
+      image: `${assets.Supplier_Order_pic}`
+    },
+    {
+      headerText: "Account Payable",
+      dataText: "purchase",
+      url: "https://app.powerbi.com/groups/me/reports/d88fd1c6-d635-4ead-864c-b4971b81e11b/153be76ec304a615ddb5?experience=power-bi&clientSideAuth=0",
+      image: `${assets.Supplier_Order_pic}`
+    },
+    {
+      headerText: "Account Receivable",
+      dataText: "purchase",
+      url: "https://app.powerbi.com/groups/me/reports/d88fd1c6-d635-4ead-864c-b4971b81e11b/153be76ec304a615ddb5?experience=power-bi&clientSideAuth=0",
+      image: `${assets.Supplier_Order_pic}`
+    },
   ];
 
   const showDashboards = (activeTab) => {
@@ -183,7 +236,7 @@ const PowerBiDashboard = () => {
             Manufacturing:
           </h1>
           <div className="dashboard-section">
-            {procurement.map((type) => {
+            {manufacturing.map((type) => {
               return (
                 <div key={type.dataText} className="dashboard-card">
                   <div className="bi-header-text">
@@ -217,7 +270,7 @@ const PowerBiDashboard = () => {
             Finance:
           </h1>
           <div className="dashboard-section">
-            {procurement.map((type) => {
+            {finance.map((type) => {
               return (
                 <div key={type.dataText} className="dashboard-card">
                   <div className="bi-header-text">
