@@ -22,15 +22,6 @@ import General_Ledger_pic from "./General_Ledger.jpg"
 
 
 
-
-
-
-
-
-
-
-
-
 export const assets = {
     Procurement_pic,
     Manufacturing_pic,
@@ -45,5 +36,11 @@ export const assets = {
     sales_pic,
     Outbound_Delivery_pic,
     Billing_pic,
-    Supplier_Order_pic
+    Supplier_Order_pic,
+    Purchase_Requisition_pic,
+    Goods_Receipt_pic,
+    Controlling_pic,
+    Production_planning_pic,
+    Material_management_pic,
+    General_Ledger_pic
 }
