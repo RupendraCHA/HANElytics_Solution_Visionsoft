@@ -362,7 +362,7 @@ const PowerBiDashboard = () => {
         <Link to="/home" className="bi-home-heading">
           <h1>HANELYTICS</h1>
         </Link>
-        <div className="bi-tabs-list">
+        {/* <div className="bi-tabs-list">
           <h1 onClick={openMsg} className={`bi-tab-list-heading`}>View Categories
           <MdKeyboardArrowUp
                 className={`bi-arrow-1 ${isMsgOpened === true ? "bi-arrow-down" : ""
@@ -383,10 +383,10 @@ const PowerBiDashboard = () => {
                 className="dashboard-data-model-image-tab"
               />
               {eachTab.tabName}
-              {/* <MdKeyboardArrowUp
+              <MdKeyboardArrowUp
                 className={`bi-arrow ${activeDashboard === `${eachTab.activeText}` ? "bi-arrow-down" : ""
                   }`}
-              /> */}
+              />
               </h1>
               
             </div>
@@ -396,9 +396,9 @@ const PowerBiDashboard = () => {
             Go to Previous
             <LuArrowUpRight className="insights-icon"/>
             </h1>
-        </div>
+        </div> */}
         
-        {/* <div className="dashboard-tabs">
+        <div className="dashboard-tabs">
           {tabsList.map((eachTab) => (
             <h1
             onClick={() => showDashboards(`${eachTab.activeText}`)}
@@ -422,7 +422,7 @@ const PowerBiDashboard = () => {
             <LuArrowUpRight className="insights-icon"/>
             </h1>
           
-        </div> */}
+        </div>
         <div className="bi-drop-down">
           <div className="bi-icon-username">
             <FaRegUserCircle className="bi-user-icon" />

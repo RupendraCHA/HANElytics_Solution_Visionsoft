@@ -330,22 +330,23 @@
     gap: 20px;
 }
 .insights-btn{
-    color: #000;
+    color: #fff;
     margin-left: 10px;
     font-size: 13px;
-    background-color: #fff;
+    /* background-color: #fff; */
     padding: 2px 10px;
-    border: 1px solid #fff;
+    /* border: 1px solid #fff; */
     border-radius: 8px;
     cursor: pointer;
     font-weight: 700;
     display: flex;
     align-items: center;
-  box-shadow: 2px 2px 2px #0e0e0e;
+  /* box-shadow: 2px 2px 2px #0e0e0e; */
 
 }
 .insights-btn:hover{
-    background-color: #ddd9d9;
+    /* background-color: #ddd9d9; */
+    text-decoration: underline;
 
 }
 .insights-icon{
