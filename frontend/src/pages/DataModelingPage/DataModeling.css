@@ -568,15 +568,17 @@ ul {
 }
 
 .tabHeading {
-  background-color: #fff;
+  background-color: #2e2424cd;
   box-shadow: 2px 2px 2px #0e0e0e;
   border-radius: 16px;
+  font-size: 13px;
   /* color: #000; */
 }
 
 .tabHeading:hover {
   text-decoration: underline;
-  transform: scale(1.03);
+  /* transform: scale(1.03); */
+  background-color: #000;
 
 
 }
