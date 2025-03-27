@@ -714,13 +714,13 @@ const DataModeling = () => {
               <div style={{ position: "relative" }}>
                 <h4
                   onClick={() => handleIsOpened("data-models")}
-                  style={{ color: "#000", fontSize: "14px" }}
+                  style={{ color: "#000", fontSize: "13px" }}
                   className={`tabHeading ${dataModelOpen === "data-models" && "tab-heading"
                     }`}
                 >
                   Data Models
                   <MdKeyboardArrowUp
-                    style={{ fontSize: "20px" }}
+                    style={{ fontSize: "28px" }}
                     className={`"arrow" ${dataModelOpen === "data-models" ? "arrow-down" : ""
                       }`}
                   />
@@ -757,13 +757,13 @@ const DataModeling = () => {
               <div style={{ position: "relative" }}>
                 <h4
                   onClick={() => handleMigrateData("migrate-data")}
-                  style={{ color: "#000", fontSize: "14px" }}
+                  style={{ color: "#000", fontSize: "13px" }}
                   className={`tabHeading ${migrateModelOpen === "migrate-data" && "tab-heading"
                     }`}
                 >
                   Migrate Data
                   <MdKeyboardArrowUp
-                    style={{ fontSize: "20px" }}
+                    style={{ fontSize: "28px" }}
                     className={`${migrateModelOpen === "migrate-data" ? "arrow-down" : ""
                       }`}
                   />
@@ -785,7 +785,7 @@ const DataModeling = () => {
                   </div>
                 )}
               </div>
-              <h4 onClick={() => navigate("/dashboards")} className="tabHeading tab-heding" style={{ color: "#000", fontSize: "14px" }}>Power BI Reports</h4>
+              <h4 onClick={() => navigate("/dashboards")} className="tabHeading tab-heding" style={{ color: "#000", fontSize: "13px", display: "flex", alignItems: "center" }}>Power BI Reports</h4>
             </div>
             <div className="drop-down">
               <div>

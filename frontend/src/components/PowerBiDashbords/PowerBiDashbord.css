@@ -310,7 +310,7 @@
 
 }
 .bi-tab-list-heading:hover{
-    background-color: #808080;
+    background-color: #ddd9d9;
 }
 
 .bi-arrow-1{
@@ -338,15 +338,15 @@
     border: 1px solid #fff;
     border-radius: 8px;
     cursor: pointer;
-    font-weight: 600;
+    font-weight: 700;
     display: flex;
     align-items: center;
   box-shadow: 2px 2px 2px #0e0e0e;
 
 }
 .insights-btn:hover{
-    text-decoration: underline;
-    background-color: #808080;
+    background-color: #ddd9d9;
+
 }
 .insights-icon{
     font-size: 18px;

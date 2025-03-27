@@ -383,10 +383,10 @@ const PowerBiDashboard = () => {
                 className="dashboard-data-model-image-tab"
               />
               {eachTab.tabName}
-              <MdKeyboardArrowUp
+              {/* <MdKeyboardArrowUp
                 className={`bi-arrow ${activeDashboard === `${eachTab.activeText}` ? "bi-arrow-down" : ""
                   }`}
-              />
+              /> */}
               </h1>
               
             </div>
