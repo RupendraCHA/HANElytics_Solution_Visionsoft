@@ -19,6 +19,10 @@ import Controlling_pic from "./Controlling.webp"
 import Production_planning_pic from "./Production_planning.jpg"
 import Material_management_pic from "./Material_management.jpg"
 import General_Ledger_pic from "./General_Ledger.jpg"
+import Accounts_payable_pic from "./Accounts payable.png"
+import Accounts_receivable_pic from "./Accounts receivable.png"
+
+
 
 
 
@@ -42,5 +46,8 @@ export const assets = {
     Controlling_pic,
     Production_planning_pic,
     Material_management_pic,
-    General_Ledger_pic
+    General_Ledger_pic,
+    Accounts_payable_pic,
+    Accounts_receivable_pic
+
 }
