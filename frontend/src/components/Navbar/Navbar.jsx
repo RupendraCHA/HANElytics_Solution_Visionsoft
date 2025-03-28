@@ -1,4 +1,4 @@
-import React from 'react'
+import React from "react";
 import { FaSquarePhone } from "react-icons/fa6";
 import { MdEmail } from "react-icons/md";
 import { FaLinkedin } from "react-icons/fa";
@@ -6,20 +6,19 @@ import { IoLogoYoutube } from "react-icons/io";
 import { GrInstagram } from "react-icons/gr";
 import { FaGlobe } from "react-icons/fa";
 import { FaMapMarkerAlt } from "react-icons/fa";
-import "./Navbar.css"
-import { Link, useNavigate } from 'react-router-dom';
+import "./Navbar.css";
+import { Link, useNavigate } from "react-router-dom";
 // import axios from 'axios';
-import { toast } from 'react-toastify';
+import { toast } from "react-toastify";
 import { FaFacebookSquare } from "react-icons/fa";
 import { FaSquareXTwitter } from "react-icons/fa6";
 
 const Navbar = () => {
+  const navigate = useNavigate();
 
-    const navigate = useNavigate()
-
-    return (
-        <div className='navbar-container'>
-            <div className='contacts'>
+  return (
+    <div className="navbar-container">
+      {/* <div className='contacts'>
                 <div className='contact-details'>
                     <FaSquarePhone className='icon' />
                     <p>(855) 542 6392</p>
@@ -69,9 +68,17 @@ const Navbar = () => {
                         <button className='home'>Home</button>
                     </Link>
                 </div>
-            </div>
-        </div>
-    )
-}
+            </div> */}
+      <Link to="/home" className="header-home-heading">
+        <h1>HANELYTICS</h1>
+      </Link>
+      <div className="signup-register">
+        <Link to="/" style={{ fontWeight: "bold" }}>
+          <button className="home">Home</button>
+        </Link>
+      </div>
+    </div>
+  );
+};
 
-export default Navbar
+export default Navbar;

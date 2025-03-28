@@ -34,6 +34,7 @@ import ClinicalPieChart from "../../components/Charts/ClinicalCharts/ClinicalPie
 import ClinicalBarChart from "../../components/Charts/ClinicalCharts/ClinicalBarChart/ClinicalBarChart.jsx";
 import NewsPieChart from "../../components/Charts/NewsPaperCharts/NewsPieChart/NewsPieChart.jsx";
 import NewsBarChart from "../../components/Charts/NewsPaperCharts/NewsBarChart/NewswBarChart.jsx";
+import Footer from "../../components/Footer/Footer.jsx";
 
 const DataModeling = () => {
   const navigate = useNavigate();
@@ -1802,6 +1803,7 @@ const DataModeling = () => {
           )}
         </div>
       </div>
+      <Footer/>
     </>
   );
 };

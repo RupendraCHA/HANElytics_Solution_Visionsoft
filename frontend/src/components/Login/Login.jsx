@@ -6,6 +6,7 @@ import "./logIn.css";
 import Navbar from "../Navbar/Navbar";
 import { toast } from "react-toastify";
 import { StoreContext } from "../../context/StoreContext";
+import Footer from "../Footer/Footer";
 
 function Login() {
   const [data, setData] = useState({
@@ -79,7 +80,7 @@ function Login() {
       <Navbar />
       {changePassword && (
         <div className="bg-container-login d-flex justify-content-center align-items-center bg-secondary vh-100">
-          <div className="login-page" style={{ backgroundColor: "#1e66d9"}}>
+          <div className="login-page" style={{ backgroundColor: "#0787e3"}}>
             <h4>Explore Our HANElytics AI/ML Solutions</h4>
           </div>
           <div
@@ -192,6 +193,7 @@ function Login() {
           </form>
         </div>
       )}
+      <Footer/>
     </>
   );
 }

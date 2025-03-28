@@ -7,6 +7,7 @@ import "./signIn.css";
 import Navbar from "../Navbar/Navbar";
 import { toast } from "react-toastify";
 import { StoreContext } from "../../context/StoreContext";
+import Footer from "../Footer/Footer";
 
 function SignUp() {
   const [data, setData] = useState({
@@ -103,7 +104,7 @@ function SignUp() {
               <h2 className="register-heading">
                 Sign Up now and get Instant access to AI/ML Insights
               </h2>
-              <a
+              {/* <a
                 style={{
                   color: "white",
                   fontSize: "24px",
@@ -112,7 +113,7 @@ function SignUp() {
                 href="https://ap-south-1nmrg96rqu.auth.ap-south-1.amazoncognito.com/login?client_id=1esfsaanp9ncgms41753687pd8&redirect_uri=https://hanelytics-solution-visionsoft-1.onrender.com/home&response_type=code&scope=email+openid+phone"
               >
                 Sign In Using Cognito
-              </a>
+              </a> */}
               <form onSubmit={handleSubmit}>
                 <div className="register-input-container">
                   <div className="register-input-label">
@@ -200,7 +201,7 @@ function SignUp() {
                     onChange={handleInputChange}
                   />
                 </div>
-                <h3>Bussiness Address Information</h3>
+                <h3 style={{padding: "5px 12px"}}>Bussiness Address Information</h3>
                 <div className="register-input-container">
                   <div className="register-input-label">
                     <label htmlFor="city">
@@ -322,6 +323,7 @@ function SignUp() {
           </div>
         </div>
       )}
+      <Footer/>
     </>
   );
 }

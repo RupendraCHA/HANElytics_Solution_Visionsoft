@@ -8,7 +8,7 @@ import { StoreContext } from "../../context/StoreContext";
 import { assets } from "../../assets/assets.js";
 import { MdKeyboardArrowUp } from "react-icons/md";
 import { LuArrowUpRight } from "react-icons/lu";
-import Navbar from "../Navbar/Navbar.jsx";
+import Footer from "../Footer/Footer.jsx";
 
 
 const PowerBiDashboard = () => {
@@ -189,7 +189,7 @@ const PowerBiDashboard = () => {
           <div className="dashboard-section">
             {HANElyticsDashboards.map((type) => {
               return (
-                <div key={type.dataText} className="dashboard-card">
+                <div key={type.headerText} className="dashboard-card">
                   <div className="bi-header-text">
                     <h1 className="card-title">{type.headerText}</h1>
                   </div>
@@ -222,7 +222,7 @@ const PowerBiDashboard = () => {
           <div className="dashboard-section">
             {orderToCash.map((type) => {
               return (
-                <div key={type.dataText} className="dashboard-card">
+                <div key={type.headerText} className="dashboard-card">
                   <div className="bi-header-text">
                     <h1 className="card-title">{type.headerText}</h1>
                   </div>
@@ -253,7 +253,7 @@ const PowerBiDashboard = () => {
           <div className="dashboard-section">
             {procurement.map((type) => {
               return (
-                <div key={type.dataText} className="dashboard-card">
+                <div key={type.headerText} className="dashboard-card">
                   <div className="bi-header-text">
                     <h1 className="card-title">{type.headerText}</h1>
                   </div>
@@ -286,7 +286,7 @@ const PowerBiDashboard = () => {
           <div className="dashboard-section">
             {manufacturing.map((type) => {
               return (
-                <div key={type.dataText} className="dashboard-card">
+                <div key={type.headerText} className="dashboard-card">
                   <div className="bi-header-text">
                     <h1 className="card-title">{type.headerText}</h1>
                   </div>
@@ -320,7 +320,7 @@ const PowerBiDashboard = () => {
           <div className="dashboard-section">
             {finance.map((type) => {
               return (
-                <div key={type.dataText} className="dashboard-card">
+                <div key={type.headerText} className="dashboard-card">
                   <div className="bi-header-text">
                     <h1 className="card-title">{type.headerText}</h1>
                   </div>
@@ -400,8 +400,8 @@ const PowerBiDashboard = () => {
         </div> */}
         
         <div className="dashboard-tabs">
-          {tabsList.map((eachTab) => (
-            <h1
+          {tabsList.map((eachTab, index) => (
+            <h1 key={index}
             onClick={() => showDashboards(`${eachTab.activeText}`)}
             className={`powerbi-dashboard-tab-item ${activeDashboard === `${eachTab.activeText}` ? "active-dashboard-btn" : ""
               }`}
@@ -463,6 +463,7 @@ const PowerBiDashboard = () => {
           </div>
         </div>
       </div>
+      <Footer/>
     </div>
   );
 };

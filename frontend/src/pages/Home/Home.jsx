@@ -5,6 +5,7 @@ import Header from "../../components/Header/Header";
 import { toast } from "react-toastify";
 import "./Home.css";
 import { StoreContext } from "../../context/StoreContext";
+import Footer from "../../components/Footer/Footer";
 
 function Home() {
   const { token, username } = useContext(StoreContext);
@@ -36,6 +37,7 @@ function Home() {
           <b>*Click here</b>
         </div>
       </div>
+      <Footer/>
     </>
   );
 }

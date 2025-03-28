@@ -21,13 +21,14 @@
   border-radius: 20px 0px 0px 20px;
   border-right: 1px solid #fff;
   h4 {
-    width: 150px;
+    width: 180px;
     text-align: center;
     color: white;
     background-color: #000;
     padding: 15px;
     border-radius: 6px;
-    box-shadow: 2px 2px 2px green;
+    box-shadow: 2px 2px 2px #c6ccc6;
+    font-size: 30px;
   }
 }
 .login-card {
