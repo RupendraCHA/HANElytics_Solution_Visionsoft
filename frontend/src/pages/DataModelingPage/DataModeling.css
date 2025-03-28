@@ -189,7 +189,7 @@
   margin-bottom: 20px;
   text-align: left;
   font-family: "Roboto";
-  font-size: 20px;
+  font-size: 16px;
   font-weight: 600;
   background-color: lightgray;
   padding: 10px;
@@ -609,11 +609,13 @@ ul {
     border-radius: 8px;
     box-shadow: 2px 2px 2px #bfbebe;
     cursor: pointer;
+    font-size: 14px;
+    font-weight: 600;
   }
 
   p:hover {
     background-color: #ded9d993;
-    color: #063be9;
+    /* color: #063be9; */
     text-decoration: underline;
   }
 }

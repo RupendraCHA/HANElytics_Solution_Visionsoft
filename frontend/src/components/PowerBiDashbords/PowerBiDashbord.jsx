@@ -8,6 +8,7 @@ import { StoreContext } from "../../context/StoreContext";
 import { assets } from "../../assets/assets.js";
 import { MdKeyboardArrowUp } from "react-icons/md";
 import { LuArrowUpRight } from "react-icons/lu";
+import Navbar from "../Navbar/Navbar.jsx";
 
 
 const PowerBiDashboard = () => {
@@ -119,7 +120,7 @@ const PowerBiDashboard = () => {
     {
       headerText: "Account Paybles",
       dataText: "purchase",
-      url: "https://app.powerbi.com/groups/me/reports/d88fd1c6-d635-4ead-864c-b4971b81e11b/153be76ec304a615ddb5?experience=power-bi&clientSideAuth=0",
+      url: "https://app.powerbi.com/groups/me/reports/0ac0709f-27ee-42f9-93d8-069096fa3d39/7fccc7b61a81e7e7a21c?experience=power-bi&clientSideAuth=0",
       image: `${assets.Accounts_payable_pic}`
     },
     

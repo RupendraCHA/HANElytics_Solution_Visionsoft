@@ -1,12 +1,7 @@
 import React, { useContext, useEffect, useState } from 'react'
-import { FaSquarePhone } from "react-icons/fa6";
-import { MdEmail } from "react-icons/md";
-import { FaLinkedin } from "react-icons/fa";
-import { IoLogoYoutube } from "react-icons/io";
-import { GrInstagram } from "react-icons/gr";
-import { FaGlobe } from "react-icons/fa";
-import { FaMapMarkerAlt } from "react-icons/fa";
-import { FaRegUserCircle } from "react-icons/fa";
+
+import { FaRegCircleUser } from "react-icons/fa6";
+
 import "./Header.css"
 import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
@@ -45,14 +40,26 @@ const Header = () => {
                     HANELYTICS
                 </h1>
             </Link>
-            <div className='user-container'>
+            {/* <div className='user-container'>
                 <Dropdown menu={{ items }} trigger={['hover']}>
                         <div className='user-symbol'>
                             <FaRegUserCircle className='user-icon' />
                             <p style={{color: "white"}}>{username}</p>
                         </div>
                 </Dropdown>
-            </div>
+            </div> */}
+            <div className="drop-down">
+                          <div>
+                            
+                            <div className="icon-username">
+                              <FaRegCircleUser className="user-icon" />
+                              <p className="username-text">{username}</p>
+                            </div>
+                          </div>
+                          <div>
+                            <button onClick={handleLogout}>Logout</button>
+                          </div>
+                        </div>
         </div>
     )
 }
