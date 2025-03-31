@@ -8,8 +8,11 @@
   padding-left: 5px;
 }
 
-.website-header1 {
-  /* margin-top: 15px; */
+
+@media (max-width: 576px){
+  .website-header1 {
+    /* display: none; */
+  }
 }
 
 .header-container {
@@ -20,6 +23,26 @@
   border-bottom: none;
   background-color: #2431c3;
   padding: 0px 10px;
+}
+
+@media (max-width: 576px){
+  .header-container{
+    display: none;
+  }
+}
+.mobile-header-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  /* border: 2px solid white; */
+  background-color: #2431c3;
+  padding: 10px 10px;
+}
+
+@media (min-width: 576px){
+  .mobile-header-container{
+    display: none;
+  }
 }
 
 .website-heading {
@@ -40,6 +63,18 @@
   letter-spacing: 2;
 }
 
+@media (max-width: 576px){
+  .datamodels-website-heading h1{
+    font-size: 18px;
+  }
+}
+
+.mobile-menu{
+  font-size: 30px;
+  color: #000;
+  font-weight: 600;
+}
+
 .website-heading:hover {
   text-decoration: underline;
   transition: all 0.6s ease-in-out;
@@ -50,6 +85,52 @@
   .website-heading {
     font-size: 30px;
   }
+}
+.mobile-menu-container{
+  background-color: #fff;
+}
+.model-data-mobile-menu-tabs{
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  /* align-items: center; */
+  position: absolute;
+  left: 0;
+  right: 0px;
+  background-color: #0451e0;
+  margin: 10px 0px;
+
+  .model-migrate-tabs{
+    display: flex;
+    flex-direction: column;
+  }
+}
+.mobile-drop-down{
+  display: flex;
+  flex-direction: column;
+  /* justify-content: center; */
+  /* align-items: center; */
+  gap: 30px;
+  height: 100%;
+}
+.mobile-drop-down button{
+  width: 94%;
+  height: 40px;
+  border: 1px solid #0e0e0e;
+  background-color: #fff;
+  color: red;
+  font-weight: 600;
+  border-radius: 6px;
+  box-shadow: 3px 3px 0px #fff;
+  margin: 10px;
+  text-align: left;
+  padding-left: 10px;
+}
+
+.mobile-drop-down button:hover{
+  background-color: red;
+  box-shadow: 3px 3px 0px #000;
+  color: white;
 }
 
 .drop-down {
@@ -86,13 +167,30 @@
   text-align: center;
   margin-top: 30px;
 }
+.mobile-icon-username {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  /* align-items: center; */
+  text-align: center;
+  margin-top: 30px;
+
+  p{
+    text-align: left;
+  }
+}
 
 .username-text {
   color: #fff;
   font-size: 13px;
   font-weight: 600;
 }
-
+.mobile-username-text{
+  color: #fff;
+  font-size: 13px;
+  font-weight: 600;
+  margin-left: 10px;
+}
 .user-icon {
   width: 40px;
   height: 40px;
@@ -102,9 +200,25 @@
   border-radius: 5px;
   box-shadow: 3px 3px 0px #000;
 }
+.mobile-user-icon {
+  width: 40px;
+  height: 40px;
+  color: #000;
+  background-color: #fff;
+  padding: 6px;
+  border-radius: 5px;
+  box-shadow: 3px 3px 0px #000;
+  margin: 0px 10px;
+}
 
 @media screen and (max-width: 576px) {
   .user-icon {
+    width: 35px;
+    height: 35px;
+  }
+}
+@media screen and (max-width: 576px) {
+  .mobile-user-icon {
     width: 35px;
     height: 35px;
   }
@@ -550,6 +664,23 @@ ul {
     
   }
 } */
+.mobile-model-migrate-tabs {
+  display: flex;
+  flex-direction: column;
+  /* gap: 40px; */
+  margin: 10px;
+  margin-bottom: none;
+
+
+  h4 {
+    color: white;
+    font-size: 20px;
+    cursor: pointer;
+    border: 1px solid #fff;
+    padding: 10px 10px;
+    border-radius: 6px;
+  }
+}
 .model-migrate-tabs {
   display: flex;
   gap: 40px;
@@ -599,6 +730,37 @@ ul {
   border-radius: 4px;
   font-weight: 500;
   transition: transform 0.5s;
+  z-index: 10;
+
+  p {
+    padding: 5px 0px;
+    margin: 0;
+    border: 1px solid #000;
+    margin: 8px 0px;
+    padding: 4px 10px;
+    border-radius: 8px;
+    box-shadow: 2px 2px 2px #bfbebe;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 600;
+  }
+
+  p:hover {
+    background-color: #ded9d993;
+    /* color: #063be9; */
+    text-decoration: underline;
+  }
+}
+.mobile-open-tab {
+  /* position: absolute !important; */
+  width: 100%;
+  background-color: #fff;
+  padding: 6px 12px;
+  border-radius: 4px;
+  font-weight: 500;
+  transition: transform 0.5s;
+  /* z-index: 10; */
+  margin-bottom: 10px;
 
   p {
     padding: 5px 0px;
