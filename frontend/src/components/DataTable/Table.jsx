@@ -83,16 +83,15 @@ const Table = (props) => {
                         <td>IB01</td>
                         <td>46780</td>
                     </tr> */}
-                    <tr>
+                    {/* <tr>
                         <td>1</td>
-                        {/* <td>PUID1</td> */}
                         <td>IB01</td>
                         <td>730414</td>
                         <td>12822</td>
                         <td>6667</td>
-                    </tr>
+                    </tr> */}
                     {
-                        data.slice(1,data.length).map((eachRow, index) => {
+                        data.slice(0,data.length).map((eachRow, index) => {
                             // return (
                             //     <tr key={index}>
                             //         <td>{index + 3}</td>
@@ -122,7 +121,7 @@ const Table = (props) => {
 
                             return(
                                 <tr key={index}>
-                                    <td>{index+2}</td>
+                                    <td>{index+1}</td>
                                     <td>{eachRow.Distribution_Center_ID.slice(0,2)+eachRow.Distribution_Center_ID.slice(3,5)}</td>
                                     {/* <td>IB01</td> */}
                                     {/* <td>{eachRow.Historical_News_Paper_Demand}</td> */}
