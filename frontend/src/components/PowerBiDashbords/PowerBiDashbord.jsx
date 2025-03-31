@@ -85,13 +85,13 @@ const PowerBiDashboard = () => {
   ];
   const manufacturing = [
     {
-      headerText: "Controlling",
+      headerText: "Manufacturing Master Data",
       dataText: "purchase",
       url: "https://app.powerbi.com/groups/84691a96-fa30-4e99-8ebf-da73b935661b/reports/0c34af53-228f-49e3-a217-c7942da55d86/9399d3c37b14e9f48649?experience=power-bi&clientSideAuth=0",
       image: `${assets.Controlling_pic}`
     },
     {
-      headerText: "Material Management",
+      headerText: "Manufacturing Orders",
       dataText: "purchase",
       url: "https://app.powerbi.com/groups/me/reports/d88fd1c6-d635-4ead-864c-b4971b81e11b/153be76ec304a615ddb5?experience=power-bi&clientSideAuth=0",
       image: `${assets.Material_management_pic}`
