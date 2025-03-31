@@ -136,7 +136,8 @@ const PowerBiDashboard = () => {
     activeText: "HANElytics",
     imageUrl: `${assets.AiMl_pic}`,
     altText: "AIMLImage",
-    tabName: "AI/ML Models"
+    // tabName: "AI/ML Models"
+    tabName: "Supply Chain Models"
     
   },
   {
@@ -184,7 +185,7 @@ const PowerBiDashboard = () => {
               alt="AIMLImage"
               className="dashboard-data-model-image"
             />
-            AI/ML Models:
+            Supply Chain Models
           </h1>
           <div className="dashboard-section">
             {HANElyticsDashboards.map((type) => {
