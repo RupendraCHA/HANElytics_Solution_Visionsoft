@@ -201,7 +201,7 @@ function SignUp() {
                     onChange={handleInputChange}
                   />
                 </div>
-                <h3 style={{padding: "5px 12px"}}>Bussiness Address Information</h3>
+                <h3 className="bussiness-address-heading" style={{padding: "5px 12px"}}>Bussiness Address Information</h3>
                 <div className="register-input-container">
                   <div className="register-input-label">
                     <label htmlFor="city">
