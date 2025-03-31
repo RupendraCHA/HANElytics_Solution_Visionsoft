@@ -32,28 +32,18 @@ const Header = () => {
   ];
 
   return (
-    <div className="home-container">
+    <div className="home-container1">
       <Link to="/home" className="header-home-heading">
-        <h1>HANELYTICS</h1>
+        <h1 className="header-home-text">HANELYTICS</h1>
       </Link>
-      {/* <div className='user-container'>
-                <Dropdown menu={{ items }} trigger={['hover']}>
-                        <div className='user-symbol'>
-                            <FaRegUserCircle className='user-icon' />
-                            <p style={{color: "white"}}>{username}</p>
-                        </div>
-                </Dropdown>
-            </div> */}
-      <div className="drop-down">
-        <div>
-          <div className="icon-username">
-            <FaRegCircleUser className="user-icon" />
-            <p className="username-text">{username}</p>
+      <div className="drop-down1">
+          <div className="icon-username1">
+            <FaRegCircleUser className="user-icon1" />
+            <p className="username-text1">{username}</p>
           </div>
-        </div>
-        <div>
+        {/* <div> */}
           <button onClick={handleLogout}>Logout</button>
-        </div>
+        {/* </div> */}
       </div>
     </div>
   );

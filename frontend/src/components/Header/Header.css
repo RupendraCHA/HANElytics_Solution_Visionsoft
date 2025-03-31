@@ -1,4 +1,4 @@
-.home-container {
+.home-container1 {
     /* width: 80%; */
     margin: auto;
     display: flex;
@@ -8,12 +8,20 @@
     background-color: #2431c3;
     color: #fff;
     border-bottom: 1px solid #fff;
+    gap: 10px;
   }
+
+  @media (max-width: 576px){
+    .home-container1{
+      padding: 10px;
+    }
+  }
+
   .home-heading {
     text-decoration: none;
     color: #fff;
   }
-  .header-home-heading h1 {
+  .header-home-heading .header-home-text {
     color: #000;
     font-family: "Roboto";
     font-size: 28px;
@@ -25,9 +33,70 @@
     background-color: #fff;
     /* letter-spacing: 2; */
   }
+  @media screen and (max-width: 576px){
+    .header-home-heading .header-home-text{
+      font-size: 18px;
+    }
+    
+  }
 
+  .drop-down1 {
+    display: flex;
+    justify-content: center;
+    /* align-items: center; */
+    gap: 30px;
+    margin-top: 14px;
+    /* height: 100%; */
+  
+  }
+  @media (max-width: 576px){
+    .drop-down1{
+      /* gap: 10px; */
+    }
+  }
+  
+  .drop-down1 button {
+    width: 80px;
+    height: 40px;
+    border: 1px solid #0e0e0e;
+    background-color: #fff;
+    color: red;
+    font-weight: 600;
+    border-radius: 6px;
+    box-shadow: 3px 3px 0px #fff;
+  }
+  @media (max-width:576px){
+    .drop-down1 button{
+      /* width: 40px; */
+      height: 30px;
+    }
+  }
+  .drop-down1 button:hover {
+    background-color: red;
+    box-shadow: 3px 3px 0px #000;
+    color: white;
+  }
+  .icon-username1 {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    /* text-align: center; */
+    /* margin-top: 10px; */
+  }
+  
+  .username-text1 {
+    color: #fff;
+    font-size: 13px;
+    font-weight: 600;
+  }
 
+  @media (max-width: 576px){
+    .username-text1{
+    font-size: 8px;
 
+    }
+  }
 .user-container{
     display: flex;
     justify-content: center;
@@ -45,17 +114,20 @@
         font-weight: 600;
     }
 }
-.user-icon{
-  width: 28px;
-  height: 28px;
-  color: #fff; 
+.user-icon1{
+
+  width: 40px;
+  height: 40px;
+  color: #000;
+  background-color: #fff;
+  padding: 6px;
+  border-radius: 5px;
+  box-shadow: 3px 3px 0px #000;
+  /* margin-top: 30px; */
 }
-#drop-option{
-    text-decoration: none;
-    background-color: antiquewhite;
-    padding: 4px 10px;
-    margin: 5px;
-    color: red;
-    font-weight: 700;
-    border-radius: 4px;
+@media (max-width: 576px){
+  .user-icon1{
+    width: 30px;
+    height: 30px;
+  }
 }
