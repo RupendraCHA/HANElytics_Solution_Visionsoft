@@ -40,11 +40,11 @@ function RevenueBarChart({ data }) {
     // Daily_Sales_Prediction_without_live_data
 
     return (
-        <div className='bar-chart-container'>
-            <div className='b-chart'>
+        <div className='revenue-bar-chart-container'>
+            <div className='revenue-bar-chart'>
                 <RevenueBarChartItem chartData={userData2} barChartText={"Product ID and its Revenue Reporting Week"} />
             </div>
-            <div className='b-chart'>
+            <div className='revenue-bar-chart'>
                 <RevenueBarChartItem chartData={userData1} barChartText={"Product ID and their Revenue Prediction amount"} />
             </div>
         </div>
