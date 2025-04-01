@@ -51,12 +51,12 @@ function ClinicalBarChart({ data }) {
     // Daily_Sales_Prediction_without_live_data
 
     return (
-        <div className='bar-chart-container'>
+        <div className='clinical-bar-chart-container'>
             
-            <div className='b-chart'>
+            <div className='clinical-bar-chart'>
                 <ClinicalBarChartItem chartData={userData2} barChartText={"Medication Name and their Safety Stocks with Reorder Point Quantity"} />
             </div>
-            <div className='b-chart'>
+            <div className='clinical-bar-chart'>
                 <ClinicalBarChartItem chartData={userData1} barChartText={"Medication Name and their Historical, Predicted Sales"} />
             </div>
         </div>

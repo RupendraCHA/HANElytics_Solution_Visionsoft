@@ -77,12 +77,12 @@ function ClinicalPieChart({ data }) {
     // console.log()
 
     return (
-        <div className='pie-chart-container'>
+        <div className='clinical-pie-chart-container'>
             
             {/* <div className="p-chart">
                 <ClinicalPieChartItem chartData={userData1} chartText={"Distribution Center ID and Respective Historical Sales"} cutout={""}/>
             </div> */}
-            <div className="p-chart">
+            <div className="clinical-pie-chart">
                 <ClinicalPieChartItem chartData={userData2} chartText={"Distribution Center Name and their Historical Sales, Predicted Sales"} cutout={"10%"}/>
             </div>
         </div>
