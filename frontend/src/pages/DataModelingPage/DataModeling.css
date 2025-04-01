@@ -454,7 +454,12 @@ ul {
   background-color: white;
   /* overflow: scroll; */
 }
-
+@media (max-width: 576px){
+  .pie-chart{
+    margin: 12px;
+    width: 150%;
+  }
+}
 .bar-chart {
   flex: 1;
   border: 2px solid #000;
@@ -462,6 +467,13 @@ ul {
   margin-left: 10px;
   border-radius: 8px;
   background-color: white;
+}
+
+@media (max-width: 576px){
+  .bar-chart{
+    /* margin: 12px; */
+    width: 300%;
+  }
 }
 
 .results-heading {

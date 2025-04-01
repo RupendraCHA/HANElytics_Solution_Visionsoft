@@ -13,11 +13,19 @@
     background-color: #fff;
     border-radius: 12px;
     /* padding: 12px; */
+    overflow: auto;
   }
-  .p-chart{
-    border: 3px solid blue;
+  .p-chart1{
+    border: 2px solid blue;
     padding: 10px;
-    margin: 5px;
+    margin: 15px;
     border-radius: 12px;
     background-color: #fff;
+  }
+  @media (max-width: 576px){
+    .p-chart1{
+      border: none;
+    /* width: 100%; */
+
+    }
   }
