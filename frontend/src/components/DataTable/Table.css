@@ -22,6 +22,11 @@ thead .column-name {
   font-size: 16px;
   /* text-align: center; */
 }
+@media (max-width: 576px){
+  thead .column-name{
+    font-size: 12px;
+  }
+}
 thead th {
   position: sticky;
   top: 0;
@@ -52,4 +57,9 @@ thead th {
 }
 td {
   letter-spacing: 0.5px;
+}
+@media (max-width: 576px){
+  td{
+    font-size: 11px;
+  }
 }

@@ -93,14 +93,14 @@ const DataModeling = () => {
           className={`tab ${activeTab === "tab1" ? "activeTab" : ""}`}
           onClick={() => handleTabClick("tab1")}
         >
-          <FaDatabase className="process-arrow model-sources" />
+          <FaDatabase className="model-sources" />
           Data Resources <span>(utilized)</span>
         </button>
         <button
           className={`tab ${activeTab === "tab2" ? "activeTab" : ""}`}
           onClick={() => handleTabClick("tab2")}
         >
-          <MdInsertChartOutlined className="process-arrow model-insights" />
+          <MdInsertChartOutlined className="model-insights" />
           View Model Results
         </button>
       </div>
@@ -1107,17 +1107,7 @@ const DataModeling = () => {
                 {activeTab === "tab2" && (
                   <div id="tab2" className="content">
                     <div className="charts-buttons">
-                      {/* <div
-                        style={{
-                          display: "flex",
-                          justifyContent: "flex-end",
-                          cursor: "pointer",
-                          color: "black",
-                        }}
-                        onClick={handleInfo}
-                      >
-                        <MdInfo />
-                      </div> */}
+                      
                       <button
                         className={`chart-tab ${
                           activeTab === "tab3" ? "chart-tab-active" : ""
@@ -1147,12 +1137,7 @@ const DataModeling = () => {
                             equipmentData1={equipmentData1}
                             clinicalData={clinicalData}
                           />
-                          {showImage && (
-                            <img
-                              style={{ width: "100%" }}
-                              src="https://res.cloudinary.com/dvxkeeeqs/image/upload/v1741880873/Calculations_t7glwj.png"
-                            />
-                          )}
+                          
                         </div>
                       </>
                     )}
