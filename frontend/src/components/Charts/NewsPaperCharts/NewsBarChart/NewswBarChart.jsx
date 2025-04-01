@@ -72,17 +72,16 @@ function NewsBarChart({ barChartText, barChartData, labelsData, data }) {
     // Daily_Sales_Prediction_without_live_data
 
     return (
-        <div className='bar-chart-container'>
-            <div className='b-chart'>
+        <div className='news-bar-chart-container'>
+            <div className='news-b-chart'>
                 <NewsBarChartItem chartData={userData2} barChartText={"Historical & Predicted News Paper Quantity of Demand"} />
             </div>
             {/* <div className='b-chart'>
                 <InventoryBarChartItem chartData={userData1} barChartText={"Monthly Sales and their predictions for - With, Without Live Data"} />
             </div> */}
-            <div className='b-chart'>
+            <div className='news-b-chart'>
                 <NewsBarChartItem chartData={userData3} barChartText={"Predicted Reams of Paper and Ink in Liters"} />
             </div>
-            
         </div>
     )
 }

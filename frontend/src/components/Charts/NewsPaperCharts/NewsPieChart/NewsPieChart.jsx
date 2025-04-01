@@ -81,8 +81,8 @@ function NewsPieChart({ data }) {
     })
 
     return (
-        <div className='pie-chart-container'>
-            <div className="p-chart">
+        <div className='news-pie-chart-container'>
+            <div className="news-pie-chart">
                 <NewsPieChartItem chartData={userData1} chartText={"Product IDs and its quantity of demand"} />
             </div>
         </div>
