@@ -1467,7 +1467,7 @@ const DataModeling = () => {
                     </div>
                     {showResults && (
                       <>
-                        <h1 className="results-heading">Results:</h1>
+                        {getResultsAndDownloadElement("Revenue Demand Predictions")}
                         <div className="table-container">
                           <Table
                             data={data}
