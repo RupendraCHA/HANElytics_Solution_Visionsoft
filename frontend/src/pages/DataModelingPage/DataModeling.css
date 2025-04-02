@@ -101,7 +101,7 @@
   background-color: #0451e0;
   margin: 10px 0px;
 
-  .model-migrate-tabs{
+  .mobile-model-migrate-tabs{
     display: flex;
     flex-direction: column;
   }

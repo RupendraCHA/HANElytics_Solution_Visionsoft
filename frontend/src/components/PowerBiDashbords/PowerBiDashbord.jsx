@@ -22,17 +22,18 @@ const [isMenuOpened, setIsMenuOpened] = useState(false);
 
   const HANElyticsDashboards = [
     {
-      headerText: "Inventory Reorder Point & Safety Stock predictions",
-      dataText: "inventory",
-      url: "https://app.powerbi.com/groups/me/reports/629c6dc2-6b0d-4c68-9e54-c2a47600a03b/df6b1d7bb0643125b744?experience=power-bi&clientSideAuth=0",
-      image: `${assets.Inventory_pic}`,
-    },
-    {
       headerText: "Revenue, Clinical and Equipment Failure",
       dataText: "revenue",
       url: "https://app.powerbi.com/groups/me/reports/31dc0bfe-4eec-4dbd-b418-c7e969f7d2f4/3610dece708b751eba90?experience=power-bi&clientSideAuth=0",
       image: `${assets.Revenue_pic}`,
     },
+    {
+      headerText: "Inventory Reorder Point & Safety Stock predictions",
+      dataText: "inventory",
+      url: "https://app.powerbi.com/groups/me/reports/629c6dc2-6b0d-4c68-9e54-c2a47600a03b/df6b1d7bb0643125b744?experience=power-bi&clientSideAuth=0",
+      image: `${assets.Inventory_pic}`,
+    },
+    
     {
       headerText: "Predicted Reams of Paper & Ink",
       dataText: "reports",
@@ -168,6 +169,7 @@ const [isMenuOpened, setIsMenuOpened] = useState(false);
   const showDashboards = (activeTab) => {
     setActiveDashboard(activeTab);
     setMsgOpened(false);
+    setIsMenuOpened(false)
   };
 
   const getDashboards = (activeDash) => {
@@ -481,11 +483,11 @@ const [isMenuOpened, setIsMenuOpened] = useState(false);
           </div>
         </div>
       </div>
-      <div className="bi-mobile-header-container">
+      <div className="bi-mobile-header-container" style={{ position: "relative" }}>
         <Link to="/home" className="bi-datamodels-website-heading">
           <h1>HANELYTICS</h1>
         </Link>
-        <div className="bi-mobile-menu-container" style={{ position: "relative" }}>
+        <div className="bi-mobile-menu-container">
           {isMenuOpened ? (
             <RxCross1 className="bi-mobile-menu" onClick={handleIsMenuOpened} />
           ) : (
@@ -493,39 +495,39 @@ const [isMenuOpened, setIsMenuOpened] = useState(false);
           )}
           {
             isMenuOpened && <div className="mobile-menu-bi-home-container">
-            <div className="dashboard-tabs">
-              {tabsList.map((eachTab, index) => (
-                <h1
-                  key={index}
-                  onClick={() => showDashboards(`${eachTab.activeText}`)}
-                  className={`powerbi-dashboard-tab-item ${
-                    activeDashboard === `${eachTab.activeText}`
-                      ? "active-dashboard-btn"
-                      : ""
-                  }`}
-                >
-                  <img
-                    src={eachTab.imageUrl}
-                    alt={`${eachTab.altText}`}
-                    className="dashboard-data-model-image-tab"
-                  />
-                  {eachTab.tabName}
-                  <MdKeyboardArrowUp
-                    className={`bi-arrow ${
+            <div className="mobile-dashboard-tabs">
+                {tabsList.map((eachTab, index) => (
+                  <h1
+                    key={index}
+                    onClick={() => showDashboards(`${eachTab.activeText}`)}
+                    className={`powerbi-dashboard-tab-item ${
                       activeDashboard === `${eachTab.activeText}`
-                        ? "bi-arrow-down"
+                        ? "active-dashboard-btn"
                         : ""
                     }`}
-                  />
+                  >
+                    <img
+                      src={eachTab.imageUrl}
+                      alt={`${eachTab.altText}`}
+                      className="dashboard-data-model-image-tab"
+                    />
+                    {eachTab.tabName}
+                    <MdKeyboardArrowUp
+                      className={`bi-arrow ${
+                        activeDashboard === `${eachTab.activeText}`
+                          ? "bi-arrow-down"
+                          : ""
+                      }`}
+                    />
+                  </h1>
+                ))}
+                <h1
+                  className="insights-btn"
+                  onClick={() => navigate("/dataModeling")}
+                >
+                  Go to Previous
+                  <LuArrowUpRight className="insights-icon" />
                 </h1>
-              ))}
-              <h1
-                className="insights-btn"
-                onClick={() => navigate("/dataModeling")}
-              >
-                Go to Previous
-                <LuArrowUpRight className="insights-icon" />
-              </h1>
             </div>
             <div className="bi-drop-down">
               {/* <div className="bi-icon-username">
@@ -533,7 +535,7 @@ const [isMenuOpened, setIsMenuOpened] = useState(false);
                 <p className="bi-username-text">{username}</p>
               </div> */}
               <div>
-                <button onClick={handleModelLogout}>Logout</button>
+                <h2 style={{padding: '8px 12px'}} id="mobile-login-btn" onClick={handleModelLogout}>Logout</h2>
               </div>
             </div>
           </div>
@@ -542,7 +544,7 @@ const [isMenuOpened, setIsMenuOpened] = useState(false);
       </div>
       
       <div className="bi-reporting-dashboards">
-        <div className="container">
+        <div className="container bi-reporting-dashboards-sections">
           <div>
             {activeDashboard === "" && (
               <>
