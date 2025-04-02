@@ -1646,7 +1646,8 @@ const DataModeling = () => {
                     </div>
                     {showResults && (
                       <>
-                        <h1 className="results-heading">Results:</h1>
+                        {getResultsAndDownloadElement("Equipment Risk Detection and Failure Prevention")}
+
                         <div className="table-container">
                           <Table
                             data={data}
@@ -1821,7 +1822,8 @@ const DataModeling = () => {
                     </div>
                     {showResults && (
                       <>
-                        <h1 className="results-heading">Results:</h1>
+                        {getResultsAndDownloadElement("Reorder Point and Buffer Stock for Clinical Data")}
+
                         <div className="table-container">
                           <Table
                             data={data}
