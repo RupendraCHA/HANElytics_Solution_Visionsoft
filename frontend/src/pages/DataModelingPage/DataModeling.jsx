@@ -14,8 +14,11 @@ import { MdInfo } from "react-icons/md";
 import { SiSap } from "react-icons/si";
 import { IoMdMenu } from "react-icons/io";
 import { RxCross1 } from "react-icons/rx";
-
-
+import * as XLSX from "xlsx";
+import { saveAs } from "file-saver";
+import { PiMicrosoftExcelLogoDuotone } from "react-icons/pi";
+import { RiFileExcel2Fill } from "react-icons/ri";
+import { MdOutlineDownload } from "react-icons/md";
 
 import {
   news_paper_model_datasets,
@@ -104,6 +107,21 @@ const DataModeling = () => {
         >
           <MdInsertChartOutlined className="model-insights" />
           View Model Results
+        </button>
+      </div>
+    );
+  };
+
+  const getResultsAndDownloadElement = (dataModelName) => {
+    return (
+      <div className="excel-download">
+        <h1 className="results-heading">Results:</h1>
+        <button
+          onClick={() => downloadDataIntoExcel(data, dataModelName)}
+          className="excel-download-btn"
+        >
+          <MdOutlineDownload className="excel-download-icon" />
+          <RiFileExcel2Fill className="excel-icon" />
         </button>
       </div>
     );
@@ -599,57 +617,6 @@ const DataModeling = () => {
     setShowResults(false);
   };
 
-  const items = [
-    {
-      key: 1,
-      label: (
-        <a id="home-item" href="/home">
-          Go to Home
-        </a>
-      ),
-    },
-    {
-      key: 2,
-      label: (
-        <a id="home-item" onClick={getInventoryDataFromMongoDB}>
-          1) Inventory Forecasting with live data
-        </a>
-      ),
-    },
-    {
-      key: 3,
-      label: (
-        <a id="home-item" onClick={getRevenueDataFromMongoDB}>
-          2) Predicting Revenue Demand/Sensing
-        </a>
-      ),
-    },
-    {
-      key: 4,
-      label: (
-        <a id="home-item" onClick={getEquipmentDataFromMongoDB}>
-          3) Equipment Failure Prediction
-        </a>
-      ),
-    },
-    {
-      key: 5,
-      label: (
-        <a id="home-item" onClick={getClinicalDataFromMongoDB}>
-          4) Inventory Prediction With Clinical Data
-        </a>
-      ),
-    },
-    {
-      key: 6,
-      label: (
-        <a id="home-item" onClick={handleModelLogout}>
-          Logout
-        </a>
-      ),
-    },
-  ];
-
   const handleIsOpened = (tabContent) => {
     //
     if (dataModelOpen === "") {
@@ -705,6 +672,18 @@ const DataModeling = () => {
     } else {
       setIsMenuOpened(false);
     }
+  };
+
+  const downloadDataIntoExcel = (Array, fileName) => {
+    if (!Array || Array.length === 0) return;
+
+    const wb = XLSX.utils.book_new();
+    const ws = XLSX.utils.json_to_sheet(Array);
+    XLSX.utils.book_append_sheet(wb, ws, "Data");
+
+    const excelBuffer = XLSX.write(wb, { bookType: "xlsx", type: "array" });
+    const data = new Blob([excelBuffer], { type: "application/octet-stream" });
+    saveAs(data, `${fileName}.xlsx`);
   };
 
   return (
@@ -819,120 +798,133 @@ const DataModeling = () => {
               </div>
             </div>
           </div>
-          <div className="mobile-header-container" style={{position: "relative"}}>
+          <div
+            className="mobile-header-container"
+            style={{ position: "relative" }}
+          >
             <Link to="/home" className="datamodels-website-heading">
               <h1>HANELYTICS</h1>
             </Link>
-            <div className="mobile-menu-container"  >
+            <div className="mobile-menu-container">
               {isMenuOpened ? (
-                <RxCross1 className="mobile-menu" onClick={handleIsMenuOpened}/>
+                <RxCross1
+                  className="mobile-menu"
+                  onClick={handleIsMenuOpened}
+                />
               ) : (
-                <IoMdMenu className="mobile-menu" onClick={handleIsMenuOpened}/>
+                <IoMdMenu
+                  className="mobile-menu"
+                  onClick={handleIsMenuOpened}
+                />
               )}
-              {isMenuOpened && <div className="model-data-mobile-menu-tabs">
-                <div className="mobile-model-migrate-tabs">
-                  <div style={{ position: "relative" }}>
-                    <h4
-                      onClick={() => handleIsOpened("data-models")}
-                      style={{ color: "#000", fontSize: "13px" }}
-                      className={`tabHeading ${
-                        dataModelOpen === "data-models" && "tab-heading"
-                      }`}
-                    >
-                      Data Models
-                      <MdKeyboardArrowUp
-                        style={{ fontSize: "28px" }}
-                        className={`"arrow" ${
-                          dataModelOpen === "data-models" ? "arrow-down" : ""
+              {isMenuOpened && (
+                <div className="model-data-mobile-menu-tabs">
+                  <div className="mobile-model-migrate-tabs">
+                    <div style={{ position: "relative" }}>
+                      <h4
+                        onClick={() => handleIsOpened("data-models")}
+                        style={{ color: "#000", fontSize: "13px" }}
+                        className={`tabHeading ${
+                          dataModelOpen === "data-models" && "tab-heading"
                         }`}
-                      />
-                    </h4>
-                    {dataModelOpen === "data-models" && (
-                      <div className="mobile-open-tab">
-                        <p onClick={getNewsPaperDataFromMongoDB}>
-                          <LuArrowUpRight className="process-arrow" />
-                          Predicting Quantity of Demand for Distribution Center
-                        </p>
-                        <p onClick={getInventoryDataFromMongoDB}>
-                          <LuArrowUpRight className="process-arrow" />
-                          Reorder Point Quantity & Safety Stock Predictions for
-                          Inventory with & without Live-Data
-                        </p>
-                        <p onClick={getRevenueDataFromMongoDB}>
-                          <LuArrowUpRight className="process-arrow" />
-                          Predictive Analytics for Revenue Demand Sensing Trends
-                        </p>
-                        <p onClick={getEquipmentDataFromMongoDB}>
-                          <LuArrowUpRight className="process-arrow" />
-                          Equipment Risk Detection and Failure Prevention With
-                          Predictive Analytics
-                        </p>
-                        <p onClick={getClinicalDataFromMongoDB}>
-                          <LuArrowUpRight className="process-arrow" />
-                          Prediction of Reorder Point & Buffer Stock with
-                          Clinical Information
-                        </p>
-                      </div>
-                    )}
-                  </div>
-                  <div style={{ position: "relative" }}>
-                    <h4
-                      onClick={() => handleMigrateData("migrate-data")}
-                      style={{ color: "#000", fontSize: "13px" }}
-                      className={`tabHeading ${
-                        migrateModelOpen === "migrate-data" && "tab-heading"
-                      }`}
-                    >
-                      Migrate Data
-                      <MdKeyboardArrowUp
-                        style={{ fontSize: "28px" }}
-                        className={`${
-                          migrateModelOpen === "migrate-data"
-                            ? "arrow-down"
-                            : ""
+                      >
+                        Data Models
+                        <MdKeyboardArrowUp
+                          style={{ fontSize: "28px" }}
+                          className={`"arrow" ${
+                            dataModelOpen === "data-models" ? "arrow-down" : ""
+                          }`}
+                        />
+                      </h4>
+                      {dataModelOpen === "data-models" && (
+                        <div className="mobile-open-tab">
+                          <p onClick={getNewsPaperDataFromMongoDB}>
+                            <LuArrowUpRight className="process-arrow" />
+                            Predicting Quantity of Demand for Distribution
+                            Center
+                          </p>
+                          <p onClick={getInventoryDataFromMongoDB}>
+                            <LuArrowUpRight className="process-arrow" />
+                            Reorder Point Quantity & Safety Stock Predictions
+                            for Inventory with & without Live-Data
+                          </p>
+                          <p onClick={getRevenueDataFromMongoDB}>
+                            <LuArrowUpRight className="process-arrow" />
+                            Predictive Analytics for Revenue Demand Sensing
+                            Trends
+                          </p>
+                          <p onClick={getEquipmentDataFromMongoDB}>
+                            <LuArrowUpRight className="process-arrow" />
+                            Equipment Risk Detection and Failure Prevention With
+                            Predictive Analytics
+                          </p>
+                          <p onClick={getClinicalDataFromMongoDB}>
+                            <LuArrowUpRight className="process-arrow" />
+                            Prediction of Reorder Point & Buffer Stock with
+                            Clinical Information
+                          </p>
+                        </div>
+                      )}
+                    </div>
+                    <div style={{ position: "relative" }}>
+                      <h4
+                        onClick={() => handleMigrateData("migrate-data")}
+                        style={{ color: "#000", fontSize: "13px" }}
+                        className={`tabHeading ${
+                          migrateModelOpen === "migrate-data" && "tab-heading"
                         }`}
-                      />
+                      >
+                        Migrate Data
+                        <MdKeyboardArrowUp
+                          style={{ fontSize: "28px" }}
+                          className={`${
+                            migrateModelOpen === "migrate-data"
+                              ? "arrow-down"
+                              : ""
+                          }`}
+                        />
+                      </h4>
+                      {migrateModelOpen === "migrate-data" && (
+                        <div className="mobile-open-tab">
+                          <p onClick={getInventoryDataFromMongoDB1}>
+                            <LuArrowUpRight className="process-arrow" />
+                            Destructure the Data
+                          </p>
+                          <p onClick={sendDataToSAP1}>
+                            <LuArrowUpRight className="process-arrow" />
+                            Procurement to Vendor
+                          </p>
+                          <p onClick={sendDataToSAP}>
+                            <LuArrowUpRight className="process-arrow" />
+                            Inter Company Sales
+                          </p>
+                        </div>
+                      )}
+                    </div>
+                    <h4
+                      onClick={() => navigate("/dashboards")}
+                      className="tabHeading tab-heding"
+                      style={{
+                        color: "#000",
+                        fontSize: "13px",
+                        display: "flex",
+                        alignItems: "center",
+                      }}
+                    >
+                      Power BI Reports
                     </h4>
-                    {migrateModelOpen === "migrate-data" && (
-                      <div className="mobile-open-tab">
-                        <p onClick={getInventoryDataFromMongoDB1}>
-                          <LuArrowUpRight className="process-arrow" />
-                          Destructure the Data
-                        </p>
-                        <p onClick={sendDataToSAP1}>
-                          <LuArrowUpRight className="process-arrow" />
-                          Procurement to Vendor
-                        </p>
-                        <p onClick={sendDataToSAP}>
-                          <LuArrowUpRight className="process-arrow" />
-                          Inter Company Sales
-                        </p>
-                      </div>
-                    )}
                   </div>
-                  <h4
-                    onClick={() => navigate("/dashboards")}
-                    className="tabHeading tab-heding"
-                    style={{
-                      color: "#000",
-                      fontSize: "13px",
-                      display: "flex",
-                      alignItems: "center",
-                    }}
-                  >
-                    Power BI Reports
-                  </h4>
-                </div>
-                <div className="mobile-drop-down">
+                  <div className="mobile-drop-down">
                     {/* <div className="mobile-icon-username">
                       <FaRegCircleUser className="mobile-user-icon" />
                       <p className="mobile-username-text">{username}</p>
                     </div> */}
-                  <div>
-                    <button onClick={handleModelLogout}>Logout</button>
+                    <div>
+                      <button onClick={handleModelLogout}>Logout</button>
+                    </div>
                   </div>
                 </div>
-              </div>}
+              )}
             </div>
           </div>
         </header>
@@ -1109,7 +1101,6 @@ const DataModeling = () => {
                 {activeTab === "tab2" && (
                   <div id="tab2" className="content">
                     <div className="charts-buttons">
-                      
                       <button
                         className={`chart-tab ${
                           activeTab === "tab3" ? "chart-tab-active" : ""
@@ -1129,7 +1120,7 @@ const DataModeling = () => {
                     </div>
                     {showResults && (
                       <>
-                        <h1 className="results-heading">Results:</h1>
+                        {getResultsAndDownloadElement("News Paper Prediction Results")}
                         <div className="table-container">
                           <Table
                             data={data}
@@ -1139,7 +1130,6 @@ const DataModeling = () => {
                             equipmentData1={equipmentData1}
                             clinicalData={clinicalData}
                           />
-                          
                         </div>
                       </>
                     )}
@@ -1303,7 +1293,9 @@ const DataModeling = () => {
                     </div>
                     {showResults && (
                       <>
-                        <h1 className="results-heading">Results:</h1>
+                        {/* <h1 className="results-heading">Results:</h1> */}
+                        {getResultsAndDownloadElement("Inventory Reorder Point & Safety Stock results")}
+
                         <div className="table-container">
                           <Table
                             data={data}

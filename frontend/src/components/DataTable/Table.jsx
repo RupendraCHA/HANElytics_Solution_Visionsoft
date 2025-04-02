@@ -2,6 +2,9 @@
 import { useState } from "react"
 import "./Table.css"
 // import { revenueData } from './JsonData1'
+import * as XLSX from "xlsx"
+import {saveAs} from "file-saver"
+
 
 const Table = (props) => {
     // eslint-disable-next-line react/prop-types
@@ -24,6 +27,20 @@ const Table = (props) => {
     }
     // className={`tab ${activeTab === "tab1" ? "activeTab" : ""}`}
 
+    const downloadDataIntoExcel = (Array) => {
+
+        if (!Array || Array.length === 0) return;
+
+        const wb = XLSX.utils.book_new()
+        const ws = XLSX.utils.json_to_sheet(Array);
+        XLSX.utils.book_append_sheet(wb, ws, "Data")
+
+        const excelBuffer = XLSX.write(wb, {bookType: "xlsx", type: "array"})
+        const data = new Blob([excelBuffer], {type: "application/octet-stream"})
+        saveAs(data, "NEWS_Paper_Data.xlsx")
+
+    }
+
     return (
         <>
             {/* <div className="migrate-inventory-container">
@@ -34,7 +51,9 @@ const Table = (props) => {
                     <button className={showInventoryData === false ? "data-btn" : ""} onClick={() => setInventoryData(false)}>View Data for Inventory</button>
                 </div>
             </div> */}
-            {!newsPaperData && (
+            {!newsPaperData && (<>
+                {/* <div className="excel-download">
+                    <button onClick={() => downloadDataIntoExcel(data)} className="excel-download-btn">Download</button></div> */}
                 <table className='table'>
                 <thead >
                     <tr>
@@ -137,7 +156,7 @@ const Table = (props) => {
                     }
                     
                 </tbody>
-                </table>
+                </table></>
             )
 
             }
