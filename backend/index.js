@@ -27,8 +27,8 @@ app.use(
 
 app.use("/api/user", userRouter);
 app.use("/api/model", dataModelResultsRouter);
-app.use("/doi/sales", salesRouter);
-app.use("/doi/procurement", procurementRouter);
+app.use("/api/sales", salesRouter);
+app.use("/api/procurement", procurementRouter);
 
 const upload = multer({
   storage: multer.memoryStorage(),

@@ -11,7 +11,7 @@ const createToken = (id) => {
 export const registerUser = async (req, res) => {
     const {firstname, lastname, bussinessName,
         contact, email, password, city, street,
-        state, country, zipcode
+        state, country, zipcode, role, position
     } = req.body
 
     try {
@@ -41,6 +41,8 @@ export const registerUser = async (req, res) => {
                 password: hashedPassword,
                 bussinessName: bussinessName,
                 contact: contact,
+                role: role,
+                position: position,
                 city: city,
                 street: street,
                 state: state,

@@ -7,6 +7,8 @@ const userSchema = new mongoose.Schema({
     password: {type: String, required: true},
     bussinessName: {type: String, required: true},
     contact: {type: String, required: true},
+    role: {type: String, required: true},
+    position: {type: String, required: true},
     city: {type: String, required: true},
     street: {type: String, required: true},
     state: {type: String, required: true},
