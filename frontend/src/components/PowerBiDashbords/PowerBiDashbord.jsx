@@ -87,7 +87,7 @@ const PowerBiDashboard = () => {
     {
       headerText: "Manufacturing Master Data",
       dataText: "purchase",
-      url: "https://app.powerbi.com/groups/84691a96-fa30-4e99-8ebf-da73b935661b/reports/0c34af53-228f-49e3-a217-c7942da55d86/9399d3c37b14e9f48649?experience=power-bi&clientSideAuth=0",
+      url: "https://app.powerbi.com/groups/84691a96-fa30-4e99-8ebf-da73b935661b/reports/bad34a0b-01fa-4257-9e3f-9fec93098e18/96656c8ea0626564d181?experience=power-bi",
       image: `${assets.Controlling_pic}`
     },
     {
@@ -99,7 +99,7 @@ const PowerBiDashboard = () => {
     {
       headerText: "Production Planning",
       dataText: "purchase",
-      url: "https://app.powerbi.com/groups/me/reports/d88fd1c6-d635-4ead-864c-b4971b81e11b/153be76ec304a615ddb5?experience=power-bi&clientSideAuth=0",
+      url: "https://app.powerbi.com/groups/me/reports/3219fe8c-78e4-479a-bcdf-b5c77866a05d/052aa96850be00c14191?experience=power-bi&clientSideAuth=0",
       image: `${assets.Production_planning_pic}`
     },
 
@@ -123,7 +123,7 @@ const PowerBiDashboard = () => {
       url: "https://app.powerbi.com/groups/me/reports/0ac0709f-27ee-42f9-93d8-069096fa3d39/7fccc7b61a81e7e7a21c?experience=power-bi&clientSideAuth=0",
       image: `${assets.Accounts_payable_pic}`
     },
-    
+
   ];
 
   const tabsList = [{
@@ -132,13 +132,13 @@ const PowerBiDashboard = () => {
     altText: "ViewAllImage",
     tabName: "View All"
 
-  },{
+  }, {
     activeText: "HANElytics",
     imageUrl: `${assets.AiMl_pic}`,
     altText: "AIMLImage",
     // tabName: "AI/ML Models"
     tabName: "Supply Chain Models"
-    
+
   },
   {
     activeText: "OrderToCash",
@@ -152,7 +152,7 @@ const PowerBiDashboard = () => {
     altText: "ProcurementImage",
     tabName: "Procurement"
   },
-  
+
   {
     activeText: "Finance",
     imageUrl: `${assets.Finance_pic}`,
@@ -167,7 +167,7 @@ const PowerBiDashboard = () => {
     tabName: "Manufacturing"
 
   },
-]
+  ]
 
   const showDashboards = (activeTab) => {
     setActiveDashboard(activeTab);
@@ -399,31 +399,31 @@ const PowerBiDashboard = () => {
             <LuArrowUpRight className="insights-icon"/>
             </h1>
         </div> */}
-        
+
         <div className="dashboard-tabs">
           {tabsList.map((eachTab, index) => (
             <h1 key={index}
-            onClick={() => showDashboards(`${eachTab.activeText}`)}
-            className={`powerbi-dashboard-tab-item ${activeDashboard === `${eachTab.activeText}` ? "active-dashboard-btn" : ""
-              }`}
-          >
-            <img
-              src={eachTab.imageUrl}
-              alt={`${eachTab.altText}`}
-              className="dashboard-data-model-image-tab"
-            />
-            {eachTab.tabName}
-            <MdKeyboardArrowUp
-              className={`bi-arrow ${activeDashboard === `${eachTab.activeText}` ? "bi-arrow-down" : ""
+              onClick={() => showDashboards(`${eachTab.activeText}`)}
+              className={`powerbi-dashboard-tab-item ${activeDashboard === `${eachTab.activeText}` ? "active-dashboard-btn" : ""
                 }`}
-            />
-          </h1>
+            >
+              <img
+                src={eachTab.imageUrl}
+                alt={`${eachTab.altText}`}
+                className="dashboard-data-model-image-tab"
+              />
+              {eachTab.tabName}
+              <MdKeyboardArrowUp
+                className={`bi-arrow ${activeDashboard === `${eachTab.activeText}` ? "bi-arrow-down" : ""
+                  }`}
+              />
+            </h1>
           ))}
           <h1 className="insights-btn" onClick={() => navigate("/dataModeling")}>
             Go to Previous
-            <LuArrowUpRight className="insights-icon"/>
-            </h1>
-          
+            <LuArrowUpRight className="insights-icon" />
+          </h1>
+
         </div>
         <div className="bi-drop-down">
           <div className="bi-icon-username">
@@ -464,7 +464,7 @@ const PowerBiDashboard = () => {
           </div>
         </div>
       </div>
-      <Footer/>
+      <Footer />
     </div>
   );
 };
