@@ -18,9 +18,9 @@ function InitialPage() {
         startTheServer()
         const jwtToken = localStorage.getItem("token")
         if (jwtToken) {
-            navigate("/")
+            navigate("/home")
         }else {
-            navigate("/login")
+            navigate("/")
         }
     },[])
 
