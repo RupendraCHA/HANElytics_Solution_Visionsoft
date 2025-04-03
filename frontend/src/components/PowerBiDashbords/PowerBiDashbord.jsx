@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import "./PowerBiDashbord.css";
 import Header from "../Header/Header";
 import { Link, useNavigate } from "react-router-dom";
@@ -11,6 +11,7 @@ import { LuArrowUpRight } from "react-icons/lu";
 import Footer from "../Footer/Footer.jsx";
 import { IoMdMenu } from "react-icons/io";
 import { RxCross1 } from "react-icons/rx";
+import axios from "axios"
 
 const PowerBiDashboard = () => {
   const [activeDashboard, setActiveDashboard] = useState("");
