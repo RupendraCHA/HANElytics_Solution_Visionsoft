@@ -17,8 +17,8 @@ const PowerBiDashboard = () => {
   const [isMsgOpened, setMsgOpened] = useState(false);
   const navigate = useNavigate();
   const { username, token, setToken, setUsername } = useContext(StoreContext);
-  
-const [isMenuOpened, setIsMenuOpened] = useState(false);
+
+  const [isMenuOpened, setIsMenuOpened] = useState(false);
 
   const HANElyticsDashboards = [
     {
@@ -33,7 +33,7 @@ const [isMenuOpened, setIsMenuOpened] = useState(false);
       url: "https://app.powerbi.com/groups/me/reports/629c6dc2-6b0d-4c68-9e54-c2a47600a03b/df6b1d7bb0643125b744?experience=power-bi&clientSideAuth=0",
       image: `${assets.Inventory_pic}`,
     },
-    
+
     {
       headerText: "Predicted Reams of Paper & Ink",
       dataText: "reports",
@@ -88,8 +88,12 @@ const [isMenuOpened, setIsMenuOpened] = useState(false);
     {
       headerText: "Manufacturing Master Data",
       dataText: "purchase",
+      url: "https://app.powerbi.com/groups/84691a96-fa30-4e99-8ebf-da73b935661b/reports/bad34a0b-01fa-4257-9e3f-9fec93098e18/96656c8ea0626564d181?experience=power-bi",
+      image: `${assets.Controlling_pic}`,
+
       url: "https://app.powerbi.com/groups/84691a96-fa30-4e99-8ebf-da73b935661b/reports/0c34af53-228f-49e3-a217-c7942da55d86/9399d3c37b14e9f48649?experience=power-bi&clientSideAuth=0",
       image: `${assets.Controlling_pic}`,
+
     },
     {
       headerText: "Manufacturing Orders",
@@ -100,6 +104,9 @@ const [isMenuOpened, setIsMenuOpened] = useState(false);
     {
       headerText: "Production Planning",
       dataText: "purchase",
+      url: "https://app.powerbi.com/groups/me/reports/3219fe8c-78e4-479a-bcdf-b5c77866a05d/052aa96850be00c14191?experience=power-bi&clientSideAuth=0",
+      image: `${assets.Production_planning_pic}`,
+
       url: "https://app.powerbi.com/groups/me/reports/d88fd1c6-d635-4ead-864c-b4971b81e11b/153be76ec304a615ddb5?experience=power-bi&clientSideAuth=0",
       image: `${assets.Production_planning_pic}`,
     },
@@ -150,6 +157,41 @@ const [isMenuOpened, setIsMenuOpened] = useState(false);
       imageUrl: `${assets.Procurement_pic}`,
       altText: "ProcurementImage",
       tabName: "Procurement",
+    },
+    {
+      activeText: "HANElytics",
+      imageUrl: `${assets.AiMl_pic}`,
+      altText: "AIMLImage",
+      // tabName: "AI/ML Models"
+      tabName: "Supply Chain Models"
+
+    },
+    {
+      activeText: "OrderToCash",
+      imageUrl: `${assets.OrderToCash_pic}`,
+      altText: "OrderToCashImage",
+      tabName: "Order to Cash"
+    },
+    {
+      activeText: "Procurement",
+      imageUrl: `${assets.Procurement_pic}`,
+      altText: "ProcurementImage",
+      tabName: "Procurement"
+    },
+
+    {
+      activeText: "Finance",
+      imageUrl: `${assets.Finance_pic}`,
+      altText: "FinanceImageImage",
+      tabName: "Finance"
+
+    },
+    {
+      activeText: "Manufacturing",
+      imageUrl: `${assets.Manufacturing_pic}`,
+      altText: "ManufacturingImage",
+      tabName: "Manufacturing"
+
     },
 
     {
@@ -441,14 +483,10 @@ const [isMenuOpened, setIsMenuOpened] = useState(false);
 
         <div className="dashboard-tabs">
           {tabsList.map((eachTab, index) => (
-            <h1
-              key={index}
+            <h1 key={index}
               onClick={() => showDashboards(`${eachTab.activeText}`)}
-              className={`powerbi-dashboard-tab-item ${
-                activeDashboard === `${eachTab.activeText}`
-                  ? "active-dashboard-btn"
-                  : ""
-              }`}
+              className={`powerbi-dashboard-tab-item ${activeDashboard === `${eachTab.activeText}` ? "active-dashboard-btn" : ""
+                }`}
             >
               <img
                 src={eachTab.imageUrl}
@@ -457,14 +495,37 @@ const [isMenuOpened, setIsMenuOpened] = useState(false);
               />
               {eachTab.tabName}
               <MdKeyboardArrowUp
-                className={`bi-arrow ${
-                  activeDashboard === `${eachTab.activeText}`
-                    ? "bi-arrow-down"
-                    : ""
-                }`}
+                className={`bi-arrow ${activeDashboard === `${eachTab.activeText}` ? "bi-arrow-down" : ""
+                  }`}
               />
             </h1>
           ))}
+          <h1 className="insights-btn" onClick={() => navigate("/dataModeling")}>
+            Go to Previous
+            <LuArrowUpRight className="insights-icon" />
+          </h1>
+
+          <h1
+            key={index}
+            onClick={() => showDashboards(`${eachTab.activeText}`)}
+            className={`powerbi-dashboard-tab-item ${activeDashboard === `${eachTab.activeText}`
+              ? "active-dashboard-btn"
+              : ""
+              }`}
+          >
+            <img
+              src={eachTab.imageUrl}
+              alt={`${eachTab.altText}`}
+              className="dashboard-data-model-image-tab"
+            />
+            {eachTab.tabName}
+            <MdKeyboardArrowUp
+              className={`bi-arrow ${activeDashboard === `${eachTab.activeText}`
+                ? "bi-arrow-down"
+                : ""
+                }`}
+            />
+          </h1>
           <h1
             className="insights-btn"
             onClick={() => navigate("/dataModeling")}
@@ -495,16 +556,15 @@ const [isMenuOpened, setIsMenuOpened] = useState(false);
           )}
           {
             isMenuOpened && <div className="mobile-menu-bi-home-container">
-            <div className="mobile-dashboard-tabs">
+              <div className="mobile-dashboard-tabs">
                 {tabsList.map((eachTab, index) => (
                   <h1
                     key={index}
                     onClick={() => showDashboards(`${eachTab.activeText}`)}
-                    className={`powerbi-dashboard-tab-item ${
-                      activeDashboard === `${eachTab.activeText}`
-                        ? "active-dashboard-btn"
-                        : ""
-                    }`}
+                    className={`powerbi-dashboard-tab-item ${activeDashboard === `${eachTab.activeText}`
+                      ? "active-dashboard-btn"
+                      : ""
+                      }`}
                   >
                     <img
                       src={eachTab.imageUrl}
@@ -513,11 +573,10 @@ const [isMenuOpened, setIsMenuOpened] = useState(false);
                     />
                     {eachTab.tabName}
                     <MdKeyboardArrowUp
-                      className={`bi-arrow ${
-                        activeDashboard === `${eachTab.activeText}`
-                          ? "bi-arrow-down"
-                          : ""
-                      }`}
+                      className={`bi-arrow ${activeDashboard === `${eachTab.activeText}`
+                        ? "bi-arrow-down"
+                        : ""
+                        }`}
                     />
                   </h1>
                 ))}
@@ -528,21 +587,21 @@ const [isMenuOpened, setIsMenuOpened] = useState(false);
                   Go to Previous
                   <LuArrowUpRight className="insights-icon" />
                 </h1>
-            </div>
-            <div className="bi-drop-down">
-              {/* <div className="bi-icon-username">
+              </div>
+              <div className="bi-drop-down">
+                {/* <div className="bi-icon-username">
                 <FaRegUserCircle className="bi-user-icon" />
                 <p className="bi-username-text">{username}</p>
               </div> */}
-              <div>
-                <h2 style={{padding: '8px 12px'}} id="mobile-login-btn" onClick={handleModelLogout}>Logout</h2>
+                <div>
+                  <h2 style={{ padding: '8px 12px' }} id="mobile-login-btn" onClick={handleModelLogout}>Logout</h2>
+                </div>
               </div>
             </div>
-          </div>
           }
         </div>
       </div>
-      
+
       <div className="bi-reporting-dashboards">
         <div className="container bi-reporting-dashboards-sections">
           <div>
