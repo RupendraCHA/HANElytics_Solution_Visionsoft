@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { useState } from "react";
 import axios from "axios";
@@ -37,6 +37,12 @@ function SignUp() {
   const [openNextPage, setOpenNextPage] = useState(false)
 
   const { url, setToken, setUsername } = useContext(StoreContext);
+
+  // useEffect(() => {
+  //   const response = "http://localhost:3001"
+  //   // const response = "https://hanelytics-solution-visionsoft.onrender.com"
+  //   console.log(response.data)
+  // }, [])
 
   const handleInputChange = (e) => {
     setExist(false);

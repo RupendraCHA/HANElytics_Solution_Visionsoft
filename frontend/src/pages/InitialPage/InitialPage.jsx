@@ -1,13 +1,21 @@
-import React, { useEffect } from 'react'
+import React, { useContext, useEffect } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import "./initialPage.css"
 import Footer from '../../components/Footer/Footer'
-// import axios from 'axios'
+import axios from 'axios'
+import { StoreContext } from '../../context/StoreContext'
 
 function InitialPage() {
     const navigate = useNavigate()
+      const { url} = useContext(StoreContext);
     
+      const startTheServer = async () => {
+        const response = await axios.get( "https://hanelytics-solution-visionsoft.onrender.com/");
+        console.log(response.data.message)
+
+    }
     useEffect(() => {
+        startTheServer()
         const jwtToken = localStorage.getItem("token")
         if (jwtToken) {
             navigate("/dataModeling")
