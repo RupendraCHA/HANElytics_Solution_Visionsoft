@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import "./initialPage.css"
+import Footer from '../../components/Footer/Footer'
 // import axios from 'axios'
 
 function InitialPage() {
@@ -38,7 +39,7 @@ function InitialPage() {
                     </div>
                 </div>
                 <div className='d-flex flex-column justify-content-center align-items-center header-text-container'>
-                    <h1 className='text-center' style={{fontSize: "46px", color: "white", marginBottom: "20px"}}>Artificial
+                    <h1 className='initial-page-text'>Artificial
                         Intelligence & Machine Learning Solutions in Supply Chain, Injecting Data
                         From Diverse ERP & Non-ERP Sources.</h1>
                     <div className='text-center '>
@@ -57,7 +58,8 @@ function InitialPage() {
                 </div>
                 
             </div>
-        </div> 
+        </div>
+        <Footer/>
         </>
 
     )

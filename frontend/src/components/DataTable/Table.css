@@ -18,9 +18,13 @@ tr {
 thead .column-name {
   color: #fff;
   background-color: #000;
-  padding: 0 6px 6px 6px;
-  font-size: 16px;
-  /* text-align: center; */
+  padding: 6px;
+  font-size: 12px;
+}
+@media (max-width: 576px){
+  thead .column-name{
+    font-size: 12px;
+  }
 }
 thead th {
   position: sticky;
@@ -52,4 +56,13 @@ thead th {
 }
 td {
   letter-spacing: 0.5px;
+  font-size: 13px;
+  font-weight: 600;
+  padding: 0px 15px;
+
+}
+@media (max-width: 576px){
+  td{
+    font-size: 11px;
+  }
 }

@@ -8,8 +8,11 @@
   padding-left: 5px;
 }
 
-.website-header1 {
-  /* margin-top: 15px; */
+
+@media (max-width: 576px){
+  .website-header1 {
+    /* display: none; */
+  }
 }
 
 .header-container {
@@ -20,6 +23,26 @@
   border-bottom: none;
   background-color: #2431c3;
   padding: 0px 10px;
+}
+
+@media (max-width: 576px){
+  .header-container{
+    display: none;
+  }
+}
+.mobile-header-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  /* border: 2px solid white; */
+  background-color: #2431c3;
+  padding: 10px 10px;
+}
+
+@media (min-width: 576px){
+  .mobile-header-container{
+    display: none;
+  }
 }
 
 .website-heading {
@@ -40,6 +63,18 @@
   letter-spacing: 2;
 }
 
+@media (max-width: 576px){
+  .datamodels-website-heading h1{
+    font-size: 18px;
+  }
+}
+
+.mobile-menu{
+  font-size: 30px;
+  color: #000;
+  font-weight: 600;
+}
+
 .website-heading:hover {
   text-decoration: underline;
   transition: all 0.6s ease-in-out;
@@ -50,6 +85,53 @@
   .website-heading {
     font-size: 30px;
   }
+}
+.mobile-menu-container{
+  background-color: #fff;
+}
+.model-data-mobile-menu-tabs{
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  /* align-items: center; */
+  position: absolute;
+  left: 0;
+  right: 0px;
+  z-index: 100;
+  background-color: #0451e0;
+  margin: 10px 0px;
+
+  .mobile-model-migrate-tabs{
+    display: flex;
+    flex-direction: column;
+  }
+}
+.mobile-drop-down{
+  display: flex;
+  flex-direction: column;
+  /* justify-content: center; */
+  /* align-items: center; */
+  gap: 30px;
+  height: 100%;
+}
+.mobile-drop-down button{
+  width: 94%;
+  height: 40px;
+  border: 1px solid #0e0e0e;
+  background-color: #fff;
+  color: red;
+  font-weight: 600;
+  border-radius: 6px;
+  box-shadow: 3px 3px 0px #fff;
+  margin: 10px;
+  text-align: left;
+  padding-left: 10px;
+}
+
+.mobile-drop-down button:hover{
+  background-color: red;
+  box-shadow: 3px 3px 0px #000;
+  color: white;
 }
 
 .drop-down {
@@ -86,13 +168,30 @@
   text-align: center;
   margin-top: 30px;
 }
+.mobile-icon-username {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  /* align-items: center; */
+  text-align: center;
+  margin-top: 30px;
+
+  p{
+    text-align: left;
+  }
+}
 
 .username-text {
   color: #fff;
   font-size: 13px;
   font-weight: 600;
 }
-
+.mobile-username-text{
+  color: #fff;
+  font-size: 13px;
+  font-weight: 600;
+  margin-left: 10px;
+}
 .user-icon {
   width: 40px;
   height: 40px;
@@ -102,9 +201,25 @@
   border-radius: 5px;
   box-shadow: 3px 3px 0px #000;
 }
+.mobile-user-icon {
+  width: 40px;
+  height: 40px;
+  color: #000;
+  background-color: #fff;
+  padding: 6px;
+  border-radius: 5px;
+  box-shadow: 3px 3px 0px #000;
+  margin: 0px 10px;
+}
 
 @media screen and (max-width: 576px) {
   .user-icon {
+    width: 35px;
+    height: 35px;
+  }
+}
+@media screen and (max-width: 576px) {
+  .mobile-user-icon {
     width: 35px;
     height: 35px;
   }
@@ -142,11 +257,18 @@
   height: auto;
   border-top: 2px solid #000;
   max-height: 100vh;
-  padding: 0;
   width: 100%;
   overflow: auto;
+  padding: 5px 0px;
 }
-
+@media (max-width: 576px){
+  /* .data-models-section-container{
+    flex-direction: column;
+  } */
+   .workflows-section{
+    display: none;
+   }
+}
 .workflows-section {
   width: 25%;
   background-color: #ffffffae;
@@ -254,6 +376,58 @@
   border-right: 1px solid #4ba8a8;
   padding: 12px;
 }
+.excel-download{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  /* width: 100%; */
+  margin-right: 10px;
+  margin-top: 20px;
+  cursor: pointer;
+
+}
+.excel-download-btn{
+  font-size: 12px;
+  margin-bottom: 10px;
+  padding: 2px 6px;
+  border-radius: 6px;
+  background-color: #b4dcb481;
+  font-weight: 600;
+  border: 2px solid #08af24;
+  box-shadow: 2px 2px 2px #002dce81;
+}
+.excel-download-icon{
+  color: #000;
+  width: 25px;
+  height: 25px;
+  margin-top: 4px;
+}
+.excel-icon{
+  /* font-size: 16px; */
+  color: #08af24;
+  width: 22px;
+  height: 22px;
+  margin-left: 4px;
+}
+@media (max-width: 576px){
+  .excel-download{
+    /* justify-content: flex-start; */
+    margin-top: 20px;
+  margin-right: 0px;
+
+  }
+  .excel-download-btn{
+    font-size: 12px;
+  }
+  .excel-icon{
+    width: 18px;
+  height: 18px;
+  }
+  .excel-download-icon{
+    width: 18px;
+  height: 18px;
+  }
+}
 
 ul {
   padding: 0;
@@ -332,7 +506,12 @@ ul {
   background-color: white;
   /* overflow: scroll; */
 }
-
+@media (max-width: 576px){
+  .pie-chart{
+    margin: 12px;
+    width: 150%;
+  }
+}
 .bar-chart {
   flex: 1;
   border: 2px solid #000;
@@ -340,6 +519,13 @@ ul {
   margin-left: 10px;
   border-radius: 8px;
   background-color: white;
+}
+
+@media (max-width: 576px){
+  .bar-chart{
+    /* margin: 12px; */
+    width: 300%;
+  }
 }
 
 .results-heading {
@@ -360,7 +546,11 @@ ul {
   background-color: #fff;
   padding: 15px;
 }
-
+@media (max-width: 576px){
+  .table-container{
+    margin: 10px;
+  }
+}
 .select-process {
   text-align: left;
   background-color: #323f4b;
@@ -394,6 +584,12 @@ ul {
   gap: 20px;
 }
 
+@media (max-width: 576px){
+  .button button{
+    font-size: 12px;
+  }
+}
+
 .results {
   font-weight: bold;
 }
@@ -418,14 +614,24 @@ ul {
   height: 50px;
   border: none;
   border-radius: 12px;
-  /* font-weight: 500; */
+  font-weight: 500;
   border: 1px solid #000;
+}
+
+@media (max-width: 576px){
+  .chart-tab{
+    font-size: 10px;
+    padding: 4px;
+    width: auto;
+    height: auto;
+    border-radius: 8px;
+  }
 }
 
 .chart-tab-active {
   background-color: black;
   color: #fff;
-  font-weight: 700;
+  /* font-weight: 600; */
   border: 1px solid #fff;
 }
 
@@ -452,6 +658,15 @@ ul {
   /* Smooth transition for background color */
 }
 
+@media (max-width: 576px){
+  .tab{
+    font-size: 12px;
+    /* padding: 4px; */
+    margin-left: 0;
+    /* margin-top: 0; */
+  }
+}
+
 /* 2596be */
 .tab.activeTab {
   background-color: #000 !important;
@@ -463,7 +678,7 @@ ul {
   font-weight: bold;
   margin-top: 2px;
   /* border-radius: 8px; */
-  background-color: #000 !important;
+  /* background-color: #000 !important; */
   /* font-size: 38px; */
   /* text-decoration: underline; */
 }
@@ -489,6 +704,12 @@ ul {
   color: #fff;
   font-family: "Roboto";
   box-shadow: 1px 1px solid #000 !important;
+}
+
+@media (max-width: 576px){
+  .model-dataset{
+    font-size: 14px;
+  }
 }
 
 .empty-bg-image {
@@ -527,6 +748,11 @@ ul {
   /* margin-left: 5px; */
 
 }
+@media (max-width: 576px){
+  .tab-buttons span{
+    font-size: 12px;
+  }
+}
 
 /* background-image: linear-gradient(-225deg, #473B7B 0%, #3584A7 51%, #30D2BE 100%); */
 
@@ -550,6 +776,23 @@ ul {
     
   }
 } */
+.mobile-model-migrate-tabs {
+  display: flex;
+  flex-direction: column;
+  /* gap: 40px; */
+  margin: 10px;
+  margin-bottom: none;
+
+
+  h4 {
+    color: white;
+    font-size: 20px;
+    cursor: pointer;
+    border: 1px solid #fff;
+    padding: 10px 10px;
+    border-radius: 6px;
+  }
+}
 .model-migrate-tabs {
   display: flex;
   gap: 40px;
@@ -599,6 +842,37 @@ ul {
   border-radius: 4px;
   font-weight: 500;
   transition: transform 0.5s;
+  z-index: 10;
+
+  p {
+    padding: 5px 0px;
+    margin: 0;
+    border: 1px solid #000;
+    margin: 8px 0px;
+    padding: 4px 10px;
+    border-radius: 8px;
+    box-shadow: 2px 2px 2px #bfbebe;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 600;
+  }
+
+  p:hover {
+    background-color: #ded9d993;
+    /* color: #063be9; */
+    text-decoration: underline;
+  }
+}
+.mobile-open-tab {
+  /* position: absolute !important; */
+  width: 100%;
+  background-color: #fff;
+  padding: 6px 12px;
+  border-radius: 4px;
+  font-weight: 500;
+  transition: transform 0.5s;
+  /* z-index: 10; */
+  margin-bottom: 10px;
 
   p {
     padding: 5px 0px;
@@ -655,14 +929,27 @@ ul {
 
 .model-sources {
   font-size: 18px;
-  margin-left: 5px;
+  /* margin-left: 5px; */
   margin-bottom: 6px;
+  margin-right: 2px;
+}
+
+@media (max-width: 576px){
+  .model-sources{
+    font-size: 13px;
+  }
 }
 
 .model-insights {
   font-size: 28px;
   margin-left: 5px;
-  /* margin-bottom: 6px; */
+  margin-bottom: 6px;
+  margin-right: 2px;
+}
+@media (max-width: 576px){
+  .model-insights{
+    font-size: 15px;
+  }
 }
 
 .stp {

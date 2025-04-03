@@ -34,8 +34,8 @@ function EquipmentBarChart({ data }) {
     // Daily_Sales_Prediction_without_live_data
 
     return (
-        <div className='bar-chart-container'>
-            <div className='b-chart'>
+        <div className='equipment-bar-chart-container'>
+            <div className='equipment-bar-chart'>
                 <EquipmentBarChartItem chartData={userData1} barChartText={"Product ID and their Revenue Prediction amount"} />
             </div>
         </div>

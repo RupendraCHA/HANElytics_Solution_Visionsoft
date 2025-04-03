@@ -49,7 +49,7 @@ function InventoryPieChart({ data }) {
     return (
         <div className='pie-chart-container'>
             
-            <div className="p-chart">
+            <div className="p-chart1">
                 <InventoryPieChartItem chartData={userData1} chartText={"Product Name and its Lead times in Days & Historical Sales"} />
             </div>
             

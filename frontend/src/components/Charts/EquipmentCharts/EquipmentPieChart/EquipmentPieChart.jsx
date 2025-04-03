@@ -63,9 +63,9 @@ function EquipmentPieChart({ data }) {
     // console.log()
 
     return (
-        <div className='pie-chart-container'>
+        <div className='equipment-pie-chart-container'>
             
-            <div className="p-chart">
+            <div className="equipment-pie-chart">
                 <EquipmentPieChartItem chartData={userData1} chartText={"Equipment ID and Its Historical & Predicted Breakdown of Equipment Failure in cycles"} />
             </div>
             {/* <div className="p-chart">

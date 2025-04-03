@@ -76,13 +76,13 @@ function InventoryBarChart({ barChartText, barChartData, labelsData, data }) {
 
     return (
         <div className='bar-chart-container'>
-            <div className='b-chart'>
+            <div className='b-chart1'>
                 <InventoryBarChartItem chartData={userData2} barChartText={"Safety Stock and Reorder Quantity Predictions - With, Without Live Data"} />
             </div>
-            <div className='b-chart'>
+            <div className='b-chart1'>
                 <InventoryBarChartItem chartData={userData1} barChartText={"Monthly Sales and their predictions for - With, Without Live Data"} />
             </div>
-            <div className='b-chart'>
+            <div className='b-chart1'>
                 <InventoryBarChartItem chartData={userData3} barChartText={"Daily Sales and their predictions for - With, Without Live Data"} />
             </div>
             

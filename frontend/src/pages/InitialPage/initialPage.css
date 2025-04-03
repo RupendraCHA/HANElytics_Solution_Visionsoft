@@ -60,3 +60,16 @@ li:hover {
 .signup-button{
   background-color: yellow;
 }
+.initial-page-text{
+  font-size: 46px;
+  color: white;
+  margin-bottom: 20px;
+  text-align: center;
+}
+@media (max-width: 576px){
+  .initial-page-text{
+    font-size: 26px;
+    /* text-align: left; */
+    padding: 10px;
+  }
+}

@@ -43,12 +43,24 @@
         font-size: 11px;
     }
 }
+@media (max-width: 576px){
+    .simplify-heading{
+        font-size: 24px;
+    }
+}
 .hanelytics-offerings{
     width: 40vw;
     border-radius: 20px;
     margin: 20px;
 }
-::-webkit-scrollbar {
-    width: 10px;  /* Width of the scrollbar */
+/* ::-webkit-scrollbar {
+    width: 10px;  
     color: antiquewhite;
+} */
+@media (max-width: 576px){
+    .right{
+        .button{
+            font-size: 14px;
+        }
+    }
 }

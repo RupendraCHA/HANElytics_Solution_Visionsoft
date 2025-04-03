@@ -14,7 +14,7 @@
   text-decoration: none;
   color: #fff;
 }
-.header-home-heading h1 {
+.header-home-heading .heading-text1 {
   color: #000;
   font-family: "Roboto";
   font-size: 28px;
@@ -138,4 +138,21 @@
   border-radius: 15px;
   padding: 0px 5px;
   outline: none;
+}
+
+@media screen and (max-width: 576px){
+  .navbar-container{
+    
+    margin: none;
+    padding: 10px;
+    gap: 15px;
+  }
+}
+@media screen and (max-width: 576px){
+  .header-home-heading .heading-text1{
+    font-size: 20px;
+  }
+  .home{
+    font-size: 12px;
+  }
 }

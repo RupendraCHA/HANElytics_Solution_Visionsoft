@@ -55,9 +55,9 @@ function RevenuePieChart({ data }) {
     // console.log()
 
     return (
-        <div className='pie-chart-container'>
+        <div className='revenue-pie-chart-container'>
             
-            <div className="p-chart">
+            <div className="revenue-pie-chart">
                 <RevenuePieChartItem chartData={userData1} chartText={"Product ID and Its Revenue Prediction"} />
             </div>
             {/* <div className="p-chart">

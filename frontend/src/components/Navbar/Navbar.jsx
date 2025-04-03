@@ -70,7 +70,7 @@ const Navbar = () => {
                 </div>
             </div> */}
       <Link to="/home" className="header-home-heading">
-        <h1>HANELYTICS</h1>
+        <h1 className="heading-text1">HANELYTICS</h1>
       </Link>
       <div className="signup-register">
         <Link to="/" style={{ fontWeight: "bold" }}>
