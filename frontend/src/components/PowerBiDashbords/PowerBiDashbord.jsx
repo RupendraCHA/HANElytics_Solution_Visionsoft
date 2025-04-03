@@ -30,7 +30,7 @@ useEffect(() => {
     startTheServer()
     const jwtToken = localStorage.getItem("token")
     if (jwtToken) {
-        navigate("/home")
+        navigate("/dashboards")
     }else {
         navigate("/login")
     }
