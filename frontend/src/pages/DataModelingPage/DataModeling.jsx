@@ -47,15 +47,20 @@ const DataModeling = () => {
   const navigate = useNavigate();
   const { url, username } = useContext(StoreContext);
 
-  useEffect(() => {
-    const jwtToken = localStorage.getItem("token");
+  const startTheServer = async () => {
+    const response = await axios.get( url);
+    console.log(response.data.message)
 
+}
+useEffect(() => {
+    startTheServer()
+    const jwtToken = localStorage.getItem("token")
     if (jwtToken) {
-      navigate("/dataModeling");
-    } else {
-      navigate("/login");
+        navigate("/dataModeling")
+    }else {
+        navigate("/login")
     }
-  }, []);
+},[])
 
   // Hello
 

@@ -10,7 +10,7 @@ function InitialPage() {
       const { url} = useContext(StoreContext);
     
       const startTheServer = async () => {
-        const response = await axios.get( "https://hanelytics-solution-visionsoft.onrender.com/");
+        const response = await axios.get(url);
         console.log(response.data.message)
 
     }

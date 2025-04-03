@@ -8,18 +8,23 @@ import { StoreContext } from "../../context/StoreContext";
 import Footer from "../../components/Footer/Footer";
 
 function Home() {
-  const { token, username } = useContext(StoreContext);
+  const { token, username,url } = useContext(StoreContext);
   const navigate = useNavigate();
 
-  useEffect(() => {
-    const jwtToken = localStorage.getItem("token");
+  const startTheServer = async () => {
+    const response = await axios.get( url);
+    console.log(response.data.message)
 
+}
+useEffect(() => {
+    startTheServer()
+    const jwtToken = localStorage.getItem("token")
     if (jwtToken) {
         navigate("/home")
     }else {
         navigate("/login")
     }
-  }, []);
+},[])
 
   return (
     <>

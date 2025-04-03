@@ -17,12 +17,12 @@ const PowerBiDashboard = () => {
   const [activeDashboard, setActiveDashboard] = useState("");
   const [isMsgOpened, setMsgOpened] = useState(false);
   const navigate = useNavigate();
-  const { username, token, setToken, setUsername } = useContext(StoreContext);
+  const { username, token, setToken, setUsername, url } = useContext(StoreContext);
 
   const [isMenuOpened, setIsMenuOpened] = useState(false);
 
   const startTheServer = async () => {
-    const response = await axios.get( "https://hanelytics-solution-visionsoft.onrender.com/");
+    const response = await axios.get( url);
     console.log(response.data.message)
 
 }
