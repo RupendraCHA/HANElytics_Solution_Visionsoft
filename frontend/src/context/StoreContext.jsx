@@ -17,7 +17,6 @@ const StoreContextProvider = (props) => {
         if (jwtToken) {
             setToken(jwtToken)
             setUsername(localStorage.getItem("username"))
-
         }
     }, [])
 

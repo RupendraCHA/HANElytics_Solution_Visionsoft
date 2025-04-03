@@ -44,6 +44,21 @@ function SignUp() {
   //   console.log(response.data)
   // }, [])
 
+  const startTheServer = async () => {
+    const response = await axios.get( "https://hanelytics-solution-visionsoft.onrender.com/");
+    console.log(response.data.message)
+
+}
+useEffect(() => {
+    startTheServer()
+    const jwtToken = localStorage.getItem("token")
+    if (jwtToken) {
+        navigate("/home")
+    }else {
+        navigate("/register")
+    }
+},[])
+
   const handleInputChange = (e) => {
     setExist(false);
     const name = e.target.name;

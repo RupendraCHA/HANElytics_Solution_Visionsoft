@@ -20,6 +20,21 @@ const PowerBiDashboard = () => {
 
   const [isMenuOpened, setIsMenuOpened] = useState(false);
 
+  const startTheServer = async () => {
+    const response = await axios.get( "https://hanelytics-solution-visionsoft.onrender.com/");
+    console.log(response.data.message)
+
+}
+useEffect(() => {
+    startTheServer()
+    const jwtToken = localStorage.getItem("token")
+    if (jwtToken) {
+        navigate("/home")
+    }else {
+        navigate("/login")
+    }
+},[])
+
   const HANElyticsDashboards = [
     {
       headerText: "Revenue, Clinical and Equipment Failure",
