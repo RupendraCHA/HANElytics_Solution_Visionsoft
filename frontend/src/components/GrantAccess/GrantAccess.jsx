@@ -35,6 +35,10 @@ const GrantAccess = () => {
     {firstname: "Likitha", role: "COO"},
     {firstname: "Subhashini",role: "COO"},
   ]
+
+  const getUserNameInput = (e) => {
+
+  }
     return (
       <div className='grant-access-bg-container'>
         <div className='grant-access-page-container'>
@@ -43,23 +47,27 @@ const GrantAccess = () => {
             <div className='users-section'>
               <div className='user-section-header'>
                 <h1 className='users-list-heading'>Users List</h1>
-                <p className='no-of-users'>No.Of.Users: <span>20</span></p>
+                <p className='no-of-users'>No.Of.Users: <span>{usersDataList.length}</span></p>
               </div>
               <div className='user-search-container'>
-                <input htmlFor="userSearch" className='user-search' type='text' placeholder='Search with name'/>
+                <input htmlFor="userSearch" onChange={getUserNameInput} className='user-search' type='text' placeholder='Search with name'/>
                 <FaSearch className='user-search-icon'/>
               </div>
               <div className='list-of-users'>
                   {usersDataList.map((user, index) => (
                     <div key={index} style={{marginTop: "10px"}}>
-                      <div className='users-card'>
+                      <div className='users-card' style={{position: "relative"}}>
                         <div>
                           <p className='users-card-name'>
                           <FaUserTie className='user-search-icon'/>
                             {user.firstname}</p>
                         </div>
                         <p className='user-card-name-role'>{user.role}</p>
+                        {/* <div style={{position: "absolute", zIndex: "10", color: "red"}}>
+                        <h1>Hello</h1>
+                      </div> */}
                       </div>
+                      
                     </div>
                   ))}
               </div>
