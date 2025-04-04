@@ -173,3 +173,18 @@
     }
   }
 }
+.register{
+  background-color: #ffff008e;
+}
+.register:hover{
+  background-color: #000;
+  color: #fff;
+
+}
+.login{
+  background-color: yellow;
+}
+.login:hover{
+  background-color: #000;
+  color: #fff;
+}

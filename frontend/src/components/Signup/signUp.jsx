@@ -153,7 +153,7 @@ useEffect(() => {
                   <div className="register-input-container">
                     <div className="register-input-label">
                       <label htmlFor="firstname">
-                        <strong>FIRSTNAME</strong>
+                        <strong>FIRSTNAME</strong><span className="required-mark">*</span>
                       </label>
                       <input
                         type="text"
@@ -167,7 +167,7 @@ useEffect(() => {
                     </div>
                     <div className="register-input-label">
                       <label htmlFor="lastname">
-                        <strong>LASTNAME</strong>
+                        <strong>LASTNAME</strong><span className="required-mark">*</span>
                       </label>
                       <input
                         type="text"
@@ -183,7 +183,7 @@ useEffect(() => {
                   <div className="register-input-container">
                     <div className="register-input-label">
                       <label htmlFor="bussinessName">
-                        <strong>ORGANIZATION NAME</strong>
+                        <strong>ORGANIZATION NAME</strong><span className="required-mark">*</span>
                       </label>
                       <input
                         type="text"
@@ -197,7 +197,7 @@ useEffect(() => {
                     </div>
                     <div className="register-input-label">
                       <label htmlFor="contact">
-                        <strong>CONTACT NUMBER</strong>
+                        <strong>CONTACT NUMBER</strong><span className="required-mark">*</span>
                       </label>
                       <input
                         type="text"
@@ -212,7 +212,7 @@ useEffect(() => {
                   </div>
                   <div className="register-input-label">
                     <label htmlFor="position">
-                      <strong>POSITION</strong>
+                      <strong>POSITION</strong><span className="required-mark">*</span>
                     </label>
                     <input
                       type="text"
@@ -225,7 +225,7 @@ useEffect(() => {
                   </div>
                   <div className="register-input-label">
                     <label htmlFor="role">
-                      <strong>ROLE</strong>
+                      <strong>ROLE</strong><span className="required-mark">*</span>
                     </label>
                     <input
                       type="text"
@@ -252,7 +252,7 @@ useEffect(() => {
                   <div className="register-input-container">
                   <div className="register-input-label">
                     <label htmlFor="email">
-                      <strong>EMAIL</strong>
+                      <strong>EMAIL</strong><span className="required-mark">*</span>
                     </label>
                     <input
                       type="text"
@@ -265,11 +265,11 @@ useEffect(() => {
                   </div>
                   <div className="register-input-label">
                     <label htmlFor="password">
-                      <strong>PASSWORD</strong>
+                      <strong>PASSWORD</strong><span className="required-mark">*</span>
                     </label>
                     <input
                       type="password"
-                      placeholder="Enter Password"
+                      placeholder="******"
                       autoComplete="off"
                       required
                       name="password"
@@ -279,11 +279,11 @@ useEffect(() => {
                     
                     <div className="register-input-label">
                       <label htmlFor="city">
-                        <strong>CITY</strong>
+                        <strong>CITY</strong><span className="required-mark">*</span>
                       </label>
                       <input
                         type="text"
-                        placeholder="Type city name: Miami"
+                        placeholder="Miami"
                         autoComplete="off"
                         required
                         name="city"
@@ -292,11 +292,11 @@ useEffect(() => {
                     </div>
                     <div className="register-input-label">
                       <label htmlFor="street">
-                        <strong>STREET</strong>
+                        <strong>STREET</strong><span className="required-mark">*</span>
                       </label>
                       <input
                         type="text"
-                        placeholder="Type Street info: The Roads"
+                        placeholder="The Roads"
                         autoComplete="off"
                         required
                         name="street"
@@ -307,11 +307,11 @@ useEffect(() => {
                   <div className="register-input-container">
                     <div className="register-input-label">
                       <label htmlFor="state">
-                        <strong>STATE</strong>
+                        <strong>STATE</strong><span className="required-mark">*</span>
                       </label>
                       <input
                         type="text"
-                        placeholder="Enter state name: Florida"
+                        placeholder="Florida"
                         autoComplete="off"
                         required
                         name="state"
@@ -320,11 +320,11 @@ useEffect(() => {
                     </div>
                     <div className="register-input-label">
                       <label htmlFor="country">
-                        <strong>COUNTRY</strong>
+                        <strong>COUNTRY</strong><span className="required-mark">*</span>
                       </label>
                       <input
                         type="text"
-                        placeholder="Enter country name: USA"
+                        placeholder="USA"
                         autoComplete="off"
                         required
                         name="country"
@@ -334,33 +334,33 @@ useEffect(() => {
                   </div>
                   <div className="register-input-label">
                     <label htmlFor="zipcode">
-                      <strong>ZIPCODE</strong>
+                      <strong>ZIPCODE</strong><span className="required-mark">*</span>
                     </label>
                     <input
                       type="text"
-                      placeholder="Type zipcode: 33129"
+                      placeholder="33129"
                       autoComplete="off"
                       required
                       name="zipcode"
                       onChange={handleInputChange}
                     />
                   </div>
+                  <div className="checkbox-container">
+                  <input type="checkbox" required className="checkbox" />
+                  <p>I accept terms & conditions.</p>
+                </div>
+                <div>
+                  <button type="submit" className="button-to-register">
+                    Register
+                  </button>
+                </div>
                   <div className="next-text-container" onClick={handleNextRegisterPage}>
                       <h1 className="next-text-btn">Back</h1>
                   </div>
                 </div>
                 
                 
-                <div className="checkbox-container">
-                  <input type="checkbox" required className="checkbox" />
-                  <p>I accept terms & conditions.</p>
-                </div>
-
-                <div>
-                  <button type="submit" className="button-to-register">
-                    Register
-                  </button>
-                </div>
+                
                 
                 </>}
                 {isExist === true ? (

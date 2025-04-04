@@ -95,6 +95,10 @@ font-weight: 700;
   margin-top: 10px;
   
   label{
+    
+    display: flex;
+    align-items: center;
+    justify-content: center;
     strong{
       font-size: 12px;
     }
@@ -156,7 +160,7 @@ font-weight: 700;
 }
 
 .button-to-register{
-  width: 96%;
+  /* width: 96%; */
   padding: 10px;
   background-color: red;
   color: #fff;
@@ -352,4 +356,8 @@ font-weight: 700;
   .verify-card{
     margin: 10px;
   }
+}
+.required-mark{
+  color: red;
+  font-size: 20px;
 }

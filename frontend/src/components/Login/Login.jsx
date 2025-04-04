@@ -139,7 +139,7 @@ function Login() {
               </div>
               {isExist === true ? <p className="error-msg">{errorMsg}</p> : ""}
               <button
-                className="btn btn-default border w-100 bg-warning  rounded-0 text-decoration-none"
+                className="login btn btn-default border w-100 rounded-0 text-decoration-none"
                 style={{ fontWeight: "600", border: "none" }}
                 type="submit"
               >
@@ -153,8 +153,8 @@ function Login() {
               <p style={{ fontWeight: "bold" }}>Don't have an account?</p>
               <Link
                 to="/register"
-                className="btn btn-default border w-100 bg-warning rounded-0 text-decoration-none"
-                style={{ fontWeight: "600" }}
+                className="register btn btn-default border w-100 rounded-0 text-decoration-none"
+                style={{ fontWeight: "600"}}
               >
                 Register
               </Link>
