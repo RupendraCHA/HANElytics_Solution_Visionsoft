@@ -12,6 +12,14 @@ const StoreContextProvider = (props) => {
     const [token, setToken] = useState("")
     const [username, setUsername] = useState("")
     const [userRole, setUserRole] = useState("")
+    const [usersList, setUsersList] = useState({})
+
+
+    const getAllUsersList = async () => {
+        const users = await axios.get(url + "/api/user/getUsersList")
+        setUsersList(users.data)
+        console.log(users.data)
+    }
 
    
     useEffect(() => {
@@ -22,6 +30,7 @@ const StoreContextProvider = (props) => {
             setUserRole(role)
             setUsername(localStorage.getItem("username"))
         }
+        getAllUsersList()
     }, [])
 
     const contextValue = {
@@ -31,7 +40,9 @@ const StoreContextProvider = (props) => {
         username,
         setUsername,
         userRole,
-        setUserRole
+        setUserRole,
+        usersList,
+        setUsersList
     }
     return (
         <StoreContext.Provider value={contextValue}>

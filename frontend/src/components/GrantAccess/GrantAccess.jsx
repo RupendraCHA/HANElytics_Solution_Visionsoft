@@ -6,17 +6,34 @@ import { FaUserTie } from "react-icons/fa6";
 import { FaSearch } from "react-icons/fa";
 
 const GrantAccess = () => {
-  const usersList = [
-    {name: "Rupendra"},
-    {name: "Gopi"},
-    {name: "Eleesha"},
-    {name: "Dinesh"},
-    {name: "Chiranjeevi"},
-    {name: "Reyansh"},
-    {name: "Chaitanya"},
-    {name: "Brahmini"},
-    {name: "Likitha"},
-    {name: "Subhashini"},
+
+    const { url } = useContext(StoreContext);
+    const [usersDataList, setUsersDataList] = useState([])
+
+    
+    
+    const getAllUsersList = async () => {
+      const users = await axios.get(url + "/api/user/getUsersList")
+      // console.log(users)
+      setUsersDataList(users.data.usersData)
+      // console.log(users.data.usersData)
+    }
+
+    useEffect(() => {
+      getAllUsersList()
+    }, [])
+  
+  const usersList1 = [
+    {firstname: "Rupendra", role: "COO"},
+    {firstname: "Gopi", role: "CTO"},
+    {firstname: "Eleesha", role: "CIO"},
+    {firstname: "Dinesh", role: "Employee"},
+    {firstname: "Chiranjeevi", role: "COO"},
+    {firstname: "Reyansh", role: "Trainee"},
+    {firstname: "Chaitanya", role: "COO"},
+    {firstname: "Brahmini", role: "COO"},
+    {firstname: "Likitha", role: "COO"},
+    {firstname: "Subhashini",role: "COO"},
   ]
     return (
       <div className='grant-access-bg-container'>
@@ -33,15 +50,15 @@ const GrantAccess = () => {
                 <FaSearch className='user-search-icon'/>
               </div>
               <div className='list-of-users'>
-                  {usersList.map((userName, index) => (
+                  {usersDataList.map((user, index) => (
                     <div key={index} style={{marginTop: "10px"}}>
                       <div className='users-card'>
                         <div>
                           <p className='users-card-name'>
                           <FaUserTie className='user-search-icon'/>
-                            {userName.name}</p>
+                            {user.firstname}</p>
                         </div>
-                        <p className='user-card-name-role'>Role</p>
+                        <p className='user-card-name-role'>{user.role}</p>
                       </div>
                     </div>
                   ))}

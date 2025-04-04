@@ -144,5 +144,13 @@ export const loginUser = async (req, res) => {
     }
 }
 
-export const getUserdata = async (req, res) => {
+export const getUsersData = async (req, res) => {
+    try {
+        const usersData = await userModel.find()
+        console.log(usersData)
+        res.status(200).json({usersData: usersData})
+    } catch (error) {
+        console.log("Error Occured", error)
+        res.status(400).json({message: "Failed to get users data"})
+    }
 }

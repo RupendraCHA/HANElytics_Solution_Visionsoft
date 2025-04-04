@@ -26,7 +26,9 @@ const PowerBiDashboard = () => {
     console.log(response.data.message)
 
 }
+
 useEffect(() => {
+
     startTheServer()
     const jwtToken = localStorage.getItem("token")
     if (jwtToken) {
