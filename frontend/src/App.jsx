@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -14,10 +14,17 @@ import NotFound from "./components/NotFound/NotFound"
 import Registration from './components/Registration/Registration';
 import Navbar from './components/Navbar/Navbar';
 import PowerBiDashboard from './components/PowerBiDashbords/PowerBiDashbord';
+import AssignRoles from './pages/AssignRoles/AssignRoles';
+import Header from './components/Header/Header';
+import Footer from './components/Footer/Footer';
+import { StoreContext } from './context/StoreContext';
 
 
 
 const App = () => {
+
+    const { userRole } = useContext(StoreContext);
+  
   return (<>
     <ToastContainer />
     <Routes>
@@ -28,6 +35,11 @@ const App = () => {
       <Route exact path='/dataModeling' element={<DataModeling />}></Route>
       {/* <Route exact path='/registration' element={<Registration />}></Route> */}
       <Route exact path='/dashboards' element={<PowerBiDashboard />}></Route>
+      <Route exact path='/assignRoles' element={
+        <><Header page="Grant Access"/>
+        <AssignRoles />
+        <Footer/></>
+        }></Route>
       <Route path="*" element={<NotFound />}></Route>
     </Routes>
   </>

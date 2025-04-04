@@ -162,7 +162,7 @@ export const Welcome_Email_Template = `
                   <li>Explore our features and customize your experience.</li>
                   <li>Reach out to our support team if you have any questions or need assistance.</li>
               </ul>
-              <a href="https://hanelytics-solution-visionsoft-1.onrender.com/" class="button">Get Started</a>
+              <a href="https://hanelytics.com/" class="button">Get Started</a>
               <p>If you need any help, don’t hesitate to contact us. We’re here to support you every step of the way.</p>
           </div>
           <div class="footer">

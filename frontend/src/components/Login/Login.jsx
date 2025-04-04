@@ -16,7 +16,7 @@ function Login() {
   const navigate = useNavigate();
   const [isHovered, setIsHovered] = useState(false);
 
-  const { url, setToken, setUsername, token, username } =
+  const { url, setToken, setUsername, token, username, setUserRole } =
     useContext(StoreContext);
 
     const startTheServer = async () => {
@@ -54,13 +54,18 @@ function Login() {
     // console.log(data)
     setExist(false);
     const response = await axios.post(url + "/api/user/login", data);
+    console.log(response.data)
 
     if (response.data.success) {
       setExist(false);
       setToken(response.data.token);
       localStorage.setItem("token", response.data.token);
       localStorage.setItem("username", response.data.name);
+      localStorage.setItem("role", response.data.role);
+
       setUsername(response.data.name);
+      setUserRole(response.data.role)
+      console.log(response.data.role)
       toast.success(response.data.name + " " + response.data.message);
       navigate("/home");
     } else {

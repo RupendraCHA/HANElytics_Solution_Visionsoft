@@ -8,44 +8,117 @@ import axios from "axios";
 import { toast } from "react-toastify";
 import { StoreContext } from "../../context/StoreContext";
 import { Dropdown } from "antd";
+import { IoMdMenu } from "react-icons/io";
+import { RxCross1 } from "react-icons/rx";
+import { LuArrowUpRight } from "react-icons/lu";
 
-const Header = () => {
+const Header = ({ page = "" }) => {
+  const [isMenuOpened, setIsMenuOpened] = useState(false);
+
   const navigate = useNavigate();
-  const { username, token, setToken, setUsername } = useContext(StoreContext);
+  const { username, token, setToken, setUsername, userRole, setUserRole } =
+    useContext(StoreContext);
 
+  console.log(userRole);
   const handleLogout = () => {
     localStorage.removeItem("token");
     localStorage.removeItem("username");
+    localStorage.removeItem("role");
     setToken("");
     setUsername("");
+    setUserRole("");
     navigate("/login");
   };
-  const items = [
-    {
-      key: 1,
-      label: (
-        <a id="drop-option" href="" onClick={handleLogout}>
-          Logout
-        </a>
-      ),
-    },
-  ];
+
+  const handleIsMenuOpened = () => {
+    if (isMenuOpened === false) {
+      setIsMenuOpened(true);
+    } else {
+      setIsMenuOpened(false);
+    }
+  };
+
+  const getGrantButtons = () => {
+    if (page !== "Grant Access") {
+      return (
+        <>
+          {userRole === "CEO" || userRole === "COO" || userRole === "CTO" ? (
+            <Link to="/assignRoles">
+              <button className="assign-roles">
+                Assign Access
+                <LuArrowUpRight className="roles-insights-icon" />
+              </button>
+            </Link>
+          ) : (
+            ""
+          )}
+        </>
+      );
+    }
+  };
+
+  const getMobileResponsiveButtons = () => {
+    if (page !== "Grant Access") {
+      return (
+        <>
+          <button className="assign-roles">
+            Assign Access
+            <LuArrowUpRight className="roles-insights-icon" />
+          </button>
+        </>
+      );
+    }
+  };
 
   return (
-    <div className="home-container1">
-      <Link to="/home" className="header-home-heading">
-        <h1 className="header-home-text">HANELYTICS</h1>
-      </Link>
-      <div className="drop-down1">
+    <>
+      <div className="home-container">
+        <Link to="/home" className="header-home-heading">
+          <h1 className="header-home-text">HANELYTICS</h1>
+        </Link>
+        <div>{getGrantButtons()}</div>
+        <div className="drop-down1">
           <div className="icon-username1">
             <FaRegCircleUser className="user-icon1" />
             <p className="username-text1">{username}</p>
           </div>
-        {/* <div> */}
+          {/* <div> */}
           <button onClick={handleLogout}>Logout</button>
-        {/* </div> */}
+          {/* </div> */}
+        </div>
       </div>
-    </div>
+      <div
+        className="mobile-roles-home-container"
+        style={{ position: "relative" }}
+      >
+        <Link to="/home" className="mobile-roles-website-heading">
+          <h1>HANELYTICS</h1>
+        </Link>
+        <div className="bi-mobile-menu-container">
+          {isMenuOpened ? (
+            <RxCross1 className="bi-mobile-menu" onClick={handleIsMenuOpened} />
+          ) : (
+            <IoMdMenu className="bi-mobile-menu" onClick={handleIsMenuOpened} />
+          )}
+          {isMenuOpened && (
+            <div className="mobile-roles-menu-home-container">
+              <div className="mobile-roles-home-page">
+                {userRole === "CTO" ||
+                userRole === "CEO" ||
+                userRole === "COO" ? (
+                  <Link to="/assignRoles">{getMobileResponsiveButtons()}</Link>
+                ) : (
+                  ""
+                )}
+                <div className="drop-down1">
+                  <button onClick={handleLogout}>Logout</button>
+                </div>
+              </div>
+            </div>
+          )}
+        </div>
+      </div>
+    </>
   );
 };
 

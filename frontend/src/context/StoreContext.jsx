@@ -1,4 +1,5 @@
 import { createContext, useEffect, useState } from "react";
+import axios from "axios"
 
 export const StoreContext = createContext(null)
 
@@ -10,12 +11,15 @@ const StoreContextProvider = (props) => {
 
     const [token, setToken] = useState("")
     const [username, setUsername] = useState("")
+    const [userRole, setUserRole] = useState("")
 
+   
     useEffect(() => {
         const jwtToken = localStorage.getItem("token")
-
+        const role = localStorage.getItem("role")
         if (jwtToken) {
             setToken(jwtToken)
+            setUserRole(role)
             setUsername(localStorage.getItem("username"))
         }
     }, [])
@@ -25,7 +29,9 @@ const StoreContextProvider = (props) => {
         setToken,
         url,
         username,
-        setUsername
+        setUsername,
+        userRole,
+        setUserRole
     }
     return (
         <StoreContext.Provider value={contextValue}>

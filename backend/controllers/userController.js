@@ -119,6 +119,7 @@ export const loginUser = async (req, res) => {
     const {email, password} = req.body
     try {
         const user = await userModel.findOne({email})
+        console.log(user)
 
         // Checking user registered or not
         if (!user) {
@@ -135,7 +136,7 @@ export const loginUser = async (req, res) => {
         const token = createToken(user._id)
         // const token = jwt.sign({ email: user.email }, process.env.JWT_SECRET, { expiresIn: "7d" })
         // res.cookie("token", token)
-        res.json({success: true, token, name: `${user.firstname}`, message: "Login Successful"})
+        res.json({success: true, token, name: `${user.firstname}`, message: "Login Successful", role: `${user.role}`})
     }
     catch (error) {
         console.log(error)
@@ -143,3 +144,5 @@ export const loginUser = async (req, res) => {
     }
 }
 
+export const getUserdata = async (req, res) => {
+}

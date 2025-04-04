@@ -143,6 +143,7 @@ useEffect(() => {
   const handleModelLogout = async () => {
     localStorage.removeItem("token");
     localStorage.removeItem("username");
+    localStorage.removeItem("role");
     navigate("/login");
   };
 

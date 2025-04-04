@@ -1,0 +1,152 @@
+.grant-access-bg-container {
+  padding: 0px 100px;
+  background-color: #dadae3;
+  height: 100vh;
+  overflow: auto;
+  padding-top: 10px;
+}
+@media (max-width: 768px) {
+  .grant-access-bg-container {
+    padding: 10px;
+  }
+}
+.grant-access-page-container {
+  display: flex;
+  flex-direction: column;
+}
+.grant-access-page-heading {
+  font-size: 22px;
+  color: #000;
+  font-weight: 600;
+}
+@media (max-width: 768px) {
+  .grant-access-page-heading {
+    font-size: 18px;
+    text-align: center;
+  }
+}
+.grant-access-users-dashboards-container {
+  display: flex;
+  gap: 5px;
+
+  .users-section {
+    flex: 1;
+    /* background-color: #8eaee04d; */
+    height: 93vh;
+    box-shadow: 5px 5px 15px #0000004d;
+    padding: 15px;
+    overflow: auto;
+    background-color: #fff;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  .dashboards-models-section {
+    flex: 3;
+    box-shadow: 5px 5px 15px #0000004d;
+    padding: 15px;
+    background-color: #fff;
+
+  }
+}
+.user-section-header {
+    display: flex;
+    justify-content: space-between;
+}
+.users-list-heading {
+    font-size: 16px;
+    font-weight: 600;
+    color: #0c2cbd;
+  }
+.no-of-users{
+    font-weight: 700;
+
+    span{
+        color:#0c2cbd ;
+    }
+  }
+
+  .list-of-users{
+    display: flex;
+    flex-direction: column;
+    overflow: auto;
+    border: 1px solid #80808094;
+    padding: 10px;
+}
+
+@media (max-width: 768px) {
+  .grant-access-users-dashboards-container {
+    flex-direction: column;
+
+    .users-section{
+        overflow: auto;
+        max-height: 60vh;
+    }
+  }
+}
+.user-search-container{
+    width: 100%;
+    padding: 2px;
+    border: 2px solid #1d58c5;
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+}
+.user-search{
+    width: 94%;
+    border: none;
+    outline: none;
+    padding: 4px 10px ;
+    cursor: pointer;
+    font-weight: 600;
+}
+.user-search-icon{
+    font-size: 20px;
+    cursor: pointer;
+    color: #0c2cbd;
+}
+.users-card{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #1d58c54c;
+    padding:8px;
+    border-radius: 6px;
+}
+
+.users-card-name{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 2px;
+    font-weight: 600;
+    font-size: 18px;
+
+
+}
+.user-card-name-role{
+    font-weight: bold;
+    /* opacity: 0.8; */
+    color: #808080d1;
+    margin: 0;
+
+}
+@media (max-width: 576px){
+    .users-card{
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: flex-start;
+        background-color: #1d58c54c;
+        padding:8px;
+        border-radius: 6px;
+    }
+    .users-card-name{
+        display: flex;
+        align-items: flex-start;
+        gap: 2px;
+        /* justify-content: center; */
+    }
+    .user-card-name-role{
+        padding: 0;
+    }
+}
