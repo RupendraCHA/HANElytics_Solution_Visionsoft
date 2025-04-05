@@ -188,3 +188,7 @@
   background-color: #000;
   color: #fff;
 }
+.required-mark{
+  color: red;
+  font-size: 20px;
+}

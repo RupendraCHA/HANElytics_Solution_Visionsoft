@@ -349,14 +349,18 @@ useEffect(() => {
                   <input type="checkbox" required className="checkbox" />
                   <p>I accept terms & conditions.</p>
                 </div>
-                <div>
+                <div style={{display: 'flex', alignItems: "center", justifyContent: 'space-between'}}>
                   <button type="submit" className="button-to-register">
                     Register
                   </button>
+                  <button onClick={handleNextRegisterPage} style={{backgroundColor: "#082ccd"}} className="button-to-register">Back</button>
+
+
+                  {/* <div className="next-text-container" onClick={handleNextRegisterPage}>
+                      <h1 className="button-to-register">Back</h1> onClick={handleNextRegisterPage}
+                  </div> */}
                 </div>
-                  <div className="next-text-container" onClick={handleNextRegisterPage}>
-                      <h1 className="next-text-btn">Back</h1>
-                  </div>
+                  
                 </div>
                 
                 

@@ -111,7 +111,7 @@ function Login() {
             <form onSubmit={handleSubmit}>
               <div className="mb-3">
                 <label htmlFor="email">
-                  <strong>Email</strong>
+                  <strong>Email</strong><span className="required-mark">*</span>
                 </label>
                 <input
                   type="text"
@@ -125,7 +125,7 @@ function Login() {
               </div>
               <div className="mb-3">
                 <label htmlFor="password">
-                  <strong>Password</strong>
+                  <strong>Password</strong><span className="required-mark">*</span>
                 </label>
                 <input
                   type="password"
