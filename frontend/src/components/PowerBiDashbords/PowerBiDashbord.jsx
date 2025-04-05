@@ -28,7 +28,6 @@ const PowerBiDashboard = () => {
 }
 
 useEffect(() => {
-
     startTheServer()
     const jwtToken = localStorage.getItem("token")
     if (jwtToken) {
@@ -483,10 +482,15 @@ useEffect(() => {
               />
             </h1>
           ))}
-          <h1 className="insights-btn" onClick={() => navigate("/dataModeling")}>
-            Go to Previous
+          <h1 className="insights-btn" 
+          onClick={() => navigate("/dataModeling")}
+          // onClick={() => navigate("/assignRoles")}
+
+          >
+            Data Modeling
             <LuArrowUpRight className="insights-icon" />
           </h1>
+          
         </div>
         <div className="bi-drop-down">
           <div className="bi-icon-username">
@@ -538,9 +542,10 @@ useEffect(() => {
                   className="insights-btn"
                   onClick={() => navigate("/dataModeling")}
                 >
-                  Go to Previous
+                  Data Modeling
                   <LuArrowUpRight className="insights-icon" />
                 </h1>
+                
               </div>
               <div className="bi-drop-down">
                 {/* <div className="bi-icon-username">

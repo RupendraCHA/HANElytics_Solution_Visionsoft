@@ -8,6 +8,7 @@ import salesRouter from "./routes/salesTableDataRoute.js";
 import procurementRouter from "./routes/procurementTableDataRoute.js";
 // import serverless from 'serverless-http'
 import multer from "multer";
+import dashboardUploadRouter from "./routes/DashboardUploadRoute.js";
 
 
 const app = express();
@@ -29,6 +30,7 @@ app.use("/api/user", userRouter);
 app.use("/api/model", dataModelResultsRouter);
 app.use("/api/sales", salesRouter);
 app.use("/api/procurement", procurementRouter);
+app.use("/api/dashboard", dashboardUploadRouter)
 
 const upload = multer({
   storage: multer.memoryStorage(),

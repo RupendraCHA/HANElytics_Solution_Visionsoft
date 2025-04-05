@@ -13,6 +13,8 @@ const StoreContextProvider = (props) => {
     const [username, setUsername] = useState("")
     const [userRole, setUserRole] = useState("")
     const [usersList, setUsersList] = useState([])
+    const [accessNameInput, setAccessNameInput] = useState("")
+    const [allDashboards, setAllDashboards] = useState([])
 
     const [sapSalesModuleText, setSapSalesModuleText] = useState(false);
   const [sapMaterialsModuleText, setSapMaterialsModuleText] = useState(false);
@@ -60,8 +62,12 @@ const StoreContextProvider = (props) => {
         setUserRole,
         usersList,
         setUsersList,
+        accessNameInput,
+        setAccessNameInput,
+        allDashboards, 
+        setAllDashboards,
 
-        sapSalesModuleText,
+    sapSalesModuleText,
     setSapSalesModuleText,
     fromDate,
     lastDate,

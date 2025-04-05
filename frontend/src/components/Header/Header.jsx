@@ -19,7 +19,7 @@ const Header = ({ page = "" }) => {
   const { username, token, setToken, setUsername, userRole, setUserRole } =
     useContext(StoreContext);
 
-  console.log(userRole);
+  // console.log(userRole);
   const handleLogout = () => {
     localStorage.removeItem("token");
     localStorage.removeItem("username");
@@ -54,6 +54,26 @@ const Header = ({ page = "" }) => {
           )}
         </>
       );
+    }else{
+      return (<>
+      <div className="roles-header-tabs">
+        
+          <Link to="/dataModeling">
+                <button className="assign-roles">
+                  Data Modeling
+                  <LuArrowUpRight className="roles-insights-icon" />
+                </button>
+          </Link>
+          <Link to="/dashboards">
+                <button className="assign-roles">
+                  PowerBI Dashboards
+                  <LuArrowUpRight className="roles-insights-icon" />
+                </button>
+          </Link>
+      </div>
+      </>
+        
+      )
     }
   };
 
@@ -61,12 +81,21 @@ const Header = ({ page = "" }) => {
     if (page !== "Grant Access") {
       return (
         <>
+        <Link to="/assignRoles">
           <button className="assign-roles">
             Assign Access
             <LuArrowUpRight className="roles-insights-icon" />
-          </button>
+          </button></Link>
         </>
       );
+    }else {
+      return (
+        <Link to="/dashboards">
+          <button className="assign-roles">
+            Power BI Dashboards
+            <LuArrowUpRight className="roles-insights-icon" />
+          </button></Link>
+      )
     }
   };
 
@@ -106,7 +135,7 @@ const Header = ({ page = "" }) => {
                 {userRole === "CTO" ||
                 userRole === "CEO" ||
                 userRole === "COO" ? (
-                  <Link to="/assignRoles">{getMobileResponsiveButtons()}</Link>
+                  <>{getMobileResponsiveButtons()}</>
                 ) : (
                   ""
                 )}

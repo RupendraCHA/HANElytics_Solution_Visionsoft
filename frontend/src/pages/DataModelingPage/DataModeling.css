@@ -906,6 +906,20 @@ ul {
 /* .data-models {} */
 
 /* .migrate-data {} */
+.roles-insights-icon {
+  font-size: 18px;
+}
+.assign-roles{
+  background-color: #fff;
+  box-shadow: 2px 2px 2px #0e0e0e;
+  border-radius: 8px;
+  font-size: 13px;
+  font-weight: 600;
+  padding: 4px 12px;
+  border: 1px solid #fff;
+  display: flex;
+  align-items: center;
+}
 
 .spinner {
   margin: 20px auto;

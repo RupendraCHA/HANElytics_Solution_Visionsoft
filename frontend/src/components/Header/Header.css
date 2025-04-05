@@ -215,3 +215,7 @@
 .roles-insights-icon {
   font-size: 18px;
 }
+.roles-header-tabs{
+  display: flex;
+  gap: 10px;
+}

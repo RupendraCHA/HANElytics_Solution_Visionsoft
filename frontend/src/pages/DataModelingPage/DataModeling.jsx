@@ -789,7 +789,9 @@ useEffect(() => {
                   alignItems: "center",
                 }}
               >
-                Power BI Reports
+                Power BI Dashboards
+                <LuArrowUpRight className="roles-insights-icon" />
+                
               </h4>
             </div>
             <div className="drop-down">
@@ -917,7 +919,9 @@ useEffect(() => {
                         alignItems: "center",
                       }}
                     >
-                      Power BI Reports
+                      Power BI Dashboards
+                      <LuArrowUpRight className="roles-insights-icon" />
+                      
                     </h4>
                   </div>
                   <div className="mobile-drop-down">
