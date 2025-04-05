@@ -5,7 +5,7 @@ import { SendVerificationCode, WelcomeEmail } from "../middlewares/greetMails.js
 // import nodemailer from "nodemailer"
 
 const createToken = (id) => {
-    return jwt.sign({id}, process.env.JWT_SECRET)
+    return jwt.sign({id}, process.env.JWT_SECRET, {expiresIn: '1hr'})
 }
 
 export const registerUser = async (req, res) => {
