@@ -7,6 +7,10 @@ import { FaSearch } from "react-icons/fa";
 import { FiUpload } from "react-icons/fi";
 import { toast } from "react-toastify";
 import { LuSearchX } from "react-icons/lu";
+import { RiDeleteBin5Line } from "react-icons/ri";
+import { MdEditSquare } from "react-icons/md";
+
+import { assets } from "../../assets/assets";
 
 const GrantAccess = () => {
   const {
@@ -104,7 +108,7 @@ const GrantAccess = () => {
         dashboardName: "",
         uploadedBy: "",
       });
-    getAllDashboards();
+      getAllDashboards();
     } else {
       toast.error("Provide required details!");
     }
@@ -129,10 +133,10 @@ const GrantAccess = () => {
   };
 
   const getPermittedDashboardName = (reportName, isPermitted, value) => {
-    console.log(reportName)
-    console.log(isPermitted)
-    console.log(value)
-  }
+    console.log(reportName);
+    console.log(isPermitted);
+    console.log(value);
+  };
 
   return (
     <div className="grant-access-bg-container">
@@ -214,29 +218,31 @@ const GrantAccess = () => {
           <div className="dashboards-models-section">
             <div>
               <div>
-                <div className="dashboards-section-header">
-                  <h1 className="dashboards-list-heading">Dashboards</h1>
-                  <div className="control-click">
-                    <p className="no-of-users">
-                      Total: <span>{usersDataList.length}</span>
-                    </p>
-                    {upload === false ? (
-                      <p
-                        className="upload-shortcut"
-                        onClick={handleUploadDashboard}
-                      >
-                        upload
+                {allDashboards.length !== 0 && (
+                  <div className="dashboards-section-header">
+                    <h1 className="dashboards-list-heading">Dashboards</h1>
+                    <div className="control-click">
+                      <p className="no-of-users">
+                        Total: <span>{allDashboards.length}</span>
                       </p>
-                    ) : (
-                      <p
-                        className="upload-shortcut"
-                        onClick={handleUploadDashboard}
-                      >
-                        close
-                      </p>
-                    )}
+                      {upload === false ? (
+                        <p
+                          className="upload-shortcut"
+                          onClick={handleUploadDashboard}
+                        >
+                          New <FiUpload className="new-icon" />
+                        </p>
+                      ) : (
+                        <p
+                          className="upload-shortcut"
+                          onClick={handleUploadDashboard}
+                        >
+                          close
+                        </p>
+                      )}
+                    </div>
                   </div>
-                </div>
+                )}
                 {upload && (
                   <form onSubmit={uploadDashboard}>
                     <div className="upload-dashboards-container">
@@ -281,37 +287,96 @@ const GrantAccess = () => {
                 <button>Upload</button> */}
               </div>
               <div className="view-all-dashboards-section">
-                {allDashboards.length === 0 ? "No Dashboards" : <><div>
-                  <div className="dashboard-details-section">
-                    <h3>S.No</h3>
-                    <h3>Name</h3>
-                    <h3>Uploaded By</h3>
-                    <h3>Time of Upload</h3>
-                    <h3>Allow / Deny</h3>
+                {allDashboards.length === 0 ? (
+                  <div className="no-dashboard-text">
+                    <h1>There are no Dashboards to show</h1>
                   </div>
-                </div>
-                <div>
-                  {allDashboards.map((dashboard, index) => (
-                    <div key={index}>
-                      <div className="dashboard-details-section border-top">
-                        <h3>{index+1}</h3>
-                        <h3>{dashboard.dashboardName}</h3>
-                        <h3>{dashboard.uploadedBy}</h3>
-                        <h3>{`${dashboard.createdAt}`}</h3>
-                        <div className="permission-buttons">
-                          <div>
-                            <input onClick={(e) => getPermittedDashboardName(dashboard.dashboardName, "Yes", e.target.checked)} id={`${dashboard._id}allow`} type="checkbox"/>
-                            <label htmlFor={`${dashboard._id}allow`}>Allow</label>
-                          </div>
-                          <div>
-                            <input onClick={(e) => getPermittedDashboardName(dashboard.dashboardName, "No", e.target.checked)} id={`${dashboard._id}deny`} type="checkbox" />
-                            <label htmlFor={`${dashboard._id}deny`}>Deny</label>
-                          </div>
-                        </div>
+                ) : (
+                  <>
+                    <div>
+                      <div className="dashboard-details-section">
+                        <h3 className="table-header-icon" style={{ fontSize: "16px"}}>S.No</h3>
+                        <h3 className="table-header-icon" style={{ fontSize: "16px"}}>Allow</h3>
+                        <h3 className="table-header-icon" style={{marginLeft: "5px", fontSize: "16px"}}>
+                          {/* <img src={`${assets.DashboardImage}`} alt="DashboardImage" width={50}/> */}
+                          Dashboard</h3>
+                        <h3 className="table-header-icon" style={{ fontSize: "16px"}}>
+                        {/* <FaUserTie className="user-search-icon" /> */}
+                          Uploaded By</h3>
+                        <h3 className="table-header-icon" style={{ fontSize: "16px"}}>
+                        {/* className="align-icon-text" */}
+                        {/* <img src={assets.CalenderClock} alt="CreatedTimeImage" className="time-icon" width={30}/> */}
+                          
+                          Time of Upload</h3>
+                          <h3 className="table-header-icon" style={{ fontSize: "16px"}}>Delete</h3>
+                          <h3 className="table-header-icon" style={{ fontSize: "16px"}}>Edit</h3>
                       </div>
                     </div>
-                  ))}
-                </div> </>}
+                    <div>
+                      {allDashboards.map((dashboard, index) => (
+                        <div key={index}>
+                          <div className="dashboard-details-section border-top">
+                            <h3>{index + 1}</h3>
+                            <div className="permission-buttons">
+                              <div>
+                                <input
+                                  onClick={(e) =>
+                                    getPermittedDashboardName(
+                                      dashboard.dashboardName,
+                                      "Yes",
+                                      e.target.checked
+                                    )
+                                  }
+                                  id={`${dashboard._id}allow`}
+                                  type="checkbox"
+                                  className="allow-checkbox"
+                                />
+                                {/* <label htmlFor={`${dashboard._id}allow`}>Allow</label> */}
+                              </div>
+                              {/* <div>
+                            <input onClick={(e) => getPermittedDashboardName(dashboard.dashboardName, "No", e.target.checked)} id={`${dashboard._id}deny`} type="checkbox" />
+                            <label htmlFor={`${dashboard._id}deny`}>Deny</label>
+                          </div> */}
+                            </div>
+                            <h3>
+                          <img src={`${assets.DashboardImage}`} alt="DashboardImage" width={35}/>
+                              
+                              {dashboard.dashboardName}</h3>
+                            <h3 className="align-icon-text">
+                            <FaUserTie className="user-search-icon" />
+                              
+                              {dashboard.uploadedBy}</h3>
+                            <h3 className="align-icon-text">
+                              <img src={assets.CalenderClock} alt={`${dashboard.createdAt}Image`} className="time-icon" width={30}/>
+                              {`${new Date(
+                              dashboard.createdAt
+                            ).toLocaleString('en-IN',{
+                              year: 'numeric',
+                              month: 'long',
+                              day: 'numeric',
+                              
+                            })}, ${new Date(
+                              dashboard.createdAt
+                            ).toLocaleString('en-IN',{
+                              hour: '2-digit',
+                              minute: '2-digit',
+                              second: '2-digit',
+                              hour12: true
+                              
+                            })} `}</h3>
+                            
+                            <h3 >
+                              <RiDeleteBin5Line className="modify-icon delete-bg"/>
+                            </h3>
+                            <h3>
+                              <MdEditSquare className="modify-icon edit-bg"/>
+                            </h3>
+                          </div>
+                        </div>
+                      ))}
+                    </div>{" "}
+                  </>
+                )}
               </div>
             </div>
           </div>

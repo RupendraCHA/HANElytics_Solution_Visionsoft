@@ -22,6 +22,8 @@ import General_Ledger_pic from "./General_Ledger.jpg"
 import Accounts_payable_pic from "./Accounts payable.png"
 import Accounts_receivable_pic from "./Accounts receivable.png"
 import BGImage_pic from "./BGImage.jpg"
+import DashboardImage from "./dashboardImage1.jpg"
+import CalenderClock from "./calenderClock.avif"
 
 
 
@@ -50,5 +52,7 @@ export const assets = {
     General_Ledger_pic,
     Accounts_payable_pic,
     Accounts_receivable_pic,
-    BGImage_pic
+    BGImage_pic,
+    DashboardImage,
+    CalenderClock
 }
