@@ -471,3 +471,38 @@
   display: flex;
   align-items: center;
 }
+.bi-excel-download{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  /* width: 100%; */
+  /* margin-right: 10px; */
+  margin-bottom: 20px;
+  cursor: pointer;
+
+}
+.bi-excel-download-btn{
+  font-size: 12px;
+  /* margin-bottom: 10px; */
+  /* padding: 2px 6px; */
+  border-radius: 6px;
+  background-color: #fff;
+  font-weight: 600;
+  /* border: 2px solid #08af24; */
+  border: 2px solid #fff;
+  /* box-shadow: 2px 2px 2px #002dce81; */
+  /* box-shadow: 1px 1px 1px #fff; */
+}
+.bi-excel-download-icon{
+  color: #08af24;
+  width: 25px;
+  height: 25px;
+  margin-top: 4px;
+}
+.bi-excel-icon{
+  /* font-size: 16px; */
+  color: #08af24;
+  width: 22px;
+  height: 22px;
+  margin-left: 4px;
+}

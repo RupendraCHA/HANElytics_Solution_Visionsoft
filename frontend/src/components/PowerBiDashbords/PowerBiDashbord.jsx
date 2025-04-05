@@ -12,6 +12,8 @@ import Footer from "../Footer/Footer.jsx";
 import { IoMdMenu } from "react-icons/io";
 import { RxCross1 } from "react-icons/rx";
 import axios from "axios"
+import { RiFileExcel2Fill } from "react-icons/ri";
+import { MdOutlineDownload } from "react-icons/md";
 
 const PowerBiDashboard = () => {
   const [activeDashboard, setActiveDashboard] = useState("");
@@ -195,6 +197,20 @@ useEffect(() => {
     setIsMenuOpened(false)
   };
 
+  const getResultsAndDownloadElement = (dataModelName) => {
+      return (
+        <div className="bi-excel-download">
+          <button
+            // onClick={() => downloadDataIntoExcel(data, dataModelName)}
+            className="bi-excel-download-btn"
+          >
+            <MdOutlineDownload className="bi-excel-download-icon" />
+            <RiFileExcel2Fill className="bi-excel-icon" />
+          </button>
+        </div>
+      );
+    };
+
   const getDashboards = (activeDash) => {
     if (activeDash === "HANElytics") {
       return (
@@ -225,10 +241,16 @@ useEffect(() => {
                   <button
                     className="bi-dashboard-button"
                     onClick={() => login(`${type.dataText}, ${type.url}`)}
+                    style={{position: 'relative'}}
                   >
                     <a href={type.url} target="_blank">
                       View Dashboard
                     </a>
+                    <p 
+                    style={{position: 'absolute', top: "6px", right: "8px"}}
+                    >
+                      {getResultsAndDownloadElement("Inventory")}
+                    </p>
                   </button>
                 </div>
               );
@@ -263,10 +285,20 @@ useEffect(() => {
                     />
                   </div>
 
-                  <button className="bi-dashboard-button">
+                  <button className="bi-dashboard-button"
+                    onClick={() => login(`${type.dataText}, ${type.url}`)}
+
+                    style={{position: 'relative'}}
+                  
+                  >
                     <a href={type.url} target="_blank">
                       View Dashboard
                     </a>
+                    <p 
+                    style={{position: 'absolute', top: "6px", right: "8px"}}
+                    >
+                      {getResultsAndDownloadElement("Inventory")}
+                    </p>
                   </button>
                 </div>
               );
@@ -303,10 +335,17 @@ useEffect(() => {
                   <button
                     className="bi-dashboard-button"
                     onClick={() => login(`${type.dataText}, ${type.url}`)}
+                    style={{position: 'relative'}}
+
                   >
                     <a href={type.url} target="_blank">
                       View Dashboard
                     </a>
+                    <p 
+                    style={{position: 'absolute', top: "6px", right: "8px"}}
+                    >
+                      {getResultsAndDownloadElement("Inventory")}
+                    </p>
                   </button>
                 </div>
               );
@@ -344,10 +383,17 @@ useEffect(() => {
                   <button
                     className="bi-dashboard-button"
                     onClick={() => login(`${type.dataText}, ${type.url}`)}
+                    style={{position: 'relative'}}
+
                   >
                     <a href={type.url} target="_blank">
                       View Dashboard
                     </a>
+                    <p 
+                    style={{position: 'absolute', top: "6px", right: "8px"}}
+                    >
+                      {getResultsAndDownloadElement("Inventory")}
+                    </p>
                   </button>
                 </div>
               );
@@ -385,10 +431,17 @@ useEffect(() => {
                   <button
                     className="bi-dashboard-button"
                     onClick={() => login(`${type.dataText}, ${type.url}`)}
+                    style={{position: 'relative'}}
+
                   >
                     <a href={type.url} target="_blank">
                       View Dashboard
                     </a>
+                    <p 
+                    style={{position: 'absolute', top: "6px", right: "8px"}}
+                    >
+                      {getResultsAndDownloadElement("Inventory")}
+                    </p>
                   </button>
                 </div>
               );
@@ -427,42 +480,7 @@ useEffect(() => {
         <Link to="/home" className="bi-home-heading">
           <h1>HANELYTICS</h1>
         </Link>
-        {/* <div className="bi-tabs-list">
-          <h1 onClick={openMsg} className={`bi-tab-list-heading`}>View Categories
-          <MdKeyboardArrowUp
-                className={`bi-arrow-1 ${isMsgOpened === true ? "bi-arrow-down" : ""
-                  }`}
-              />
-          </h1>
-          {isMsgOpened && <div className="bi-tab-list-view">
-            {tabsList.map((eachTab) => (
-            <div style={{display: "flex", justifyContent: "space-between"}}>
-              <h1
-              onClick={() => showDashboards(`${eachTab.activeText}`)}
-              className={`powerbi-dashboard-tab-item ${activeDashboard === `${eachTab.activeText}` ? "active-dashboard-btn" : ""
-                }`}
-                        >
-              <img
-                src={eachTab.imageUrl}
-                alt={`${eachTab.altText}`}
-                className="dashboard-data-model-image-tab"
-              />
-              {eachTab.tabName}
-              <MdKeyboardArrowUp
-                className={`bi-arrow ${activeDashboard === `${eachTab.activeText}` ? "bi-arrow-down" : ""
-                  }`}
-              />
-              </h1>
-              
-            </div>
-          ))}
-          </div>}
-          <h1 className="insights-btn" onClick={() => navigate("/dataModeling")}>
-            Go to Previous
-            <LuArrowUpRight className="insights-icon"/>
-            </h1>
-        </div> */}
-
+        
         <div className="dashboard-tabs">
           {tabsList.map((eachTab, index) => (
             <h1 key={index}
