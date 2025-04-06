@@ -26,6 +26,7 @@ const GrantAccess = () => {
   });
   const [usersDataList, setUsersDataList] = useState([]);
   const [getUsersData, setGetUsersData] = useState(false);
+  const [getAllDashboardsData, setGetAllDashboardsData] = useState(false);
   const [upload, setUpload] = useState(false);
   const [searchBarOpened, setSearchBarOpened] = useState(false);
   // const [dashboardName, setDashboardName] = useState("");
@@ -40,9 +41,9 @@ const GrantAccess = () => {
   };
 
   const getAllDashboards = async () => {
-    setGetUsersData(true);
+    setGetAllDashboardsData(true);
     const allDashboards = await axios.get(url + "/api/dashboard/getAll");
-    setGetUsersData(false);
+    setGetAllDashboardsData(false);
     setAllDashboards(allDashboards.data.allDashboards);
     // console.log(allDashboards.data.allDashboards)
   };
@@ -146,7 +147,7 @@ const GrantAccess = () => {
         </h1>
         <div className="grant-access-users-dashboards-container">
           <div className="users-section">
-            <div className="user-section-header">
+            {!getUsersData && <div className="user-section-header">
               <h1 className="users-list-heading">Users List</h1>
               <p className="no-of-users">
                 {searchBarOpened ? (
@@ -163,7 +164,7 @@ const GrantAccess = () => {
                 )}
                 Total:<span>{usersDataList.length}</span>
               </p>
-            </div>
+            </div>}
             {searchBarOpened && (
               <div className="user-search-container">
                 <input
@@ -286,98 +287,143 @@ const GrantAccess = () => {
                 {/* <input type="text" placeholder="Enter Model or Dashboard name to add" style={{width: "50%"}}/>
                 <button>Upload</button> */}
               </div>
-              <div className="view-all-dashboards-section">
-                {allDashboards.length === 0 ? (
-                  <div className="no-dashboard-text">
-                    <h1>There are no Dashboards to show</h1>
-                  </div>
-                ) : (
-                  <>
-                    <div>
-                      <div className="dashboard-details-section">
-                        <h3 className="table-header-icon" style={{ fontSize: "16px"}}>S.No</h3>
-                        <h3 className="table-header-icon" style={{ fontSize: "16px"}}>Allow</h3>
-                        <h3 className="table-header-icon" style={{marginLeft: "5px", fontSize: "16px"}}>
-                          {/* <img src={`${assets.DashboardImage}`} alt="DashboardImage" width={50}/> */}
-                          Dashboard</h3>
-                        <h3 className="table-header-icon" style={{ fontSize: "16px"}}>
-                        {/* <FaUserTie className="user-search-icon" /> */}
-                          Uploaded By</h3>
-                        <h3 className="table-header-icon" style={{ fontSize: "16px"}}>
-                        {/* className="align-icon-text" */}
-                        {/* <img src={assets.CalenderClock} alt="CreatedTimeImage" className="time-icon" width={30}/> */}
-                          
-                          Time of Upload</h3>
-                          <h3 className="table-header-icon" style={{ fontSize: "16px"}}>Delete</h3>
-                          <h3 className="table-header-icon" style={{ fontSize: "16px"}}>Edit</h3>
-                      </div>
+              {getAllDashboardsData ? (
+                <div className="roles-spinner"></div>
+              ) : (
+                <div className="view-all-dashboards-section">
+                  {allDashboards.length === 0 ? (
+                    <div className="no-dashboard-text">
+                      <h1>There are no Dashboards to show</h1>
                     </div>
-                    <div>
-                      {allDashboards.map((dashboard, index) => (
-                        <div key={index}>
-                          <div className="dashboard-details-section border-top">
-                            <h3>{index + 1}</h3>
-                            <div className="permission-buttons">
-                              <div>
-                                <input
-                                  onClick={(e) =>
-                                    getPermittedDashboardName(
-                                      dashboard.dashboardName,
-                                      "Yes",
-                                      e.target.checked
-                                    )
-                                  }
-                                  id={`${dashboard._id}allow`}
-                                  type="checkbox"
-                                  className="allow-checkbox"
-                                />
-                                {/* <label htmlFor={`${dashboard._id}allow`}>Allow</label> */}
-                              </div>
-                              {/* <div>
+                  ) : (
+                    <>
+                      <div>
+                        <div className="dashboard-details-section">
+                          <h3
+                            className="table-header-icon"
+                            style={{ fontSize: "16px" }}
+                          >
+                            S.No
+                          </h3>
+                          <h3
+                            className="table-header-icon"
+                            style={{ fontSize: "16px" }}
+                          >
+                            Allow
+                          </h3>
+                          <h3
+                            className="table-header-icon"
+                            style={{ marginLeft: "5px", fontSize: "16px" }}
+                          >
+                            {/* <img src={`${assets.DashboardImage}`} alt="DashboardImage" width={50}/> */}
+                            Dashboard
+                          </h3>
+                          <h3
+                            className="table-header-icon"
+                            style={{ fontSize: "16px" }}
+                          >
+                            {/* <FaUserTie className="user-search-icon" /> */}
+                            Uploaded By
+                          </h3>
+                          <h3
+                            className="table-header-icon"
+                            style={{ fontSize: "16px" }}
+                          >
+                            {/* className="align-icon-text" */}
+                            {/* <img src={assets.CalenderClock} alt="CreatedTimeImage" className="time-icon" width={30}/> */}
+                            Time of Upload
+                          </h3>
+                          <h3
+                            className="table-header-icon"
+                            style={{ fontSize: "16px" }}
+                          >
+                            Delete
+                          </h3>
+                          <h3
+                            className="table-header-icon"
+                            style={{ fontSize: "16px" }}
+                          >
+                            Edit
+                          </h3>
+                        </div>
+                      </div>
+                      <div>
+                        {allDashboards.map((dashboard, index) => (
+                          <div key={index}>
+                            <div className="dashboard-details-section border-top">
+                              <h3>{index + 1}</h3>
+                              <div className="permission-buttons">
+                                <div>
+                                  <input
+                                    onClick={(e) =>
+                                      getPermittedDashboardName(
+                                        dashboard.dashboardName,
+                                        "Yes",
+                                        e.target.checked
+                                      )
+                                    }
+                                    id={`${dashboard._id}allow`}
+                                    type="checkbox"
+                                    className="allow-checkbox"
+                                  />
+                                  {/* <label htmlFor={`${dashboard._id}allow`}>Allow</label> */}
+                                </div>
+                                {/* <div>
                             <input onClick={(e) => getPermittedDashboardName(dashboard.dashboardName, "No", e.target.checked)} id={`${dashboard._id}deny`} type="checkbox" />
                             <label htmlFor={`${dashboard._id}deny`}>Deny</label>
                           </div> */}
+                              </div>
+                              <h3>
+                                <img
+                                  src={`${assets.DashboardImage}`}
+                                  alt="DashboardImage"
+                                  width={35}
+                                />
+
+                                {dashboard.dashboardName}
+                              </h3>
+                              <h3 className="align-icon-text">
+                                <FaUserTie className="user-search-icon" />
+
+                                {dashboard.uploadedBy}
+                              </h3>
+                              <h3 className="align-icon-text">
+                                <img
+                                  src={assets.CalenderClock}
+                                  alt={`${dashboard.createdAt}Image`}
+                                  className="time-icon"
+                                  width={30}
+                                />
+                                {`${new Date(
+                                  dashboard.createdAt
+                                ).toLocaleString("en-IN", {
+                                  year: "numeric",
+                                  month: "long",
+                                  day: "numeric",
+                                })}, ${new Date(
+                                  dashboard.createdAt
+                                ).toLocaleString("en-IN", {
+                                  hour: "2-digit",
+                                  minute: "2-digit",
+                                  second: "2-digit",
+                                  hour12: true,
+                                })} `}
+                              </h3>
+
+                              <h3>
+                                <RiDeleteBin5Line className="modify-icon delete-bg" />
+                              </h3>
+                              <h3>
+                                <MdEditSquare className="modify-icon edit-bg" />
+                              </h3>
                             </div>
-                            <h3>
-                          <img src={`${assets.DashboardImage}`} alt="DashboardImage" width={35}/>
-                              
-                              {dashboard.dashboardName}</h3>
-                            <h3 className="align-icon-text">
-                            <FaUserTie className="user-search-icon" />
-                              
-                              {dashboard.uploadedBy}</h3>
-                            <h3 className="align-icon-text">
-                              <img src={assets.CalenderClock} alt={`${dashboard.createdAt}Image`} className="time-icon" width={30}/>
-                              {`${new Date(
-                              dashboard.createdAt
-                            ).toLocaleString('en-IN',{
-                              year: 'numeric',
-                              month: 'long',
-                              day: 'numeric',
-                              
-                            })}, ${new Date(
-                              dashboard.createdAt
-                            ).toLocaleString('en-IN',{
-                              hour: '2-digit',
-                              minute: '2-digit',
-                              second: '2-digit',
-                              hour12: true
-                              
-                            })} `}</h3>
-                            
-                            <h3 >
-                              <RiDeleteBin5Line className="modify-icon delete-bg"/>
-                            </h3>
-                            <h3>
-                              <MdEditSquare className="modify-icon edit-bg"/>
-                            </h3>
                           </div>
-                        </div>
-                      ))}
-                    </div>{" "}
-                  </>
-                )}
-              </div>
+                        ))}
+                      </div>{" "}
+                    </>
+                  )}
+                </div>
+              )}
             </div>
           </div>
         </div>

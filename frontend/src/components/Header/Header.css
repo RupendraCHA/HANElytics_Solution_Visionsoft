@@ -219,3 +219,8 @@
   display: flex;
   gap: 10px;
 }
+.roles-mobile-header-tabs{
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}

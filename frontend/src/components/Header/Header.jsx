@@ -90,11 +90,21 @@ const Header = ({ page = "" }) => {
       );
     }else {
       return (
-        <Link to="/dashboards">
+      <div className="roles-mobile-header-tabs">
+
+      <Link to="/dataModeling">
+                <button className="assign-roles">
+                  Data Modeling
+                  <LuArrowUpRight className="roles-insights-icon" />
+                </button>
+          </Link>
+          <Link to="/dashboards">
           <button className="assign-roles">
             Power BI Dashboards
             <LuArrowUpRight className="roles-insights-icon" />
           </button></Link>
+      </div>
+        
       )
     }
   };
