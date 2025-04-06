@@ -36,7 +36,7 @@ function SignUp() {
   const [codeError, setCodeError] = useState(false);
   const [openNextPage, setOpenNextPage] = useState(false);
 
-  const { url, setToken, setUsername } = useContext(StoreContext);
+  const { url, setToken, setUsername, setUserRole } = useContext(StoreContext);
 
   // useEffect(() => {
   //   const response = "http://localhost:3001"
@@ -81,11 +81,14 @@ function SignUp() {
       setToken(response.data.token);
       localStorage.setItem("token", response.data.token);
       localStorage.setItem("username", response.data.firstname);
+      localStorage.setItem("role", response.data.role);
       setResponseCode(response.data.verificationCode);
       // console.log(response.data.verificationCode)
       setUsername(response.data.firstname);
+      setUserRole(response.data.role)
+
       setRegisterClick(false);
-      navigate("/login")
+      // navigate("/login")
     } else {
       setErrorMsg(response.data.message);
       accessEmail(response.data.email);

@@ -54,7 +54,7 @@ export const registerUser = async (req, res) => {
             const user = await newUser.save()
             const token = createToken(user._id)
             SendVerificationCode(newUser.email, verificationCode, newUser.firstname, newUser.lastname)
-            res.json({success: true, token, firstname, verificationCode})
+            res.json({success: true, token, firstname, verificationCode, role})
         } else {
             return res.json({success: false, message: "Enter Valid email"})
         }
