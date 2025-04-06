@@ -27,8 +27,9 @@ const PowerBiDashboard = () => {
 
   const [isMenuOpened, setIsMenuOpened] = useState(false);
   const [isIconClicked, setIsIconClicked] = useState(false)
-  const [selectedReport, setSelectedReport] = useState("")
+  const [selectedReport, setSelectedReport] = useState("Revenue Results")
   const [reportData, setReportData] = useState([])
+  const [downloadDataLoad, setDownloadDataLoad] = useState(false)
 
   const startTheServer = async () => {
     const response = await axios.get(url);
@@ -229,14 +230,17 @@ const PowerBiDashboard = () => {
   
       const excelBuffer = XLSX.write(wb, { bookType: "xlsx", type: "array" });
       const data = new Blob([excelBuffer], { type: "application/octet-stream" });
+      
       saveAs(data, `${fileName}.xlsx`);
+      setDownloadDataLoad(false)
     };
 
   const downloadReportData = async (dashType, dashName) => {
     console.log(dashType, dashName)
-    if (dashName === "Revenue, Clinical and Equipment Failure" && dashType === "Revenue Data"){
+    if (dashName === "Revenue, Clinical and Equipment Failure" && dashType === "Revenue Results"){
 
       try {
+        setDownloadDataLoad(true)
         const jwtToken = localStorage.getItem("token");
         const response = await axios.get(url + "/api/model/revenue", {
           headers: { token: jwtToken },
@@ -244,13 +248,14 @@ const PowerBiDashboard = () => {
 
         const result = response.data
         downloadDataIntoExcel(result, "Revenue Demand Sensing Predictions")
-
       } catch (error) {
         console.log("Error while fetching", error)
       }
-    }else if (dashName === "Revenue, Clinical and Equipment Failure" && dashType === "Clinical Data"){
+    }else if (dashName === "Revenue, Clinical and Equipment Failure" && dashType === "Clinical Results"){
 
       try {
+        setDownloadDataLoad(true)
+
         const jwtToken = localStorage.getItem("token");
         const response = await axios.get(url + "/api/model/clinical", {
           headers: { token: jwtToken },
@@ -262,9 +267,11 @@ const PowerBiDashboard = () => {
       } catch (error) {
         console.log("Error while fetching", error)
       }
-    }else if (dashName === "Revenue, Clinical and Equipment Failure" && dashType === "Equipment Data"){
+    }else if (dashName === "Revenue, Clinical and Equipment Failure" && dashType === "Equipment Results"){
 
       try {
+        setDownloadDataLoad(true)
+
         const jwtToken = localStorage.getItem("token");
         const response = await axios.get(url + "/api/model/equipment", {
           headers: { token: jwtToken },
@@ -286,19 +293,18 @@ const PowerBiDashboard = () => {
           <div className="" onClick={setIconValue} style={{position:'relative'}}>
               <IoIosArrowDropup title="Select Dashboard" className={`select-model ${isIconClicked === true ? "bi-arrow-down" : "bi-arrow-down-1"}`} />
               {isIconClicked && <div style={{position: "absolute"}} className="report-icon-download-drop-down">
-                <p onClick={() => selectDashboard("Revenue Data")}>Revenue Data</p>
-                <p onClick={() => selectDashboard("Clinical Data")}>Clinical Data</p>
-                <p onClick={() => selectDashboard("Equipment Data")}>Equipment Data</p>
+                <p onClick={() => selectDashboard("Revenue Results")}>Revenue Data</p>
+                <p onClick={() => selectDashboard("Clinical Results")}>Clinical Data</p>
+                <p onClick={() => selectDashboard("Equipment Results")}>Equipment Data</p>
               </div>}
           </div>
-          <button
-            // onClick={() => downloadDataIntoExcel(data, dataModelName)}
+          {downloadDataLoad ? <div className="bi-spinner"></div> :  <button
             onClick={() => downloadReportData(selectedReport,dataModelName)}
             className="bi-excel-download-btn"
           >
             <MdOutlineDownload className="bi-excel-download-icon" />
             <RiFileExcel2Fill className="bi-excel-icon" />
-          </button>
+          </button>}
             
         </div>
       );
@@ -317,6 +323,7 @@ const PowerBiDashboard = () => {
       );
     }
   };
+
 
   const getDashboards = (activeDash) => {
     if (activeDash === "HANElytics") {
