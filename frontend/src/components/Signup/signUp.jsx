@@ -85,7 +85,7 @@ function SignUp() {
       // console.log(response.data.verificationCode)
       setUsername(response.data.firstname);
       setRegisterClick(false);
-      // navigate("/home")
+      navigate("/login")
     } else {
       setErrorMsg(response.data.message);
       accessEmail(response.data.email);
