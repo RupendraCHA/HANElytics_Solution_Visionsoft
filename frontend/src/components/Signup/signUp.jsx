@@ -88,7 +88,7 @@ function SignUp() {
       setUserRole(response.data.role)
 
       setRegisterClick(false);
-      // navigate("/login")
+      // navigate("/home")
     } else {
       setErrorMsg(response.data.message);
       accessEmail(response.data.email);

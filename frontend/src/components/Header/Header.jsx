@@ -81,11 +81,11 @@ const Header = ({ page = "" }) => {
     if (page !== "Grant Access") {
       return (
         <>
-        <Link to="/assignRoles">
+        {userRole === "CEO" || userRole === "COO" || userRole === "CTO"  ? <Link to="/assignRoles">
           <button className="assign-roles">
             Assign Access
             <LuArrowUpRight className="roles-insights-icon" />
-          </button></Link>
+          </button></Link> : ""}
         </>
       );
     }else {
@@ -115,7 +115,10 @@ const Header = ({ page = "" }) => {
         <Link to="/home" className="header-home-heading">
           <h1 className="header-home-text">HANELYTICS</h1>
         </Link>
-        <div>{getGrantButtons()}</div>
+        <div>
+          {userRole === "CTO" ||
+                userRole === "CEO" ||
+                userRole === "COO" ? <>{getGrantButtons()}</> : ""}</div>
         <div className="drop-down1">
           <div className="icon-username1">
             <FaRegCircleUser className="user-icon1" />

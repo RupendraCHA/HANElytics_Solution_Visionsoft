@@ -11,33 +11,39 @@ import { LuArrowUpRight } from "react-icons/lu";
 import Footer from "../Footer/Footer.jsx";
 import { IoMdMenu } from "react-icons/io";
 import { RxCross1 } from "react-icons/rx";
-import axios from "axios"
+import axios from "axios";
 import { RiFileExcel2Fill } from "react-icons/ri";
 import { MdOutlineDownload } from "react-icons/md";
+import { IoIosArrowDropup } from "react-icons/io";
+import * as XLSX from "xlsx";
+import { saveAs } from "file-saver";
 
 const PowerBiDashboard = () => {
   const [activeDashboard, setActiveDashboard] = useState("");
   const [isMsgOpened, setMsgOpened] = useState(false);
   const navigate = useNavigate();
-  const { username, token, setToken, setUsername, url } = useContext(StoreContext);
+  const { username, token, setToken, setUsername, url } =
+    useContext(StoreContext);
 
   const [isMenuOpened, setIsMenuOpened] = useState(false);
+  const [isIconClicked, setIsIconClicked] = useState(false)
+  const [selectedReport, setSelectedReport] = useState("")
+  const [reportData, setReportData] = useState([])
 
   const startTheServer = async () => {
-    const response = await axios.get( url);
-    console.log(response.data.message)
+    const response = await axios.get(url);
+    console.log(response.data.message);
+  };
 
-}
-
-useEffect(() => {
-    startTheServer()
-    const jwtToken = localStorage.getItem("token")
+  useEffect(() => {
+    startTheServer();
+    const jwtToken = localStorage.getItem("token");
     if (jwtToken) {
-        navigate("/dashboards")
-    }else {
-        navigate("/login")
+      navigate("/dashboards");
+    } else {
+      navigate("/login");
     }
-},[])
+  }, []);
 
   const HANElyticsDashboards = [
     {
@@ -161,47 +167,147 @@ useEffect(() => {
       // tabName: "AI/ML Models"
       tabName: "Supply Chain Models",
     },
-    
+
     {
       activeText: "OrderToCash",
       imageUrl: `${assets.OrderToCash_pic}`,
       altText: "OrderToCashImage",
-      tabName: "Order to Cash"
+      tabName: "Order to Cash",
     },
     {
       activeText: "Procurement",
       imageUrl: `${assets.Procurement_pic}`,
       altText: "ProcurementImage",
-      tabName: "Procurement"
+      tabName: "Procurement",
     },
 
     {
       activeText: "Finance",
       imageUrl: `${assets.Finance_pic}`,
       altText: "FinanceImageImage",
-      tabName: "Finance"
-
+      tabName: "Finance",
     },
     {
       activeText: "Manufacturing",
       imageUrl: `${assets.Manufacturing_pic}`,
       altText: "ManufacturingImage",
-      tabName: "Manufacturing"
-
+      tabName: "Manufacturing",
     },
   ];
 
   const showDashboards = (activeTab) => {
     setActiveDashboard(activeTab);
     setMsgOpened(false);
-    setIsMenuOpened(false)
+    setIsMenuOpened(false);
   };
 
+  const check = (file) => {
+    console.log(file);
+  };
+
+  const setIconValue = () => {
+    if (isIconClicked === false){
+      setIsIconClicked(true)
+    }else {
+      setIsIconClicked(false)
+    }
+
+  }
+
+  const selectDashboard = (report) => {
+    setSelectedReport(report)
+    // console.log(report)
+  }
+
+
+  const downloadDataIntoExcel = (Array, fileName) => {
+      if (!Array || Array.length === 0) return;
+  
+      const wb = XLSX.utils.book_new();
+      const ws = XLSX.utils.json_to_sheet(Array);
+      XLSX.utils.book_append_sheet(wb, ws, "Data");
+  
+      const excelBuffer = XLSX.write(wb, { bookType: "xlsx", type: "array" });
+      const data = new Blob([excelBuffer], { type: "application/octet-stream" });
+      saveAs(data, `${fileName}.xlsx`);
+    };
+
+  const downloadReportData = async (dashType, dashName) => {
+    console.log(dashType, dashName)
+    if (dashName === "Revenue, Clinical and Equipment Failure" && dashType === "Revenue Data"){
+
+      try {
+        const jwtToken = localStorage.getItem("token");
+        const response = await axios.get(url + "/api/model/revenue", {
+          headers: { token: jwtToken },
+        });
+
+        const result = response.data
+        downloadDataIntoExcel(result, "Revenue Demand Sensing Predictions")
+
+      } catch (error) {
+        console.log("Error while fetching", error)
+      }
+    }else if (dashName === "Revenue, Clinical and Equipment Failure" && dashType === "Clinical Data"){
+
+      try {
+        const jwtToken = localStorage.getItem("token");
+        const response = await axios.get(url + "/api/model/clinical", {
+          headers: { token: jwtToken },
+        });
+
+        const result = response.data
+        downloadDataIntoExcel(result, "Inventory Predictions with Clinical Data")
+
+      } catch (error) {
+        console.log("Error while fetching", error)
+      }
+    }else if (dashName === "Revenue, Clinical and Equipment Failure" && dashType === "Equipment Data"){
+
+      try {
+        const jwtToken = localStorage.getItem("token");
+        const response = await axios.get(url + "/api/model/equipment", {
+          headers: { token: jwtToken },
+        });
+
+        const result = response.data
+        downloadDataIntoExcel(result, "Predictions of Equipment Risk Detection & Failure Prevention")
+
+      } catch (error) {
+        console.log("Error while fetching", error)
+      }
+    }
+  }
+
   const getResultsAndDownloadElement = (dataModelName) => {
+    if (dataModelName === "Revenue, Clinical and Equipment Failure") {
+      return (
+        <div className="bi-excel-download">
+          <div className="" onClick={setIconValue} style={{position:'relative'}}>
+              <IoIosArrowDropup title="Select Dashboard" className={`select-model ${isIconClicked === true ? "bi-arrow-down" : "bi-arrow-down-1"}`} />
+              {isIconClicked && <div style={{position: "absolute"}} className="report-icon-download-drop-down">
+                <p onClick={() => selectDashboard("Revenue Data")}>Revenue Data</p>
+                <p onClick={() => selectDashboard("Clinical Data")}>Clinical Data</p>
+                <p onClick={() => selectDashboard("Equipment Data")}>Equipment Data</p>
+              </div>}
+          </div>
+          <button
+            // onClick={() => downloadDataIntoExcel(data, dataModelName)}
+            onClick={() => downloadReportData(selectedReport,dataModelName)}
+            className="bi-excel-download-btn"
+          >
+            <MdOutlineDownload className="bi-excel-download-icon" />
+            <RiFileExcel2Fill className="bi-excel-icon" />
+          </button>
+            
+        </div>
+      );
+    } else {
       return (
         <div className="bi-excel-download">
           <button
             // onClick={() => downloadDataIntoExcel(data, dataModelName)}
+            onClick={() => check(dataModelName)}
             className="bi-excel-download-btn"
           >
             <MdOutlineDownload className="bi-excel-download-icon" />
@@ -209,7 +315,8 @@ useEffect(() => {
           </button>
         </div>
       );
-    };
+    }
+  };
 
   const getDashboards = (activeDash) => {
     if (activeDash === "HANElytics") {
@@ -240,16 +347,17 @@ useEffect(() => {
                   </div>
                   <button
                     className="bi-dashboard-button"
-                    onClick={() => login(`${type.dataText}, ${type.url}`)}
-                    style={{position: 'relative'}}
+                    // onClick={() => login(`${type.dataText}, ${type.url}`)}
+                    style={{ position: "relative" }}
                   >
+                    
                     <a href={type.url} target="_blank">
                       View Dashboard
                     </a>
-                    <p 
-                    style={{position: 'absolute', top: "6px", right: "8px"}}
+                    <p
+                      style={{ position: "absolute", top: "6px", right: "8px" }}
                     >
-                      {getResultsAndDownloadElement("Inventory")}
+                      {getResultsAndDownloadElement(`${type.headerText}`)}
                     </p>
                   </button>
                 </div>
@@ -285,19 +393,19 @@ useEffect(() => {
                     />
                   </div>
 
-                  <button className="bi-dashboard-button"
-                    onClick={() => login(`${type.dataText}, ${type.url}`)}
+                  <button
+                    className="bi-dashboard-button"
+                    // onClick={() => login(`${type.dataText}, ${type.url}`)}
 
-                    style={{position: 'relative'}}
-                  
+                    style={{ position: "relative" }}
                   >
                     <a href={type.url} target="_blank">
                       View Dashboard
                     </a>
-                    <p 
-                    style={{position: 'absolute', top: "6px", right: "8px"}}
+                    <p
+                      style={{ position: "absolute", top: "6px", right: "8px" }}
                     >
-                      {getResultsAndDownloadElement("Inventory")}
+                      {getResultsAndDownloadElement(`${type.headerText}`)}
                     </p>
                   </button>
                 </div>
@@ -334,17 +442,16 @@ useEffect(() => {
                   </div>
                   <button
                     className="bi-dashboard-button"
-                    onClick={() => login(`${type.dataText}, ${type.url}`)}
-                    style={{position: 'relative'}}
-
+                    // onClick={() => login(`${type.dataText}, ${type.url}`)}
+                    style={{ position: "relative" }}
                   >
                     <a href={type.url} target="_blank">
                       View Dashboard
                     </a>
-                    <p 
-                    style={{position: 'absolute', top: "6px", right: "8px"}}
+                    <p
+                      style={{ position: "absolute", top: "6px", right: "8px" }}
                     >
-                      {getResultsAndDownloadElement("Inventory")}
+                      {getResultsAndDownloadElement(`${type.headerText}`)}
                     </p>
                   </button>
                 </div>
@@ -382,17 +489,16 @@ useEffect(() => {
 
                   <button
                     className="bi-dashboard-button"
-                    onClick={() => login(`${type.dataText}, ${type.url}`)}
-                    style={{position: 'relative'}}
-
+                    // onClick={() => login(`${type.dataText}, ${type.url}`)}
+                    style={{ position: "relative" }}
                   >
                     <a href={type.url} target="_blank">
                       View Dashboard
                     </a>
-                    <p 
-                    style={{position: 'absolute', top: "6px", right: "8px"}}
+                    <p
+                      style={{ position: "absolute", top: "6px", right: "8px" }}
                     >
-                      {getResultsAndDownloadElement("Inventory")}
+                      {getResultsAndDownloadElement(`${type.headerText}`)}
                     </p>
                   </button>
                 </div>
@@ -430,17 +536,16 @@ useEffect(() => {
 
                   <button
                     className="bi-dashboard-button"
-                    onClick={() => login(`${type.dataText}, ${type.url}`)}
-                    style={{position: 'relative'}}
-
+                    // onClick={() => login(`${type.dataText}, ${type.url}`)}
+                    style={{ position: "relative" }}
                   >
                     <a href={type.url} target="_blank">
                       View Dashboard
                     </a>
-                    <p 
-                    style={{position: 'absolute', top: "6px", right: "8px"}}
+                    <p
+                      style={{ position: "absolute", top: "6px", right: "8px" }}
                     >
-                      {getResultsAndDownloadElement("Inventory")}
+                      {getResultsAndDownloadElement(`${type.headerText}`)}
                     </p>
                   </button>
                 </div>
@@ -480,13 +585,17 @@ useEffect(() => {
         <Link to="/home" className="bi-home-heading">
           <h1>HANELYTICS</h1>
         </Link>
-        
+
         <div className="dashboard-tabs">
           {tabsList.map((eachTab, index) => (
-            <h1 key={index}
+            <h1
+              key={index}
               onClick={() => showDashboards(`${eachTab.activeText}`)}
-              className={`powerbi-dashboard-tab-item ${activeDashboard === `${eachTab.activeText}` ? "active-dashboard-btn" : ""
-                }`}
+              className={`powerbi-dashboard-tab-item ${
+                activeDashboard === `${eachTab.activeText}`
+                  ? "active-dashboard-btn"
+                  : ""
+              }`}
             >
               <img
                 src={eachTab.imageUrl}
@@ -495,20 +604,22 @@ useEffect(() => {
               />
               {eachTab.tabName}
               <MdKeyboardArrowUp
-                className={`bi-arrow ${activeDashboard === `${eachTab.activeText}` ? "bi-arrow-down" : ""
-                  }`}
+                className={`bi-arrow ${
+                  activeDashboard === `${eachTab.activeText}`
+                    ? "bi-arrow-down"
+                    : ""
+                }`}
               />
             </h1>
           ))}
-          <h1 className="insights-btn" 
-          onClick={() => navigate("/dataModeling")}
-          // onClick={() => navigate("/assignRoles")}
-
+          <h1
+            className="insights-btn"
+            onClick={() => navigate("/dataModeling")}
+            // onClick={() => navigate("/assignRoles")}
           >
             Data Modeling
             <LuArrowUpRight className="insights-icon" />
           </h1>
-          
         </div>
         <div className="bi-drop-down">
           <div className="bi-icon-username">
@@ -520,7 +631,10 @@ useEffect(() => {
           </div>
         </div>
       </div>
-      <div className="bi-mobile-header-container" style={{ position: "relative" }}>
+      <div
+        className="bi-mobile-header-container"
+        style={{ position: "relative" }}
+      >
         <Link to="/home" className="bi-datamodels-website-heading">
           <h1>HANELYTICS</h1>
         </Link>
@@ -530,17 +644,18 @@ useEffect(() => {
           ) : (
             <IoMdMenu className="bi-mobile-menu" onClick={handleIsMenuOpened} />
           )}
-          {
-            isMenuOpened && <div className="mobile-menu-bi-home-container">
+          {isMenuOpened && (
+            <div className="mobile-menu-bi-home-container">
               <div className="mobile-dashboard-tabs">
                 {tabsList.map((eachTab, index) => (
                   <h1
                     key={index}
                     onClick={() => showDashboards(`${eachTab.activeText}`)}
-                    className={`powerbi-dashboard-tab-item ${activeDashboard === `${eachTab.activeText}`
-                      ? "active-dashboard-btn"
-                      : ""
-                      }`}
+                    className={`powerbi-dashboard-tab-item ${
+                      activeDashboard === `${eachTab.activeText}`
+                        ? "active-dashboard-btn"
+                        : ""
+                    }`}
                   >
                     <img
                       src={eachTab.imageUrl}
@@ -549,10 +664,11 @@ useEffect(() => {
                     />
                     {eachTab.tabName}
                     <MdKeyboardArrowUp
-                      className={`bi-arrow ${activeDashboard === `${eachTab.activeText}`
-                        ? "bi-arrow-down"
-                        : ""
-                        }`}
+                      className={`bi-arrow ${
+                        activeDashboard === `${eachTab.activeText}`
+                          ? "bi-arrow-down"
+                          : ""
+                      }`}
                     />
                   </h1>
                 ))}
@@ -563,7 +679,6 @@ useEffect(() => {
                   Data Modeling
                   <LuArrowUpRight className="insights-icon" />
                 </h1>
-                
               </div>
               <div className="bi-drop-down">
                 {/* <div className="bi-icon-username">
@@ -571,11 +686,17 @@ useEffect(() => {
                 <p className="bi-username-text">{username}</p>
               </div> */}
                 <div>
-                  <h2 style={{ padding: '8px 12px' }} id="mobile-login-btn" onClick={handleModelLogout}>Logout</h2>
+                  <h2
+                    style={{ padding: "8px 12px" }}
+                    id="mobile-login-btn"
+                    onClick={handleModelLogout}
+                  >
+                    Logout
+                  </h2>
                 </div>
               </div>
             </div>
-          }
+          )}
         </div>
       </div>
 

@@ -31,7 +31,12 @@ const App = () => {
       <Route exact path='/' element={<InitialPage />}></Route>
       <Route exact path='/register' element={<SignUp />}></Route>
       <Route exact path='/login' element={<Login />}></Route>
-      <Route exact path='/home' element={<Home />}></Route>
+      <Route exact path='/home' element={
+        <>
+        {/* // <Header page="Grant Access"/> */}
+        <Home />
+        {/* // <Footer/> */}
+        </>}></Route>
       <Route exact path='/dataModeling' element={<DataModeling />}></Route>
       {/* <Route exact path='/registration' element={<Registration />}></Route> */}
       <Route exact path='/dashboards' element={<PowerBiDashboard />}></Route>
