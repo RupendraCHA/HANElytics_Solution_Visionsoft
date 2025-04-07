@@ -130,7 +130,7 @@ const PowerBiDashboard = () => {
       id: 11,
       headerText: "Manufacturing Orders",
       dataText: "purchase",
-      url: "https://app.powerbi.com/groups/me/reports/d88fd1c6-d635-4ead-864c-b4971b81e11b/153be76ec304a615ddb5?experience=power-bi&clientSideAuth=0",
+      url: "https://app.powerbi.com/groups/84691a96-fa30-4e99-8ebf-da73b935661b/reports/df3ab764-9488-4e8c-a116-15f45ddf85b4/e107815aa0ee97c749a3?experience=power-bi&clientSideAuth=0",
       image: `${assets.Material_management_pic}`,
     },
     {
