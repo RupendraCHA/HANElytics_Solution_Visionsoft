@@ -378,47 +378,6 @@ const GrantAccess = () => {
                     </div>
                   </form>
                 )}
-                {/* {
-                  isUpdating && (
-                    <form onSubmit={updateTheDashboardDetails}>
-                    <div className="upload-dashboards-container">
-                      <div
-                        className="dashboards-search-container"
-                        style={{ marginTop: "5px" }}
-                      >
-                        <input
-                          htmlFor="userSearch"
-                          onChange={storeUploadData}
-                          className="user-search"
-                          type="text"
-                          placeholder="Updating Dashboard Name"
-                          name="dashboardName"
-                          required
-                          value={uploadData.dashboardName}
-                        />
-                      </div>
-                      <div
-                        className="dashboards-search-container"
-                        style={{ marginTop: "5px" }}
-                      >
-                        <input
-                          htmlFor="userSearch"
-                          onChange={storeUploadData}
-                          className="user-search"
-                          type="text"
-                          required
-                          placeholder="your name"
-                          name="uploadedBy"
-                          value={uploadData.uploadedBy}
-                        />
-                      </div>
-                      <button className="upload-btn" type="submit">
-                        Update
-                      </button>
-                    </div>
-                  </form>
-                  )
-                } */}
 
                 {/* <input type="text" placeholder="Enter Model or Dashboard name to add" style={{width: "50%"}}/>
                 <button>Upload</button> */}
@@ -545,12 +504,11 @@ const GrantAccess = () => {
                                   hour12: true,
                                 })} `}
                               </h3>
-
-                              <h3 onClick={() => deleteTheDashboard(dashboard._id)}>
-                                <RiDeleteBin5Line className="modify-icon delete-bg" />
-                              </h3>
                               <h3 onClick={() => updateTheDashboard(dashboard._id)}>
                                 <MdEditSquare className="modify-icon edit-bg" />
+                              </h3>
+                              <h3 onClick={() => deleteTheDashboard(dashboard._id)}>
+                                <RiDeleteBin5Line className="modify-icon delete-bg" />
                               </h3>
                             </div>
                           </div>
