@@ -432,14 +432,15 @@ const GrantAccess = () => {
                             className="table-header-icon"
                             style={{ fontSize: "16px" }}
                           >
-                            Delete
+                            Edit
                           </h3>
                           <h3
                             className="table-header-icon"
                             style={{ fontSize: "16px" }}
                           >
-                            Edit
+                            Delete
                           </h3>
+                          
                         </div>
                       </div>
                       <div>
