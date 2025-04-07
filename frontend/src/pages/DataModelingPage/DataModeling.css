@@ -980,3 +980,25 @@ ul {
   color: #0451e0;
   padding: 2px;
 }
+.data-model-spinner{
+  /* margin: 20px auto; */
+  width: 20px;
+  height: 20px;
+  border: 4px solid black;
+  border-top: 4px solid #808080;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  /* position: fixed; */
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+}
+
+@keyframes spin{
+  0%{
+    transform: rotate(0deg);
+  }
+  100%{
+    transform: rotate(360deg);
+  }
+}

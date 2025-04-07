@@ -48,19 +48,18 @@ const DataModeling = () => {
   const { url, username } = useContext(StoreContext);
 
   const startTheServer = async () => {
-    const response = await axios.get( url);
-    console.log(response.data.message)
-
-}
-useEffect(() => {
-    startTheServer()
-    const jwtToken = localStorage.getItem("token")
+    const response = await axios.get(url);
+    console.log(response.data.message);
+  };
+  useEffect(() => {
+    startTheServer();
+    const jwtToken = localStorage.getItem("token");
     if (jwtToken) {
-        navigate("/dataModeling")
-    }else {
-        navigate("/login")
+      navigate("/dataModeling");
+    } else {
+      navigate("/login");
     }
-},[])
+  }, []);
 
   // Hello
 
@@ -91,6 +90,7 @@ useEffect(() => {
   const [procureData, setProcureData] = useState([]);
 
   const [isMenuOpened, setIsMenuOpened] = useState(false);
+  const [isModelDataDownloading, setIsModelDataDownloading] = useState(false);
 
   // useEffect(() => {
   //   getInventoryDataFromMongoDB1()
@@ -117,6 +117,8 @@ useEffect(() => {
     );
   };
 
+  // <div className="data-model-spinner"></div>
+
   const getResultsAndDownloadElement = (dataModelName) => {
     return (
       <div className="excel-download">
@@ -125,8 +127,15 @@ useEffect(() => {
           onClick={() => downloadDataIntoExcel(data, dataModelName)}
           className="excel-download-btn"
         >
-          <MdOutlineDownload className="excel-download-icon" />
-          <RiFileExcel2Fill className="excel-icon" />
+          {isModelDataDownloading ? (
+            <div className="data-model-spinner"></div>
+          ) : (
+            <>
+              {" "}
+              <MdOutlineDownload className="excel-download-icon" />
+              <RiFileExcel2Fill className="excel-icon" />
+            </>
+          )}
         </button>
       </div>
     );
@@ -681,6 +690,7 @@ useEffect(() => {
   };
 
   const downloadDataIntoExcel = (Array, fileName) => {
+    setIsModelDataDownloading(true);
     if (!Array || Array.length === 0) return;
 
     const wb = XLSX.utils.book_new();
@@ -689,6 +699,8 @@ useEffect(() => {
 
     const excelBuffer = XLSX.write(wb, { bookType: "xlsx", type: "array" });
     const data = new Blob([excelBuffer], { type: "application/octet-stream" });
+    setIsModelDataDownloading(false);
+
     saveAs(data, `${fileName}.xlsx`);
   };
 
@@ -791,7 +803,6 @@ useEffect(() => {
               >
                 Power BI Dashboards
                 <LuArrowUpRight className="roles-insights-icon" />
-                
               </h4>
             </div>
             <div className="drop-down">
@@ -921,7 +932,6 @@ useEffect(() => {
                     >
                       Power BI Dashboards
                       <LuArrowUpRight className="roles-insights-icon" />
-                      
                     </h4>
                   </div>
                   <div className="mobile-drop-down">
@@ -1130,7 +1140,9 @@ useEffect(() => {
                     </div>
                     {showResults && (
                       <>
-                        {getResultsAndDownloadElement("News Paper Prediction Results")}
+                        {getResultsAndDownloadElement(
+                          "News Paper Prediction Results"
+                        )}
                         <div className="table-container">
                           <Table
                             data={data}
@@ -1304,7 +1316,9 @@ useEffect(() => {
                     {showResults && (
                       <>
                         {/* <h1 className="results-heading">Results:</h1> */}
-                        {getResultsAndDownloadElement("Inventory Reorder Point & Safety Stock results")}
+                        {getResultsAndDownloadElement(
+                          "Inventory Reorder Point & Safety Stock results"
+                        )}
 
                         <div className="table-container">
                           <Table
@@ -1477,7 +1491,9 @@ useEffect(() => {
                     </div>
                     {showResults && (
                       <>
-                        {getResultsAndDownloadElement("Revenue Demand Predictions")}
+                        {getResultsAndDownloadElement(
+                          "Revenue Demand Predictions"
+                        )}
                         <div className="table-container">
                           <Table
                             data={data}
@@ -1656,7 +1672,9 @@ useEffect(() => {
                     </div>
                     {showResults && (
                       <>
-                        {getResultsAndDownloadElement("Equipment Risk Detection and Failure Prevention")}
+                        {getResultsAndDownloadElement(
+                          "Equipment Risk Detection and Failure Prevention"
+                        )}
 
                         <div className="table-container">
                           <Table
@@ -1832,7 +1850,9 @@ useEffect(() => {
                     </div>
                     {showResults && (
                       <>
-                        {getResultsAndDownloadElement("Reorder Point and Buffer Stock for Clinical Data")}
+                        {getResultsAndDownloadElement(
+                          "Reorder Point and Buffer Stock for Clinical Data"
+                        )}
 
                         <div className="table-container">
                           <Table
