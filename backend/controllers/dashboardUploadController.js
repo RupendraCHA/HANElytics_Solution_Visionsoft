@@ -29,3 +29,23 @@ export const getAllDashboards = async (req, res) => {
         console.log("Error while fetching", error)
     }
 }
+export const updateTheDashboard = async (req, res) => {
+    try {
+        await DashboardAccess.findByIdAndUpdate(req.params.id, req.body, {new: true})
+
+        res.status(200).json({success: true, message: "Dashboard Updated."})
+    } catch (error) {
+        res.status(404).json({success: false, message: "Failed to Update the Dashboard"})
+        console.log("Error while updating", error)
+    }
+}
+
+export const deleteTheDashboard = async (req, res) => {
+    try {
+        await DashboardAccess.findByIdAndDelete(req.params.id)
+        res.status(200).json({success: true, message: "Dashboard Deleted."})
+    } catch (error) {
+        res.status(401).json({success: false, message: "Failed to delete the dashboard"})
+        console.log("Error while deleting", error)
+    }
+}

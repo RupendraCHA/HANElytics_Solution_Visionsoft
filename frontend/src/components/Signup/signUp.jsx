@@ -123,6 +123,7 @@ function SignUp() {
       setOpenNextPage(false);
       setExist(false);
     } else {
+
       setOpenNextPage(true);
       setExist(false);
     }
@@ -168,6 +169,7 @@ function SignUp() {
                           name="firstname"
                           className="firstname"
                           onChange={handleInputChange}
+                          value={data.firstname}
                         />
                       </div>
                       <div className="register-input-label">
@@ -183,6 +185,8 @@ function SignUp() {
                           name="lastname"
                           className=""
                           onChange={handleInputChange}
+                          value={data.lastname}
+
                         />
                       </div>
                     </div>
@@ -200,6 +204,8 @@ function SignUp() {
                           name="bussinessName"
                           className=""
                           onChange={handleInputChange}
+                          value={data.bussinessName}
+
                         />
                       </div>
                       <div className="register-input-label">
@@ -215,6 +221,7 @@ function SignUp() {
                           name="contact"
                           className=""
                           onChange={handleInputChange}
+                          value={data.contact}
                         />
                       </div>
                     </div>
@@ -230,6 +237,8 @@ function SignUp() {
                         required
                         name="position"
                         onChange={handleInputChange}
+                        value={data.position}
+
                       />
                     </div>
                     <div className="register-input-label">
@@ -244,6 +253,7 @@ function SignUp() {
                         required
                         name="role"
                         onChange={handleInputChange}
+                        value={data.role}
                       />
                     </div>
                     <div
@@ -277,6 +287,8 @@ function SignUp() {
                             required
                             name="email"
                             onChange={handleInputChange}
+                        value={data.email}
+
                           />
                         </div>
                         <div className="register-input-label">
@@ -291,6 +303,8 @@ function SignUp() {
                             required
                             name="password"
                             onChange={handleInputChange}
+                        value={data.password}
+
                           />
                         </div>
 
@@ -306,6 +320,8 @@ function SignUp() {
                             required
                             name="city"
                             onChange={handleInputChange}
+                        value={data.city}
+
                           />
                         </div>
                         <div className="register-input-label">
@@ -320,6 +336,8 @@ function SignUp() {
                             required
                             name="street"
                             onChange={handleInputChange}
+                        value={data.street}
+
                           />
                         </div>
                       </div>
@@ -336,6 +354,8 @@ function SignUp() {
                             required
                             name="state"
                             onChange={handleInputChange}
+                        value={data.state}
+
                           />
                         </div>
                         <div className="register-input-label">
@@ -350,6 +370,8 @@ function SignUp() {
                             required
                             name="country"
                             onChange={handleInputChange}
+                        value={data.country}
+
                           />
                         </div>
                       </div>
@@ -365,6 +387,8 @@ function SignUp() {
                           required
                           name="zipcode"
                           onChange={handleInputChange}
+                        value={data.zipcode}
+
                         />
                       </div>
                       <div className="checkbox-container">

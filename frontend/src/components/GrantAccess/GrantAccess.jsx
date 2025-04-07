@@ -2,6 +2,7 @@ import React, { useContext, useEffect, useState } from "react";
 import "./GrantAccess.css";
 import { StoreContext } from "../../context/StoreContext";
 import axios from "axios";
+
 import { FaUserTie } from "react-icons/fa6";
 import { FaSearch } from "react-icons/fa";
 import { FiUpload } from "react-icons/fi";
@@ -9,6 +10,8 @@ import { toast } from "react-toastify";
 import { LuSearchX } from "react-icons/lu";
 import { RiDeleteBin5Line } from "react-icons/ri";
 import { MdEditSquare } from "react-icons/md";
+import { RiCloseLargeFill } from "react-icons/ri";
+
 
 import { assets } from "../../assets/assets";
 
@@ -19,6 +22,8 @@ const GrantAccess = () => {
     setAccessNameInput,
     allDashboards,
     setAllDashboards,
+    dashUpdateId,
+    setDashUpdateId
   } = useContext(StoreContext);
   const [uploadData, setUploadData] = useState({
     dashboardName: "",
@@ -30,6 +35,7 @@ const GrantAccess = () => {
   const [upload, setUpload] = useState(false);
   const [searchBarOpened, setSearchBarOpened] = useState(false);
   // const [dashboardName, setDashboardName] = useState("");
+  const [isUpdating, setIsUpdating] = useState(false)
 
   const getAllUsersList = async () => {
     setGetUsersData(true);
@@ -78,6 +84,7 @@ const GrantAccess = () => {
   const handleUploadDashboard = () => {
     if (upload === false) {
       setUpload(true);
+      setIsUpdating(false)
     } else if (upload === true) {
       setUpload(false);
     }
@@ -138,6 +145,51 @@ const GrantAccess = () => {
     console.log(isPermitted);
     console.log(value);
   };
+
+  const deleteTheDashboard = async (id) => {
+    const response = await axios.delete(url + `/api/dashboard/delete/${id}`)
+
+    if (response.data.success){
+      toast.success(response.data.message)
+    setGetAllDashboardsData(true);
+      const allDashboards = await axios.get(url + "/api/dashboard/getAll");
+    setGetAllDashboardsData(false);
+
+    setAllDashboards(allDashboards.data.allDashboards);
+    }
+  }
+
+  const updateTheDashboard = async (id) => {
+
+    if (isUpdating === false){
+
+      setIsUpdating(true)
+    }else{
+      setIsUpdating(false)
+    }
+    setDashUpdateId(id)
+  }
+  const updateTheDashboardDetails = async (e) => {
+    e.preventDefault()
+    try {
+      const data = {
+        dashboardName: uploadData.dashboardName,
+        uploadedBy: uploadData.uploadedBy
+      }
+      const response = await axios.put(url + `/api/dashboard/update/${dashUpdateId}`, data)
+      if (response.data.success){
+        setIsUpdating(false)
+        toast.success(response.data.message)
+    setGetAllDashboardsData(true);
+      const allDashboards = await axios.get(url + "/api/dashboard/getAll");
+    setGetAllDashboardsData(false);
+
+    setAllDashboards(allDashboards.data.allDashboards);
+      }
+    } catch (error) {
+      console.log("Error while updating", error)
+    }
+  }
 
   return (
     <div className="grant-access-bg-container">
@@ -283,6 +335,48 @@ const GrantAccess = () => {
                     </div>
                   </form>
                 )}
+                {
+                  isUpdating && (
+                    <form onSubmit={updateTheDashboardDetails}>
+                    <div className="upload-dashboards-container">
+                      <div
+                        className="dashboards-search-container"
+                        style={{ marginTop: "5px" }}
+                      >
+                        <input
+                          htmlFor="userSearch"
+                          onChange={storeUploadData}
+                          className="user-search"
+                          type="text"
+                          placeholder="Updating Dashboard Name"
+                          name="dashboardName"
+                          required
+                          value={uploadData.dashboardName}
+                        />
+                      </div>
+                      <div
+                        className="dashboards-search-container"
+                        style={{ marginTop: "5px" }}
+                      >
+                        <input
+                          htmlFor="userSearch"
+                          onChange={storeUploadData}
+                          className="user-search"
+                          type="text"
+                          required
+                          placeholder="your name"
+                          name="uploadedBy"
+                          value={uploadData.uploadedBy}
+                        />
+                      </div>
+                      <button className="upload-btn" type="submit">
+                        {/* <FiUpload className="icon" /> */}
+                        Update
+                      </button>
+                    </div>
+                  </form>
+                  )
+                }
 
                 {/* <input type="text" placeholder="Enter Model or Dashboard name to add" style={{width: "50%"}}/>
                 <button>Upload</button> */}
@@ -410,10 +504,10 @@ const GrantAccess = () => {
                                 })} `}
                               </h3>
 
-                              <h3>
+                              <h3 onClick={() => deleteTheDashboard(dashboard._id)}>
                                 <RiDeleteBin5Line className="modify-icon delete-bg" />
                               </h3>
-                              <h3>
+                              <h3 onClick={() => updateTheDashboard(dashboard._id)}>
                                 <MdEditSquare className="modify-icon edit-bg" />
                               </h3>
                             </div>
