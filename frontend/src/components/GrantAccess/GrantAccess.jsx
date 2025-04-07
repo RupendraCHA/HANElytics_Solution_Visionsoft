@@ -268,8 +268,51 @@ const GrantAccess = () => {
               </div>
             )}
           </div>
-          <div className="dashboards-models-section">
-            <div>
+          
+           <div className="dashboards-models-section">
+           {
+              isUpdating && (
+                    <form onSubmit={updateTheDashboardDetails}>
+                    <div className="upload-dashboards-container">
+                      <div
+                        className="dashboards-search-container"
+                        style={{ marginTop: "5px" }}
+                      >
+                        <input
+                          htmlFor="userSearch"
+                          onChange={storeUploadData}
+                          className="user-search"
+                          type="text"
+                          placeholder="Updating Dashboard Name"
+                          name="dashboardName"
+                          required
+                          value={uploadData.dashboardName}
+                        />
+                      </div>
+                      <div
+                        className="dashboards-search-container"
+                        style={{ marginTop: "5px" }}
+                      >
+                        <input
+                          htmlFor="userSearch"
+                          onChange={storeUploadData}
+                          className="user-search"
+                          type="text"
+                          required
+                          placeholder="your name"
+                          name="uploadedBy"
+                          value={uploadData.uploadedBy}
+                        />
+                      </div>
+                      <button className="upload-btn" type="submit">
+                        Update
+                      </button>
+                      <button onClick={() => setIsUpdating(false)} className="upload-btn">X</button>
+                    </div>
+                  </form>
+                  )
+                }
+            {!isUpdating && <div>
               <div>
                 {allDashboards.length !== 0 && (
                   <div className="dashboards-section-header">
@@ -335,7 +378,7 @@ const GrantAccess = () => {
                     </div>
                   </form>
                 )}
-                {
+                {/* {
                   isUpdating && (
                     <form onSubmit={updateTheDashboardDetails}>
                     <div className="upload-dashboards-container">
@@ -370,13 +413,12 @@ const GrantAccess = () => {
                         />
                       </div>
                       <button className="upload-btn" type="submit">
-                        {/* <FiUpload className="icon" /> */}
                         Update
                       </button>
                     </div>
                   </form>
                   )
-                }
+                } */}
 
                 {/* <input type="text" placeholder="Enter Model or Dashboard name to add" style={{width: "50%"}}/>
                 <button>Upload</button> */}
@@ -518,7 +560,7 @@ const GrantAccess = () => {
                   )}
                 </div>
               )}
-            </div>
+            </div>}
           </div>
         </div>
       </div>

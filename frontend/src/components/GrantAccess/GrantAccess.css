@@ -48,7 +48,13 @@
     box-shadow: 5px 5px 15px #0000004d;
     padding: 15px;
     background-color: #fff;
-
+  }
+  .updating-dashboards-models-section {
+    display: flex;
+    /* justify-content: center; */
+    /* align-items: center; */
+    width: 100%;
+    height: 100%;
   }
 }
 .user-section-header {
