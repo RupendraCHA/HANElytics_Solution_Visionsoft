@@ -254,7 +254,7 @@ const GrantAccess = () => {
                         <div>
                           <p className="users-card-name">
                             <FaUserTie className="user-search-icon" />
-                            {user.firstname}
+                            {user.firstname} 
                           </p>
                         </div>
                         <p className="user-card-name-role">{user.role}</p>

@@ -137,8 +137,6 @@ const PowerBiDashboard = () => {
       id: 12,
       headerText: "Production Planning",
       dataText: "purchase",
-      
-
       url: "https://app.powerbi.com/groups/me/reports/d88fd1c6-d635-4ead-864c-b4971b81e11b/153be76ec304a615ddb5?experience=power-bi&clientSideAuth=0",
       image: `${assets.Production_planning_pic}`,
     },
@@ -332,6 +330,25 @@ const PowerBiDashboard = () => {
       } catch (error) {
         console.log("Error while fetching", error)
       }
+    }else if (dashName === "Sales Order Processing"){
+
+      try {
+        setDownloadDataLoad(id)
+
+        const jwtToken = localStorage.getItem("token");
+        const response = await axios.get(url + "/api/sales/vbak", {
+          headers: {
+            "Content-Type": "application/json",
+          },
+        });
+
+        const result = response.data.data
+        // console.log(result)
+        downloadDataIntoExcel(result, "Sales Order Processing", id)
+
+      } catch (error) {
+        console.log("Error while fetching", error)
+      }
     }
   }
 
@@ -460,7 +477,7 @@ const PowerBiDashboard = () => {
                     <p
                       style={{ position: "absolute", top: "6px", right: "8px" }}
                     >
-                      {getResultsAndDownloadElement(`${type.headerText}`)}
+                      {getResultsAndDownloadElement(`${type.headerText}`, `${type.id}`)}
                     </p>
                   </button>
                 </div>
