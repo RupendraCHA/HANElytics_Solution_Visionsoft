@@ -137,11 +137,10 @@ const PowerBiDashboard = () => {
       id: 12,
       headerText: "Production Planning",
       dataText: "purchase",
-      url: "https://app.powerbi.com/groups/me/reports/3219fe8c-78e4-479a-bcdf-b5c77866a05d/052aa96850be00c14191?experience=power-bi&clientSideAuth=0",
-      image: `${assets.Production_planning_pic}`,
+      
 
-      // url: "https://app.powerbi.com/groups/me/reports/d88fd1c6-d635-4ead-864c-b4971b81e11b/153be76ec304a615ddb5?experience=power-bi&clientSideAuth=0",
-      // image: `${assets.Production_planning_pic}`,
+      url: "https://app.powerbi.com/groups/me/reports/d88fd1c6-d635-4ead-864c-b4971b81e11b/153be76ec304a615ddb5?experience=power-bi&clientSideAuth=0",
+      image: `${assets.Production_planning_pic}`,
     },
   ];
   const finance = [
@@ -168,6 +167,8 @@ const PowerBiDashboard = () => {
     },
   ];
 
+  // url: "https://app.powerbi.com/groups/me/reports/3219fe8c-78e4-479a-bcdf-b5c77866a05d/052aa96850be00c14191?experience=power-bi&clientSideAuth=0",
+  //     image: `${assets.Production_planning_pic}`,
   const tabsList = [
     {
       activeText: "",
