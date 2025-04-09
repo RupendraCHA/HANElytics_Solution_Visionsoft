@@ -25,7 +25,7 @@
   padding: 0px 10px;
 }
 
-@media (max-width: 576px){
+@media (max-width: 768px){
   .header-container{
     display: none;
   }
@@ -39,7 +39,7 @@
   padding: 10px 10px;
 }
 
-@media (min-width: 576px){
+@media (min-width: 769px){
   .mobile-header-container{
     display: none;
   }
@@ -63,7 +63,7 @@
   letter-spacing: 2;
 }
 
-@media (max-width: 576px){
+@media (max-width: 768px){
   .datamodels-website-heading h1{
     font-size: 18px;
   }
@@ -81,7 +81,7 @@
   color: #2e81a2;
 }
 
-@media screen and (max-width: 576px) {
+@media screen and (max-width: 768px) {
   .website-heading {
     font-size: 30px;
   }
@@ -212,13 +212,13 @@
   margin: 0px 10px;
 }
 
-@media screen and (max-width: 576px) {
+@media screen and (max-width: 768px) {
   .user-icon {
     width: 35px;
     height: 35px;
   }
 }
-@media screen and (max-width: 576px) {
+@media screen and (max-width: 768px) {
   .mobile-user-icon {
     width: 35px;
     height: 35px;
@@ -261,7 +261,7 @@
   overflow: auto;
   padding: 5px 0px;
 }
-@media (max-width: 576px){
+@media (max-width: 768px){
   /* .data-models-section-container{
     flex-direction: column;
   } */
@@ -409,7 +409,7 @@
   height: 22px;
   margin-left: 4px;
 }
-@media (max-width: 576px){
+@media (max-width: 768px){
   .excel-download{
     /* justify-content: flex-start; */
     margin-top: 20px;
@@ -546,7 +546,7 @@ ul {
   background-color: #fff;
   padding: 15px;
 }
-@media (max-width: 576px){
+@media (max-width: 768px){
   .table-container{
     margin: 10px;
   }
@@ -618,7 +618,7 @@ ul {
   border: 1px solid #000;
 }
 
-@media (max-width: 576px){
+@media (max-width: 768px){
   .chart-tab{
     font-size: 10px;
     padding: 4px;
@@ -658,7 +658,7 @@ ul {
   /* Smooth transition for background color */
 }
 
-@media (max-width: 576px){
+@media (max-width: 768px){
   .tab{
     font-size: 12px;
     /* padding: 4px; */
@@ -748,7 +748,7 @@ ul {
   /* margin-left: 5px; */
 
 }
-@media (max-width: 576px){
+@media (max-width: 768px){
   .tab-buttons span{
     font-size: 12px;
   }

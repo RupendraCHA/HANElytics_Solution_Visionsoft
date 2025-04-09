@@ -327,10 +327,15 @@ const GrantAccess = () => {
   return (
     <div className="grant-access-bg-container">
       <div className="grant-access-page-container">
-        <h1 className="grant-access-page-heading">
-          User Dashboard Management <br/>
-          <span className="grant-access-page-info">Efficiently manage accessing users to the dashboards. Select a user from the left panel and update the dashboards visibility to them on the right.</span>
-        </h1>
+        <div style={{display: "flex", alignItems: "center", justifyContent:"space-between"}}>
+          <h1 className="grant-access-page-heading">
+            User Dashboard Management <br/>
+            <span className="grant-access-page-info">Efficiently manage accessing users to the dashboards. Select a user from users list and update the dashboards visibility to them accordingly to the requirements.</span>
+          </h1>
+          <button onClick={() => {
+            window.location.reload()
+          }}>Refresh</button>
+        </div>
         <div className="grant-access-users-dashboards-container">
           <div className="users-section">
             {!getUsersData && (
@@ -391,7 +396,7 @@ const GrantAccess = () => {
                       >
                         <div>
                           <p className="users-card-name">
-                            <FaUserTie className="user-search-icon" />
+                            <FaUserTie className="userlist-search-icon" />
                             {user.firstname} {user.lastname}
                           </p>
                         </div>
@@ -491,7 +496,7 @@ const GrantAccess = () => {
                             onClick={handleUploadDashboard}
                             title="Insert New Dashboard"
                           >
-                            Insert <FiUpload className="new-icon" />
+                            Publish <FiUpload className="new-icon" />
                           </p>
                         ) : (
                           <p
@@ -719,7 +724,7 @@ const GrantAccess = () => {
                             title="Insert New Dashboard"
                             
                           >
-                            Insert <FiUpload className="new-icon" />
+                            Publish <FiUpload className="new-icon" />
                           </p>
                         ) : (
                           <p

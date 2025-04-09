@@ -131,16 +131,25 @@
     .card-name-icon{
       display: flex;
       align-items: center;
+
     }
 
 }
 
 .users-card:hover{
-  background-color: #80808078;
+  background-color: #353dcb;
   transform: scale(1.04);
 }
 .highlight-user{
-  background-color:#80808078 !important;
+  background-color:#000000ca !important;
+  color: #fff;
+
+  .user-card-name{
+
+    .user-search-icon{
+    color: #fff;
+    }
+  }
 }
 .users-card-name{
     display: flex;
@@ -149,6 +158,13 @@
     gap: 2px;
     font-weight: 600;
     font-size: 16px;
+
+    
+}
+.userlist-search-icon{
+  font-size: 16px;
+cursor: pointer;
+color: #0c2cbd;
 }
 @media (max-width: 576px){
   .users-card-name{
