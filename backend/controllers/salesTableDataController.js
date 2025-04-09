@@ -24,7 +24,9 @@ export const getSalesTableDataFromVBAK = async (req, res) => {
     `;
     const result = await clientConn.exec(query);
     // const result = await clientConn.exec("SELECT * FROM VBAK");
-    res.status(200).json({ success: true, data: result });
+    const resultData = result.map(({MANDT, VBELN}) => ({MANDT, VBELN}))
+    // console.log(resultData)
+    res.status(200).json({ success: true, data: resultData });
   } catch (error) {
     console.error(error);
     res.status(500).send("Error fetching data");

@@ -336,14 +336,12 @@ const PowerBiDashboard = () => {
         setDownloadDataLoad(id)
 
         const jwtToken = localStorage.getItem("token");
-        const response = await axios.get(url + "/api/sales/vbak", {
-          headers: {
-            "Content-Type": "application/json",
-          },
-        });
+        const response = await axios.get(url + "/api/sales/vbak");
 
         const result = response.data.data
-        // console.log(result)
+        // const resultData = result.map(({MANDT, VBELN}) => ({MANDT, VBELN}))
+
+        // console.log(resultData)
         downloadDataIntoExcel(result, "Sales Order Processing", id)
 
       } catch (error) {

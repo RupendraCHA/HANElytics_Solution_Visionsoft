@@ -7,6 +7,7 @@ const dashboardSchema = new mongoose.Schema({
         type: String,
         default: "No"
     },
+    category: String
 },{
     timestamps: true
 }
