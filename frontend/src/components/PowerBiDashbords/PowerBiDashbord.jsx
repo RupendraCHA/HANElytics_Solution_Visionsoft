@@ -24,12 +24,17 @@ const PowerBiDashboard = () => {
   const navigate = useNavigate();
   const { username, token, setToken, setUsername, url } =
     useContext(StoreContext);
+  
+
 
   const [isMenuOpened, setIsMenuOpened] = useState(false);
   const [isIconClicked, setIsIconClicked] = useState(false)
   const [selectedReport, setSelectedReport] = useState("Revenue Results")
   const [reportData, setReportData] = useState([])
   const [downloadDataLoad, setDownloadDataLoad] = useState(0)
+
+  const username1 = username.split(" ")
+  const firstname = username1[0]
 
   const startTheServer = async () => {
     const response = await axios.get(url);
@@ -694,7 +699,7 @@ const PowerBiDashboard = () => {
         <div className="bi-drop-down">
           <div className="bi-icon-username">
             <FaRegUserCircle className="bi-user-icon" />
-            <p className="bi-username-text">{username}</p>
+            <p className="bi-username-text">{firstname}</p>
           </div>
           <div>
             <button onClick={handleModelLogout}>Logout</button>

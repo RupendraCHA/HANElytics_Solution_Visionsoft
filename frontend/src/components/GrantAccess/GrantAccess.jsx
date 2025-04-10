@@ -13,6 +13,7 @@ import { MdEditSquare } from "react-icons/md";
 import { RiCloseLargeFill } from "react-icons/ri";
 
 import { assets } from "../../assets/assets";
+import { MdOutlineRefresh } from "react-icons/md";
 
 const GrantAccess = () => {
   const {
@@ -23,7 +24,10 @@ const GrantAccess = () => {
     setAllDashboards,
     dashUpdateId,
     setDashUpdateId,
+    username
   } = useContext(StoreContext);
+  
+
   const [uploadData, setUploadData] = useState({
     dashboardName: "",
     uploadedBy: "",
@@ -60,8 +64,6 @@ const GrantAccess = () => {
     }));
     console.log("M",mergedArray);
     setUsersDataList(mergedArray);
-    
-
   };
 
   const getAllDashboards = async () => {
@@ -130,12 +132,12 @@ const GrantAccess = () => {
 
     if (
       uploadData.dashboardName !== "" &&
-      uploadData.uploadedBy !== "" &&
+      // uploadData.uploadedBy !== "" &&
       uploadData.category !== ""
     ) {
       const data = {
         dashboardName: uploadData.dashboardName,
-        uploadedBy: uploadData.uploadedBy,
+        uploadedBy: username,
         category: uploadData.category,
       };
 
@@ -202,7 +204,7 @@ const GrantAccess = () => {
     try {
       const data = {
         dashboardName: uploadData.dashboardName,
-        uploadedBy: uploadData.uploadedBy,
+        uploadedBy: username,
         category: uploadData.category,
       };
       const response = await axios.put(
@@ -327,14 +329,21 @@ const GrantAccess = () => {
   return (
     <div className="grant-access-bg-container">
       <div className="grant-access-page-container">
-        <div style={{display: "flex", alignItems: "center", justifyContent:"space-between"}}>
+        <div className="grant-access-page-header">
           <h1 className="grant-access-page-heading">
             User Dashboard Management <br/>
             <span className="grant-access-page-info">Efficiently manage accessing users to the dashboards. Select a user from users list and update the dashboards visibility to them accordingly to the requirements.</span>
           </h1>
           <button onClick={() => {
             window.location.reload()
-          }}>Refresh</button>
+          }} className="refresh-button">
+            <MdOutlineRefresh className="refresh-icon"/>
+            Refresh</button>
+          <button onClick={() => {
+            window.location.reload()
+          }} className="mobile-refresh-button">
+            <MdOutlineRefresh className="refresh-icon"/>
+            </button>
         </div>
         <div className="grant-access-users-dashboards-container">
           <div className="users-section">
@@ -442,7 +451,7 @@ const GrantAccess = () => {
                           value={uploadData.dashboardName}
                         />
                       </div>
-                      <div
+                      {/* <div
                         className="dashboards-search-container"
                         style={{ marginTop: "5px" }}
                       >
@@ -456,7 +465,7 @@ const GrantAccess = () => {
                           name="uploadedBy"
                           value={uploadData.uploadedBy}
                         />
-                      </div>
+                      </div> */}
                       <div
                         className="dashboards-search-container"
                         style={{ marginTop: "5px" }}
@@ -527,7 +536,7 @@ const GrantAccess = () => {
                             value={uploadData.dashboardName}
                           />
                         </div>
-                        <div
+                        {/* <div
                           className="dashboards-search-container"
                           style={{ marginTop: "5px" }}
                         >
@@ -541,7 +550,7 @@ const GrantAccess = () => {
                             name="uploadedBy"
                             value={uploadData.uploadedBy}
                           />
-                        </div>
+                        </div> */}
                         <div
                           className="dashboards-search-container"
                           style={{ marginTop: "5px" }}
@@ -583,12 +592,13 @@ const GrantAccess = () => {
                             >
                               S.No
                             </h3>
-                            <h3
+                            {/* <h3
                               className="table-header-icon"
                               style={{ fontSize: "16px" }}
                             >
                               Allow
-                            </h3>
+                            </h3> */}
+                            <h3></h3>
                             <h3
                               className="table-header-icon"
                               style={{ marginLeft: "5px", fontSize: "16px" }}
@@ -634,7 +644,7 @@ const GrantAccess = () => {
                             <div key={index}>
                               <div className="dashboard-details-section border-top">
                                 <h3>{index + 1}</h3>
-                                <div className="permission-buttons">
+                                {/* <div className="permission-buttons">
                                   <div>
                                     <input
                                       onClick={(e) =>
@@ -651,7 +661,8 @@ const GrantAccess = () => {
                                     />
                                   </div>
               
-                                </div>
+                                </div> */}
+                                <div></div>
                                 <h3>
                                   <img
                                     src={`${assets.DashboardImage}`}

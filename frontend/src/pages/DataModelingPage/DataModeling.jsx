@@ -47,6 +47,9 @@ const DataModeling = () => {
   const navigate = useNavigate();
   const { url, username } = useContext(StoreContext);
 
+  const username1 = username.split(" ")
+  const firstname = username1[0]
+
   const startTheServer = async () => {
     const response = await axios.get(url);
     console.log(response.data.message);
@@ -809,7 +812,7 @@ const DataModeling = () => {
               <div>
                 <div className="icon-username">
                   <FaRegCircleUser className="user-icon" />
-                  <p className="username-text">{username}</p>
+                  <p className="username-text">{firstname}</p>
                 </div>
               </div>
               <div>

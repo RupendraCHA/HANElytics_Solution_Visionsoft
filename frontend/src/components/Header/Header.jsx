@@ -19,7 +19,10 @@ const Header = ({ page = "" }) => {
   const { username, token, setToken, setUsername, userRole, setUserRole } =
     useContext(StoreContext);
 
-  // console.log(userRole);
+  const username1 = username.split(" ")
+  const firstname = username1[0]
+
+
   const handleLogout = () => {
     localStorage.removeItem("token");
     localStorage.removeItem("username");
@@ -122,7 +125,7 @@ const Header = ({ page = "" }) => {
         <div className="drop-down1">
           <div className="icon-username1">
             <FaRegCircleUser className="user-icon1" />
-            <p className="username-text1">{username}</p>
+            <p className="username-text1">{firstname}</p>
           </div>
           {/* <div> */}
           <button onClick={handleLogout}>Logout</button>

@@ -441,3 +441,45 @@ color: #0c2cbd;
     font-weight: 600;
   }
 }
+.grant-access-page-header{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.refresh-button{
+  font-size: 12px;
+  background-color: #000;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  border: none;
+  padding: 3px 6px;
+  border-radius: 4px;
+  font-weight: 500;
+  box-shadow: 2px 2px 2px #c58f8f;
+}
+.refresh-icon{
+  width: 16px;
+  height: 16px;
+}
+@media (max-width: 768px){
+  .refresh-button{
+    display: none;
+  }
+}
+.mobile-refresh-button{
+  font-size: 12px;
+  background-color: #000;
+  color: #fff;
+  border: none;
+  padding: 3px 6px;
+  border-radius: 4px;
+  font-weight: 500;
+  box-shadow: 2px 2px 2px #c58f8f;
+
+}
+@media (min-width: 769px){
+  .mobile-refresh-button{
+    display: none;
+  }
+}
