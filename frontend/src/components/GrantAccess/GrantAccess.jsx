@@ -24,7 +24,9 @@ const GrantAccess = () => {
     setAllDashboards,
     dashUpdateId,
     setDashUpdateId,
-    username
+    username,
+    storeUserDashboardData,
+    setStoreUserDashboardData
   } = useContext(StoreContext);
   
 
@@ -43,8 +45,10 @@ const GrantAccess = () => {
   const [viewUserData, setViewUserdata] = useState(0);
   const [userSpecificData, setUserSpecificData] = useState([])
   const [isUserClicked, setIsUserClicked] = useState(false)
-  const [accessingData, setAccessingData] = useState({})
   const [activeAssigningUser, setActiveAssigningUser] = useState("")
+  const [viewPermittedDash, setViewPermittedDash] = useState(false)
+
+
 
   const getAllUsersList = async () => {
     setGetUsersData(true);
@@ -77,8 +81,9 @@ const GrantAccess = () => {
 
   useEffect(() => {
     getAllUsersList();
-    getAllDashboards();
+    getAllDashboards();    
   }, []);
+
 
   const getUserNameInput = async (e) => {
     if (e.target.value === "") {
@@ -264,6 +269,8 @@ const GrantAccess = () => {
   };
 
   const setUserUniqueData = async (user) => {
+    setViewPermittedDash(false)
+
     setIsUserClicked(true)
     setGetAllDashboardsData(true)
     setActiveAssigningUser(user.firstname)
@@ -273,8 +280,12 @@ const GrantAccess = () => {
     const data3 = [{
       ...user
     },...allDashboards.data.allDashboards]
+
     setUserSpecificData(data3)
     setGetAllDashboardsData(false)
+
+
+
 
     const userData = {
       email: user.email
@@ -282,6 +293,10 @@ const GrantAccess = () => {
 
     const userDashboards = await axios.post(url + "/api/dashboard/getUserDashboard",userData);
     console.log("USER Button",userDashboards.data.userDashboards)
+
+    setStoreUserDashboardData(userDashboards.data.userDashboards)
+    
+
 
     console.log(user)
     console.log(data3)
@@ -292,13 +307,14 @@ const GrantAccess = () => {
     value,
   ) => {
     
+    console.log(reportName, value)
 
     const selectedDashboard = userSpecificData.slice(1,userSpecificData.length).filter((item) => item.dashboardName === reportName)
     console.log(selectedDashboard)
 
     const index = userSpecificData.findIndex((item) => item.dashboardName === reportName)
     console.log(index)
-    
+
     if (selectedDashboard){
       const updateDash = selectedDashboard.map((item) => (
          {
@@ -308,6 +324,24 @@ const GrantAccess = () => {
       ))
     userSpecificData[index] = updateDash[0]
     }
+
+    // const selectedDashboard1 = storeUserDashboardData.slice(1,storeUserDashboardData.length).filter((item) => item.dashboardName === reportName)
+    // console.log(selectedDashboard1)
+
+    // const index1 = storeUserDashboardData.findIndex((item) => item.dashboardName === reportName)
+    // console.log(index1)
+
+    // if (selectedDashboard1){
+    //   const updateDash = selectedDashboard1.map((item) => (
+    //      {
+    //       ...item,
+    //       isAllowed: value ? "Yes" : "No"
+    //      }
+    //   ))
+    //   selectedDashboard1[index] = updateDash[0]
+    // }
+    
+    
   };
 
   const setAccessData = async () => {
@@ -336,6 +370,10 @@ const GrantAccess = () => {
 
       const userDashboards = await axios.post(url + "/api/dashboard/getUserDashboard",userData);
       console.log("Submit Button",userDashboards.data.userDashboards)
+    setStoreUserDashboardData(userDashboards.data.userDashboards)
+    setIsUserClicked(false)
+    setViewPermittedDash(true)
+
     setGetAllDashboardsData(false)
     }
     console.log(response.data)
@@ -505,12 +543,17 @@ const GrantAccess = () => {
                   </form>
                   )
                 }
-            {!isUserClicked && <div>
+            {!isUserClicked && !viewPermittedDash && <div>
               {!isUpdating && <div>
                 <div>
                   {allDashboards.length !== 0 && (
                     <div className="dashboards-section-header">
-                      <h1 className="dashboards-list-heading">Dashboards</h1>
+                      {/* <h1 className="dashboards-list-heading">Dashboards</h1> */}
+                      <div className="active-user-details">
+                        <h1>The following dashboards are currently available on the platform:
+                        <p style={{fontSize: "12px"}}>Upload new dashboard by clicking on publish button</p>
+                        </h1>
+                      </div>
                       <div className="control-click">
                         <p className="no-of-users">
                           Total: <span>{allDashboards.length}</span>
@@ -599,6 +642,11 @@ const GrantAccess = () => {
                       </div>
                     ) : (
                       <>
+                      {/* <div className="active-user-details">
+                        <h1>The following dashboards are currently available on the platform:
+                        <p style={{fontSize: "12px"}}>Upload new dashboard by clicking on publish button</p>
+                        </h1>
+                      </div> */}
                         <div>
               
                           <div className="dashboard-details-section">
@@ -833,7 +881,21 @@ const GrantAccess = () => {
                       {userSpecificData.slice(0,1).map((user, index) => (
                     <div key={index} className="active-user-details">
                       <h1>Manage Permissions to <span>{user.firstname} {user.lastname}</span></h1>
-                      <button onClick={setAccessData}>Submit</button>
+                      <div>
+                        <button onClick={() => {
+                      setGetAllDashboardsData(true)
+
+                          setTimeout(() => {
+                      setGetAllDashboardsData(false)
+
+                            setIsUserClicked(false)
+                            setViewPermittedDash(true)
+                          }, 1000)
+                        }
+                        }>View permissions</button>
+                        <button onClick={setAccessData} style={{marginLeft: "10px"}}>Give Access</button>
+
+                      </div>
                     </div>
                   ))}
                         <div>
@@ -966,24 +1028,257 @@ const GrantAccess = () => {
                 )}
               </div>}
             </div>}
+
+            {viewPermittedDash && <div>
+              {!isUpdating && <div>
+                <div>
+                  {allDashboards.length !== 0 && (
+                    <div className="dashboards-section-header">
+                      <h1 className="dashboards-list-heading">Dashboards</h1>
+                      <div className="control-click">
+                        <p className="no-of-users">
+                          Total: <span>{allDashboards.length}</span>
+                        </p>
+                        {upload === false ? (
+                          <p
+                            className="upload-shortcut"
+                            onClick={handleUploadDashboard}
+                            title="Insert New Dashboard"
+                            
+                          >
+                            Publish <FiUpload className="new-icon" />
+                          </p>
+                        ) : (
+                          <p
+                            className="upload-shortcut"
+                            onClick={handleUploadDashboard}
+                          >
+                            close
+                          </p>
+                        )}
+                      </div>
+                    </div>
+                  )}
+                  
+                  {upload && (
+                    <form onSubmit={uploadDashboard}>
+                      <div className="upload-dashboards-container">
+                        <div
+                          className="dashboards-search-container"
+                          style={{ marginTop: "5px" }}
+                        >
+                          <input
+                            htmlFor="userSearch"
+                            onChange={storeUploadData}
+                            className="user-search"
+                            type="text"
+                            placeholder="Enter Dashboard name to upload"
+                            name="dashboardName"
+                            required
+                            value={uploadData.dashboardName}
+                          />
+                        </div>
+                        <div
+                          className="dashboards-search-container"
+                          style={{ marginTop: "5px" }}
+                        >
+                          <input
+                            htmlFor="userSearch"
+                            onChange={storeUploadData}
+                            className="user-search"
+                            type="text"
+                            required
+                            placeholder="your name"
+                            name="uploadedBy"
+                            value={uploadData.uploadedBy}
+                          />
+                        </div>
+                        <div
+                          className="dashboards-search-container"
+                          style={{ marginTop: "5px" }}
+                        >
+                          <input
+                            htmlFor="userSearch"
+                            onChange={storeUploadData}
+                            className="user-search"
+                            type="text"
+                            required
+                            placeholder="Enter Category"
+                            name="category"
+                            value={uploadData.category}
+                          />
+                        </div>
+                        <button className="upload-btn" type="submit">
+                          <FiUpload className="icon" />
+                        </button>
+                      </div>
+                    </form>
+                  )}
+                </div>
+                {getAllDashboardsData ? (
+                  <div className="roles-spinner"></div>
+                ) : (
+                  <div className="view-all-dashboards-section">
+                    {allDashboards.length === 0 ? (
+                      <div className="no-dashboard-text">
+                        <h1>There are no Dashboards to show</h1>
+                      </div>
+                    ) : (
+                      <>
+                      {userSpecificData.slice(0,1).map((user, index) => (
+                    <div key={index} className="active-user-details">
+                      <h1>Following Dashboards with Check mark are accessed by <span>{user.firstname} {user.lastname}</span></h1>
+                      <button 
+                      // onClick={setAccessData}
+                      onClick={() => {
+                      setGetAllDashboardsData(true)
+
+                        setTimeout(() => {
+                            setGetAllDashboardsData(false)
+
+                        }, 1000)
+                        setIsUserClicked(true)
+                        setViewPermittedDash(false)
+                      }}
+                      >Set Permissions</button>
+                    </div>
+                  ))}
+                        <div>
+                          <div className="dashboard-details-section">
+                            <h3
+                              className="table-header-icon"
+                              style={{ fontSize: "16px" }}
+                            >
+                              S.No
+                            </h3>
+                            <h3
+                              className="table-header-icon"
+                              style={{ fontSize: "16px" }}
+                            >
+                              Allow
+                            </h3>
+                            <h3
+                              className="table-header-icon"
+                              style={{ marginLeft: "5px", fontSize: "16px" }}
+                            >
+                              Dashboard
+                            </h3>
+                            <h3
+                              className="table-header-icon"
+                              style={{ fontSize: "16px" }}
+                            >
+                              Category
+                            </h3>
+                            <h3
+                              className="table-header-icon"
+                              style={{ fontSize: "16px" }}
+                            >
+                              Uploaded By
+                            </h3>
+                            <h3
+                              className="table-header-icon"
+                              style={{ fontSize: "16px" }}
+                            >
+              
+                              Time of Upload
+                            </h3>
+                            <h3
+                              className="table-header-icon"
+                              style={{ fontSize: "16px" }}
+                            >
+                              Edit
+                            </h3>
+                            <h3
+                              className="table-header-icon"
+                              style={{ fontSize: "16px" }}
+                            >
+                              Delete
+                            </h3>
+              
+                          </div>
+                        </div>
+                        <div>
+                          {storeUserDashboardData.map((dashboard, index) => (
+                            <div key={index}>
+                              <div className="dashboard-details-section border-top">
+                                <h3>{index + 1}</h3>
+                                <div className="permission-buttons">
+                                  <div>
+                                    <input
+                                      onClick={(e) =>
+                                        getPermittedDashboardName(
+                                          dashboard.dashboardName,
+                                          e.target.checked,
+                                        )
+                                      }
+                                      id={`${dashboard._id}allow`}
+                                      type="checkbox"
+                                      className="allow-checkbox"
+                                      checked={`${dashboard.isAllowed === "Yes" ? "checked" : ""}`}
+                                    />
+                                  </div>
+              
+                                </div>
+                                <h3>
+                                  <img
+                                    src={`${assets.DashboardImage}`}
+                                    alt="DashboardImage"
+                                    width={35}
+                                  />
+                                  {dashboard.dashboardName}
+                                </h3>
+                                <h3>
+                                  {dashboard.category}
+                                </h3>
+                                <h3 className="align-icon-text">
+                                  <FaUserTie className="user-search-icon" />
+                                  {dashboard.uploadedBy}
+                                </h3>
+                                <h3 className="align-icon-text">
+                                  <img
+                                    src={assets.CalenderClock}
+                                    alt={`${dashboard.createdAt}Image`}
+                                    className="time-icon"
+                                    width={30}
+                                  />
+                                  {`${new Date(
+                                    dashboard.createdAt
+                                  ).toLocaleString("en-IN", {
+                                    year: "numeric",
+                                    month: "long",
+                                    day: "numeric",
+                                  })}, ${new Date(
+                                    dashboard.createdAt
+                                  ).toLocaleString("en-IN", {
+                                    hour: "2-digit",
+                                    minute: "2-digit",
+                                    second: "2-digit",
+                                    hour12: true,
+                                  })} `}
+                                </h3>
+                                <h3 onClick={() => updateTheDashboard(dashboard._id)}>
+                                  <MdEditSquare className="modify-icon edit-bg" />
+                                </h3>
+                                <h3 onClick={() => deleteTheDashboard(dashboard._id)}>
+                                  <RiDeleteBin5Line className="modify-icon delete-bg" />
+                                </h3>
+                              </div>
+                            </div>
+                          ))}
+              
+              
+                        </div>
+                      </>
+                    )}
+                  </div>
+                )}
+              </div>}
+            </div>}
           </div>
         </div>
       </div>
     </div>
   );
 };
-
-{
-  /* Dashboard <img src={`${assets.DashboardImage}`} alt="DashboardImage" width={50}/> */
-}
-{
-  /* className="align-icon-text" */
-}
-{
-  /* <img src={assets.CalenderClock} alt="CreatedTimeImage" className="time-icon" width={30}/> */
-}
-{
-  /* Uploaded by <FaUserTie className="user-search-icon" /> */
-}
 
 export default GrantAccess;

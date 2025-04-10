@@ -131,13 +131,11 @@
     .card-name-icon{
       display: flex;
       align-items: center;
-
     }
-
 }
 
 .users-card:hover{
-  background-color: #353dcb;
+  background-color: #353ccb96;
   transform: scale(1.04);
 }
 .highlight-user{
@@ -147,7 +145,7 @@
   .user-card-name{
 
     .user-search-icon{
-    color: #fff;
+    color: #fff !important;
     }
   }
 }

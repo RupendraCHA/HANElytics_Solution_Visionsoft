@@ -16,6 +16,8 @@ const StoreContextProvider = (props) => {
     const [accessNameInput, setAccessNameInput] = useState("")
     const [allDashboards, setAllDashboards] = useState([])
     const [dashUpdateId, setDashUpdateId] = useState("")
+  const [storeUserDashboardData, setStoreUserDashboardData] = useState([])
+
 
     const [sapSalesModuleText, setSapSalesModuleText] = useState(false);
   const [sapMaterialsModuleText, setSapMaterialsModuleText] = useState(false);
@@ -53,6 +55,8 @@ const StoreContextProvider = (props) => {
         getAllUsersList()
     }, [])
 
+    console.log(storeUserDashboardData)
+
     const contextValue = {
         token,
         setToken,
@@ -69,6 +73,8 @@ const StoreContextProvider = (props) => {
         setAllDashboards,
         dashUpdateId,
         setDashUpdateId,
+        storeUserDashboardData,
+        setStoreUserDashboardData,
 
     sapSalesModuleText,
     setSapSalesModuleText,
