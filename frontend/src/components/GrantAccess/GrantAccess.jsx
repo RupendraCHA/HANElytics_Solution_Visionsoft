@@ -276,6 +276,13 @@ const GrantAccess = () => {
     setUserSpecificData(data3)
     setGetAllDashboardsData(false)
 
+    const userData = {
+      email: user.email
+    }
+
+    const userDashboards = await axios.post(url + "/api/dashboard/getUserDashboard",userData);
+    console.log("USER Button",userDashboards.data.userDashboards)
+
     console.log(user)
     console.log(data3)
   }
@@ -306,6 +313,8 @@ const GrantAccess = () => {
   const setAccessData = async () => {
     setGetAllDashboardsData(true)
 
+    // console.log("Access",userSpecificData[0].email)
+
     const userDetails = userSpecificData.slice(0,1).map((item) => (
       {
         ...item,
@@ -320,6 +329,13 @@ const GrantAccess = () => {
     const response = await axios.post(url + "/api/dashboard/permissions", userSpecificData)
     if (response.data.success){
       toast.success("User Permissions are given & Updated successfully")
+
+      const userData = {
+        email: userSpecificData[0].email
+      }
+
+      const userDashboards = await axios.post(url + "/api/dashboard/getUserDashboard",userData);
+      console.log("Submit Button",userDashboards.data.userDashboards)
     setGetAllDashboardsData(false)
     }
     console.log(response.data)

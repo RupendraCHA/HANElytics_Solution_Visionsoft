@@ -92,3 +92,23 @@ export const createUserDashboardAccess = async (req, res) => {
     return res.status(500).json({ message: "Server error", error });
   }
 };
+
+export const getUserDashboardData = async (req, res) => {
+    const {email} = req.body
+
+    try {
+        const userDashboardDetails = await MixedEntry.find({email})
+        
+        if (userDashboardDetails.length !== 0){
+            res.status(200).json({success: true, message: "Received Request", userDashboards: userDashboardDetails[0].dashboards})
+        }else {
+        const allDashboards = await DashboardAccess.find()
+        res.status(200).json({success: true, message: "Received Request", userDashboards: allDashboards})
+        }
+        console.log(userDashboardDetails)
+        
+    } catch (error) {
+        res.status(400).json({success: false, message: "Error while fetching user data"})
+        console.log("Error occurred",error )
+    }
+}
