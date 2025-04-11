@@ -47,8 +47,8 @@ const DataModeling = () => {
   const navigate = useNavigate();
   const { url, username } = useContext(StoreContext);
 
-  const username1 = username.split(" ")
-  const firstname = username1[0]
+  const username1 = username.split(" ");
+  const firstname = username1[0];
 
   const startTheServer = async () => {
     const response = await axios.get(url);
@@ -769,7 +769,7 @@ const DataModeling = () => {
                     migrateModelOpen === "migrate-data" && "tab-heading"
                   }`}
                 >
-                  Migrate Data
+                  Data Feedback
                   <MdKeyboardArrowUp
                     style={{ fontSize: "28px" }}
                     className={`${
@@ -896,7 +896,7 @@ const DataModeling = () => {
                           migrateModelOpen === "migrate-data" && "tab-heading"
                         }`}
                       >
-                        Migrate Data
+                        Data Feedback
                         <MdKeyboardArrowUp
                           style={{ fontSize: "28px" }}
                           className={`${
@@ -955,7 +955,49 @@ const DataModeling = () => {
         <div className="data-models-section-container" onClick={closeAllPopups}>
           <section className="workflows-section">
             <h1 className="use-case-heading" onClick={handleResultsData}>
-              Data Migration
+              Data Models
+            </h1>
+            <div className="data-model-types">
+              <h2
+                className={inventoryData === true ? "model-name" : "active"}
+                onClick={getInventoryDataFromMongoDB}
+              >
+                <LuArrowUpRight className="process-arrow" />
+                Reorder Point & Safety Stock prediction for Inventory with and
+                without Live data
+              </h2>
+              <h2
+                className={revenueData === true ? "model-name" : "active"}
+                onClick={getRevenueDataFromMongoDB}
+              >
+                <LuArrowUpRight className="process-arrow" />
+                Revenue & Demand Sensing for Pharmaceuticals
+              </h2>
+              <h2
+                className={equipmentData1 === true ? "model-name" : "active"}
+                onClick={getEquipmentDataFromMongoDB}
+              >
+                <LuArrowUpRight className="process-arrow" />
+                Medical Equipment Risk Detection and Failure Prevention
+              </h2>
+              <h2
+                className={clinicalData === true ? "model-name" : "active"}
+                onClick={getClinicalDataFromMongoDB}
+              >
+                <LuArrowUpRight className="process-arrow" />
+                Reorder Point & Safety Stock prediction for Clinical
+                drugs/Medicine
+              </h2>
+              <h2
+                className={newsPaperData === true ? "model-name" : "active"}
+                onClick={getNewsPaperDataFromMongoDB}
+              >
+                <LuArrowUpRight className="process-arrow" />
+                Predicting Reams of Paper & Ink (Liters)
+              </h2>
+            </div>
+            <h1 className="use-case-heading" onClick={handleResultsData}>
+              Data Feedback
             </h1>
             <div className="data-model-types">
               <h2
@@ -980,50 +1022,6 @@ const DataModeling = () => {
                 Inter Company Sales
               </h2>
               {/* Migrate Data From HANElytics System to SAP S/4 HANA:  */}
-            </div>
-            <h1 className="use-case-heading" onClick={handleResultsData}>
-              Data Models
-            </h1>
-            <div className="data-model-types">
-              <h2
-                className={newsPaperData === true ? "model-name" : "active"}
-                onClick={getNewsPaperDataFromMongoDB}
-              >
-                <LuArrowUpRight className="process-arrow" />
-                Predicting Reams of Paper & Ink for Demanded Quantity of NEWS
-                Paper to each Distribution Center
-              </h2>
-              <h2
-                className={inventoryData === true ? "model-name" : "active"}
-                onClick={getInventoryDataFromMongoDB}
-              >
-                <LuArrowUpRight className="process-arrow" />
-                Reorder Point Quantity & Safety Stock Predictions for Inventory
-                with & without Live-Data
-              </h2>
-              <h2
-                className={revenueData === true ? "model-name" : "active"}
-                onClick={getRevenueDataFromMongoDB}
-              >
-                <LuArrowUpRight className="process-arrow" />
-                Predictive Analytics for Revenue Demand Sensing Trends
-              </h2>
-              <h2
-                className={equipmentData1 === true ? "model-name" : "active"}
-                onClick={getEquipmentDataFromMongoDB}
-              >
-                <LuArrowUpRight className="process-arrow" />
-                Equipment Risk Detection and Failure Prevention With Predictive
-                Analytics
-              </h2>
-              <h2
-                className={clinicalData === true ? "model-name" : "active"}
-                onClick={getClinicalDataFromMongoDB}
-              >
-                <LuArrowUpRight className="process-arrow" />
-                Prediction of Reorder Point & Buffer Stock with Clinical
-                Information
-              </h2>
             </div>
           </section>
           {hideShow && (
