@@ -252,15 +252,26 @@ const PowerBiDashboard = () => {
     // console.log(report)
   }
 
+  const CustomCloseIcon = ({ closeToast }) => (
+    <span onClick={closeToast} style={{ color: 'red', cursor: 'pointer', fontWeight: 'bold', display: "flex", alignItems: "center" }}>
+      ✖
+    </span>
+  );
+
   const getInfoToast = () => {
     return (
       toast.info("Download initiated. It should be ready shortly.", {
         position: "top-center",
+        closeButton: CustomCloseIcon,
         style: {
           fontSize: '16px',
-          padding: '8px',
+          padding: '8px 12px',
           height: '30px',
           borderRadius: '8px',
+          color: "#fff",
+          backgroundColor: "#000",
+          fontWeight: "600"
+
         },
       })
     )
@@ -270,11 +281,16 @@ const PowerBiDashboard = () => {
     return (
       toast.success("File Downloaded.", {
         position: "top-center",
+        closeButton: CustomCloseIcon,
         style: {
           fontSize: '16px',
-          padding: '8px',
+          padding: '8px 12px',
           height: '30px',
           borderRadius: '8px',
+          color: "#fff",
+          backgroundColor: "#000",
+          fontWeight: "600"
+
         },
       })
     )
