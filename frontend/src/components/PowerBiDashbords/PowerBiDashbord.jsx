@@ -460,6 +460,7 @@ const PowerBiDashboard = () => {
 
       try {
         setDownloadDataLoad(id)
+        console.log(id)
         getInfoToast()
         const response = await axios.get(url + "/api/sales/ekko");
         console.log(response)
@@ -646,7 +647,7 @@ const PowerBiDashboard = () => {
                     <p
                       style={{ position: "absolute", top: "6px", right: "8px" }}
                     >
-                      {getResultsAndDownloadElement(`${type.headerText}`)}
+                      {getResultsAndDownloadElement(`${type.headerText}`,`${type.id}`)}
                     </p>
                   </button>
                 </div>
@@ -693,7 +694,7 @@ const PowerBiDashboard = () => {
                     <p
                       style={{ position: "absolute", top: "6px", right: "8px" }}
                     >
-                      {getResultsAndDownloadElement(`${type.headerText}`)}
+                      {getResultsAndDownloadElement(`${type.headerText}`,`${type.id}`)}
                     </p>
                   </button>
                 </div>
@@ -740,7 +741,7 @@ const PowerBiDashboard = () => {
                     <p
                       style={{ position: "absolute", top: "6px", right: "8px" }}
                     >
-                      {getResultsAndDownloadElement(`${type.headerText}`)}
+                      {getResultsAndDownloadElement(`${type.headerText}`,`${type.id}`)}
                     </p>
                   </button>
                 </div>
