@@ -296,8 +296,6 @@ const GrantAccess = () => {
 
     setStoreUserDashboardData(userDashboards.data.userDashboards)
     
-
-
     console.log(user)
     console.log(data3)
   }

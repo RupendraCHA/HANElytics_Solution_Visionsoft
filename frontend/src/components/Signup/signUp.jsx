@@ -82,6 +82,7 @@ function SignUp() {
       localStorage.setItem("token", response.data.token);
       localStorage.setItem("username", response.data.firstname);
       localStorage.setItem("role", response.data.role);
+      localStorage.setItem("email", response.data.email);
       setResponseCode(response.data.verificationCode);
       // console.log(response.data.verificationCode)
       setUsername(response.data.firstname);

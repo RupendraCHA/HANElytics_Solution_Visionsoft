@@ -27,8 +27,6 @@ import CalenderClock from "./calenderClock.avif"
 
 
 
-
-
 export const assets = {
     Procurement_pic,
     Manufacturing_pic,

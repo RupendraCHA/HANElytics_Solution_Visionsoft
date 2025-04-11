@@ -62,6 +62,7 @@ function Login() {
       localStorage.setItem("token", response.data.token);
       localStorage.setItem("username", response.data.name);
       localStorage.setItem("role", response.data.role);
+      localStorage.setItem("email", response.data.email);
 
       setUsername(response.data.name);
       setUserRole(response.data.role)

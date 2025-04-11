@@ -17,12 +17,15 @@ import { MdOutlineDownload } from "react-icons/md";
 import { IoIosArrowDropup } from "react-icons/io";
 import * as XLSX from "xlsx";
 import { saveAs } from "file-saver";
+import { toast } from "react-toastify";
 
+// import {OTCOrderData} from "../../pages/SAPData/OTCOrderHeaderData.js"
 const PowerBiDashboard = () => {
   const [activeDashboard, setActiveDashboard] = useState("");
   const [isMsgOpened, setMsgOpened] = useState(false);
   const navigate = useNavigate();
-  const { username, token, setToken, setUsername, url } =
+  const { username, token, setToken, setUsername, url, storeUserDashboardData,
+    setStoreUserDashboardData } =
     useContext(StoreContext);
   
 
@@ -41,8 +44,19 @@ const PowerBiDashboard = () => {
     console.log(response.data.message);
   };
 
+  const getUserDashboards = async () => {
+    const email = localStorage.getItem('email')
+    const userData = {
+      email: email
+    }
+    const userDashboards = await axios.post(url + "/api/dashboard/getUserDashboard",userData);
+    setStoreUserDashboardData(userDashboards.data.userDashboards)
+    console.log(userDashboards.data.userDashboards)
+  }
+
   useEffect(() => {
     startTheServer();
+    getUserDashboards()
     const jwtToken = localStorage.getItem("token");
     if (jwtToken) {
       navigate("/dashboards");
@@ -238,6 +252,33 @@ const PowerBiDashboard = () => {
     // console.log(report)
   }
 
+  const getInfoToast = () => {
+    return (
+      toast.info("Download initiated. It should be ready shortly.", {
+        position: "top-center",
+        style: {
+          fontSize: '16px',
+          padding: '8px',
+          height: '30px',
+          borderRadius: '8px',
+        },
+      })
+    )
+  }
+
+  const getSuccessToast = () => {
+    return (
+      toast.success("File Downloaded.", {
+        position: "top-center",
+        style: {
+          fontSize: '16px',
+          padding: '8px',
+          height: '30px',
+          borderRadius: '8px',
+        },
+      })
+    )
+  }
 
   const downloadDataIntoExcel = (Array, fileName, id) => {
     console.log(id)
@@ -252,6 +293,8 @@ const PowerBiDashboard = () => {
       
       saveAs(data, `${fileName}.xlsx`);
       setDownloadDataLoad(false)
+      getSuccessToast()
+
     };
 
   const downloadReportData = async (dashType, dashName, id) => {
@@ -260,6 +303,9 @@ const PowerBiDashboard = () => {
 
       try {
         setDownloadDataLoad(id)
+
+        getInfoToast()
+
         const jwtToken = localStorage.getItem("token");
         const response = await axios.get(url + "/api/model/revenue", {
           headers: { token: jwtToken },
@@ -274,6 +320,9 @@ const PowerBiDashboard = () => {
 
       try {
         setDownloadDataLoad(id)
+        getInfoToast()
+
+
 
         const jwtToken = localStorage.getItem("token");
         const response = await axios.get(url + "/api/model/clinical", {
@@ -291,6 +340,9 @@ const PowerBiDashboard = () => {
       try {
         setDownloadDataLoad(id)
 
+        getInfoToast()
+
+
         const jwtToken = localStorage.getItem("token");
         const response = await axios.get(url + "/api/model/equipment", {
           headers: { token: jwtToken },
@@ -306,6 +358,9 @@ const PowerBiDashboard = () => {
 
       try {
         setDownloadDataLoad(id)
+        getInfoToast()
+
+
 
         const jwtToken = localStorage.getItem("token");
         const response = await axios.get(url + "/api/model/inventory", {
@@ -323,6 +378,7 @@ const PowerBiDashboard = () => {
 
       try {
         setDownloadDataLoad(id)
+        getInfoToast()
 
         const jwtToken = localStorage.getItem("token");
         const response = await axios.get(url + "/api/model/inventory1", {
@@ -330,6 +386,7 @@ const PowerBiDashboard = () => {
         });
 
         const result = response.data
+        console.log(result)
         downloadDataIntoExcel(result, "Predicted Reams of Paper & Ink", id)
 
       } catch (error) {
@@ -339,15 +396,45 @@ const PowerBiDashboard = () => {
 
       try {
         setDownloadDataLoad(id)
+        getInfoToast()
 
-        const jwtToken = localStorage.getItem("token");
+
+
         const response = await axios.get(url + "/api/sales/vbak");
+  
+        setDownloadDataLoad(false)
+        downloadDataIntoExcel(response.data.data, "Sales Order Processing data", id)
 
-        const result = response.data.data
-        // const resultData = result.map(({MANDT, VBELN}) => ({MANDT, VBELN}))
+      } catch (error) {
+        console.log("Error while fetching", error)
+      }
+    }
+    else if (dashName === "Outbound Delivery Processing"){
 
-        // console.log(resultData)
-        downloadDataIntoExcel(result, "Sales Order Processing", id)
+      try {
+        setDownloadDataLoad(id)
+        getInfoToast()
+
+
+
+        const response = await axios.get(url + "/api/sales/likp");
+        
+        setDownloadDataLoad(false)
+        downloadDataIntoExcel(response.data.data, "Outbound Delivery Processing data", id)
+
+      } catch (error) {
+        console.log("Error while fetching", error)
+      }
+    }else if (dashName === "Billing & Invoicing"){
+
+      try {
+        setDownloadDataLoad(id)
+        getInfoToast()
+        const response = await axios.get(url + "/api/sales/vbrk");
+        console.log(response)
+        
+        setDownloadDataLoad(false)
+        downloadDataIntoExcel(response.data.data, "Billing & Invoicing data", id)
 
       } catch (error) {
         console.log("Error while fetching", error)
@@ -393,6 +480,7 @@ const PowerBiDashboard = () => {
   };
 
 
+
   const getDashboards = (activeDash) => {
     if (activeDash === "HANElytics") {
       return (
@@ -407,6 +495,7 @@ const PowerBiDashboard = () => {
           </h1>
           <div className="dashboard-section">
             {HANElyticsDashboards.map((type) => {
+              
               return (
                 <div key={type.headerText} className="dashboard-card">
                   <div className="bi-header-text">

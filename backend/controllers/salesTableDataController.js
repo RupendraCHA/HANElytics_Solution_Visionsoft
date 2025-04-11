@@ -24,8 +24,8 @@ export const getSalesTableDataFromVBAK = async (req, res) => {
     `;
     const result = await clientConn.exec(query);
     // const result = await clientConn.exec("SELECT * FROM VBAK");
-    const resultData = result.map(({MANDT, VBELN}) => ({MANDT, VBELN}))
-    // console.log(resultData)
+    const resultData = result.map(({VBELN, POSNR, MATNR, ARKTX, KWMENG,KBMENG,VDATU_ANA, NETPR,NETWR,VRKME, WERKS, PSTYV,FKREL}) => ({VBELN, POSNR, MATNR, ARKTX, KWMENG,KBMENG,VDATU_ANA, NETPR,NETWR,VRKME, WERKS, PSTYV,FKREL}))
+    console.log(resultData)
     res.status(200).json({ success: true, data: resultData });
   } catch (error) {
     console.error(error);
@@ -55,7 +55,8 @@ export const getSalesTableDataFromLIKP = async (req, res) => {
   try {
     clientConn.connect();
     const result = await clientConn.exec("SELECT * FROM LIKP");
-    res.status(200).json({ success: true, data: result });
+    const resultData = result.map(({VBELN,VSTEL,VKORG,LFART,WADAT,INCO1,INCO2,KUNAG,KUNNR,BTGEW,NTGEW,WAERK}) => ({VBELN,VSTEL,VKORG,LFART,WADAT,INCO1,INCO2,KUNAG,KUNNR,BTGEW,NTGEW,WAERK}))
+    res.status(200).json({ success: true, data: resultData });
   } catch (error) {
     console.log(error);
     res.status(500).send("Error Fetching Data");
@@ -79,13 +80,14 @@ export const getSalesTableDataFromLIPS = async (req, res) => {
   }
 };
 
-// Fetching LIPK (Sales Delivery Item) Table Data
+// Fetching Billing Header Table Data
 
 export const getSalesTableDataFromVBRK = async (req, res) => {
   try {
     clientConn.connect();
     const result = await clientConn.exec("SELECT * FROM VBRK");
-    res.status(200).json({ success: true, data: result });
+    const resultData = result.map(({VBELN,FKART,VBTYP,WAERK,VKORG,VTWEG,KONDA,INCO1,INCO2,ZTERM,BUKRS,NETWR,KUNRG,KUNAG}) => ({VBELN,FKART,VBTYP,WAERK,VKORG,VTWEG,KONDA,INCO1,INCO2,ZTERM,BUKRS,NETWR,KUNRG,KUNAG}))
+    res.status(200).json({ success: true, data: resultData });
   } catch (error) {
     console.log(error);
     res.status(500).send("Error Fetching Data");

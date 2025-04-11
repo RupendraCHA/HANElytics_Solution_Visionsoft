@@ -54,7 +54,7 @@ export const registerUser = async (req, res) => {
             const user = await newUser.save()
             const token = createToken(user._id)
             SendVerificationCode(newUser.email, verificationCode, newUser.firstname, newUser.lastname)
-            res.json({success: true, token, firstname: `${firstname} ${lastname}`, verificationCode, role})
+            res.json({success: true, token, firstname: `${firstname} ${lastname}`, verificationCode, role, email: email})
         } else {
             return res.json({success: false, message: "Enter Valid email"})
         }
@@ -136,7 +136,7 @@ export const loginUser = async (req, res) => {
         const token = createToken(user._id)
         // const token = jwt.sign({ email: user.email }, process.env.JWT_SECRET, { expiresIn: "7d" })
         // res.cookie("token", token)
-        res.json({success: true, token, name: `${user.firstname} ${user.lastname}`, message: "Login Successful", role: `${user.role}`})
+        res.json({success: true, token, name: `${user.firstname} ${user.lastname}`, message: "Login Successful", role: `${user.role}`, email: user.email})
     }
     catch (error) {
         console.log(error)
