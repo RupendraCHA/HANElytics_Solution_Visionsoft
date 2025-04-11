@@ -456,6 +456,21 @@ const PowerBiDashboard = () => {
         console.log("Error while fetching", error)
       }
     }
+    else if (dashName === "Supplier Order Overview"){
+
+      try {
+        setDownloadDataLoad(id)
+        getInfoToast()
+        const response = await axios.get(url + "/api/sales/ekko");
+        console.log(response)
+        
+        setDownloadDataLoad(false)
+        downloadDataIntoExcel(response.data.data, "Supplier Order Overview", id)
+
+      } catch (error) {
+        console.log("Error while fetching", error)
+      }
+    }
   }
 
   const getResultsAndDownloadElement = (dataModelName, id) => {
