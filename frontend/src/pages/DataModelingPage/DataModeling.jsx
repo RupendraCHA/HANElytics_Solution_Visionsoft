@@ -735,28 +735,30 @@ const DataModeling = () => {
                 </h4>
                 {dataModelOpen === "data-models" && (
                   <div className="open-tab">
-                    <p onClick={getNewsPaperDataFromMongoDB}>
-                      <LuArrowUpRight className="process-arrow" />
-                      Predicting Quantity of Demand for Distribution Center
-                    </p>
+                    
                     <p onClick={getInventoryDataFromMongoDB}>
                       <LuArrowUpRight className="process-arrow" />
-                      Reorder Point Quantity & Safety Stock Predictions for
-                      Inventory with & without Live-Data
+                      Reorder Point & Safety Stock prediction for Inventory with and
+                without Live data
                     </p>
                     <p onClick={getRevenueDataFromMongoDB}>
                       <LuArrowUpRight className="process-arrow" />
-                      Predictive Analytics for Revenue Demand Sensing Trends
+                      Revenue & Demand Sensing for Pharmaceuticals
+
                     </p>
                     <p onClick={getEquipmentDataFromMongoDB}>
                       <LuArrowUpRight className="process-arrow" />
-                      Equipment Risk Detection and Failure Prevention With
-                      Predictive Analytics
+                      Medical Equipment Risk Detection and Failure Prevention
+
                     </p>
                     <p onClick={getClinicalDataFromMongoDB}>
                       <LuArrowUpRight className="process-arrow" />
-                      Prediction of Reorder Point & Buffer Stock with Clinical
-                      Information
+                      Reorder Point & Safety Stock prediction for Clinical
+                drugs/Medicine
+                    </p>
+                    <p onClick={getNewsPaperDataFromMongoDB}>
+                      <LuArrowUpRight className="process-arrow" />
+                      Predicting Quantity of Demand for Distribution Center
                     </p>
                   </div>
                 )}
@@ -860,30 +862,31 @@ const DataModeling = () => {
                       </h4>
                       {dataModelOpen === "data-models" && (
                         <div className="mobile-open-tab">
-                          <p onClick={getNewsPaperDataFromMongoDB}>
-                            <LuArrowUpRight className="process-arrow" />
-                            Predicting Quantity of Demand for Distribution
-                            Center
-                          </p>
+                          
                           <p onClick={getInventoryDataFromMongoDB}>
                             <LuArrowUpRight className="process-arrow" />
-                            Reorder Point Quantity & Safety Stock Predictions
-                            for Inventory with & without Live-Data
+                            Reorder Point & Safety Stock prediction for Inventory with and
+                without Live data
                           </p>
                           <p onClick={getRevenueDataFromMongoDB}>
                             <LuArrowUpRight className="process-arrow" />
-                            Predictive Analytics for Revenue Demand Sensing
-                            Trends
+                            Revenue & Demand Sensing for Pharmaceuticals
+
                           </p>
                           <p onClick={getEquipmentDataFromMongoDB}>
                             <LuArrowUpRight className="process-arrow" />
-                            Equipment Risk Detection and Failure Prevention With
-                            Predictive Analytics
+                            Medical Equipment Risk Detection and Failure Prevention
+
                           </p>
                           <p onClick={getClinicalDataFromMongoDB}>
                             <LuArrowUpRight className="process-arrow" />
-                            Prediction of Reorder Point & Buffer Stock with
-                            Clinical Information
+                            Reorder Point & Safety Stock prediction for Clinical
+                drugs/Medicine
+                          </p>
+                          <p onClick={getNewsPaperDataFromMongoDB}>
+                            <LuArrowUpRight className="process-arrow" />
+                            Predicting Reams of Paper & Ink (Liters)
+
                           </p>
                         </div>
                       )}

@@ -24,6 +24,10 @@ import Accounts_receivable_pic from "./Accounts receivable.png"
 import BGImage_pic from "./BGImage.jpg"
 import DashboardImage from "./dashboardImage1.jpg"
 import CalenderClock from "./calenderClock.avif"
+import Inventory_model from "./Inventory_model.png"
+import Clinical_model from "./Clinical.png"
+import Equipment_model from "./Equipment.png"
+import Revenue_model from "./Revenue_model.png"
 
 
 
@@ -52,5 +56,9 @@ export const assets = {
     Accounts_receivable_pic,
     BGImage_pic,
     DashboardImage,
-    CalenderClock
+    CalenderClock,
+    Inventory_model,
+    Clinical_model,
+    Equipment_model,
+    Revenue_model
 }
