@@ -99,6 +99,97 @@ const DataModeling = () => {
   //   getInventoryDataFromMongoDB1()
   // }, [])
 
+  const sapModules = [
+    {
+      moduleName: "Order To Cash",
+      tableObject: [
+        {
+          tableId: 1,
+          tableName: "Sales Order Processing",
+          techName: "vbak"
+        },
+        {
+          tableId: 2,
+          tableName: "Outbound Delivery Processing",
+          techName: "likp"
+
+        },
+        {
+          tableId: 3,
+          tableName: "Billing & Invoicing",
+          techName: "vbrk"
+
+        },
+      ]
+    },
+    {
+      moduleName: "Procurement",
+      tableObject: [
+        {
+          tableId: 4,
+          tableName: "Supplier Order Overview",
+          techName: "ekko"
+        },
+        {
+          tableId: 5,
+          tableName: "Good Receipt",
+          techName: "matdoc"
+
+        },
+        {
+          tableId: 6,
+          tableName: "Purchase Requisition",
+          techName: "eban"
+
+        },
+      ]
+    },
+    {
+      moduleName: "Finance",
+      tableObject: [
+        {
+          tableId: 7,
+          tableName: "General Ledger",
+          techName: "acdoca1"
+        },
+        {
+          tableId: 8,
+          tableName: "Account Receivables",
+          techName: "acdoca3"
+
+        },
+        {
+          tableId: 9,
+          tableName: "Account Paybles",
+          techName: "acdoca2"
+
+        },
+      ]
+    },
+    {
+      moduleName: "Manufacturing",
+      tableObject: [
+        {
+          tableId: 10,
+          tableName: "Manufacturing Master Data",
+          techName: "plpo"
+
+        },
+        {
+          tableId: 11,
+          tableName: "Manufacturing Orders",
+          techName: "afvc"
+
+        },
+        {
+          tableId: 12,
+          tableName: "Production Planning",
+          techName: "afvc"
+        },
+      ]
+    },
+  ]
+
   const getDataAndInsightsButtons = () => {
     return (
       <div className="tab-buttons">
@@ -662,7 +753,6 @@ const DataModeling = () => {
       setHideShow(true);
       setEquipmentData(true);
       setNewsPaperData(true);
-
       setClinicalData(true);
       setSendData(true);
       setSendData1(true);
@@ -706,6 +796,13 @@ const DataModeling = () => {
 
     saveAs(data, `${fileName}.xlsx`);
   };
+
+  const getSAPHANAData = async (tableName) => {
+    console.log(tableName)
+    // if (tableName === "vbak"){
+    //   const response = await axios.get(url + "/api/sales/vbak");
+    // }
+  }
 
   return (
     <>
@@ -1026,6 +1123,29 @@ const DataModeling = () => {
               </h2>
               {/* Migrate Data From HANElytics System to SAP S/4 HANA:  */}
             </div>
+            {
+              sapModules.map((module, index) => (
+                <>
+                <h1 className="use-case-heading" onClick={handleResultsData}>
+              {module.moduleName}
+            </h1>
+            <div className="data-model-types">
+              {
+                module.tableObject.map((table, index) => (
+                  <h2 key={table.tableId}
+                className={inventoryData === true ? "model-name" : "active"}
+                onClick={() => getSAPHANAData(table.techName)}
+              >
+                <LuArrowUpRight className="process-arrow" />
+                {table.tableName}
+              </h2>
+                ))
+              }
+            </div>
+                </>
+              ))
+            }
+            
           </section>
           {hideShow && (
             // <div className='charts-section select-model-name empty-bg-image'>

@@ -880,6 +880,8 @@ const GrantAccess = () => {
                     <div key={index} className="active-user-details">
                       <h1>Manage Permissions to <span>{user.firstname} {user.lastname}</span></h1>
                       <div>
+                      <button onClick={setAccessData} style={{marginRight: "10px"}}>Give Access</button>
+
                         <button onClick={() => {
                       setGetAllDashboardsData(true)
 
@@ -891,7 +893,6 @@ const GrantAccess = () => {
                           }, 1000)
                         }
                         }>View permissions</button>
-                        <button onClick={setAccessData} style={{marginLeft: "10px"}}>Give Access</button>
 
                       </div>
                     </div>
@@ -1138,7 +1139,7 @@ const GrantAccess = () => {
                         setIsUserClicked(true)
                         setViewPermittedDash(false)
                       }}
-                      >Set Permissions</button>
+                      >Back</button>
                     </div>
                   ))}
                         <div>

@@ -214,7 +214,6 @@ function InitialPage() {
             <h1>
               <FaFileAlt className="icon" />
               <AiTwotoneDatabase className="icon" />
-              {/* Turn data into decisions with AI-driven insights */}
               HANElytics simplifies predictive insights by turning complex data into clear dashboards, intuitive graphs, and structured tables.
               <FaChartBar className="icon" />
               <FaChartPie className="icon" />
