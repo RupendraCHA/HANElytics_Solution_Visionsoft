@@ -218,7 +218,18 @@ li:hover {
         width: 20px;
         height: 20px;
       }
-      .icon1{
+      .icon{
+        display: none;
+      }
+    }
+  }
+}
+@media (min-width: 577px) and (max-width: 768px){
+  .hero-section{
+    margin: 10px;
+    h1{
+
+      .icon{
         display: none;
       }
     }
@@ -379,7 +390,7 @@ li:hover {
   align-items: center;
 
   img{
-    width: 400px;
+    width: 20vw;
   }
 }
 @media (max-width: 768px){
@@ -388,7 +399,7 @@ li:hover {
     /* align-items: flex-start; */
 
     img{
-      width: 200px;
+      width: 50vw;
       border-radius: 20px;
       
     }

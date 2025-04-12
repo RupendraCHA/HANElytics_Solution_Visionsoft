@@ -108,6 +108,30 @@ function InitialPage() {
     
   ];
 
+  const capabilities = [
+    {
+        id: 1,
+        text: "Seamless registration & secure login system"
+    },
+    {
+        id: 2,
+        text: "Role-based access (Admin/User) for controlled experience"
+    },
+    {
+        id: 3,
+        text: "Real-time insights powered by Alteryx and Power BI"
+    },
+    {
+        id: 4,
+        text: "Unified view of datasets, predictions, graphs, and dashboards"
+    },
+    {
+        id: 5,
+        text: "Downloadable results for portability and analysis"
+    },
+
+  ]
+
   return (
     <>
       <div className="bg-image-container">
@@ -188,9 +212,10 @@ function InitialPage() {
           </div>
           <div className="hero-section">
             <h1>
-              <FaFileAlt className="icon icon1" />
+              <FaFileAlt className="icon" />
               <AiTwotoneDatabase className="icon" />
-              Turn data into decisions with AI-driven insights
+              {/* Turn data into decisions with AI-driven insights */}
+              HANElytics simplifies predictive insights by turning complex data into clear dashboards, intuitive graphs, and structured tables.
               <FaChartBar className="icon" />
               <FaChartPie className="icon" />
             </h1>

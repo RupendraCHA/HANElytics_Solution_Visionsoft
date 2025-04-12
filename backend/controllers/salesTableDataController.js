@@ -126,7 +126,137 @@ export const getFilesDataFromEKKO = async (req, res) => {
     //   JOIN VBKD ON VBAP.VBELN = VBKD.VBELN
     // `;
     // const result = await clientConn.exec(query);
-    res.status(200).json({ success: true, data: result });
+    const resultData = result.map(({EBELN,BUKRS,BSTYP,BSART,LIFNR,MATNR,EKORG,EKGRP}) => ({EBELN,BUKRS,BSTYP,BSART,LIFNR,MATNR,EKORG,EKGRP}))
+    res.status(200).json({ success: true, data: resultData });
+  } catch (error) {
+    console.log(error);
+    res.status(500).send("Error Fetching Data");
+  } finally {
+    clientConn.disconnect();
+  }
+};
+export const getFilesDataFromEBAN = async (req, res) => {
+  try {
+    clientConn.connect();
+    const result = await clientConn.exec(`SELECT
+        *
+    FROM
+        EBAN`);
+    // const query = `SELECT VBAK.*, VBAP.*, VBKD.*
+    //   FROM VBAK
+    //   JOIN VBAP ON VBAK.VBELN = VBAP.VBELN
+    //   JOIN VBKD ON VBAP.VBELN = VBKD.VBELN
+    // `;
+    // const result = await clientConn.exec(query);
+    const resultData = result.map(({BANFN,BNFPO,BSART,EKGRP,MATNR,WERKS,LGORT,LIFNR,EKORG, SAKTO, KOSTL, KOKRS}) => ({BANFN,BNFPO,BSART,EKGRP,MATNR,WERKS,LGORT,LIFNR,EKORG, SAKTO, KOSTL, KOKRS}))
+
+    res.status(200).json({ success: true, data: resultData });
+  } catch (error) {
+    console.log(error);
+    res.status(500).send("Error Fetching Data");
+  } finally {
+    clientConn.disconnect();
+  }
+};
+export const getFilesDataFromMATDOC = async (req, res) => {
+  try {
+    clientConn.connect();
+    const result = await clientConn.exec(`SELECT
+        *
+    FROM
+        MATDOC`);
+    const resultData = result.map(({MATNR,WERKS,LGORT,BUKRS,SAKL3,ERFME,MJAHR,EBELN,LIFNR
+    }) => ({MATNR,WERKS,LGORT,BUKRS,SAKL3,ERFME,MJAHR,EBELN,LIFNR}))
+    res.status(200).json({ success: true, data: resultData });
+  } catch (error) {
+    console.log(error);
+    res.status(500).send("Error Fetching Data");
+  } finally {
+    clientConn.disconnect();
+  }
+};
+export const getFilesDataFromACDOCAGeneralLedger = async (req, res) => {
+  try {
+    clientConn.connect();
+    const result = await clientConn.exec(`SELECT
+        *
+    FROM
+        ACDOCA`);
+    const resultData = result.map(({RLDNR,RBUKRS,GJAHR,BELNR,DOCLN,RACCT,DRCRK,BUDAT,BLDAT
+    }) => ({RLDNR,RBUKRS,GJAHR,BELNR,DOCLN,RACCT,DRCRK,BUDAT,BLDAT}))
+    res.status(200).json({ success: true, data: resultData });
+  } catch (error) {
+    console.log(error);
+    res.status(500).send("Error Fetching Data");
+  } finally {
+    clientConn.disconnect();
+  }
+};
+export const getFilesDataFromACDOCAPaybles = async (req, res) => {
+  try {
+    clientConn.connect();
+    const result = await clientConn.exec(`SELECT
+        *
+    FROM
+        ACDOCA`);
+    const resultData = result.map(({
+            RLDNR,RBUKRS, GJAHR,BELNR,DOCLN,LIFNR,RACCT,DRCRK,HSL,TSL,KSL,BUDAT,BLDAT,MONAT,UMSKZ,AWTYP,AWKEY,BUKRS,BLART,CPUDT
+    }) => ({RLDNR,RBUKRS, GJAHR,BELNR,DOCLN,LIFNR,RACCT,DRCRK,HSL,TSL,KSL,BUDAT,BLDAT,MONAT,UMSKZ,AWTYP,AWKEY,BUKRS,BLART,CPUDT}))
+    res.status(200).json({ success: true, data: resultData });
+  } catch (error) {
+    console.log(error);
+    res.status(500).send("Error Fetching Data");
+  } finally {
+    clientConn.disconnect();
+  }
+};
+export const getFilesDataFromACDOCAReceivables = async (req, res) => {
+  try {
+    clientConn.connect();
+    const result = await clientConn.exec(`SELECT
+        *
+    FROM
+        ACDOCA`);
+    const resultData = result.map(({
+        RLDNR,RBUKRS, GJAHR,BELNR,DOCLN,KUNNR,RACCT,DRCRK,HSL,TSL,KSL,BUDAT,BLDAT,MONAT,UMSKZ,AWTYP,AWKEY,BUKRS ,BLART,CPUDT,BUZE
+    }) => ({RLDNR,RBUKRS, GJAHR,BELNR,DOCLN,KUNNR,RACCT,DRCRK,HSL,TSL,KSL,BUDAT,BLDAT,MONAT,UMSKZ,AWTYP,AWKEY,BUKRS ,BLART,CPUDT,BUZE}))
+    res.status(200).json({ success: true, data: resultData });
+  } catch (error) {
+    console.log(error);
+    res.status(500).send("Error Fetching Data");
+  } finally {
+    clientConn.disconnect();
+  }
+};
+export const getFilesDataFromPLPO = async (req, res) => {
+  try {
+    clientConn.connect();
+    const result = await clientConn.exec(`SELECT
+        *
+    FROM
+        PLPO`);
+    const resultData = result.map(({
+            PLNTY,PLNNR,ZAEHL,DATUV,LOEKZ,PARKZ,ANDAT,ANNAM,STEUS,ARBID,OBJTY,WERKS,VINTV,MEINH,UMREN,UMREZ,BMSCH
+    }) => ({PLNTY,PLNNR,ZAEHL,DATUV,LOEKZ,PARKZ,ANDAT,ANNAM,STEUS,ARBID,OBJTY,WERKS,VINTV,MEINH,UMREN,UMREZ,BMSCH}))
+    res.status(200).json({ success: true, data: resultData });
+  } catch (error) {
+    console.log(error);
+    res.status(500).send("Error Fetching Data");
+  } finally {
+    clientConn.disconnect();
+  }
+};
+export const getFilesDataFromAFVC = async (req, res) => {
+  try {
+    clientConn.connect();
+    const result = await clientConn.exec(`SELECT
+        *
+    FROM
+        AFVC`);
+    const resultData = result.map(({
+      AUFPL,PLNFL,PLNKN,PLNAL,PLNTY,VINTV,PLNNR,ZAEHL,VORNR,STEUS,ARBID,WERKS,LTXA1
+    }) => ({AUFPL,PLNFL,PLNKN,PLNAL,PLNTY,VINTV,PLNNR,ZAEHL,VORNR,STEUS,ARBID,WERKS,LTXA1}))
+    res.status(200).json({ success: true, data: resultData });
   } catch (error) {
     console.log(error);
     res.status(500).send("Error Fetching Data");

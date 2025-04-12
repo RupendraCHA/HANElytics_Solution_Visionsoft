@@ -14,6 +14,13 @@ import {
   getFilesDataFromEKKO,
   getFilesDataFromEKPO,
   getFilesDataFromSRGBTBREL,
+  getFilesDataFromEBAN,
+  getFilesDataFromMATDOC,
+  getFilesDataFromACDOCAGeneralLedger,
+  getFilesDataFromACDOCAPaybles,
+  getFilesDataFromACDOCAReceivables,
+  getFilesDataFromPLPO,
+  getFilesDataFromAFVC,
 } from "../controllers/salesTableDataController.js";
 const salesRouter = express.Router();
 
@@ -25,6 +32,14 @@ salesRouter.get("/vbrk", getSalesTableDataFromVBRK);
 salesRouter.get("/vbrp", getSalesTableDataFromVBRP);
 salesRouter.get("/ekko", getFilesDataFromEKKO);
 salesRouter.get("/ekpo", getFilesDataFromEKPO);
+salesRouter.get("/eban", getFilesDataFromEBAN);
+salesRouter.get("/matdoc", getFilesDataFromMATDOC);
+salesRouter.get("/acdoca1", getFilesDataFromACDOCAGeneralLedger);
+salesRouter.get("/acdoca2", getFilesDataFromACDOCAPaybles);
+salesRouter.get("/acdoca3", getFilesDataFromACDOCAReceivables);
+salesRouter.get("/plpo", getFilesDataFromPLPO);
+salesRouter.get("/afvc", getFilesDataFromAFVC);
+
 salesRouter.get("/srgbtbrel", getFilesDataFromSRGBTBREL);
 salesRouter.get(
   "/:documentNumber/orderItemData",

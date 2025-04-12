@@ -430,9 +430,6 @@ const PowerBiDashboard = () => {
       try {
         setDownloadDataLoad(id)
         getInfoToast()
-
-
-
         const response = await axios.get(url + "/api/sales/likp");
         
         setDownloadDataLoad(false)
@@ -466,7 +463,119 @@ const PowerBiDashboard = () => {
         console.log(response)
         
         setDownloadDataLoad(false)
-        downloadDataIntoExcel(response.data.data, "Supplier Order Overview", id)
+        downloadDataIntoExcel(response.data.data, "Supplier Order Overview data", id)
+
+      } catch (error) {
+        console.log("Error while fetching", error)
+      }
+    }
+    else if (dashName === "Purchase Requisition"){
+
+      try {
+        setDownloadDataLoad(id)
+        console.log(id)
+        getInfoToast()
+        const response = await axios.get(url + "/api/sales/eban");
+        console.log(response)
+        
+        setDownloadDataLoad(false)
+        downloadDataIntoExcel(response.data.data, "Purchase Requisition data", id)
+
+      } catch (error) {
+        console.log("Error while fetching", error)
+      }
+    }
+    else if (dashName === "Goods Receipt"){
+
+      try {
+        setDownloadDataLoad(id)
+        console.log(id)
+        getInfoToast()
+        const response = await axios.get(url + "/api/sales/matdoc");
+        console.log(response)
+        
+        setDownloadDataLoad(false)
+        downloadDataIntoExcel(response.data.data, "Goods Receipt data", id)
+
+      } catch (error) {
+        console.log("Error while fetching", error)
+      }
+    }
+    else if (dashName === "General Ledger"){
+
+      try {
+        setDownloadDataLoad(id)
+        console.log(id)
+        getInfoToast()
+        const response = await axios.get(url + "/api/sales/acdoca1");
+        console.log(response)
+        
+        setDownloadDataLoad(false)
+        downloadDataIntoExcel(response.data.data, "General Ledger data", id)
+
+      } catch (error) {
+        console.log("Error while fetching", error)
+      }
+    }
+    else if (dashName === "Account Paybles"){
+
+      try {
+        setDownloadDataLoad(id)
+        console.log(id)
+        getInfoToast()
+        const response = await axios.get(url + "/api/sales/acdoca2");
+        console.log(response)
+        
+        setDownloadDataLoad(false)
+        downloadDataIntoExcel(response.data.data, "Account Paybles data", id)
+
+      } catch (error) {
+        console.log("Error while fetching", error)
+      }
+    }
+    else if (dashName === "Account Receivables"){
+
+      try {
+        setDownloadDataLoad(id)
+        console.log(id)
+        getInfoToast()
+        const response = await axios.get(url + "/api/sales/acdoca3");
+        console.log(response)
+        
+        setDownloadDataLoad(false)
+        downloadDataIntoExcel(response.data.data, "Account Receivables data", id)
+
+      } catch (error) {
+        console.log("Error while fetching", error)
+      }
+    }
+    else if (dashName === "Manufacturing Master Data"){
+
+      try {
+        setDownloadDataLoad(id)
+        console.log(id)
+        getInfoToast()
+        const response = await axios.get(url + "/api/sales/plpo");
+        console.log(response)
+        
+        setDownloadDataLoad(false)
+        downloadDataIntoExcel(response.data.data, "Manufacturing Master data", id)
+
+      } catch (error) {
+        console.log("Error while fetching", error)
+      }
+    }
+    else if (dashName === "Manufacturing Orders"){
+
+      try {
+        setDownloadDataLoad(id)
+        console.log(id)
+        getInfoToast()
+        const response = await axios.get(url + "/api/sales/afvc");
+        console.log(response)
+        
+        setDownloadDataLoad(false)
+        downloadDataIntoExcel(response.data.data, "Manufacturing Orders data", id)
 
       } catch (error) {
         console.log("Error while fetching", error)
