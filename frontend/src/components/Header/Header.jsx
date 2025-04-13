@@ -30,7 +30,7 @@ const Header = ({ page = "" }) => {
     setToken("");
     setUsername("");
     setUserRole("");
-    navigate("/login");
+    navigate("/");
   };
 
   const handleIsMenuOpened = () => {

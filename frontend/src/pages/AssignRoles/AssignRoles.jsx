@@ -15,13 +15,33 @@ const AssignRoles = () => {
   const { userRole } = useContext(StoreContext);
   const navigate = useNavigate()
 
+  const getSuccessToast = () => {
+      return (
+        toast.error("You are not authorized to grant access.", {
+          position: "top-center",
+          closeButton: CustomCloseIcon,
+          style: {
+            fontSize: '16px',
+            padding: '8px 12px',
+            height: '30px',
+            borderRadius: '8px',
+            color: "#fff",
+            backgroundColor: "#000",
+            fontWeight: "600"
+  
+          },
+        })
+      )
+    }
+
   useEffect(() => {
     const role = localStorage.getItem('role')
-    if (role === "CEO" || role === "CTO" || role === "COO"){
+    const token = localStorage.getItem('token')
+    if (role === "CEO" || role === "CTO" || role === "COO" && token){
       navigate("/assignRoles")
     }else {
       navigate("/home")
-      toast.error("You are not authorized to grant access.")
+      getSuccessToast()
     }
   },[])
   return (

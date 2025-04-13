@@ -22,7 +22,7 @@ useEffect(() => {
     if (jwtToken) {
         navigate("/home")
     }else {
-        navigate("/login")
+        navigate("/")
     }
 },[])
 

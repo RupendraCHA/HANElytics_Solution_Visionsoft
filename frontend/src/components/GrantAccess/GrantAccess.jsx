@@ -79,9 +79,16 @@ const GrantAccess = () => {
     // console.log(allDashboards.data.allDashboards)
   };
 
+  const startTheServer = async () => {
+    const response = await axios.get( url);
+    console.log(response.data.message)
+
+}
+
   useEffect(() => {
     getAllUsersList();
-    getAllDashboards();    
+    getAllDashboards(); 
+    startTheServer()  
   }, []);
 
 
@@ -878,7 +885,14 @@ const GrantAccess = () => {
                       <>
                       {userSpecificData.slice(0,1).map((user, index) => (
                     <div key={index} className="active-user-details">
-                      <h1>Manage Permissions to <span>{user.firstname} {user.lastname}</span></h1>
+                      <h1>Manage Permissions to <span>{user.firstname} {user.lastname}</span>
+                      <p style={{fontSize: "13px", marginBottom: '2px'}}>To grant access, select the checkbox on the left side of each dashboard, then click the 'Give Access' button at the right.
+                      <p style={{fontSize: "13px"}}>To view which dashboards a user has access to, click on 'View Permissions</p>
+
+                      </p>
+                      {/* To view which dashboards a user has access to, click on 'View Permissions' */}
+                        
+                      </h1>
                       <div>
                       <button onClick={setAccessData} style={{marginRight: "10px"}}>Give Access</button>
 

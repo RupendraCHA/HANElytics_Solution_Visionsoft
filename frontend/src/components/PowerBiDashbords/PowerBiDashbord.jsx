@@ -866,7 +866,7 @@ const PowerBiDashboard = () => {
     localStorage.removeItem("token");
     localStorage.removeItem("username");
     localStorage.removeItem("role");
-    navigate("/login");
+    navigate("/");
   };
 
   const openMsg = () => {

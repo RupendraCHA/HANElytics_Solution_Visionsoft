@@ -60,7 +60,7 @@ const DataModeling = () => {
     if (jwtToken) {
       navigate("/dataModeling");
     } else {
-      navigate("/login");
+      navigate("/");
     }
   }, []);
 
@@ -247,7 +247,7 @@ const DataModeling = () => {
     localStorage.removeItem("token");
     localStorage.removeItem("username");
     localStorage.removeItem("role");
-    navigate("/login");
+    navigate("/");
   };
 
   const sendDataToSAP = async () => {
