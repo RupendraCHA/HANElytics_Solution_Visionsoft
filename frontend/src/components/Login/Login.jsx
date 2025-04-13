@@ -101,12 +101,18 @@ function Login() {
       <Navbar />
       {changePassword && (
         <div className="bg-container-login d-flex justify-content-center align-items-center bg-secondary vh-100">
-          <div className="login-page" style={{ backgroundColor: "#0787e3"}}>
+          <div className="login-page" style={{ 
+            // backgroundColor: "#0787e3",
+            backgroundColor: "#323f4b",
+            }}>
             <h4>Explore Our HANElytics AI/ML Solutions</h4>
           </div>
           <div
             className="p-4 text-white login-card"
-            style={{ height: "60vh", backgroundColor: "#1e66d9" }}
+            style={{ height: "60vh",
+              //  backgroundColor: "#1e66d9",
+               backgroundColor: "#323f4b",
+              }}
           >
             <h2 style={{ textAlign: "center" }}>Login</h2>
             <form onSubmit={handleSubmit}>
