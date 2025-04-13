@@ -481,3 +481,28 @@ color: #0c2cbd;
     display: none;
   }
 }
+.pages-container{
+  margin-top: 20px;
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  position: sticky;
+}
+.page{
+  border: none;
+  padding: 4px 10px;
+  /* border: 2px solid #fff; */
+  border-radius: 6px;
+  font-weight: 600;
+  font-size: 14px;
+  color: #fff;
+  box-shadow: 2px 2px 2px #000;
+}
+.active-page{
+  background-color: #1d58c5;
+
+}
+.inactive-page{
+  background-color: #8080806b;
+
+}

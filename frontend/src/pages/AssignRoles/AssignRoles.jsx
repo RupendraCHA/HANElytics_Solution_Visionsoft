@@ -15,9 +15,14 @@ const AssignRoles = () => {
   const { userRole } = useContext(StoreContext);
   const navigate = useNavigate()
 
-  const getSuccessToast = () => {
+  const CustomCloseIcon = ({ closeToast }) => (
+    <span onClick={closeToast} style={{ color: 'red', cursor: 'pointer', fontWeight: 'bold', display: "flex", alignItems: "center" }}>
+      ✖
+    </span>
+  );
+  const getSuccessToast = (message) => {
       return (
-        toast.error("You are not authorized to grant access.", {
+        toast.error(message, {
           position: "top-center",
           closeButton: CustomCloseIcon,
           style: {
@@ -41,7 +46,12 @@ const AssignRoles = () => {
       navigate("/assignRoles")
     }else {
       navigate("/home")
-      getSuccessToast()
+      if (token){
+
+        getSuccessToast("You are not authorized to grant access.")
+      }else{
+        getSuccessToast("Login before view.")
+      }
     }
   },[])
   return (

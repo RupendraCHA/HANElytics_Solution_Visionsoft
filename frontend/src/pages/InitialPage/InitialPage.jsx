@@ -263,7 +263,7 @@ function InitialPage() {
               <div className="button-size">
                 <Link
                   to="/register"
-                  className="bg-warning rounded-2 p-2 text-white mobile-button"
+                  className="bg-warning rounded-2 p-2 text-black mobile-button"
                   style={{ fontWeight: 600, textDecoration: "none" }}
                 >
                   Register

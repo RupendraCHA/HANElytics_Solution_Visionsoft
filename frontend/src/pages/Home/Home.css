@@ -1,9 +1,12 @@
 .home-bg{
-    background-image: url("https://res.cloudinary.com/dvxkeeeqs/image/upload/v1729244582/image4_wn3xcb.jpg");
+    /* background-image: url("https://res.cloudinary.com/dvxkeeeqs/image/upload/v1729244582/image4_wn3xcb.jpg"); */
+  background-image: linear-gradient(to bottom, #0c1ee2, #5b7dcd);
+
     background-size: cover;
-    height: 100vh;
+    min-height: 100vh;
     display: flex;
     padding: 30px;
+    flex-direction: column;
 }
 .left{
     /* flex: 1; */
@@ -30,13 +33,14 @@
         text-decoration: none;
         color: #fff;
         background-color: black;
+        /* background-color: #0384ed; */
         border-radius: 15px;
         border: none;
         padding: 12px;
         margin: 12px;
         font-weight: bold;
         font-size: 20px;
-        border: 2px solid white;
+        border: 2px solid #fff;
     }
     b{
         color: white;

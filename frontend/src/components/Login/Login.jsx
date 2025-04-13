@@ -98,26 +98,27 @@ function Login() {
 
   return (
     <>
-      <Navbar />
       {changePassword && (
         <div className="bg-container-login d-flex justify-content-center align-items-center bg-secondary vh-100">
           <div className="login-page" style={{ 
             // backgroundColor: "#0787e3",
-            backgroundColor: "#323f4b",
+            backgroundColor: "#fff",
             }}>
-            <h4>Explore Our HANElytics AI/ML Solutions</h4>
+              {/* Explore Our HANElytics AI/ML Solutions */}
+            {/* <h4 style={{fontSize: "16px"}}>Explore Our HANElytics AI/ML Solutions</h4> */}
+            <h4 style={{fontSize: "22px"}}>HANElytics simplifies predictive insights by turning complex data into clear dashboards, intuitive graphs, and structured tables and many more.</h4>
           </div>
           <div
-            className="p-4 text-white login-card"
+            className="p-4  login-card"
             style={{ height: "60vh",
               //  backgroundColor: "#1e66d9",
-               backgroundColor: "#323f4b",
+               backgroundColor: "#fff",
               }}
           >
-            <h2 style={{ textAlign: "center" }}>Login</h2>
+            <h2 style={{ textAlign: "center", fontWeight: "600" }}>Login</h2>
             <form onSubmit={handleSubmit}>
               <div className="mb-3">
-                <label htmlFor="email">
+                <label htmlFor="email" style={{color: "#000"}}>
                   <strong>Email</strong><span className="required-mark">*</span>
                 </label>
                 <input
@@ -131,7 +132,7 @@ function Login() {
                 />
               </div>
               <div className="mb-3">
-                <label htmlFor="password">
+                <label htmlFor="password" style={{color: "#000"}}>
                   <strong>Password</strong><span className="required-mark">*</span>
                 </label>
                 <input
@@ -160,8 +161,8 @@ function Login() {
               <p style={{ fontWeight: "bold" }}>Don't have an account?</p>
               <Link
                 to="/register"
-                className="register btn btn-default border w-100 rounded-0 text-decoration-none"
-                style={{ fontWeight: "600"}}
+                className="register bg-warning btn btn-default border w-100 rounded-0 text-decoration-none"
+                style={{ fontWeight: "600", opacity: "0.7"}}
               >
                 Register
               </Link>

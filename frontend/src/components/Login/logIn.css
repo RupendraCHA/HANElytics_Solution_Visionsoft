@@ -21,9 +21,9 @@
   align-items: center;
   width: 300px;
   border-radius: 20px 0px 0px 20px;
-  border-right: 1px solid #fff;
+  border-right: 1px solid #000;
   h4 {
-    width: 180px;
+    /* width: 180px; */
     text-align: center;
     color: white;
     background-color: #000;
@@ -31,6 +31,7 @@
     border-radius: 6px;
     box-shadow: 2px 2px 2px #c6ccc6;
     font-size: 30px;
+    margin: 10px;
   }
 }
 
@@ -46,6 +47,7 @@
   flex-direction: column;
   justify-content: center;
   align-items: center; */
+  color: #000;
 }
 @media screen and (min-width: 576px) {
   .login-card {
@@ -72,8 +74,8 @@
   cursor: pointer;
 
   span {
-    background-color: #fff;
-    color: black;
+    background-color: #323f4b;
+    color: white;
     margin-top: 8px;
     padding: 2px 10px;
     border-radius: 4px;
@@ -176,7 +178,7 @@
   }
 }
 .register{
-  background-color: #ffff008e;
+  background-color: #2c8cb88e;
 }
 .register:hover{
   background-color: #000;
@@ -184,7 +186,10 @@
 
 }
 .login{
-  background-color: yellow;
+  /* background-color: #0e91d7; */
+  background-color: #082ccd;
+  color: #fff;
+
 }
 .login:hover{
   background-color: #000;

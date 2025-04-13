@@ -133,7 +133,6 @@ function SignUp() {
 
   return (
     <>
-      <Navbar />
       {isClickedRegister && (
         <div className="bg-container-signup">
           <div className="register-heading">

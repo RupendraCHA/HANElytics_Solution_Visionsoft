@@ -121,6 +121,7 @@ li:hover {
   background-image: linear-gradient(to bottom, #0c1ee2, #5b7dcd);
   object-fit: cover;
   min-height: 100vh;
+  padding-top: 10px;
 }
 .button-size {
   margin-right: 20px;

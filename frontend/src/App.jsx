@@ -29,8 +29,17 @@ const App = () => {
     <ToastContainer />
     <Routes>
       <Route exact path='/' element={<InitialPage />}></Route>
-      <Route exact path='/register' element={<SignUp />}></Route>
-      <Route exact path='/login' element={<Login />}></Route>
+      <Route exact path='/register' element={
+        <>
+        <Navbar page="signup"/>
+        <SignUp />
+        </>
+        }></Route>
+      <Route exact path='/login' element={<>
+        <Navbar page="login"/>
+        <Login />
+      </>
+        }></Route>
       <Route exact path='/home' element={
         <>
         {/* // <Header page="Grant Access"/> */}
