@@ -18,9 +18,9 @@ const port = process.env.PORT;
 app.use(express.json());
 app.use(
   cors({
-    // origin: ["http://localhost:5173"],
-    origin: ["http://localhost:5173","https://hanelytics-solution-visionsoft-1.onrender.com"], // origin
-    // origin: ["https://han-elytics-solution-visionsoft.vercel.app"], // origin
+    origin: ["http://localhost:5173",
+      "https://hanelytics-solution-visionsoft-1.onrender.com", 
+      "https://hanelytics-ai-ml-solutions-frontend.onrender.com"], // origin
     methods: ["GET", "POST", "PUT", "DELETE"],
     credentials: true,
   })
