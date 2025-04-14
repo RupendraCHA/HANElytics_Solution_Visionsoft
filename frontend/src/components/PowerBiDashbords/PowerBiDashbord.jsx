@@ -27,7 +27,7 @@ const PowerBiDashboard = () => {
   const { username, token, setToken, setUsername, url, storeUserDashboardData,
     setStoreUserDashboardData } =
     useContext(StoreContext);
-  
+
 
 
   const [isMenuOpened, setIsMenuOpened] = useState(false);
@@ -49,7 +49,7 @@ const PowerBiDashboard = () => {
     const userData = {
       email: email
     }
-    const userDashboards = await axios.post(url + "/api/dashboard/getUserDashboard",userData);
+    const userDashboards = await axios.post(url + "/api/dashboard/getUserDashboard", userData);
     setStoreUserDashboardData(userDashboards.data.userDashboards)
     console.log(userDashboards.data.userDashboards)
   }
@@ -81,7 +81,8 @@ const PowerBiDashboard = () => {
       image: `${assets.Inventory_pic}`,
     },
 
-    { id: 3,
+    {
+      id: 3,
       headerText: "Predicted Reams of Paper & Ink",
       dataText: "reports",
       url: "https://app.powerbi.com/groups/7235dce4-8159-49bc-ab3f-223406e7937b/reports/cdc28a63-1551-4b0c-8385-1150e1dd46ce/8c4854b8de780c3490e6?experience=power-bi&clientSideAuth=0",
@@ -156,7 +157,7 @@ const PowerBiDashboard = () => {
       id: 12,
       headerText: "Production Planning",
       dataText: "purchase",
-      url: "https://app.powerbi.com/groups/me/reports/d88fd1c6-d635-4ead-864c-b4971b81e11b/153be76ec304a615ddb5?experience=power-bi&clientSideAuth=0",
+      url: "https://app.powerbi.com/groups/84691a96-fa30-4e99-8ebf-da73b935661b/reports/41761ec2-cb0f-43c0-9219-d31f2acc352b/34ada5fd2d2e43cf537e?experience=power-bi",
       image: `${assets.Production_planning_pic}`,
     },
   ];
@@ -239,9 +240,9 @@ const PowerBiDashboard = () => {
   };
 
   const setIconValue = () => {
-    if (isIconClicked === false){
+    if (isIconClicked === false) {
       setIsIconClicked(true)
-    }else {
+    } else {
       setIsIconClicked(false)
     }
 
@@ -298,24 +299,24 @@ const PowerBiDashboard = () => {
 
   const downloadDataIntoExcel = (Array, fileName, id) => {
     console.log(id)
-      if (!Array || Array.length === 0) return;
-  
-      const wb = XLSX.utils.book_new();
-      const ws = XLSX.utils.json_to_sheet(Array);
-      XLSX.utils.book_append_sheet(wb, ws, "Data");
-  
-      const excelBuffer = XLSX.write(wb, { bookType: "xlsx", type: "array" });
-      const data = new Blob([excelBuffer], { type: "application/octet-stream" });
-      
-      saveAs(data, `${fileName}.xlsx`);
-      setDownloadDataLoad(false)
-      getSuccessToast()
+    if (!Array || Array.length === 0) return;
 
-    };
+    const wb = XLSX.utils.book_new();
+    const ws = XLSX.utils.json_to_sheet(Array);
+    XLSX.utils.book_append_sheet(wb, ws, "Data");
+
+    const excelBuffer = XLSX.write(wb, { bookType: "xlsx", type: "array" });
+    const data = new Blob([excelBuffer], { type: "application/octet-stream" });
+
+    saveAs(data, `${fileName}.xlsx`);
+    setDownloadDataLoad(false)
+    getSuccessToast()
+
+  };
 
   const downloadReportData = async (dashType, dashName, id) => {
     console.log(dashType, dashName)
-    if (dashName === "Revenue, Clinical and Equipment Failure" && dashType === "Revenue Results"){
+    if (dashName === "Revenue, Clinical and Equipment Failure" && dashType === "Revenue Results") {
 
       try {
         setDownloadDataLoad(id)
@@ -332,7 +333,7 @@ const PowerBiDashboard = () => {
       } catch (error) {
         console.log("Error while fetching", error)
       }
-    }else if (dashName === "Revenue, Clinical and Equipment Failure" && dashType === "Clinical Results"){
+    } else if (dashName === "Revenue, Clinical and Equipment Failure" && dashType === "Clinical Results") {
 
       try {
         setDownloadDataLoad(id)
@@ -351,7 +352,7 @@ const PowerBiDashboard = () => {
       } catch (error) {
         console.log("Error while fetching", error)
       }
-    }else if (dashName === "Revenue, Clinical and Equipment Failure" && dashType === "Equipment Results"){
+    } else if (dashName === "Revenue, Clinical and Equipment Failure" && dashType === "Equipment Results") {
 
       try {
         setDownloadDataLoad(id)
@@ -365,12 +366,12 @@ const PowerBiDashboard = () => {
         });
 
         const result = response.data
-        downloadDataIntoExcel(result, "Predictions of Equipment Risk Detection & Failure Prevention",id)
+        downloadDataIntoExcel(result, "Predictions of Equipment Risk Detection & Failure Prevention", id)
 
       } catch (error) {
         console.log("Error while fetching", error)
       }
-    }else if (dashName === "Inventory Reorder Point & Safety Stock predictions"){
+    } else if (dashName === "Inventory Reorder Point & Safety Stock predictions") {
 
       try {
         setDownloadDataLoad(id)
@@ -390,7 +391,7 @@ const PowerBiDashboard = () => {
         console.log("Error while fetching", error)
       }
     }
-    else if (dashName === "Predicted Reams of Paper & Ink"){
+    else if (dashName === "Predicted Reams of Paper & Ink") {
 
       try {
         setDownloadDataLoad(id)
@@ -408,13 +409,13 @@ const PowerBiDashboard = () => {
       } catch (error) {
         console.log("Error while fetching", error)
       }
-    }else if (dashName === "Sales Order Processing"){
+    } else if (dashName === "Sales Order Processing") {
 
       try {
         setDownloadDataLoad(id)
         getInfoToast()
         const response = await axios.get(url + "/api/sales/vbak");
-  
+
         setDownloadDataLoad(false)
         downloadDataIntoExcel(response.data.data, "Sales Order Processing data", id)
 
@@ -422,27 +423,27 @@ const PowerBiDashboard = () => {
         console.log("Error while fetching", error)
       }
     }
-    else if (dashName === "Outbound Delivery Processing"){
+    else if (dashName === "Outbound Delivery Processing") {
 
       try {
         setDownloadDataLoad(id)
         getInfoToast()
         const response = await axios.get(url + "/api/sales/likp");
-        
+
         setDownloadDataLoad(false)
         downloadDataIntoExcel(response.data.data, "Outbound Delivery Processing data", id)
 
       } catch (error) {
         console.log("Error while fetching", error)
       }
-    }else if (dashName === "Billing & Invoicing"){
+    } else if (dashName === "Billing & Invoicing") {
 
       try {
         setDownloadDataLoad(id)
         getInfoToast()
         const response = await axios.get(url + "/api/sales/vbrk");
         console.log(response)
-        
+
         setDownloadDataLoad(false)
         downloadDataIntoExcel(response.data.data, "Billing & Invoicing data", id)
 
@@ -450,7 +451,7 @@ const PowerBiDashboard = () => {
         console.log("Error while fetching", error)
       }
     }
-    else if (dashName === "Supplier Order Overview"){
+    else if (dashName === "Supplier Order Overview") {
 
       try {
         setDownloadDataLoad(id)
@@ -458,7 +459,7 @@ const PowerBiDashboard = () => {
         getInfoToast()
         const response = await axios.get(url + "/api/sales/ekko");
         console.log(response)
-        
+
         setDownloadDataLoad(false)
         downloadDataIntoExcel(response.data.data, "Supplier Order Overview data", id)
 
@@ -466,7 +467,7 @@ const PowerBiDashboard = () => {
         console.log("Error while fetching", error)
       }
     }
-    else if (dashName === "Purchase Requisition"){
+    else if (dashName === "Purchase Requisition") {
 
       try {
         setDownloadDataLoad(id)
@@ -474,7 +475,7 @@ const PowerBiDashboard = () => {
         getInfoToast()
         const response = await axios.get(url + "/api/sales/eban");
         console.log(response)
-        
+
         setDownloadDataLoad(false)
         downloadDataIntoExcel(response.data.data, "Purchase Requisition data", id)
 
@@ -482,7 +483,7 @@ const PowerBiDashboard = () => {
         console.log("Error while fetching", error)
       }
     }
-    else if (dashName === "Goods Receipt"){
+    else if (dashName === "Goods Receipt") {
 
       try {
         setDownloadDataLoad(id)
@@ -490,7 +491,7 @@ const PowerBiDashboard = () => {
         getInfoToast()
         const response = await axios.get(url + "/api/sales/matdoc");
         console.log(response)
-        
+
         setDownloadDataLoad(false)
         downloadDataIntoExcel(response.data.data, "Goods Receipt data", id)
 
@@ -498,7 +499,7 @@ const PowerBiDashboard = () => {
         console.log("Error while fetching", error)
       }
     }
-    else if (dashName === "General Ledger"){
+    else if (dashName === "General Ledger") {
 
       try {
         setDownloadDataLoad(id)
@@ -506,7 +507,7 @@ const PowerBiDashboard = () => {
         getInfoToast()
         const response = await axios.get(url + "/api/sales/acdoca1");
         console.log(response)
-        
+
         setDownloadDataLoad(false)
         downloadDataIntoExcel(response.data.data, "General Ledger data", id)
 
@@ -514,7 +515,7 @@ const PowerBiDashboard = () => {
         console.log("Error while fetching", error)
       }
     }
-    else if (dashName === "Account Paybles"){
+    else if (dashName === "Account Paybles") {
 
       try {
         setDownloadDataLoad(id)
@@ -522,7 +523,7 @@ const PowerBiDashboard = () => {
         getInfoToast()
         const response = await axios.get(url + "/api/sales/acdoca2");
         console.log(response)
-        
+
         setDownloadDataLoad(false)
         downloadDataIntoExcel(response.data.data, "Account Paybles data", id)
 
@@ -530,7 +531,7 @@ const PowerBiDashboard = () => {
         console.log("Error while fetching", error)
       }
     }
-    else if (dashName === "Account Receivables"){
+    else if (dashName === "Account Receivables") {
 
       try {
         setDownloadDataLoad(id)
@@ -538,7 +539,7 @@ const PowerBiDashboard = () => {
         getInfoToast()
         const response = await axios.get(url + "/api/sales/acdoca3");
         console.log(response)
-        
+
         setDownloadDataLoad(false)
         downloadDataIntoExcel(response.data.data, "Account Receivables data", id)
 
@@ -546,7 +547,7 @@ const PowerBiDashboard = () => {
         console.log("Error while fetching", error)
       }
     }
-    else if (dashName === "Manufacturing Master Data"){
+    else if (dashName === "Manufacturing Master Data") {
 
       try {
         setDownloadDataLoad(id)
@@ -554,7 +555,7 @@ const PowerBiDashboard = () => {
         getInfoToast()
         const response = await axios.get(url + "/api/sales/plpo");
         console.log(response)
-        
+
         setDownloadDataLoad(false)
         downloadDataIntoExcel(response.data.data, "Manufacturing Master data", id)
 
@@ -562,7 +563,7 @@ const PowerBiDashboard = () => {
         console.log("Error while fetching", error)
       }
     }
-    else if (dashName === "Manufacturing Orders"){
+    else if (dashName === "Manufacturing Orders") {
 
       try {
         setDownloadDataLoad(id)
@@ -570,7 +571,7 @@ const PowerBiDashboard = () => {
         getInfoToast()
         const response = await axios.get(url + "/api/sales/afvc");
         console.log(response)
-        
+
         setDownloadDataLoad(false)
         downloadDataIntoExcel(response.data.data, "Manufacturing Orders data", id)
 
@@ -599,29 +600,29 @@ const PowerBiDashboard = () => {
     if (dataModelName === "Revenue, Clinical and Equipment Failure") {
       return (
         <div className="bi-excel-download">
-          <div className="" onClick={setIconValue} style={{position:'relative'}}>
-              <IoIosArrowDropup title="Select Dashboard" className={`select-model ${isIconClicked === true ? "bi-arrow-down" : "bi-arrow-down-1"}`} />
-              {isIconClicked && <div style={{position: "absolute"}} className="report-icon-download-drop-down">
-                <p onClick={() => selectDashboard("Revenue Results")}>Revenue Data</p>
-                <p onClick={() => selectDashboard("Clinical Results")}>Clinical Data</p>
-                <p onClick={() => selectDashboard("Equipment Results")}>Equipment Data</p>
-              </div>}
+          <div className="" onClick={setIconValue} style={{ position: 'relative' }}>
+            <IoIosArrowDropup title="Select Dashboard" className={`select-model ${isIconClicked === true ? "bi-arrow-down" : "bi-arrow-down-1"}`} />
+            {isIconClicked && <div style={{ position: "absolute" }} className="report-icon-download-drop-down">
+              <p onClick={() => selectDashboard("Revenue Results")}>Revenue Data</p>
+              <p onClick={() => selectDashboard("Clinical Results")}>Clinical Data</p>
+              <p onClick={() => selectDashboard("Equipment Results")}>Equipment Data</p>
+            </div>}
           </div>
-          {downloadDataLoad === id ? <div className="bi-spinner"></div> :  <button
-            onClick={() => downloadReportData(selectedReport,dataModelName, id)}
+          {downloadDataLoad === id ? <div className="bi-spinner"></div> : <button
+            onClick={() => downloadReportData(selectedReport, dataModelName, id)}
             className="bi-excel-download-btn"
           >
             <MdOutlineDownload className="bi-excel-download-icon" />
             <RiFileExcel2Fill className="bi-excel-icon" />
           </button>}
-            
+
         </div>
       );
     } else {
       return (
         <div className="bi-excel-download">
           {downloadDataLoad === id ? <div className="bi-spinner"></div> : <button
-            onClick={() => downloadReportData("",dataModelName, id)}
+            onClick={() => downloadReportData("", dataModelName, id)}
             className="bi-excel-download-btn"
           >
             <MdOutlineDownload className="bi-excel-download-icon" />
@@ -648,7 +649,7 @@ const PowerBiDashboard = () => {
           </h1>
           <div className="dashboard-section">
             {HANElyticsDashboards.map((type) => {
-              
+
               return (
                 <div key={type.headerText} className="dashboard-card">
                   <div className="bi-header-text">
@@ -667,7 +668,7 @@ const PowerBiDashboard = () => {
                     // onClick={() => login(`${type.dataText}, ${type.url}`)}
                     style={{ position: "relative" }}
                   >
-                    
+
                     <a href={type.url} target="_blank">
                       View Dashboard
                     </a>
@@ -768,7 +769,7 @@ const PowerBiDashboard = () => {
                     <p
                       style={{ position: "absolute", top: "6px", right: "8px" }}
                     >
-                      {getResultsAndDownloadElement(`${type.headerText}`,`${type.id}`)}
+                      {getResultsAndDownloadElement(`${type.headerText}`, `${type.id}`)}
                     </p>
                   </button>
                 </div>
@@ -815,7 +816,7 @@ const PowerBiDashboard = () => {
                     <p
                       style={{ position: "absolute", top: "6px", right: "8px" }}
                     >
-                      {getResultsAndDownloadElement(`${type.headerText}`,`${type.id}`)}
+                      {getResultsAndDownloadElement(`${type.headerText}`, `${type.id}`)}
                     </p>
                   </button>
                 </div>
@@ -862,7 +863,7 @@ const PowerBiDashboard = () => {
                     <p
                       style={{ position: "absolute", top: "6px", right: "8px" }}
                     >
-                      {getResultsAndDownloadElement(`${type.headerText}`,`${type.id}`)}
+                      {getResultsAndDownloadElement(`${type.headerText}`, `${type.id}`)}
                     </p>
                   </button>
                 </div>
@@ -908,11 +909,10 @@ const PowerBiDashboard = () => {
             <h1
               key={index}
               onClick={() => showDashboards(`${eachTab.activeText}`)}
-              className={`powerbi-dashboard-tab-item ${
-                activeDashboard === `${eachTab.activeText}`
+              className={`powerbi-dashboard-tab-item ${activeDashboard === `${eachTab.activeText}`
                   ? "active-dashboard-btn"
                   : ""
-              }`}
+                }`}
             >
               <img
                 src={eachTab.imageUrl}
@@ -921,18 +921,17 @@ const PowerBiDashboard = () => {
               />
               {eachTab.tabName}
               <MdKeyboardArrowUp
-                className={`bi-arrow ${
-                  activeDashboard === `${eachTab.activeText}`
+                className={`bi-arrow ${activeDashboard === `${eachTab.activeText}`
                     ? "bi-arrow-down"
                     : ""
-                }`}
+                  }`}
               />
             </h1>
           ))}
           <h1
             className="insights-btn"
             onClick={() => navigate("/dataModeling")}
-            // onClick={() => navigate("/assignRoles")}
+          // onClick={() => navigate("/assignRoles")}
           >
             Data Modeling
             <LuArrowUpRight className="insights-icon" />
@@ -968,11 +967,10 @@ const PowerBiDashboard = () => {
                   <h1
                     key={index}
                     onClick={() => showDashboards(`${eachTab.activeText}`)}
-                    className={`powerbi-dashboard-tab-item ${
-                      activeDashboard === `${eachTab.activeText}`
+                    className={`powerbi-dashboard-tab-item ${activeDashboard === `${eachTab.activeText}`
                         ? "active-dashboard-btn"
                         : ""
-                    }`}
+                      }`}
                   >
                     <img
                       src={eachTab.imageUrl}
@@ -981,11 +979,10 @@ const PowerBiDashboard = () => {
                     />
                     {eachTab.tabName}
                     <MdKeyboardArrowUp
-                      className={`bi-arrow ${
-                        activeDashboard === `${eachTab.activeText}`
+                      className={`bi-arrow ${activeDashboard === `${eachTab.activeText}`
                           ? "bi-arrow-down"
                           : ""
-                      }`}
+                        }`}
                     />
                   </h1>
                 ))}
