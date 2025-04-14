@@ -2,16 +2,106 @@ import userModel from "../models/userModel.js"
 import jwt from "jsonwebtoken"
 import bcrypt from "bcryptjs"
 import { SendVerificationCode, WelcomeEmail } from "../middlewares/greetMails.js"
+import { parsePhoneNumberFromString } from 'libphonenumber-js';
 // import nodemailer from "nodemailer"
 
 const createToken = (id) => {
     return jwt.sign({id}, process.env.JWT_SECRET, {expiresIn: '1d'})
 }
 
+// export const registerUser = async (req, res) => {
+//     const {firstname, lastname, businessName,
+//         contact, email, password, city, street,
+//         state, country, zipcode, role, position,
+//         countryPhoneCode,countryCode
+//     } = req.body
+
+//     try {
+//         const exists = await userModel.findOne({email})
+//         // console.log(exists.email)
+
+//         // Checking, is user already exists
+
+//             const rawNumber = `${countryPhoneCode}${contact.replace(/[^0-9]/g, '')}`;
+
+//             const phoneNumber = parsePhoneNumberFromString(rawNumber);
+
+//             // Validate number existence, format, and match with expected country
+//             if (
+//                 !phoneNumber ||
+//                 !phoneNumber.isValid() ||
+//                 (countryCode && phoneNumber.country !== countryCode.toUpperCase())
+//             ) {
+//                 return res.json({
+//                 success: false,
+//                 message: `Invalid phone number for ${countryCode || 'selected country'}`,
+//                 });
+//             }
+
+//             // ✅ If everything is valid, return success
+//             // if (phoneNumber.isValid() && (phoneNumber.country === countryCode)) {
+//             //     return res.json({
+//             //     success: false,
+//             //     message: 'Valid phone number',
+//             //     formatted: phoneNumber.formatInternational(),
+//             //     nationalFormat: phoneNumber.formatNational(),
+//             //     country: phoneNumber.country,
+//             //     });
+//             // }
+
+
+//         if (exists) {
+//             return res.json({success: false, email: `*${exists.email}*`, message: ` email already exists`})
+//         }
+
+//         if (email.includes("@") && phoneNumber.isValid() && (phoneNumber.country === countryCode)){
+
+//             if (password.length < 8) {
+//                 return res.json({success: false, message: "*Enter a strong Password*"})
+//             }
+
+//             const salt = await bcrypt.genSalt(10)
+//             const hashedPassword = await bcrypt.hash(password, salt)
+//             const verificationCode = Math.floor(100000 + Math.random() * 900000).toString()
+
+//             const newUser = new userModel({
+//                 firstname: firstname,
+//                 lastname: lastname || "",
+//                 email: email,
+//                 password: hashedPassword,
+//                 businessName: businessName,
+//                 contact: contact,
+//                 countryPhoneCode: countryPhoneCode,
+//                 countryCode: countryCode,
+//                 role: role,
+//                 position: position,
+//                 city: city,
+//                 street: street,
+//                 state: state,
+//                 country: country,
+//                 zipcode: zipcode,
+//                 verificationCode: verificationCode
+//             })
+
+//             const user = await newUser.save()
+//             const token = createToken(user._id)
+//             SendVerificationCode(newUser.email, verificationCode, newUser.firstname, newUser.lastname)
+//             res.json({success: true, token, firstname: `${firstname} ${lastname}`, verificationCode, role, email: email})
+//         } else {
+//             return res.json({success: false, message: "Enter Valid email"})
+//         }
+//     }
+//     catch (error) {
+//         console.log(error)
+//         res.json({success: false, message: `${error.message}`})
+//     }
+// }
+
 export const registerUser = async (req, res) => {
-    const {firstname, lastname, bussinessName,
+    const {firstname, lastname, businessName,
         contact, email, password, city, street,
-        state, country, zipcode, role, position
+        state, country, zipcode, role, position,
+        countryPhoneCode,countryCode
     } = req.body
 
     try {
@@ -19,16 +109,44 @@ export const registerUser = async (req, res) => {
         // console.log(exists.email)
 
         // Checking, is user already exists
+
+            const rawNumber = `${countryPhoneCode}${contact.replace(/[^0-9]/g, '')}`;
+
+            const phoneNumber = parsePhoneNumberFromString(rawNumber);
+
+            // Validate number existence, format, and match with expected country
+            if (
+                !phoneNumber ||
+                !phoneNumber.isValid() ||
+                (countryCode && phoneNumber.country !== countryCode.toUpperCase())
+            ) {
+                return res.json({
+                success: false,
+                message: `Invalid phone number for ${countryCode || 'selected country'}`,
+                });
+            }
+
+            // ✅ If everything is valid, return success
+            // if (phoneNumber.isValid() && (phoneNumber.country === countryCode)) {
+            //     return res.json({
+            //     success: false,
+            //     message: 'Valid phone number',
+            //     formatted: phoneNumber.formatInternational(),
+            //     nationalFormat: phoneNumber.formatNational(),
+            //     country: phoneNumber.country,
+            //     });
+            // }
+
+
         if (exists) {
             return res.json({success: false, email: `*${exists.email}*`, message: ` email already exists`})
         }
 
-        if (email.includes("@")){
+        if (email.includes("@") && phoneNumber.isValid() && (phoneNumber.country === countryCode)){
 
             if (password.length < 8) {
                 return res.json({success: false, message: "*Enter a strong Password*"})
             }
-            //hashing the password
 
             const salt = await bcrypt.genSalt(10)
             const hashedPassword = await bcrypt.hash(password, salt)
@@ -36,11 +154,13 @@ export const registerUser = async (req, res) => {
 
             const newUser = new userModel({
                 firstname: firstname,
-                lastname: lastname,
+                lastname: lastname || "",
                 email: email,
                 password: hashedPassword,
-                bussinessName: bussinessName,
+                businessName: businessName,
                 contact: contact,
+                countryPhoneCode: countryPhoneCode,
+                countryCode: countryCode,
                 role: role,
                 position: position,
                 city: city,

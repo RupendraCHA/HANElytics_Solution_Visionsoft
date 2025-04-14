@@ -852,6 +852,7 @@ const GrantAccess = () => {
                                     borderRadius: "4px",
                                     cursor: "pointer",
                                     fontWeight: "600",
+                                    boxShadow: "2px 2px 2px #000"
                                   }}
                                 >
                                   {i + 1}
@@ -1415,6 +1416,7 @@ const GrantAccess = () => {
                                     borderRadius: "4px",
                                     cursor: "pointer",
                                     fontWeight: "600",
+                                    boxShadow: "2px 2px 2px #000"
                                   }}
                                 >
                                   {i + 1}
@@ -2017,6 +2019,7 @@ const GrantAccess = () => {
                                     borderRadius: "4px",
                                     cursor: "pointer",
                                     fontWeight: "600",
+                                    boxShadow: "2px 2px 2px #000"
                                   }}
                                 >
                                   {i + 1}

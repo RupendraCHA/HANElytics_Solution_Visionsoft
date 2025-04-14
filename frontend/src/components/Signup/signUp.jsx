@@ -8,12 +8,17 @@ import Navbar from "../Navbar/Navbar";
 import { toast } from "react-toastify";
 import { StoreContext } from "../../context/StoreContext";
 import Footer from "../Footer/Footer";
+import { MuiTelInput } from "mui-tel-input";
 
 function SignUp() {
+
+  const [countryPhoneCode, setCountryPhoneCode] = useState("+1");
+  const [countryCode, setCountryCode] = useState("US");
+
   const [data, setData] = useState({
     firstname: "",
     lastname: "",
-    bussinessName: "",
+    businessName: "",
     contact: "",
     role: "",
     position: "",
@@ -26,6 +31,7 @@ function SignUp() {
     zipcode: "",
   });
   const navigate = useNavigate();
+
 
   const [isExist, setExist] = useState(false);
   const [errorMsg, setErrorMsg] = useState("");
@@ -74,19 +80,27 @@ function SignUp() {
     setExist(false);
     console.log(data);
 
-    const response = await axios.post(url + "/api/user/register", data);
+    const data1 = {
+      ...data,
+      countryPhoneCode: countryPhoneCode,
+      countryCode: countryCode
+    }
+
+    console.log(data1)
+
+    const response = await axios.post(url + "/api/user/register", data1);
 
     if (response.data.success) {
       setExist(false);
       setToken(response.data.token);
-      localStorage.setItem("token", response.data.token);
-      localStorage.setItem("username", response.data.firstname);
-      localStorage.setItem("role", response.data.role);
-      localStorage.setItem("email", response.data.email);
+      // localStorage.setItem("token", response.data.token);
+      // localStorage.setItem("username", response.data.firstname);
+      // localStorage.setItem("role", response.data.role);
+      // localStorage.setItem("email", response.data.email);
       setResponseCode(response.data.verificationCode);
       // console.log(response.data.verificationCode)
       setUsername(response.data.firstname);
-      setUserRole(response.data.role)
+      setUserRole(response.data.role);
 
       setRegisterClick(false);
       // navigate("/home")
@@ -124,12 +138,18 @@ function SignUp() {
       setOpenNextPage(false);
       setExist(false);
     } else {
-
       setOpenNextPage(true);
       setExist(false);
     }
   };
   // Hanelytics
+
+  const handleChange = (newValue, info) => {
+    setCountryPhoneCode(newValue);
+    setCountryCode(info.countryCode);
+    console.log("Selected Phone Number:", newValue); // ✅ Print to console
+    console.log("Selected Code:", info.countryCode); // ✅ Print to console
+  };
 
   return (
     <>
@@ -175,54 +195,102 @@ function SignUp() {
                       <div className="register-input-label">
                         <label htmlFor="lastname">
                           <strong>LASTNAME</strong>
-                          <span className="required-mark">*</span>
+                          <span style={{ fontSize: "11px" }}>(optional)</span>
                         </label>
                         <input
                           type="text"
                           placeholder="Tendulkar"
                           autoComplete="off"
-                          required
+                          // required
                           name="lastname"
                           className=""
                           onChange={handleInputChange}
                           value={data.lastname}
-
                         />
                       </div>
                     </div>
                     <div className="register-input-container">
                       <div className="register-input-label">
-                        <label htmlFor="bussinessName">
+                        <label htmlFor="businessName">
                           <strong>ORGANIZATION NAME</strong>
                           <span className="required-mark">*</span>
                         </label>
                         <input
                           type="text"
-                          placeholder="ABC"
+                          placeholder="XYZ"
                           autoComplete="off"
                           required
-                          name="bussinessName"
+                          name="businessName"
                           className=""
                           onChange={handleInputChange}
-                          value={data.bussinessName}
-
+                          value={data.businessName}
                         />
                       </div>
                       <div className="register-input-label">
+                        
                         <label htmlFor="contact">
                           <strong>CONTACT NUMBER</strong>
                           <span className="required-mark">*</span>
                         </label>
-                        <input
-                          type="text"
-                          placeholder="012345678"
-                          autoComplete="off"
-                          required
-                          name="contact"
-                          className=""
-                          onChange={handleInputChange}
-                          value={data.contact}
-                        />
+
+                        <div className="country-contact-container">
+                          <MuiTelInput
+                            style={{ outline: "none", borderRadius: "6px", color: "#fff"}}
+                            value={countryPhoneCode}
+                            onChange={handleChange}
+                            defaultCountry="US"
+                            sx={{
+                              width: "100px",
+                              "& .MuiOutlinedInput-root": {
+                                backgroundColor: "#fff",
+                                height: "30px",
+                                borderRadius: "6px",
+                                padding: "16px 0px",
+                                '& fieldset': {
+                                      border: 'none', // ✅ removes the black outline
+                                    },
+                              },
+                              "& input": {
+                                // padding: "10px 12px",
+                                padding: "0",
+                                // fontSize: "14px",
+                                color: "#000",
+                                height: "30px",
+
+
+                              },
+                              // Reduce flag icon size
+                              "& .MuiTelInput-FlagButton": {
+                                width: "16px",
+                                // padding: "0 6px",
+                                marginLeft: "-40px",
+                                paddingLeft: "2px"
+                              },
+                              "& .MuiTelInput-Flag": {
+                                width: "18px",
+                                height: "12px",
+                              },
+                              // Reduce calling code font size
+                              "& .MuiTelInput-CountryCallingCode": {
+                                fontSize: "120px",
+                                marginRight: "10px",
+                                backgroundColor: '#f0f0f0',
+
+                              },
+                            }}
+                          />
+                          <input
+                            type="text"
+                            placeholder="012345678"
+                            autoComplete="off"
+                            required
+                            name="contact"
+                            id="country-code-contact"
+                            onChange={handleInputChange}
+                            value={data.contact}
+                            // style={{maxWidth: "260px"}}
+                          />
+                        </div>
                       </div>
                     </div>
                     <div className="register-input-label">
@@ -238,7 +306,6 @@ function SignUp() {
                         name="position"
                         onChange={handleInputChange}
                         value={data.position}
-
                       />
                     </div>
                     <div className="register-input-label">
@@ -287,8 +354,7 @@ function SignUp() {
                             required
                             name="email"
                             onChange={handleInputChange}
-                        value={data.email}
-
+                            value={data.email}
                           />
                         </div>
                         <div className="register-input-label">
@@ -303,8 +369,7 @@ function SignUp() {
                             required
                             name="password"
                             onChange={handleInputChange}
-                        value={data.password}
-
+                            value={data.password}
                           />
                         </div>
 
@@ -320,8 +385,7 @@ function SignUp() {
                             required
                             name="city"
                             onChange={handleInputChange}
-                        value={data.city}
-
+                            value={data.city}
                           />
                         </div>
                         <div className="register-input-label">
@@ -336,8 +400,7 @@ function SignUp() {
                             required
                             name="street"
                             onChange={handleInputChange}
-                        value={data.street}
-
+                            value={data.street}
                           />
                         </div>
                       </div>
@@ -354,8 +417,7 @@ function SignUp() {
                             required
                             name="state"
                             onChange={handleInputChange}
-                        value={data.state}
-
+                            value={data.state}
                           />
                         </div>
                         <div className="register-input-label">
@@ -370,8 +432,7 @@ function SignUp() {
                             required
                             name="country"
                             onChange={handleInputChange}
-                        value={data.country}
-
+                            value={data.country}
                           />
                         </div>
                       </div>
@@ -387,24 +448,23 @@ function SignUp() {
                           required
                           name="zipcode"
                           onChange={handleInputChange}
-                        value={data.zipcode}
-
+                          value={data.zipcode}
                         />
                       </div>
                       <div className="checkbox-container">
                         <input type="checkbox" required className="checkbox" />
                         <p>I accept terms & conditions.</p>
                       </div>
-                      <div
-                        
-                        className="register-back-btn-container"
-                      >
-                        <button type="submit" className="button-to-register register-bg">
+                      <div className="register-back-btn-container">
+                        <button
+                          type="submit"
+                          className="button-to-register register-bg"
+                        >
                           Register
                         </button>
                         <button
                           onClick={handleNextRegisterPage}
-                          style={{backgroundColor: "#082ccd"}}
+                          style={{ backgroundColor: "#082ccd" }}
                           className="back-to-register"
                         >
                           Back

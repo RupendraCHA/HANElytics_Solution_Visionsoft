@@ -420,3 +420,21 @@ font-weight: 700;
   color: red;
   font-size: 20px;
 }
+
+
+
+@media (min-width: 768px){
+  #country-code-contact{
+  max-width: 270px;
+
+  }
+}
+.country-contact-container{
+  display: flex;
+  gap: 10px;
+}
+@media (max-width: 768px){
+  .country-contact-container{
+    flex-direction: column;
+  }
+}
