@@ -89,7 +89,7 @@ function Home() {
   const modelsOverview = [
     {
       modelId: 1,
-      title: "1. Inventory Reorder Point & Safety Stock Prediction",
+      title: "1. Inventory Reorder Point & Safety Stock Prediction - With and Without Live Data",
       description:
         "Predict optimal reorder points and safety stock levels using AI/ML to prevent stockouts or overstock situations—improving supply chain efficiency.",
       image: `${assets.Inventory_model}`,
@@ -110,7 +110,7 @@ function Home() {
     },
     {
       modelId: 4,
-      title: "4. Clinical Drug Demand & Safety Stock Forecasting",
+      title: "4. Reorder Point & Safety Stock Predictions for Clinical Drugs/Medicine",
       description:
         "Ensure availability of critical clinical medicines by forecasting demand and recommending adequate buffer stock levels without interrupting the patient care.",
       image: `${assets.Revenue_model}`,
