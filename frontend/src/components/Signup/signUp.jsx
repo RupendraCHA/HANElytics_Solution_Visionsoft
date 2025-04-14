@@ -240,7 +240,7 @@ function SignUp() {
                             onChange={handleChange}
                             defaultCountry="US"
                             sx={{
-                              width: "100px",
+                              width: "80px",
                               "& .MuiOutlinedInput-root": {
                                 backgroundColor: "#fff",
                                 height: "30px",
