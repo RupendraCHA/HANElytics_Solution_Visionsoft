@@ -303,9 +303,11 @@ const GrantAccess = () => {
   };
 
   const setUserUniqueData = async (user) => {
-    setViewPermittedDash(false);
+    // setViewPermittedDash(false);
+    setViewPermittedDash(true);
 
-    setIsUserClicked(true);
+    // setIsUserClicked(true);
+    setIsUserClicked(false);
     setGetAllDashboardsData(true);
     setActiveAssigningUser(user.firstname);
 
@@ -1828,13 +1830,14 @@ const GrantAccess = () => {
                         ) : (
                           <>
                             {userSpecificData.slice(0, 1).map((user, index) => (
-                              <div key={index} className="active-user-details">
+                              <div key={index} className="active-user-details" style={{width: '100%'}}>
                                 <h1>
                                   Following Dashboards with Check mark are
                                   accessed by{" "}
                                   <span>
                                     {user.firstname} {user.lastname}
                                   </span>
+                                  <p style={{fontSize: "12px"}}>To change permissions, click on "Go & Change Permissions"</p>
                                 </h1>
                                 <button
                                   // onClick={setAccessData}
@@ -1848,7 +1851,7 @@ const GrantAccess = () => {
                                     setViewPermittedDash(false);
                                   }}
                                 >
-                                  Back
+                                 Go & Give Access
                                 </button>
                               </div>
                             ))}
