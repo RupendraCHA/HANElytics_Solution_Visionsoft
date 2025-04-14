@@ -264,6 +264,24 @@ export const getFilesDataFromAFVC = async (req, res) => {
     clientConn.disconnect();
   }
 };
+export const getFilesDataFromMKAL = async (req, res) => {
+  try {
+    clientConn.connect();
+    const result = await clientConn.exec(`SELECT
+        *
+    FROM
+        MKAL`);
+    const resultData = result.map(({
+      MATNR, WERKS,VERID,BDATU,ADATU,STLAL,STLAN,PLNTY,PLNNR,ALNAL,LOSGR,TEXT1,BSTMI,BSTMA
+    }) => ({MATNR, WERKS,VERID,BDATU,ADATU,STLAL,STLAN,PLNTY,PLNNR,ALNAL,LOSGR,TEXT1,BSTMI,BSTMA}))
+    res.status(200).json({ success: true, data: resultData });
+  } catch (error) {
+    console.log(error);
+    res.status(500).send("Error Fetching Data");
+  } finally {
+    clientConn.disconnect();
+  }
+};
 
 // Fetching EKKO (Purchase Order Header) Table Data
 

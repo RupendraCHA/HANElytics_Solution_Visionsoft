@@ -413,9 +413,6 @@ const PowerBiDashboard = () => {
       try {
         setDownloadDataLoad(id)
         getInfoToast()
-
-
-
         const response = await axios.get(url + "/api/sales/vbak");
   
         setDownloadDataLoad(false)
@@ -576,6 +573,21 @@ const PowerBiDashboard = () => {
         
         setDownloadDataLoad(false)
         downloadDataIntoExcel(response.data.data, "Manufacturing Orders data", id)
+
+      } catch (error) {
+        console.log("Error while fetching", error)
+      }
+    }
+    else if (dashName === "Production Planning"){
+      try {
+        setDownloadDataLoad(id)
+        console.log(id)
+        getInfoToast()
+        const response = await axios.get(url + "/api/sales/mkal");
+        console.log(response)
+        
+        setDownloadDataLoad(false)
+        downloadDataIntoExcel(response.data.data, "Production Planning", id)
 
       } catch (error) {
         console.log("Error while fetching", error)

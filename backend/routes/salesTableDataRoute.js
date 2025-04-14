@@ -21,6 +21,7 @@ import {
   getFilesDataFromACDOCAReceivables,
   getFilesDataFromPLPO,
   getFilesDataFromAFVC,
+  getFilesDataFromMKAL,
 } from "../controllers/salesTableDataController.js";
 const salesRouter = express.Router();
 
@@ -39,6 +40,7 @@ salesRouter.get("/acdoca2", getFilesDataFromACDOCAPaybles);
 salesRouter.get("/acdoca3", getFilesDataFromACDOCAReceivables);
 salesRouter.get("/plpo", getFilesDataFromPLPO);
 salesRouter.get("/afvc", getFilesDataFromAFVC);
+salesRouter.get("/mkal", getFilesDataFromMKAL);
 
 salesRouter.get("/srgbtbrel", getFilesDataFromSRGBTBREL);
 salesRouter.get(

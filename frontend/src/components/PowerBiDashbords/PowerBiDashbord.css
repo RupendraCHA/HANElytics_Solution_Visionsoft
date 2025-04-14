@@ -17,16 +17,20 @@
   font-size: 28px;
 }
 
-.power-bidashboards {
+.power-bi-dashboards {
   display: flex;
   flex-direction: column;
+
 }
 
 .bi-reporting-dashboards {
   /* background-image: url("https://res.cloudinary.com/dvxkeeeqs/image/upload/v1727805691/futuristic-digital-user-interface-dashboard_53876-115871_xeeybu.jpg"); */
   /* background-image: url("../../assets/BGImage.jpg"); */
   /* background: linear-gradient(to left, #fff, #426fb2bf); */
-  background-color: #e6e3e3e4;
+  background-color: #e6e3e3f7;
+  /* background-color: #0647df7a; */
+  /* background-image: linear-gradient(to bottom, #7f83ad, #5b7dcd); */
+
   background-size: cover;
   object-fit: cover;
 }
@@ -217,8 +221,9 @@
   align-items: center;
   padding: 0px 20px 0px 20px;
   background-color: #2431c3;
+  /* background-color: #0c1ee2; */
   color: #fff;
-  border-bottom: 1px solid #fff;
+  /* border-bottom: 1px solid #fff; */
 }
 @media (max-width: 576px) {
   .bi-home-container {

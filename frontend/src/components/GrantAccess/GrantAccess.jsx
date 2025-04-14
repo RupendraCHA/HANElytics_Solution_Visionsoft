@@ -66,6 +66,8 @@ const GrantAccess = () => {
     indexOfLastDashboard
   );
 
+  console.log("Store Data",storeUserDashboardData)
+
   const goToPage = (pageNumber) => {
     if (pageNumber >= 1 && pageNumber <= totalPages) {
       setCurrentPage(pageNumber);
@@ -1851,7 +1853,7 @@ const GrantAccess = () => {
                                     setViewPermittedDash(false);
                                   }}
                                 >
-                                 Go & Give Access
+                                 Go & Change Access
                                 </button>
                               </div>
                             ))}
