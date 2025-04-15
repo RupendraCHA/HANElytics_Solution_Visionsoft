@@ -27,6 +27,8 @@ const GrantAccess = () => {
     username,
     storeUserDashboardData,
     setStoreUserDashboardData,
+    loggedInUserDetails,
+    setLoggedInUserDetails
   } = useContext(StoreContext);
 
   const [uploadData, setUploadData] = useState({
@@ -109,7 +111,28 @@ const GrantAccess = () => {
     console.log(response.data.message);
   };
 
+  const getLoggedUserInfo = async () => {
+      const email = localStorage.getItem("email");
+      const data = {
+        email: email,
+      };
+      const response = await axios.post(
+        url + "/api/user/getLoggedUserDetails",
+        data
+      );
+      console.log(response.data.userLoggedData);
+  
+      if (response.data.success) {
+        setLoggedInUserDetails(response.data.userLoggedData);
+      } else {
+        toast.error(response.data.message);
+      }
+  
+      // console.log("Logged User Details", response.data)
+    };
+
   useEffect(() => {
+
     const initialState = {};
     storeUserDashboardData.forEach((dash) => {
       initialState[dash._id] = dash.isAllowed === "Yes";
@@ -121,6 +144,7 @@ const GrantAccess = () => {
     startTheServer();
     getAllUsersList();
     getAllDashboards();
+    getLoggedUserInfo()
   }, []);
 
   const getUserNameInput = async (e) => {

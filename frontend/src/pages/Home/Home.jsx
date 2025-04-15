@@ -19,7 +19,8 @@ import { FaHandPointRight } from "react-icons/fa";
 import { IoIosArrowDown } from "react-icons/io";
 
 function Home() {
-  const { token, username, url } = useContext(StoreContext);
+  const { token, username, url, loggedInUserDetails,
+    setLoggedInUserDetails } = useContext(StoreContext);
 
   const [isMenuOpened, setIsMenuOpened] = useState(false);
   const [featureUniqueId, setFeatureUniqueId] = useState(0);
@@ -31,8 +32,29 @@ function Home() {
     const response = await axios.get(url);
     console.log(response.data.message);
   };
+
+  const getLoggedUserInfo = async () => {
+    const email = localStorage.getItem("email");
+    const data = {
+      email: email,
+    };
+    const response = await axios.post(
+      url + "/api/user/getLoggedUserDetails",
+      data
+    );
+    console.log(response.data.userLoggedData);
+
+    if (response.data.success) {
+      setLoggedInUserDetails(response.data.userLoggedData);
+    } else {
+      toast.error(response.data.message);
+    }
+
+    // console.log("Logged User Details", response.data)
+  };
   useEffect(() => {
     startTheServer();
+    getLoggedUserInfo()
     const jwtToken = localStorage.getItem("token");
     if (jwtToken) {
       navigate("/home");
