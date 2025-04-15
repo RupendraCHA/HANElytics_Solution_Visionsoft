@@ -45,7 +45,8 @@ import Footer from "../../components/Footer/Footer.jsx";
 
 const DataModeling = () => {
   const navigate = useNavigate();
-  const { url, username } = useContext(StoreContext);
+  const { url, username,loggedInUserDetails,
+    setLoggedInUserDetails } = useContext(StoreContext);
 
   const username1 = username.split(" ");
   const firstname = username1[0];
@@ -54,8 +55,29 @@ const DataModeling = () => {
     const response = await axios.get(url);
     console.log(response.data.message);
   };
+
+  const getLoggedUserInfo = async () => {
+    const email = localStorage.getItem("email");
+    const data = {
+      email: email,
+    };
+    const response = await axios.post(
+      url + "/api/user/getLoggedUserDetails",
+      data
+    );
+    console.log(response.data.userLoggedData);
+
+    if (response.data.success) {
+      setLoggedInUserDetails(response.data.userLoggedData);
+    } else {
+      toast.error(response.data.message);
+    }
+
+    // console.log("Logged User Details", response.data)
+  };
   useEffect(() => {
     startTheServer();
+    getLoggedUserInfo()
     const jwtToken = localStorage.getItem("token");
     if (jwtToken) {
       navigate("/dataModeling");
@@ -909,9 +931,104 @@ const DataModeling = () => {
             </div>
             <div className="drop-down">
               <div>
-                <div className="icon-username">
+                <div className="icon-username" style={{ position: "relative" }}>
                   <FaRegCircleUser className="user-icon" />
                   <p className="username-text">{firstname}</p>
+                  {loggedInUserDetails.map((user, index) => (
+              <div
+                key={index}
+                style={{ position: "absolute" }}
+                className="logged-person-details"
+              >
+                <h3 className="logged-user-name">Hi, {user.firstname} {user.lastname}</h3>
+                <hr style={{margin: "5px 0px",}}/>
+                <div className="user-info-section">
+                  <div
+
+                  className="details-section"
+                  >
+                    <label id="email">Email:</label>
+                    <input type="text" value={user.email} />
+                  </div>
+                  <div
+                    className="details-section"
+                  >
+                    <label id="email">Contact:</label>
+                    <input
+                      type="text"
+                      value={`${user.countryPhoneCode} ${user.contact}`}
+                    />
+                  </div>
+                </div>
+
+                <h3 className="logged-user-name" style={{marginTop: "25px"}}>Business Info</h3>
+                <hr style={{margin: "5px 0px",}}/>
+
+                <div className="user-business-section">
+                  <div
+                    className="details-section"
+                  >
+                    <label id="email">Name:</label>
+                    <input type="text" value={user.businessName} />
+                  </div>
+                  <div
+                    className="details-section"
+                  >
+                    <label id="email">Role:</label>
+                    <input type="text" value={user.role} />
+                  </div>
+                  <div
+                    className="details-section"
+                  >
+                    <label id="email">Country:</label>
+                    <input
+                      type="text"
+                      value={user.country}
+                    />
+                  </div>
+                  <div
+                    className="details-section"
+                  >
+                    <label id="email">State:</label>
+                    <input
+                      type="text"
+                      value={user.state}
+                    />
+                  </div>
+                  
+                  <div
+                    className="details-section"
+                  >
+                    <label id="email">City:</label>
+                    <input
+                      type="text"
+                      value={user.city}
+                    />
+                  </div>
+                  <div
+                    className="details-section"
+                  >
+                    <label id="email">Zipcode:</label>
+                    <input
+                      type="text"
+                      value={user.zipcode}
+                    />
+                  </div>
+                  <div
+                    className="details-section"
+                  >
+                    <label id="email">Street:</label>
+                    <input
+                      type="text"
+                      value={user.street}
+                    />
+                  </div>
+                  
+                </div>
+                <div style={{textAlign: "left", marginBottom: "20px"}}>
+                  <button onClick={handleModelLogout}>Logout</button></div>
+              </div>
+            ))}
                 </div>
               </div>
               <div>
@@ -1123,7 +1240,7 @@ const DataModeling = () => {
               </h2>
               {/* Migrate Data From HANElytics System to SAP S/4 HANA:  */}
             </div>
-            {
+            {/* {
               sapModules.map((module, index) => (
                 <>
                 <h1 className="use-case-heading" onClick={handleResultsData}>
@@ -1144,16 +1261,16 @@ const DataModeling = () => {
             </div>
                 </>
               ))
-            }
+            } */}
             
           </section>
           {hideShow && (
             // <div className='charts-section select-model-name empty-bg-image'>
             //     <h2 className='select-text'>Select the Data Model to view the results</h2>
             // </div>
-            <div className="charts-section select-model-name empty-bg-image">
+            <div className="charts-section select-model-name empty-bg-image" style={{backgroundColor: "#5b7dcd"}}>
               <h2 className="select-text">
-                Select a Tab, to view Data Model Insights or for Data Migration
+                Select a Tab, to view Data Model Insights or for Data Feedback
               </h2>
             </div>
           )}

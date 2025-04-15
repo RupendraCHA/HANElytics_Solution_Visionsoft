@@ -274,3 +274,14 @@ export const getUsersData = async (req, res) => {
         res.status(400).json({message: "Failed to get users data"})
     }
 }
+export const getLoggedUsersData = async (req, res) => {
+    const {email} = req.body
+    try {
+        const userLoggedData = await userModel.find({email})
+        // console.log(usersData)
+        res.status(200).json({success: true, userLoggedData: userLoggedData})
+    } catch (error) {
+        console.log("Error Occured", error)
+        res.status(400).json({success: false, message: "Failed to get users data"})
+    }
+}

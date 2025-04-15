@@ -16,11 +16,36 @@ const Header = ({ page = "" }) => {
   const [isMenuOpened, setIsMenuOpened] = useState(false);
 
   const navigate = useNavigate();
-  const { username, token, setToken, setUsername, userRole, setUserRole } =
+  const { username, token, setToken, setUsername, userRole, setUserRole,loggedInUserDetails,
+    setLoggedInUserDetails } =
     useContext(StoreContext);
 
   const username1 = username.split(" ")
   const firstname = username1[0]
+
+  const getLoggedUserInfo = async () => {
+    const email = localStorage.getItem("email");
+    const data = {
+      email: email,
+    };
+    const response = await axios.post(
+      url + "/api/user/getLoggedUserDetails",
+      data
+    );
+    console.log(response.data.userLoggedData);
+
+    if (response.data.success) {
+      setLoggedInUserDetails(response.data.userLoggedData);
+    } else {
+      toast.error(response.data.message);
+    }
+
+    // console.log("Logged User Details", response.data)
+  };
+
+  useEffect(() => {
+    getLoggedUserInfo()
+  },[])
 
 
   const handleLogout = () => {
@@ -123,13 +148,108 @@ const Header = ({ page = "" }) => {
                 userRole === "CEO" ||
                 userRole === "COO" ? <>{getGrantButtons()}</> : ""}</div>
         <div className="drop-down1">
-          <div className="icon-username1">
+          <div className="icon-username1" style={{position: "relative"}}>
             <FaRegCircleUser className="user-icon1" />
             <p className="username-text1">{firstname}</p>
+            {loggedInUserDetails.map((user, index) => (
+              <div
+                key={index}
+                style={{ position: "absolute" }}
+                className="logged-person-details"
+              >
+                <h3 className="logged-user-name">Hi, {user.firstname} {user.lastname}</h3>
+                <hr style={{margin: "5px 0px",}}/>
+                <div className="user-info-section">
+                  <div
+
+                  className="details-section"
+                  >
+                    <label id="email">Email:</label>
+                    <input type="text" value={user.email} />
+                  </div>
+                  <div
+                    className="details-section"
+                  >
+                    <label id="email">Contact:</label>
+                    <input
+                      type="text"
+                      value={`${user.countryPhoneCode} ${user.contact}`}
+                    />
+                  </div>
+                </div>
+
+                <h3 className="logged-user-name" style={{marginTop: "25px"}}>Business Info</h3>
+                <hr style={{margin: "5px 0px",}}/>
+
+                <div className="user-business-section">
+                  <div
+                    className="details-section"
+                  >
+                    <label id="email">Name:</label>
+                    <input type="text" value={user.businessName} />
+                  </div>
+                  <div
+                    className="details-section"
+                  >
+                    <label id="email">Role:</label>
+                    <input type="text" value={user.role} />
+                  </div>
+                  <div
+                    className="details-section"
+                  >
+                    <label id="email">Country:</label>
+                    <input
+                      type="text"
+                      value={user.country}
+                    />
+                  </div>
+                  <div
+                    className="details-section"
+                  >
+                    <label id="email">State:</label>
+                    <input
+                      type="text"
+                      value={user.state}
+                    />
+                  </div>
+                  
+                  <div
+                    className="details-section"
+                  >
+                    <label id="email">City:</label>
+                    <input
+                      type="text"
+                      value={user.city}
+                    />
+                  </div>
+                  <div
+                    className="details-section"
+                  >
+                    <label id="email">Zipcode:</label>
+                    <input
+                      type="text"
+                      value={user.zipcode}
+                    />
+                  </div>
+                  <div
+                    className="details-section"
+                  >
+                    <label id="email">Street:</label>
+                    <input
+                      type="text"
+                      value={user.street}
+                    />
+                  </div>
+                  
+                </div>
+                
+                <button id="bth-for-logout" onClick={handleLogout}>Logout</button>
+                
+              </div>
+            ))}
           </div>
-          {/* <div> */}
-          <button onClick={handleLogout}>Logout</button>
-          {/* </div> */}
+          <button id="bth-for-logout" onClick={handleLogout}>Logout</button>
+          
         </div>
       </div>
       <div

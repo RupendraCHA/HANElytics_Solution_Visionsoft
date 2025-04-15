@@ -33,6 +33,9 @@ const PowerBiDashboard = () => {
     url,
     storeUserDashboardData,
     setStoreUserDashboardData,
+    loggedUserEmail,
+    loggedInUserDetails,
+    setLoggedInUserDetails
   } = useContext(StoreContext);
 
   const [isMenuOpened, setIsMenuOpened] = useState(false);
@@ -80,14 +83,34 @@ const PowerBiDashboard = () => {
     console.log(userAccessingDashboards.data.userDashboards);
   };
 
+  const getLoggedUserInfo = async () => {
+    const email = localStorage.getItem("email");
+    const data = {
+      email: email,
+    };
+    const response = await axios.post(
+      url + "/api/user/getLoggedUserDetails",
+      data
+    );
+    console.log(response.data.userLoggedData);
+
+    if (response.data.success) {
+      setLoggedInUserDetails(response.data.userLoggedData);
+    } else {
+      toast.error(response.data.message);
+    }
+
+    // console.log("Logged User Details", response.data)
+  };
+
   useEffect(() => {
     const userRole = localStorage.getItem("role");
     setLoggedInUserRole(userRole);
-    console.log(userRole);
 
     getUserAccessingDashboards();
     startTheServer();
     getUserDashboards();
+    getLoggedUserInfo();
     const jwtToken = localStorage.getItem("token");
     if (jwtToken) {
       navigate("/dashboards");
@@ -1307,7 +1330,6 @@ const PowerBiDashboard = () => {
         <Link to="/home" className="bi-home-heading">
           <h1>HANELYTICS</h1>
         </Link>
-
         <div className="dashboard-tabs">
           {tabsList.map((eachTab, index) => (
             <h1
@@ -1344,9 +1366,105 @@ const PowerBiDashboard = () => {
           </h1>
         </div>
         <div className="bi-drop-down">
-          <div className="bi-icon-username">
+          <div className="bi-icon-username" style={{ position: "relative" }}>
             <FaRegUserCircle className="bi-user-icon" />
             <p className="bi-username-text">{firstname}</p>
+            {loggedInUserDetails.map((user, index) => (
+              <div
+                key={index}
+                style={{ position: "absolute" }}
+                className="logged-person-details"
+              >
+                <h3 className="logged-user-name">Hi, {user.firstname} {user.lastname}</h3>
+                <hr style={{margin: "5px 0px",}}/>
+                <div className="user-info-section">
+                  <div
+
+                  className="details-section"
+                  >
+                    <label id="email">Email:</label>
+                    <input type="text" value={user.email} />
+                  </div>
+                  <div
+                    className="details-section"
+                  >
+                    <label id="email">Contact:</label>
+                    <input
+                      type="text"
+                      value={`${user.countryPhoneCode} ${user.contact}`}
+                    />
+                  </div>
+                </div>
+
+                <h3 className="logged-user-name" style={{marginTop: "25px"}}>Business Info</h3>
+                <hr style={{margin: "5px 0px",}}/>
+
+                <div className="user-business-section">
+                  <div
+                    className="details-section"
+                  >
+                    <label id="email">Name:</label>
+                    <input type="text" value={user.businessName} />
+                  </div>
+                  <div
+                    className="details-section"
+                  >
+                    <label id="email">Role:</label>
+                    <input type="text" value={user.role} />
+                  </div>
+                  <div
+                    className="details-section"
+                  >
+                    <label id="email">Country:</label>
+                    <input
+                      type="text"
+                      value={user.country}
+                    />
+                  </div>
+                  <div
+                    className="details-section"
+                  >
+                    <label id="email">State:</label>
+                    <input
+                      type="text"
+                      value={user.state}
+                    />
+                  </div>
+                  
+                  <div
+                    className="details-section"
+                  >
+                    <label id="email">City:</label>
+                    <input
+                      type="text"
+                      value={user.city}
+                    />
+                  </div>
+                  <div
+                    className="details-section"
+                  >
+                    <label id="email">Zipcode:</label>
+                    <input
+                      type="text"
+                      value={user.zipcode}
+                    />
+                  </div>
+                  <div
+                    className="details-section"
+                  >
+                    <label id="email">Street:</label>
+                    <input
+                      type="text"
+                      value={user.street}
+                    />
+                  </div>
+                  <div style={{marginBottom: "20px"}}>
+            <button onClick={handleModelLogout}>Logout</button>
+          </div>
+                </div>
+                
+              </div>
+            ))}
           </div>
           <div>
             <button onClick={handleModelLogout}>Logout</button>

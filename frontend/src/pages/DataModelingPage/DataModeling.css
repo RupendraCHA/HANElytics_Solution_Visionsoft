@@ -739,7 +739,7 @@ ul {
 }
 
 .empty-bg-image {
-  background-image: url("https://res.cloudinary.com/dvxkeeeqs/image/upload/v1727805691/futuristic-digital-user-interface-dashboard_53876-115871_xeeybu.jpg");
+  /* background-image: url("https://res.cloudinary.com/dvxkeeeqs/image/upload/v1727805691/futuristic-digital-user-interface-dashboard_53876-115871_xeeybu.jpg"); */
   height: 100%;
   background-size: cover;
   margin: 20px;
@@ -1035,4 +1035,67 @@ ul {
   100% {
     transform: rotate(360deg);
   }
+}
+.logged-user-name{
+  font-size: 16px;
+  font-weight: bold;
+  margin: 0;
+  padding: 0;
+}
+.logged-person-details{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  top: 80%;
+  right: -35px;
+  display: none;
+  background-color: #000000d6;
+  padding: 5px 20px;
+  color: #fff;
+  border-radius: 6px;
+  width: 15vw;
+}
+
+.icon-username:hover .logged-person-details{
+  display: block;
+}
+.user-info-section{
+  flex: 1;
+
+  label{
+    font-weight: 600;
+    font-size: 14px;
+  }
+
+  input{
+    font-weight: 600;
+    font-size: 12px;
+    padding: 4px;
+    text-align: center;
+    outline: none;
+  }
+}
+.user-business-section{
+  flex: 1;
+
+  label{
+    font-weight: 600;
+    font-size: 14px;
+  }
+
+  input{
+    font-weight: 600;
+    font-size: 12px;
+    padding: 4px;
+    text-align: center;
+    outline: none;
+
+  }
+}
+
+.details-section{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
 }

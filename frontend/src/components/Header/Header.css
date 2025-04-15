@@ -191,6 +191,10 @@
     height: 30px;
   }
 }
+.user-icon1:hover{
+  background-color: #000;
+  color: #fff;
+}
 .assign-roles{
   background-color: #fff;
   box-shadow: 2px 2px 2px #0e0e0e;
@@ -224,4 +228,70 @@
   display: flex;
   flex-direction: column;
   gap: 10px;
+}
+.logged-user-name{
+  font-size: 16px;
+  font-weight: bold;
+  margin: 0;
+  padding: 0;
+}
+.logged-person-details{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  top: 80%;
+  right: -35px;
+  display: none;
+  background-color: #000000d6;
+  padding: 5px 20px;
+  color: #fff;
+  border-radius: 6px;
+  width: 15vw;
+}
+
+.icon-username1:hover .logged-person-details{
+  display: block;
+}
+.user-info-section{
+  flex: 1;
+
+  label{
+    font-weight: 600;
+    font-size: 14px;
+  }
+
+  input{
+    font-weight: 600;
+    font-size: 12px;
+    padding: 4px;
+    text-align: center;
+    outline: none;
+  }
+}
+.user-business-section{
+  flex: 1;
+
+  label{
+    font-weight: 600;
+    font-size: 14px;
+  }
+
+  input{
+    font-weight: 600;
+    font-size: 12px;
+    padding: 4px;
+    text-align: center;
+    outline: none;
+
+  }
+}
+
+.details-section{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+}
+#btn-for-logout{
+  font-size: 12px;
 }
