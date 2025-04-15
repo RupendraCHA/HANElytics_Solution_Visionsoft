@@ -6,8 +6,8 @@ export const StoreContext = createContext(null)
 const StoreContextProvider = (props) => {
 
     // let url = "http://localhost:3001" // Local
-    // let url = "https://hanelytics-solution-visionsoft.onrender.com" // RCHA
-    let url = "https://hanelytics-ai-ml-solutions-backend.onrender.com" // Vsoft//
+    let url = "https://hanelytics-solution-visionsoft.onrender.com" // RCHA
+    // let url = "https://hanelytics-ai-ml-solutions-backend.onrender.com" // Vsoft//
 
     const [token, setToken] = useState("")
     const [username, setUsername] = useState("")
@@ -17,6 +17,7 @@ const StoreContextProvider = (props) => {
     const [allDashboards, setAllDashboards] = useState([])
     const [dashUpdateId, setDashUpdateId] = useState("")
     const [storeUserDashboardData, setStoreUserDashboardData] = useState([])
+    const [loggedUserEmail, setLoggedUserEmail] = useState("")
 
     const [sapSalesModuleText, setSapSalesModuleText] = useState(false);
     const [sapMaterialsModuleText, setSapMaterialsModuleText] = useState(false);
@@ -51,6 +52,7 @@ const StoreContextProvider = (props) => {
             setUserRole(role)
             setUsername(localStorage.getItem("username"))
         }
+        setLoggedUserEmail(localStorage.getItem("email"))
         getAllUsersList()
     }, [])
 

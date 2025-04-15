@@ -118,7 +118,8 @@ li:hover {
   /* background-image: url("https://res.cloudinary.com/dvxkeeeqs/image/upload/v1729229000/image3_1_ac1jk3.jpg"); */
   /* background-image: url("https://res.cloudinary.com/dvxkeeeqs/image/upload/v1726505185/istockphoto-1407983911-612x612_hi0th1.jpg"); */
   background-size: cover;
-  background-image: linear-gradient(to bottom, #0c1ee2, #5b7dcd);
+  /* background-image: linear-gradient(to bottom, #0c1ee2, #5b7dcd); */
+  background-image: linear-gradient(to bottom, #5b7dcd);
   object-fit: cover;
   min-height: 100vh;
   padding-top: 10px;

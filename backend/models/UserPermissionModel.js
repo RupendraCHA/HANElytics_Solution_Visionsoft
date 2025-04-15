@@ -5,7 +5,9 @@ const dashboardSchema = new mongoose.Schema({
   dashboardName: String,
   uploadedBy: String,
   isAllowed: String,
-  category: String
+  category: String,
+  createdAt: String,
+  updatedAt: String,
 }, { _id: false });
 
 const mixedEntrySchema = new mongoose.Schema({

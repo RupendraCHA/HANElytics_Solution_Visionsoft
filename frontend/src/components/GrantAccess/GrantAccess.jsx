@@ -336,6 +336,7 @@ const GrantAccess = () => {
     console.log("USER Button", userDashboards.data.userDashboards);
 
     setStoreUserDashboardData(userDashboards.data.userDashboards);
+    console.log("Mixed Entry",userDashboards.data.mixedEntry);
 
     console.log(user);
     console.log(data3);
@@ -358,10 +359,15 @@ const GrantAccess = () => {
       const updateDash = selectedDashboard.map((item) => ({
         ...item,
         isAllowed: value ? "Yes" : "No",
+        // createdTime: new Date()
       }));
+      console.log(updateDash)
       userSpecificData[index] = updateDash[0];
     }
+
+    console.log("userSpecificData111",userSpecificData)
   };
+
 
   const setAccessData = async () => {
     setGetAllDashboardsData(true);

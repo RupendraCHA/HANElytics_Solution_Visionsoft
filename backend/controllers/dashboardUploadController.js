@@ -59,7 +59,6 @@ export const createUserDashboardAccess = async (req, res) => {
   try {
     const userSpecificData  = req.body;
 
-    // console.log(userSpecificData.slice(0,1))
     const userData = {...userSpecificData.slice(0,1)}
     // console.log(userData[0])
 
@@ -70,6 +69,9 @@ export const createUserDashboardAccess = async (req, res) => {
             ...userSpecificData.slice(1, userSpecificData.length)
         ]
     })
+
+    console.log(userSpecificData.slice(1, userSpecificData.length))
+
 
     const result = await MixedEntry.findOneAndReplace(
         { _id: allData._id },  // match existing doc
@@ -100,7 +102,7 @@ export const getUserDashboardData = async (req, res) => {
         const userDashboardDetails = await MixedEntry.find({email})
         
         if (userDashboardDetails.length !== 0){
-            res.status(200).json({success: true, message: "Received Request", userDashboards: userDashboardDetails[0].dashboards})
+            res.status(200).json({success: true, message: "Received Request", userDashboards: userDashboardDetails[0].dashboards,mixedEntry: userDashboardDetails})
         }else {
         const allDashboards = await DashboardAccess.find()
         res.status(200).json({success: true, message: "Received Request", userDashboards: allDashboards})

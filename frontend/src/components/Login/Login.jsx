@@ -100,7 +100,8 @@ function Login() {
     <>
       {changePassword && (
         <div className="bg-container-login d-flex justify-content-center align-items-center bg-secondary vh-100">
-          <div className="login-page" style={{ 
+          <div 
+          className="login-page" style={{ 
             // backgroundColor: "#0787e3",
             backgroundColor: "#fff",
             }}>

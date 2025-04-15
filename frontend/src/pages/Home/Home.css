@@ -1,6 +1,7 @@
 .home-bg{
     /* background-image: url("https://res.cloudinary.com/dvxkeeeqs/image/upload/v1729244582/image4_wn3xcb.jpg"); */
-  background-image: linear-gradient(to bottom, #0c1ee2, #5b7dcd);
+  /* background-image: linear-gradient(to bottom, #0c1ee2, #5b7dcd); */
+  background-image: linear-gradient(to bottom, #5b7dcd);
 
     background-size: cover;
     min-height: 100vh;
