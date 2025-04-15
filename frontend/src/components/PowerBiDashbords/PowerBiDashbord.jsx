@@ -18,26 +18,33 @@ import { IoIosArrowDropup } from "react-icons/io";
 import * as XLSX from "xlsx";
 import { saveAs } from "file-saver";
 import { toast } from "react-toastify";
+import { BiSolidHide } from "react-icons/bi";
 
 // import {OTCOrderData} from "../../pages/SAPData/OTCOrderHeaderData.js"
 const PowerBiDashboard = () => {
   const [activeDashboard, setActiveDashboard] = useState("");
   const [isMsgOpened, setMsgOpened] = useState(false);
   const navigate = useNavigate();
-  const { username, token, setToken, setUsername, url, storeUserDashboardData,
-    setStoreUserDashboardData } =
-    useContext(StoreContext);
-
-
+  const {
+    username,
+    token,
+    setToken,
+    setUsername,
+    url,
+    storeUserDashboardData,
+    setStoreUserDashboardData,
+  } = useContext(StoreContext);
 
   const [isMenuOpened, setIsMenuOpened] = useState(false);
-  const [isIconClicked, setIsIconClicked] = useState(false)
-  const [selectedReport, setSelectedReport] = useState("Revenue Results")
-  const [reportData, setReportData] = useState([])
-  const [downloadDataLoad, setDownloadDataLoad] = useState(0)
+  const [isIconClicked, setIsIconClicked] = useState(false);
+  const [selectedReport, setSelectedReport] = useState("Revenue Results");
+  const [reportData, setReportData] = useState([]);
+  const [downloadDataLoad, setDownloadDataLoad] = useState(0);
+  const [userAccessingDashboards, setUserAccessingDashboards] = useState([]);
+  const [loggedInUserRole, setLoggedInUserRole] = useState("");
 
-  const username1 = username.split(" ")
-  const firstname = username1[0]
+  const username1 = username.split(" ");
+  const firstname = username1[0];
 
   const startTheServer = async () => {
     const response = await axios.get(url);
@@ -45,18 +52,42 @@ const PowerBiDashboard = () => {
   };
 
   const getUserDashboards = async () => {
-    const email = localStorage.getItem('email')
+    const email = localStorage.getItem("email");
     const userData = {
-      email: email
-    }
-    const userDashboards = await axios.post(url + "/api/dashboard/getUserDashboard", userData);
-    setStoreUserDashboardData(userDashboards.data.userDashboards)
-    console.log(userDashboards.data.userDashboards)
-  }
+      email: email,
+    };
+    const userDashboards = await axios.post(
+      url + "/api/dashboard/getUserDashboard",
+      userData
+    );
+    setStoreUserDashboardData(userDashboards.data.userDashboards);
+    console.log(userDashboards.data.userDashboards);
+  };
+
+  const getUserAccessingDashboards = async () => {
+    const email = localStorage.getItem("email");
+
+    const userData = {
+      email: email,
+    };
+    const userAccessingDashboards = await axios.post(
+      url + "/api/dashboard/getUserDashboard",
+      userData
+    );
+
+    console.log(userAccessingDashboards.data);
+    setUserAccessingDashboards(userAccessingDashboards.data.userDashboards);
+    console.log(userAccessingDashboards.data.userDashboards);
+  };
 
   useEffect(() => {
+    const userRole = localStorage.getItem("role");
+    setLoggedInUserRole(userRole);
+    console.log(userRole);
+
+    getUserAccessingDashboards();
     startTheServer();
-    getUserDashboards()
+    getUserDashboards();
     const jwtToken = localStorage.getItem("token");
     if (jwtToken) {
       navigate("/dashboards");
@@ -185,6 +216,32 @@ const PowerBiDashboard = () => {
     },
   ];
 
+  const allowedNames = new Set(
+    userAccessingDashboards
+      .filter((item) => item.isAllowed === "Yes")
+      .map((item) => item.dashboardName.trim().toLowerCase())
+  );
+
+  // console.log(allowedNames)
+
+  const allowedHANElyticsDashboards = HANElyticsDashboards.filter((item) =>
+    allowedNames.has(item.headerText.trim().toLowerCase())
+  );
+  const allowedOrderToCashDashboards = orderToCash.filter((item) =>
+    allowedNames.has(item.headerText.trim().toLowerCase())
+  );
+  const allowedProcurementDashboards = procurement.filter((item) =>
+    allowedNames.has(item.headerText.trim().toLowerCase())
+  );
+  const allowedManufacturingDashboards = manufacturing.filter((item) =>
+    allowedNames.has(item.headerText.trim().toLowerCase())
+  );
+  const allowedFinanceDashboards = finance.filter((item) =>
+    allowedNames.has(item.headerText.trim().toLowerCase())
+  );
+
+  // console.log(allowedHANElyticsDashboards)
+
   // url: "https://app.powerbi.com/groups/me/reports/3219fe8c-78e4-479a-bcdf-b5c77866a05d/052aa96850be00c14191?experience=power-bi&clientSideAuth=0",
   //     image: `${assets.Production_planning_pic}`,
   const tabsList = [
@@ -241,64 +298,66 @@ const PowerBiDashboard = () => {
 
   const setIconValue = () => {
     if (isIconClicked === false) {
-      setIsIconClicked(true)
+      setIsIconClicked(true);
     } else {
-      setIsIconClicked(false)
+      setIsIconClicked(false);
     }
-
-  }
+  };
 
   const selectDashboard = (report) => {
-    setSelectedReport(report)
+    setSelectedReport(report);
     // console.log(report)
-  }
+  };
 
   const CustomCloseIcon = ({ closeToast }) => (
-    <span onClick={closeToast} style={{ color: 'red', cursor: 'pointer', fontWeight: 'bold', display: "flex", alignItems: "center" }}>
+    <span
+      onClick={closeToast}
+      style={{
+        color: "red",
+        cursor: "pointer",
+        fontWeight: "bold",
+        display: "flex",
+        alignItems: "center",
+      }}
+    >
       ✖
     </span>
   );
 
   const getInfoToast = () => {
-    return (
-      toast.info("Download initiated. It should be ready shortly.", {
-        position: "top-center",
-        closeButton: CustomCloseIcon,
-        style: {
-          fontSize: '16px',
-          padding: '8px 12px',
-          height: '30px',
-          borderRadius: '8px',
-          color: "#fff",
-          backgroundColor: "#000",
-          fontWeight: "600"
-
-        },
-      })
-    )
-  }
+    return toast.info("Download initiated. It should be ready shortly.", {
+      position: "top-center",
+      closeButton: CustomCloseIcon,
+      style: {
+        fontSize: "16px",
+        padding: "8px 12px",
+        height: "30px",
+        borderRadius: "8px",
+        color: "#fff",
+        backgroundColor: "#000",
+        fontWeight: "600",
+      },
+    });
+  };
 
   const getSuccessToast = () => {
-    return (
-      toast.success("File Downloaded.", {
-        position: "top-center",
-        closeButton: CustomCloseIcon,
-        style: {
-          fontSize: '16px',
-          padding: '8px 12px',
-          height: '30px',
-          borderRadius: '8px',
-          color: "#fff",
-          backgroundColor: "#000",
-          fontWeight: "600"
-
-        },
-      })
-    )
-  }
+    return toast.success("File Downloaded.", {
+      position: "top-center",
+      closeButton: CustomCloseIcon,
+      style: {
+        fontSize: "16px",
+        padding: "8px 12px",
+        height: "30px",
+        borderRadius: "8px",
+        color: "#fff",
+        backgroundColor: "#000",
+        fontWeight: "600",
+      },
+    });
+  };
 
   const downloadDataIntoExcel = (Array, fileName, id) => {
-    console.log(id)
+    console.log(id);
     if (!Array || Array.length === 0) return;
 
     const wb = XLSX.utils.book_new();
@@ -309,331 +368,376 @@ const PowerBiDashboard = () => {
     const data = new Blob([excelBuffer], { type: "application/octet-stream" });
 
     saveAs(data, `${fileName}.xlsx`);
-    setDownloadDataLoad(false)
-    getSuccessToast()
-
+    setDownloadDataLoad(false);
+    getSuccessToast();
   };
 
   const downloadReportData = async (dashType, dashName, id) => {
-    console.log(dashType, dashName)
-    if (dashName === "Revenue, Clinical and Equipment Failure" && dashType === "Revenue Results") {
-
+    console.log(dashType, dashName);
+    if (
+      dashName === "Revenue, Clinical and Equipment Failure" &&
+      dashType === "Revenue Results"
+    ) {
       try {
-        setDownloadDataLoad(id)
+        setDownloadDataLoad(id);
 
-        getInfoToast()
+        getInfoToast();
 
         const jwtToken = localStorage.getItem("token");
         const response = await axios.get(url + "/api/model/revenue", {
           headers: { token: jwtToken },
         });
 
-        const result = response.data
-        downloadDataIntoExcel(result, "Revenue Demand Sensing Predictions", id)
+        const result = response.data;
+        downloadDataIntoExcel(result, "Revenue Demand Sensing Predictions", id);
       } catch (error) {
-        console.log("Error while fetching", error)
+        console.log("Error while fetching", error);
       }
-    } else if (dashName === "Revenue, Clinical and Equipment Failure" && dashType === "Clinical Results") {
-
+    } else if (
+      dashName === "Revenue, Clinical and Equipment Failure" &&
+      dashType === "Clinical Results"
+    ) {
       try {
-        setDownloadDataLoad(id)
-        getInfoToast()
-
-
+        setDownloadDataLoad(id);
+        getInfoToast();
 
         const jwtToken = localStorage.getItem("token");
         const response = await axios.get(url + "/api/model/clinical", {
           headers: { token: jwtToken },
         });
 
-        const result = response.data
-        downloadDataIntoExcel(result, "Inventory Predictions with Clinical Data", id)
-
+        const result = response.data;
+        downloadDataIntoExcel(
+          result,
+          "Inventory Predictions with Clinical Data",
+          id
+        );
       } catch (error) {
-        console.log("Error while fetching", error)
+        console.log("Error while fetching", error);
       }
-    } else if (dashName === "Revenue, Clinical and Equipment Failure" && dashType === "Equipment Results") {
-
+    } else if (
+      dashName === "Revenue, Clinical and Equipment Failure" &&
+      dashType === "Equipment Results"
+    ) {
       try {
-        setDownloadDataLoad(id)
+        setDownloadDataLoad(id);
 
-        getInfoToast()
-
+        getInfoToast();
 
         const jwtToken = localStorage.getItem("token");
         const response = await axios.get(url + "/api/model/equipment", {
           headers: { token: jwtToken },
         });
 
-        const result = response.data
-        downloadDataIntoExcel(result, "Predictions of Equipment Risk Detection & Failure Prevention", id)
-
+        const result = response.data;
+        downloadDataIntoExcel(
+          result,
+          "Predictions of Equipment Risk Detection & Failure Prevention",
+          id
+        );
       } catch (error) {
-        console.log("Error while fetching", error)
+        console.log("Error while fetching", error);
       }
-    } else if (dashName === "Inventory Reorder Point & Safety Stock predictions") {
-
+    } else if (
+      dashName === "Inventory Reorder Point & Safety Stock predictions"
+    ) {
       try {
-        setDownloadDataLoad(id)
-        getInfoToast()
-
-
+        setDownloadDataLoad(id);
+        getInfoToast();
 
         const jwtToken = localStorage.getItem("token");
         const response = await axios.get(url + "/api/model/inventory", {
           headers: { token: jwtToken },
         });
 
-        const result = response.data
-        downloadDataIntoExcel(result, "Inventory Reorder Point & Safety Stock predictions", id)
-
+        const result = response.data;
+        downloadDataIntoExcel(
+          result,
+          "Inventory Reorder Point & Safety Stock predictions",
+          id
+        );
       } catch (error) {
-        console.log("Error while fetching", error)
+        console.log("Error while fetching", error);
       }
-    }
-    else if (dashName === "Predicted Reams of Paper & Ink") {
-
+    } else if (dashName === "Predicted Reams of Paper & Ink") {
       try {
-        setDownloadDataLoad(id)
-        getInfoToast()
+        setDownloadDataLoad(id);
+        getInfoToast();
 
         const jwtToken = localStorage.getItem("token");
         const response = await axios.get(url + "/api/model/inventory1", {
           headers: { token: jwtToken },
         });
 
-        const result = response.data
-        console.log(result)
-        downloadDataIntoExcel(result, "Predicted Reams of Paper & Ink", id)
-
+        const result = response.data;
+        console.log(result);
+        downloadDataIntoExcel(result, "Predicted Reams of Paper & Ink", id);
       } catch (error) {
-        console.log("Error while fetching", error)
+        console.log("Error while fetching", error);
       }
     } else if (dashName === "Sales Order Processing") {
-
       try {
-        setDownloadDataLoad(id)
-        getInfoToast()
+        setDownloadDataLoad(id);
+        getInfoToast();
         const response = await axios.get(url + "/api/sales/vbak");
 
-        setDownloadDataLoad(false)
-        downloadDataIntoExcel(response.data.data, "Sales Order Processing data", id)
-
+        setDownloadDataLoad(false);
+        downloadDataIntoExcel(
+          response.data.data,
+          "Sales Order Processing data",
+          id
+        );
       } catch (error) {
-        console.log("Error while fetching", error)
+        console.log("Error while fetching", error);
       }
-    }
-    else if (dashName === "Outbound Delivery Processing") {
-
+    } else if (dashName === "Outbound Delivery Processing") {
       try {
-        setDownloadDataLoad(id)
-        getInfoToast()
+        setDownloadDataLoad(id);
+        getInfoToast();
         const response = await axios.get(url + "/api/sales/likp");
 
-        setDownloadDataLoad(false)
-        downloadDataIntoExcel(response.data.data, "Outbound Delivery Processing data", id)
-
+        setDownloadDataLoad(false);
+        downloadDataIntoExcel(
+          response.data.data,
+          "Outbound Delivery Processing data",
+          id
+        );
       } catch (error) {
-        console.log("Error while fetching", error)
+        console.log("Error while fetching", error);
       }
     } else if (dashName === "Billing & Invoicing") {
-
       try {
-        setDownloadDataLoad(id)
-        getInfoToast()
+        setDownloadDataLoad(id);
+        getInfoToast();
         const response = await axios.get(url + "/api/sales/vbrk");
-        console.log(response)
+        console.log(response);
 
-        setDownloadDataLoad(false)
-        downloadDataIntoExcel(response.data.data, "Billing & Invoicing data", id)
-
+        setDownloadDataLoad(false);
+        downloadDataIntoExcel(
+          response.data.data,
+          "Billing & Invoicing data",
+          id
+        );
       } catch (error) {
-        console.log("Error while fetching", error)
+        console.log("Error while fetching", error);
       }
-    }
-    else if (dashName === "Supplier Order Overview") {
-
+    } else if (dashName === "Supplier Order Overview") {
       try {
-        setDownloadDataLoad(id)
-        console.log(id)
-        getInfoToast()
+        setDownloadDataLoad(id);
+        console.log(id);
+        getInfoToast();
         const response = await axios.get(url + "/api/sales/ekko");
-        console.log(response)
+        console.log(response);
 
-        setDownloadDataLoad(false)
-        downloadDataIntoExcel(response.data.data, "Supplier Order Overview data", id)
-
+        setDownloadDataLoad(false);
+        downloadDataIntoExcel(
+          response.data.data,
+          "Supplier Order Overview data",
+          id
+        );
       } catch (error) {
-        console.log("Error while fetching", error)
+        console.log("Error while fetching", error);
       }
-    }
-    else if (dashName === "Purchase Requisition") {
-
+    } else if (dashName === "Purchase Requisition") {
       try {
-        setDownloadDataLoad(id)
-        console.log(id)
-        getInfoToast()
+        setDownloadDataLoad(id);
+        console.log(id);
+        getInfoToast();
         const response = await axios.get(url + "/api/sales/eban");
-        console.log(response)
+        console.log(response);
 
-        setDownloadDataLoad(false)
-        downloadDataIntoExcel(response.data.data, "Purchase Requisition data", id)
-
+        setDownloadDataLoad(false);
+        downloadDataIntoExcel(
+          response.data.data,
+          "Purchase Requisition data",
+          id
+        );
       } catch (error) {
-        console.log("Error while fetching", error)
+        console.log("Error while fetching", error);
       }
-    }
-    else if (dashName === "Goods Receipt") {
-
+    } else if (dashName === "Goods Receipt") {
       try {
-        setDownloadDataLoad(id)
-        console.log(id)
-        getInfoToast()
+        setDownloadDataLoad(id);
+        console.log(id);
+        getInfoToast();
         const response = await axios.get(url + "/api/sales/matdoc");
-        console.log(response)
+        console.log(response);
 
-        setDownloadDataLoad(false)
-        downloadDataIntoExcel(response.data.data, "Goods Receipt data", id)
-
+        setDownloadDataLoad(false);
+        downloadDataIntoExcel(response.data.data, "Goods Receipt data", id);
       } catch (error) {
-        console.log("Error while fetching", error)
+        console.log("Error while fetching", error);
       }
-    }
-    else if (dashName === "General Ledger") {
-
+    } else if (dashName === "General Ledger") {
       try {
-        setDownloadDataLoad(id)
-        console.log(id)
-        getInfoToast()
+        setDownloadDataLoad(id);
+        console.log(id);
+        getInfoToast();
         const response = await axios.get(url + "/api/sales/acdoca1");
-        console.log(response)
+        console.log(response);
 
-        setDownloadDataLoad(false)
-        downloadDataIntoExcel(response.data.data, "General Ledger data", id)
-
+        setDownloadDataLoad(false);
+        downloadDataIntoExcel(response.data.data, "General Ledger data", id);
       } catch (error) {
-        console.log("Error while fetching", error)
+        console.log("Error while fetching", error);
       }
-    }
-    else if (dashName === "Account Paybles") {
-
+    } else if (dashName === "Account Paybles") {
       try {
-        setDownloadDataLoad(id)
-        console.log(id)
-        getInfoToast()
+        setDownloadDataLoad(id);
+        console.log(id);
+        getInfoToast();
         const response = await axios.get(url + "/api/sales/acdoca2");
-        console.log(response)
+        console.log(response);
 
-        setDownloadDataLoad(false)
-        downloadDataIntoExcel(response.data.data, "Account Paybles data", id)
-
+        setDownloadDataLoad(false);
+        downloadDataIntoExcel(response.data.data, "Account Paybles data", id);
       } catch (error) {
-        console.log("Error while fetching", error)
+        console.log("Error while fetching", error);
       }
-    }
-    else if (dashName === "Account Receivables") {
-
+    } else if (dashName === "Account Receivables") {
       try {
-        setDownloadDataLoad(id)
-        console.log(id)
-        getInfoToast()
+        setDownloadDataLoad(id);
+        console.log(id);
+        getInfoToast();
         const response = await axios.get(url + "/api/sales/acdoca3");
-        console.log(response)
+        console.log(response);
 
-        setDownloadDataLoad(false)
-        downloadDataIntoExcel(response.data.data, "Account Receivables data", id)
-
+        setDownloadDataLoad(false);
+        downloadDataIntoExcel(
+          response.data.data,
+          "Account Receivables data",
+          id
+        );
       } catch (error) {
-        console.log("Error while fetching", error)
+        console.log("Error while fetching", error);
       }
-    }
-    else if (dashName === "Manufacturing Master Data") {
-
+    } else if (dashName === "Manufacturing Master Data") {
       try {
-        setDownloadDataLoad(id)
-        console.log(id)
-        getInfoToast()
+        setDownloadDataLoad(id);
+        console.log(id);
+        getInfoToast();
         const response = await axios.get(url + "/api/sales/plpo");
-        console.log(response)
+        console.log(response);
 
-        setDownloadDataLoad(false)
-        downloadDataIntoExcel(response.data.data, "Manufacturing Master data", id)
-
+        setDownloadDataLoad(false);
+        downloadDataIntoExcel(
+          response.data.data,
+          "Manufacturing Master data",
+          id
+        );
       } catch (error) {
-        console.log("Error while fetching", error)
+        console.log("Error while fetching", error);
       }
-    }
-    else if (dashName === "Manufacturing Orders") {
-
+    } else if (dashName === "Manufacturing Orders") {
       try {
-        setDownloadDataLoad(id)
-        console.log(id)
-        getInfoToast()
+        setDownloadDataLoad(id);
+        console.log(id);
+        getInfoToast();
         const response = await axios.get(url + "/api/sales/afvc");
-        console.log(response)
+        console.log(response);
 
-        setDownloadDataLoad(false)
-        downloadDataIntoExcel(response.data.data, "Manufacturing Orders data", id)
-
+        setDownloadDataLoad(false);
+        downloadDataIntoExcel(
+          response.data.data,
+          "Manufacturing Orders data",
+          id
+        );
       } catch (error) {
-        console.log("Error while fetching", error)
+        console.log("Error while fetching", error);
       }
-    }
-    else if (dashName === "Production Planning"){
+    } else if (dashName === "Production Planning") {
       try {
-        setDownloadDataLoad(id)
-        console.log(id)
-        getInfoToast()
+        setDownloadDataLoad(id);
+        console.log(id);
+        getInfoToast();
         const response = await axios.get(url + "/api/sales/mkal");
-        console.log(response)
-        
-        setDownloadDataLoad(false)
-        downloadDataIntoExcel(response.data.data, "Production Planning", id)
+        console.log(response);
 
+        setDownloadDataLoad(false);
+        downloadDataIntoExcel(response.data.data, "Production Planning", id);
       } catch (error) {
-        console.log("Error while fetching", error)
+        console.log("Error while fetching", error);
       }
     }
-  }
+  };
 
   const getResultsAndDownloadElement = (dataModelName, id) => {
     if (dataModelName === "Revenue, Clinical and Equipment Failure") {
       return (
         <div className="bi-excel-download">
-          <div className="" onClick={setIconValue} style={{ position: 'relative' }}>
-            <IoIosArrowDropup title="Select Dashboard" className={`select-model ${isIconClicked === true ? "bi-arrow-down" : "bi-arrow-down-1"}`} />
-            {isIconClicked && <div style={{ position: "absolute" }} className="report-icon-download-drop-down">
-              <p onClick={() => selectDashboard("Revenue Results")}>Revenue Data</p>
-              <p onClick={() => selectDashboard("Clinical Results")}>Clinical Data</p>
-              <p onClick={() => selectDashboard("Equipment Results")}>Equipment Data</p>
-            </div>}
-          </div>
-          {downloadDataLoad === id ? <div className="bi-spinner"></div> : <button
-            onClick={() => downloadReportData(selectedReport, dataModelName, id)}
-            className="bi-excel-download-btn"
+          <div
+            className=""
+            onClick={setIconValue}
+            style={{ position: "relative" }}
           >
-            <MdOutlineDownload className="bi-excel-download-icon" />
-            <RiFileExcel2Fill className="bi-excel-icon" />
-          </button>}
-
+            <IoIosArrowDropup
+              title="Select Dashboard"
+              className={`select-model ${
+                isIconClicked === true ? "bi-arrow-down" : "bi-arrow-down-1"
+              }`}
+            />
+            {isIconClicked && (
+              <div
+                style={{ position: "absolute" }}
+                className="report-icon-download-drop-down"
+              >
+                <p onClick={() => selectDashboard("Revenue Results")}>
+                  Revenue Data
+                </p>
+                <p onClick={() => selectDashboard("Clinical Results")}>
+                  Clinical Data
+                </p>
+                <p onClick={() => selectDashboard("Equipment Results")}>
+                  Equipment Data
+                </p>
+              </div>
+            )}
+          </div>
+          {downloadDataLoad === id ? (
+            <div className="bi-spinner"></div>
+          ) : (
+            <button
+              onClick={() =>
+                downloadReportData(selectedReport, dataModelName, id)
+              }
+              className="bi-excel-download-btn"
+            >
+              <MdOutlineDownload className="bi-excel-download-icon" />
+              <RiFileExcel2Fill className="bi-excel-icon" />
+            </button>
+          )}
         </div>
       );
     } else {
       return (
         <div className="bi-excel-download">
-          {downloadDataLoad === id ? <div className="bi-spinner"></div> : <button
-            onClick={() => downloadReportData("", dataModelName, id)}
-            className="bi-excel-download-btn"
-          >
-            <MdOutlineDownload className="bi-excel-download-icon" />
-            <RiFileExcel2Fill className="bi-excel-icon" />
-          </button>}
+          {downloadDataLoad === id ? (
+            <div className="bi-spinner"></div>
+          ) : (
+            <button
+              onClick={() => downloadReportData("", dataModelName, id)}
+              className="bi-excel-download-btn"
+            >
+              <MdOutlineDownload className="bi-excel-download-icon" />
+              <RiFileExcel2Fill className="bi-excel-icon" />
+            </button>
+          )}
         </div>
       );
     }
   };
 
-
+  const getNoAccessViewInfo = () => {
+    return (
+      <div className="no-access-view-text">
+        <p>
+          <BiSolidHide className="no-access-icon" />
+          You currently don’t have permission to view any dashboards from this
+          section. Please reach out to your administrator to request access.
+        </p>
+      </div>
+    );
+  };
 
   const getDashboards = (activeDash) => {
     if (activeDash === "HANElytics") {
@@ -647,40 +751,99 @@ const PowerBiDashboard = () => {
             />
             Supply Chain Models
           </h1>
-          <div className="dashboard-section">
-            {HANElyticsDashboards.map((type) => {
 
-              return (
-                <div key={type.headerText} className="dashboard-card">
-                  <div className="bi-header-text">
-                    <h1 className="card-title">{type.headerText}</h1>
-                  </div>
-                  <div width={"100vw"}>
-                    <img
-                      style={{ filter: "brightness(95%)" }}
-                      src={type.image}
-                      alt={type.headerText}
-                      width={"100%"}
-                    />
-                  </div>
-                  <button
-                    className="bi-dashboard-button"
-                    // onClick={() => login(`${type.dataText}, ${type.url}`)}
-                    style={{ position: "relative" }}
-                  >
-
-                    <a href={type.url} target="_blank">
-                      View Dashboard
-                    </a>
-                    <p
-                      style={{ position: "absolute", top: "6px", right: "8px" }}
-                    >
-                      {getResultsAndDownloadElement(`${type.headerText}`, `${type.id}`)}
-                    </p>
-                  </button>
-                </div>
-              );
-            })}
+          <div>
+            {loggedInUserRole === "COO" ||
+            loggedInUserRole === "CTO" ||
+            loggedInUserRole === "CEO" ? (
+              <div className="dashboard-section">
+                {HANElyticsDashboards.map((type) => {
+                  return (
+                    <div key={type.headerText} className="dashboard-card">
+                      <div className="bi-header-text">
+                        <h1 className="card-title">{type.headerText}</h1>
+                      </div>
+                      <div width={"100vw"}>
+                        <img
+                          style={{ filter: "brightness(95%)" }}
+                          src={type.image}
+                          alt={type.headerText}
+                          width={"100%"}
+                        />
+                      </div>
+                      <button
+                        className="bi-dashboard-button"
+                        // onClick={() => login(`${type.dataText}, ${type.url}`)}
+                        style={{ position: "relative" }}
+                      >
+                        <a href={type.url} target="_blank">
+                          View Dashboard
+                        </a>
+                        <p
+                          style={{
+                            position: "absolute",
+                            top: "6px",
+                            right: "8px",
+                          }}
+                        >
+                          {getResultsAndDownloadElement(
+                            `${type.headerText}`,
+                            `${type.id}`
+                          )}
+                        </p>
+                      </button>
+                    </div>
+                  );
+                })}
+              </div>
+            ) : (
+              <div className="dashboard-section">
+                {allowedHANElyticsDashboards.length === 0 ? (
+                  getNoAccessViewInfo()
+                ) : (
+                  <>
+                    {allowedHANElyticsDashboards.map((type) => {
+                      return (
+                        <div key={type.headerText} className="dashboard-card">
+                          <div className="bi-header-text">
+                            <h1 className="card-title">{type.headerText}</h1>
+                          </div>
+                          <div width={"100vw"}>
+                            <img
+                              style={{ filter: "brightness(95%)" }}
+                              src={type.image}
+                              alt={type.headerText}
+                              width={"100%"}
+                            />
+                          </div>
+                          <button
+                            className="bi-dashboard-button"
+                            // onClick={() => login(`${type.dataText}, ${type.url}`)}
+                            style={{ position: "relative" }}
+                          >
+                            <a href={type.url} target="_blank">
+                              View Dashboard
+                            </a>
+                            <p
+                              style={{
+                                position: "absolute",
+                                top: "6px",
+                                right: "8px",
+                              }}
+                            >
+                              {getResultsAndDownloadElement(
+                                `${type.headerText}`,
+                                `${type.id}`
+                              )}
+                            </p>
+                          </button>
+                        </div>
+                      );
+                    })}
+                  </>
+                )}
+              </div>
+            )}
           </div>
         </div>
       );
@@ -695,41 +858,105 @@ const PowerBiDashboard = () => {
             />
             Order to Cash:
           </h1>
-          <div className="dashboard-section">
-            {orderToCash.map((type) => {
-              return (
-                <div key={type.headerText} className="dashboard-card">
-                  <div className="bi-header-text">
-                    <h1 className="card-title">{type.headerText}</h1>
-                  </div>
-                  <div width={"100vw"}>
-                    <img
-                      style={{ filter: "brightness(95%)" }}
-                      src={type.image}
-                      alt={type.headerText}
-                      width={"100%"}
-                    />
-                  </div>
+          {loggedInUserRole === "COO" ||
+          loggedInUserRole === "CTO" ||
+          loggedInUserRole === "CEO" ? (
+            <div className="dashboard-section">
+              {orderToCash.map((type) => {
+                {
+                  /* {allowedOrderToCashDashboards.map((type) => { */
+                }
+                return (
+                  <div key={type.headerText} className="dashboard-card">
+                    <div className="bi-header-text">
+                      <h1 className="card-title">{type.headerText}</h1>
+                    </div>
+                    <div width={"100vw"}>
+                      <img
+                        style={{ filter: "brightness(95%)" }}
+                        src={type.image}
+                        alt={type.headerText}
+                        width={"100%"}
+                      />
+                    </div>
 
-                  <button
-                    className="bi-dashboard-button"
-                    // onClick={() => login(`${type.dataText}, ${type.url}`)}
+                    <button
+                      className="bi-dashboard-button"
+                      // onClick={() => login(`${type.dataText}, ${type.url}`)}
 
-                    style={{ position: "relative" }}
-                  >
-                    <a href={type.url} target="_blank">
-                      View Dashboard
-                    </a>
-                    <p
-                      style={{ position: "absolute", top: "6px", right: "8px" }}
+                      style={{ position: "relative" }}
                     >
-                      {getResultsAndDownloadElement(`${type.headerText}`, `${type.id}`)}
-                    </p>
-                  </button>
-                </div>
-              );
-            })}
-          </div>
+                      <a href={type.url} target="_blank">
+                        View Dashboard
+                      </a>
+                      <p
+                        style={{
+                          position: "absolute",
+                          top: "6px",
+                          right: "8px",
+                        }}
+                      >
+                        {getResultsAndDownloadElement(
+                          `${type.headerText}`,
+                          `${type.id}`
+                        )}
+                      </p>
+                    </button>
+                  </div>
+                );
+              })}
+            </div>
+          ) : (
+            <div className="dashboard-section">
+              {/* {orderToCash.map((type) => { */}
+              {allowedOrderToCashDashboards.length === 0 ? (
+                getNoAccessViewInfo()
+              ) : (
+                <>
+                  {allowedOrderToCashDashboards.map((type) => {
+                    return (
+                      <div key={type.headerText} className="dashboard-card">
+                        <div className="bi-header-text">
+                          <h1 className="card-title">{type.headerText}</h1>
+                        </div>
+                        <div width={"100vw"}>
+                          <img
+                            style={{ filter: "brightness(95%)" }}
+                            src={type.image}
+                            alt={type.headerText}
+                            width={"100%"}
+                          />
+                        </div>
+
+                        <button
+                          className="bi-dashboard-button"
+                          // onClick={() => login(`${type.dataText}, ${type.url}`)}
+
+                          style={{ position: "relative" }}
+                        >
+                          <a href={type.url} target="_blank">
+                            View Dashboard
+                          </a>
+                          <p
+                            style={{
+                              position: "absolute",
+                              top: "6px",
+                              right: "8px",
+                            }}
+                          >
+                            {getResultsAndDownloadElement(
+                              `${type.headerText}`,
+                              `${type.id}`
+                            )}
+                          </p>
+                        </button>
+                      </div>
+                    );
+                  })}
+                </>
+              )}
+            </div>
+          )}
         </div>
       );
     } else if (activeDash === "Procurement") {
@@ -743,39 +970,97 @@ const PowerBiDashboard = () => {
             />
             Procurement:
           </h1>
-          <div className="dashboard-section">
-            {procurement.map((type) => {
-              return (
-                <div key={type.headerText} className="dashboard-card">
-                  <div className="bi-header-text">
-                    <h1 className="card-title">{type.headerText}</h1>
-                  </div>
-                  <div width={"100vw"}>
-                    <img
-                      style={{ filter: "brightness(95%)" }}
-                      src={type.image}
-                      alt={type.headerText}
-                      width={"100%"}
-                    />
-                  </div>
-                  <button
-                    className="bi-dashboard-button"
-                    // onClick={() => login(`${type.dataText}, ${type.url}`)}
-                    style={{ position: "relative" }}
-                  >
-                    <a href={type.url} target="_blank">
-                      View Dashboard
-                    </a>
-                    <p
-                      style={{ position: "absolute", top: "6px", right: "8px" }}
+          {loggedInUserRole === "COO" ||
+          loggedInUserRole === "CTO" ||
+          loggedInUserRole === "CEO" ? (
+            <div className="dashboard-section">
+              {procurement.map((type) => {
+                return (
+                  <div key={type.headerText} className="dashboard-card">
+                    <div className="bi-header-text">
+                      <h1 className="card-title">{type.headerText}</h1>
+                    </div>
+                    <div width={"100vw"}>
+                      <img
+                        style={{ filter: "brightness(95%)" }}
+                        src={type.image}
+                        alt={type.headerText}
+                        width={"100%"}
+                      />
+                    </div>
+                    <button
+                      className="bi-dashboard-button"
+                      // onClick={() => login(`${type.dataText}, ${type.url}`)}
+                      style={{ position: "relative" }}
                     >
-                      {getResultsAndDownloadElement(`${type.headerText}`, `${type.id}`)}
-                    </p>
-                  </button>
-                </div>
-              );
-            })}
-          </div>
+                      <a href={type.url} target="_blank">
+                        View Dashboard
+                      </a>
+                      <p
+                        style={{
+                          position: "absolute",
+                          top: "6px",
+                          right: "8px",
+                        }}
+                      >
+                        {getResultsAndDownloadElement(
+                          `${type.headerText}`,
+                          `${type.id}`
+                        )}
+                      </p>
+                    </button>
+                  </div>
+                );
+              })}
+            </div>
+          ) : (
+            <div className="dashboard-section">
+              {allowedProcurementDashboards.length === 0 ? (
+                getNoAccessViewInfo()
+              ) : (
+                <>
+                  {allowedProcurementDashboards.map((type) => {
+                    return (
+                      <div key={type.headerText} className="dashboard-card">
+                        <div className="bi-header-text">
+                          <h1 className="card-title">{type.headerText}</h1>
+                        </div>
+                        <div width={"100vw"}>
+                          <img
+                            style={{ filter: "brightness(95%)" }}
+                            src={type.image}
+                            alt={type.headerText}
+                            width={"100%"}
+                          />
+                        </div>
+                        <button
+                          className="bi-dashboard-button"
+                          // onClick={() => login(`${type.dataText}, ${type.url}`)}
+                          style={{ position: "relative" }}
+                        >
+                          <a href={type.url} target="_blank">
+                            View Dashboard
+                          </a>
+                          <p
+                            style={{
+                              position: "absolute",
+                              top: "6px",
+                              right: "8px",
+                            }}
+                          >
+                            {getResultsAndDownloadElement(
+                              `${type.headerText}`,
+                              `${type.id}`
+                            )}
+                          </p>
+                        </button>
+                      </div>
+                    );
+                  })}
+                </>
+              )}
+            </div>
+          )}
         </div>
       );
     } else if (activeDash === "Manufacturing") {
@@ -789,40 +1074,99 @@ const PowerBiDashboard = () => {
             />
             Manufacturing:
           </h1>
-          <div className="dashboard-section">
-            {manufacturing.map((type) => {
-              return (
-                <div key={type.headerText} className="dashboard-card">
-                  <div className="bi-header-text">
-                    <h1 className="card-title">{type.headerText}</h1>
-                  </div>
-                  <div width={"100vw"}>
-                    <img
-                      style={{ filter: "brightness(95%)" }}
-                      src={type.image}
-                      alt={type.headerText}
-                      width={"100%"}
-                    />
-                  </div>
+          {loggedInUserRole === "COO" ||
+          loggedInUserRole === "CTO" ||
+          loggedInUserRole === "CEO" ? (
+            <div className="dashboard-section">
+              {manufacturing.map((type) => {
+                return (
+                  <div key={type.headerText} className="dashboard-card">
+                    <div className="bi-header-text">
+                      <h1 className="card-title">{type.headerText}</h1>
+                    </div>
+                    <div width={"100vw"}>
+                      <img
+                        style={{ filter: "brightness(95%)" }}
+                        src={type.image}
+                        alt={type.headerText}
+                        width={"100%"}
+                      />
+                    </div>
 
-                  <button
-                    className="bi-dashboard-button"
-                    // onClick={() => login(`${type.dataText}, ${type.url}`)}
-                    style={{ position: "relative" }}
-                  >
-                    <a href={type.url} target="_blank">
-                      View Dashboard
-                    </a>
-                    <p
-                      style={{ position: "absolute", top: "6px", right: "8px" }}
+                    <button
+                      className="bi-dashboard-button"
+                      // onClick={() => login(`${type.dataText}, ${type.url}`)}
+                      style={{ position: "relative" }}
                     >
-                      {getResultsAndDownloadElement(`${type.headerText}`, `${type.id}`)}
-                    </p>
-                  </button>
-                </div>
-              );
-            })}
-          </div>
+                      <a href={type.url} target="_blank">
+                        View Dashboard
+                      </a>
+                      <p
+                        style={{
+                          position: "absolute",
+                          top: "6px",
+                          right: "8px",
+                        }}
+                      >
+                        {getResultsAndDownloadElement(
+                          `${type.headerText}`,
+                          `${type.id}`
+                        )}
+                      </p>
+                    </button>
+                  </div>
+                );
+              })}
+            </div>
+          ) : (
+            <div className="dashboard-section">
+              {allowedManufacturingDashboards.length === 0 ? (
+                getNoAccessViewInfo()
+              ) : (
+                <>
+                  {allowedManufacturingDashboards.map((type) => {
+                    return (
+                      <div key={type.headerText} className="dashboard-card">
+                        <div className="bi-header-text">
+                          <h1 className="card-title">{type.headerText}</h1>
+                        </div>
+                        <div width={"100vw"}>
+                          <img
+                            style={{ filter: "brightness(95%)" }}
+                            src={type.image}
+                            alt={type.headerText}
+                            width={"100%"}
+                          />
+                        </div>
+
+                        <button
+                          className="bi-dashboard-button"
+                          // onClick={() => login(`${type.dataText}, ${type.url}`)}
+                          style={{ position: "relative" }}
+                        >
+                          <a href={type.url} target="_blank">
+                            View Dashboard
+                          </a>
+                          <p
+                            style={{
+                              position: "absolute",
+                              top: "6px",
+                              right: "8px",
+                            }}
+                          >
+                            {getResultsAndDownloadElement(
+                              `${type.headerText}`,
+                              `${type.id}`
+                            )}
+                          </p>
+                        </button>
+                      </div>
+                    );
+                  })}
+                </>
+              )}
+            </div>
+          )}
         </div>
       );
     } else if (activeDash === "Finance") {
@@ -836,40 +1180,100 @@ const PowerBiDashboard = () => {
             />
             Finance:
           </h1>
-          <div className="dashboard-section">
-            {finance.map((type) => {
-              return (
-                <div key={type.headerText} className="dashboard-card">
-                  <div className="bi-header-text">
-                    <h1 className="card-title">{type.headerText}</h1>
-                  </div>
-                  <div width={"100vw"}>
-                    <img
-                      style={{ filter: "brightness(95%)" }}
-                      src={type.image}
-                      alt={type.headerText}
-                      width={"100%"}
-                    />
-                  </div>
 
-                  <button
-                    className="bi-dashboard-button"
-                    // onClick={() => login(`${type.dataText}, ${type.url}`)}
-                    style={{ position: "relative" }}
-                  >
-                    <a href={type.url} target="_blank">
-                      View Dashboard
-                    </a>
-                    <p
-                      style={{ position: "absolute", top: "6px", right: "8px" }}
+          {loggedInUserRole === "COO" ||
+          loggedInUserRole === "CTO" ||
+          loggedInUserRole === "CEO" ? (
+            <div className="dashboard-section">
+              {finance.map((type) => {
+                return (
+                  <div key={type.headerText} className="dashboard-card">
+                    <div className="bi-header-text">
+                      <h1 className="card-title">{type.headerText}</h1>
+                    </div>
+                    <div width={"100vw"}>
+                      <img
+                        style={{ filter: "brightness(95%)" }}
+                        src={type.image}
+                        alt={type.headerText}
+                        width={"100%"}
+                      />
+                    </div>
+
+                    <button
+                      className="bi-dashboard-button"
+                      // onClick={() => login(`${type.dataText}, ${type.url}`)}
+                      style={{ position: "relative" }}
                     >
-                      {getResultsAndDownloadElement(`${type.headerText}`, `${type.id}`)}
-                    </p>
-                  </button>
-                </div>
-              );
-            })}
-          </div>
+                      <a href={type.url} target="_blank">
+                        View Dashboard
+                      </a>
+                      <p
+                        style={{
+                          position: "absolute",
+                          top: "6px",
+                          right: "8px",
+                        }}
+                      >
+                        {getResultsAndDownloadElement(
+                          `${type.headerText}`,
+                          `${type.id}`
+                        )}
+                      </p>
+                    </button>
+                  </div>
+                );
+              })}
+            </div>
+          ) : (
+            <div className="dashboard-section">
+              {allowedFinanceDashboards.length === 0 ? (
+                getNoAccessViewInfo()
+              ) : (
+                <>
+                  {allowedFinanceDashboards.map((type) => {
+                    return (
+                      <div key={type.headerText} className="dashboard-card">
+                        <div className="bi-header-text">
+                          <h1 className="card-title">{type.headerText}</h1>
+                        </div>
+                        <div width={"100vw"}>
+                          <img
+                            style={{ filter: "brightness(95%)" }}
+                            src={type.image}
+                            alt={type.headerText}
+                            width={"100%"}
+                          />
+                        </div>
+
+                        <button
+                          className="bi-dashboard-button"
+                          // onClick={() => login(`${type.dataText}, ${type.url}`)}
+                          style={{ position: "relative" }}
+                        >
+                          <a href={type.url} target="_blank">
+                            View Dashboard
+                          </a>
+                          <p
+                            style={{
+                              position: "absolute",
+                              top: "6px",
+                              right: "8px",
+                            }}
+                          >
+                            {getResultsAndDownloadElement(
+                              `${type.headerText}`,
+                              `${type.id}`
+                            )}
+                          </p>
+                        </button>
+                      </div>
+                    );
+                  })}
+                </>
+              )}
+            </div>
+          )}
         </div>
       );
     }
@@ -909,10 +1313,11 @@ const PowerBiDashboard = () => {
             <h1
               key={index}
               onClick={() => showDashboards(`${eachTab.activeText}`)}
-              className={`powerbi-dashboard-tab-item ${activeDashboard === `${eachTab.activeText}`
+              className={`powerbi-dashboard-tab-item ${
+                activeDashboard === `${eachTab.activeText}`
                   ? "active-dashboard-btn"
                   : ""
-                }`}
+              }`}
             >
               <img
                 src={eachTab.imageUrl}
@@ -921,17 +1326,18 @@ const PowerBiDashboard = () => {
               />
               {eachTab.tabName}
               <MdKeyboardArrowUp
-                className={`bi-arrow ${activeDashboard === `${eachTab.activeText}`
+                className={`bi-arrow ${
+                  activeDashboard === `${eachTab.activeText}`
                     ? "bi-arrow-down"
                     : ""
-                  }`}
+                }`}
               />
             </h1>
           ))}
           <h1
             className="insights-btn"
             onClick={() => navigate("/dataModeling")}
-          // onClick={() => navigate("/assignRoles")}
+            // onClick={() => navigate("/assignRoles")}
           >
             Data Modeling
             <LuArrowUpRight className="insights-icon" />
@@ -967,10 +1373,11 @@ const PowerBiDashboard = () => {
                   <h1
                     key={index}
                     onClick={() => showDashboards(`${eachTab.activeText}`)}
-                    className={`powerbi-dashboard-tab-item ${activeDashboard === `${eachTab.activeText}`
+                    className={`powerbi-dashboard-tab-item ${
+                      activeDashboard === `${eachTab.activeText}`
                         ? "active-dashboard-btn"
                         : ""
-                      }`}
+                    }`}
                   >
                     <img
                       src={eachTab.imageUrl}
@@ -979,10 +1386,11 @@ const PowerBiDashboard = () => {
                     />
                     {eachTab.tabName}
                     <MdKeyboardArrowUp
-                      className={`bi-arrow ${activeDashboard === `${eachTab.activeText}`
+                      className={`bi-arrow ${
+                        activeDashboard === `${eachTab.activeText}`
                           ? "bi-arrow-down"
                           : ""
-                        }`}
+                      }`}
                     />
                   </h1>
                 ))}
@@ -1022,8 +1430,8 @@ const PowerBiDashboard = () => {
                 {getDashboards("HANElytics")}
                 {getDashboards("OrderToCash")}
                 {getDashboards("Procurement")}
-                {getDashboards("Finance")}
                 {getDashboards("Manufacturing")}
+                {getDashboards("Finance")}
               </>
             )}
             {activeDashboard === "HANElytics" && (
