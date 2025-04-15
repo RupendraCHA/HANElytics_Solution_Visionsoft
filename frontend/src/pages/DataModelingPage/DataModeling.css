@@ -9,7 +9,7 @@
 }
 
 
-@media (max-width: 576px){
+@media (max-width: 576px) {
   .website-header1 {
     /* display: none; */
   }
@@ -21,16 +21,17 @@
   align-items: center;
   /* border: 2px solid white; */
   border-bottom: none;
-  background-color: #2431c3;
+  background-color: #5b7dcd;
   /* background-color: #5b7dcd; */
   padding: 0px 10px;
 }
 
-@media (max-width: 768px){
-  .header-container{
+@media (max-width: 768px) {
+  .header-container {
     display: none;
   }
 }
+
 .mobile-header-container {
   display: flex;
   justify-content: space-between;
@@ -40,8 +41,8 @@
   padding: 10px 10px;
 }
 
-@media (min-width: 769px){
-  .mobile-header-container{
+@media (min-width: 769px) {
+  .mobile-header-container {
     display: none;
   }
 }
@@ -64,13 +65,13 @@
   letter-spacing: 2;
 }
 
-@media (max-width: 768px){
-  .datamodels-website-heading h1{
+@media (max-width: 768px) {
+  .datamodels-website-heading h1 {
     font-size: 18px;
   }
 }
 
-.mobile-menu{
+.mobile-menu {
   font-size: 30px;
   color: #000;
   font-weight: 600;
@@ -87,10 +88,12 @@
     font-size: 30px;
   }
 }
-.mobile-menu-container{
+
+.mobile-menu-container {
   background-color: #fff;
 }
-.model-data-mobile-menu-tabs{
+
+.model-data-mobile-menu-tabs {
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
@@ -102,12 +105,13 @@
   background-color: #0451e0;
   margin: 10px 0px;
 
-  .mobile-model-migrate-tabs{
+  .mobile-model-migrate-tabs {
     display: flex;
     flex-direction: column;
   }
 }
-.mobile-drop-down{
+
+.mobile-drop-down {
   display: flex;
   flex-direction: column;
   /* justify-content: center; */
@@ -115,7 +119,8 @@
   gap: 30px;
   height: 100%;
 }
-.mobile-drop-down button{
+
+.mobile-drop-down button {
   width: 94%;
   height: 40px;
   border: 1px solid #0e0e0e;
@@ -129,7 +134,7 @@
   padding-left: 10px;
 }
 
-.mobile-drop-down button:hover{
+.mobile-drop-down button:hover {
   background-color: red;
   box-shadow: 3px 3px 0px #000;
   color: white;
@@ -169,6 +174,7 @@
   text-align: center;
   margin-top: 30px;
 }
+
 .mobile-icon-username {
   display: flex;
   flex-direction: column;
@@ -177,7 +183,7 @@
   text-align: center;
   margin-top: 30px;
 
-  p{
+  p {
     text-align: left;
   }
 }
@@ -187,12 +193,14 @@
   font-size: 13px;
   font-weight: 600;
 }
-.mobile-username-text{
+
+.mobile-username-text {
   color: #fff;
   font-size: 13px;
   font-weight: 600;
   margin-left: 10px;
 }
+
 .user-icon {
   width: 40px;
   height: 40px;
@@ -202,6 +210,7 @@
   border-radius: 5px;
   box-shadow: 3px 3px 0px #000;
 }
+
 .mobile-user-icon {
   width: 40px;
   height: 40px;
@@ -219,6 +228,7 @@
     height: 35px;
   }
 }
+
 @media screen and (max-width: 768px) {
   .mobile-user-icon {
     width: 35px;
@@ -262,14 +272,17 @@
   overflow: auto;
   padding: 5px 0px;
 }
-@media (max-width: 768px){
+
+@media (max-width: 768px) {
+
   /* .data-models-section-container{
     flex-direction: column;
   } */
-   .workflows-section{
+  .workflows-section {
     display: none;
-   }
+  }
 }
+
 .workflows-section {
   width: 25%;
   background-color: #ffffffae;
@@ -287,7 +300,7 @@
   font-size: 32px;
   margin-top: 25px;
   /* background-color: #28323b; */
-  background-color: #120ed8;
+  background-color: #5b7dcd;
   padding: 8px;
   border-radius: 12px;
   cursor: pointer;
@@ -377,7 +390,8 @@
   border-right: 1px solid #4ba8a8;
   padding: 12px;
 }
-.excel-download{
+
+.excel-download {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -387,7 +401,8 @@
   cursor: pointer;
 
 }
-.excel-download-btn{
+
+.excel-download-btn {
   font-size: 12px;
   margin-bottom: 10px;
   padding: 2px 6px;
@@ -397,36 +412,42 @@
   border: 2px solid #08af24;
   box-shadow: 2px 2px 2px #002dce81;
 }
-.excel-download-icon{
+
+.excel-download-icon {
   color: #000;
   width: 25px;
   height: 25px;
   margin-top: 4px;
 }
-.excel-icon{
+
+.excel-icon {
   /* font-size: 16px; */
   color: #08af24;
   width: 22px;
   height: 22px;
   margin-left: 4px;
 }
-@media (max-width: 768px){
-  .excel-download{
+
+@media (max-width: 768px) {
+  .excel-download {
     /* justify-content: flex-start; */
     margin-top: 20px;
-  margin-right: 0px;
+    margin-right: 0px;
 
   }
-  .excel-download-btn{
+
+  .excel-download-btn {
     font-size: 12px;
   }
-  .excel-icon{
+
+  .excel-icon {
     width: 18px;
-  height: 18px;
+    height: 18px;
   }
-  .excel-download-icon{
+
+  .excel-download-icon {
     width: 18px;
-  height: 18px;
+    height: 18px;
   }
 }
 
@@ -507,12 +528,14 @@ ul {
   background-color: white;
   /* overflow: scroll; */
 }
-@media (max-width: 576px){
-  .pie-chart{
+
+@media (max-width: 576px) {
+  .pie-chart {
     margin: 12px;
     width: 150%;
   }
 }
+
 .bar-chart {
   flex: 1;
   border: 2px solid #000;
@@ -522,8 +545,8 @@ ul {
   background-color: white;
 }
 
-@media (max-width: 576px){
-  .bar-chart{
+@media (max-width: 576px) {
+  .bar-chart {
     /* margin: 12px; */
     width: 300%;
   }
@@ -547,11 +570,13 @@ ul {
   background-color: #fff;
   padding: 15px;
 }
-@media (max-width: 768px){
-  .table-container{
+
+@media (max-width: 768px) {
+  .table-container {
     margin: 10px;
   }
 }
+
 .select-process {
   text-align: left;
   background-color: #323f4b;
@@ -585,8 +610,8 @@ ul {
   gap: 20px;
 }
 
-@media (max-width: 576px){
-  .button button{
+@media (max-width: 576px) {
+  .button button {
     font-size: 12px;
   }
 }
@@ -619,8 +644,8 @@ ul {
   border: 1px solid #000;
 }
 
-@media (max-width: 768px){
-  .chart-tab{
+@media (max-width: 768px) {
+  .chart-tab {
     font-size: 10px;
     padding: 4px;
     width: auto;
@@ -659,8 +684,8 @@ ul {
   /* Smooth transition for background color */
 }
 
-@media (max-width: 768px){
-  .tab{
+@media (max-width: 768px) {
+  .tab {
     font-size: 12px;
     /* padding: 4px; */
     margin-left: 0;
@@ -707,8 +732,8 @@ ul {
   box-shadow: 1px 1px solid #000 !important;
 }
 
-@media (max-width: 576px){
-  .model-dataset{
+@media (max-width: 576px) {
+  .model-dataset {
     font-size: 14px;
   }
 }
@@ -749,8 +774,9 @@ ul {
   /* margin-left: 5px; */
 
 }
-@media (max-width: 768px){
-  .tab-buttons span{
+
+@media (max-width: 768px) {
+  .tab-buttons span {
     font-size: 12px;
   }
 }
@@ -794,6 +820,7 @@ ul {
     border-radius: 6px;
   }
 }
+
 .model-migrate-tabs {
   display: flex;
   gap: 40px;
@@ -817,7 +844,8 @@ ul {
   font-weight: 600;
   /* color: #000; */
 }
-.tabHeading:hover{
+
+.tabHeading:hover {
   background-color: #ddd9d9;
 
 }
@@ -864,6 +892,7 @@ ul {
     text-decoration: underline;
   }
 }
+
 .mobile-open-tab {
   /* position: absolute !important; */
   width: 100%;
@@ -910,7 +939,8 @@ ul {
 .roles-insights-icon {
   font-size: 18px;
 }
-.assign-roles{
+
+.assign-roles {
   background-color: #fff;
   box-shadow: 2px 2px 2px #0e0e0e;
   border-radius: 8px;
@@ -949,8 +979,8 @@ ul {
   margin-right: 2px;
 }
 
-@media (max-width: 576px){
-  .model-sources{
+@media (max-width: 576px) {
+  .model-sources {
     font-size: 13px;
   }
 }
@@ -961,8 +991,9 @@ ul {
   margin-bottom: 6px;
   margin-right: 2px;
 }
-@media (max-width: 576px){
-  .model-insights{
+
+@media (max-width: 576px) {
+  .model-insights {
     font-size: 15px;
   }
 }
@@ -981,7 +1012,8 @@ ul {
   color: #0451e0;
   padding: 2px;
 }
-.data-model-spinner{
+
+.data-model-spinner {
   /* margin: 20px auto; */
   width: 20px;
   height: 20px;
@@ -995,11 +1027,12 @@ ul {
   justify-content: center;
 }
 
-@keyframes spin{
-  0%{
+@keyframes spin {
+  0% {
     transform: rotate(0deg);
   }
-  100%{
+
+  100% {
     transform: rotate(360deg);
   }
 }
