@@ -245,7 +245,7 @@ const PowerBiDashboard = () => {
       .map((item) => item.dashboardName.trim().toLowerCase())
   );
 
-  // console.log(allowedNames)
+  console.log("Allowed Names",allowedNames)
 
   const allowedHANElyticsDashboards = HANElyticsDashboards.filter((item) =>
     allowedNames.has(item.headerText.trim().toLowerCase())
@@ -259,6 +259,8 @@ const PowerBiDashboard = () => {
   const allowedManufacturingDashboards = manufacturing.filter((item) =>
     allowedNames.has(item.headerText.trim().toLowerCase())
   );
+
+  console.log("Allowed From Manufacture",allowedManufacturingDashboards)
   const allowedFinanceDashboards = finance.filter((item) =>
     allowedNames.has(item.headerText.trim().toLowerCase())
   );
@@ -755,7 +757,7 @@ const PowerBiDashboard = () => {
       <div className="no-access-view-text">
         <p>
           <BiSolidHide className="no-access-icon" />
-          You currently don’t have permission to view any dashboards from this
+          You currently don’t have permission to view any dashboard from this
           section. Please reach out to your administrator to request access.
         </p>
       </div>
