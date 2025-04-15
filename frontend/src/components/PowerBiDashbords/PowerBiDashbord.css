@@ -27,18 +27,20 @@
   /* background-image: url("https://res.cloudinary.com/dvxkeeeqs/image/upload/v1727805691/futuristic-digital-user-interface-dashboard_53876-115871_xeeybu.jpg"); */
   /* background-image: url("../../assets/BGImage.jpg"); */
   /* background: linear-gradient(to left, #fff, #426fb2bf); */
-  background-color: #e6e3e3f7;
+  /* background-color: #e6e3e3f7; */
+  background-color: #5b7dcd;
   /* background-color: #0647df7a; */
   /* background-image: linear-gradient(to bottom, #7f83ad, #5b7dcd); */
 
   background-size: cover;
   object-fit: cover;
 }
-@media (max-width: 576px){
-    .bi-reporting-dashboards-sections{
-        height: 100vh;
-        overflow: auto;
-    }
+
+@media (max-width: 576px) {
+  .bi-reporting-dashboards-sections {
+    height: 100vh;
+    overflow: auto;
+  }
 }
 
 
@@ -47,7 +49,8 @@
   font-weight: 600;
   margin-bottom: 20px;
   padding-top: 20px;
-  color: #000;
+  /* color: #000; */
+  color: #fff;
   display: flex;
   align-items: center;
 }
@@ -60,10 +63,11 @@
   display: flex;
   gap: 50px;
 }
+
 @media (max-width: 576px) {
   .dashboard-section {
     flex-direction: column;
-    
+
   }
 }
 
@@ -106,10 +110,10 @@
   transform: scale(1.01);
 }
 
-@media (max-width: 576px){
-    .dashboard-card{
-        width: 100%;
-    }
+@media (max-width: 576px) {
+  .dashboard-card {
+    width: 100%;
+  }
 }
 
 .card-title {
@@ -173,6 +177,7 @@
   color: #fff;
   gap: 2px;
 }
+
 @media (max-width: 576px) {
   .dashboard-tabs {
     flex-direction: column;
@@ -181,6 +186,7 @@
     width: 100%;
   }
 }
+
 .powerbi-dashboard-tab-item {
   padding: 4px 6px;
   border-radius: 6px;
@@ -195,11 +201,11 @@
   margin-top: 10px;
 }
 
-@media (max-width: 576px){
-    .powerbi-dashboard-tab-item{
-        font-size: 14px;
-        padding: 0;
-    }
+@media (max-width: 576px) {
+  .powerbi-dashboard-tab-item {
+    font-size: 14px;
+    padding: 0;
+  }
 }
 
 .powerbi-dashboard-tab-item:hover {
@@ -220,16 +226,19 @@
   justify-content: space-between;
   align-items: center;
   padding: 0px 20px 0px 20px;
-  background-color: #2431c3;
+  /* background-color: #2431c3; */
+  background-color: #5b7dcd;
   /* background-color: #0c1ee2; */
   color: #fff;
   /* border-bottom: 1px solid #fff; */
 }
+
 @media (max-width: 576px) {
   .bi-home-container {
     display: none;
   }
 }
+
 .home-heading {
   text-decoration: none;
   color: #fff;
@@ -329,10 +338,12 @@
   border-radius: 5px;
   box-shadow: 3px 3px 0px #000;
 }
+
 .bi-tabs-list {
   position: relative;
   display: flex;
 }
+
 .bi-tab-list-heading {
   cursor: pointer;
   font-size: 13px;
@@ -344,6 +355,7 @@
   border: 1px solid #fff;
   box-shadow: 2px 2px 2px #0e0e0e;
 }
+
 .bi-tab-list-heading:hover {
   background-color: #ddd9d9;
 }
@@ -352,6 +364,7 @@
   font-size: 28px;
   font-weight: 600;
 }
+
 .bi-tab-list-view {
   position: absolute;
   top: 50px;
@@ -364,6 +377,7 @@
   grid-template-columns: 1fr 1fr;
   gap: 20px;
 }
+
 .insights-btn {
   color: #fff;
   margin-left: 10px;
@@ -375,24 +389,28 @@
   display: flex;
   align-items: center;
   margin-top: 10px;
-  background-color: #808080;
+  background-color: #00000098;
 
 }
+
 .insights-btn:hover {
   text-decoration: underline;
 }
-@media (max-width: 576px){
-    .insights-btn{
-        /* padding: none; */
-        margin-left: 0;
-        margin-top: 10px;
-        font-size: 14px;
-        padding: 4px;
-    }
+
+@media (max-width: 576px) {
+  .insights-btn {
+    /* padding: none; */
+    margin-left: 0;
+    margin-top: 10px;
+    font-size: 14px;
+    padding: 4px;
+  }
 }
+
 .insights-icon {
   font-size: 18px;
 }
+
 .bi-mobile-header-container {
   display: flex;
   justify-content: space-between;
@@ -401,11 +419,13 @@
   background-color: #2431c3;
   padding: 10px 10px;
 }
+
 @media (min-width: 576px) {
   .bi-mobile-header-container {
     display: none;
   }
 }
+
 .bi-datamodels-website-heading h1 {
   color: #000;
   font-family: "Roboto";
@@ -424,14 +444,17 @@
     font-size: 18px;
   }
 }
+
 .bi-mobile-menu-container {
   background-color: #fff;
 }
+
 .bi-mobile-menu {
   font-size: 30px;
   color: #000;
   font-weight: 600;
 }
+
 .mobile-menu-bi-home-container {
   /* margin: auto; */
   display: flex;
@@ -454,7 +477,8 @@
     align-items: flex-start;
   }
 }
-#mobile-login-btn{
+
+#mobile-login-btn {
   border: 1px solid #0e0e0e;
   background-color: #fff;
   color: red;
@@ -464,10 +488,12 @@
   text-align: center;
   font-size: 12px;
 }
+
 .roles-insights-icon {
   font-size: 18px;
 }
-.assign-roles{
+
+.assign-roles {
   background-color: #fff;
   box-shadow: 2px 2px 2px #0e0e0e;
   border-radius: 8px;
@@ -478,7 +504,8 @@
   display: flex;
   align-items: center;
 }
-.bi-excel-download{
+
+.bi-excel-download {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -488,7 +515,8 @@
   cursor: pointer;
 
 }
-.bi-excel-download-btn{
+
+.bi-excel-download-btn {
   font-size: 12px;
   /* margin-bottom: 10px; */
   /* padding: 2px 6px; */
@@ -499,12 +527,14 @@
   border: 2px solid #fff;
   /* box-shadow: 2px 2px 2px #002dce81; */
   /* box-shadow: 1px 1px 1px #fff; */
-  
+
 }
-.bi-excel-download-btn:hover{
+
+.bi-excel-download-btn:hover {
   transform: scale(1.05);
 }
-.select-model{
+
+.select-model {
   width: 25px;
   height: 25px;
   /* color: red; */
@@ -512,7 +542,7 @@
   font-weight: 600;
 }
 
-.report-icon-download-drop-down{
+.report-icon-download-drop-down {
   background-color: #171b25;
   top: 45px;
   z-index: 2;
@@ -520,7 +550,8 @@
   padding: 12px;
   border-radius: 10px;
   color: #fff;
-  p{
+
+  p {
     /* padding: 3px; */
     margin: 0;
     border: 1px solid #fff;
@@ -530,15 +561,18 @@
     font-size: 14px;
     padding: 3px;
   }
-  p:hover{
+
+  p:hover {
     color: #08af24;
   }
 }
-@media (max-width: 768px){
-  .report-icon-download-drop-down{
+
+@media (max-width: 768px) {
+  .report-icon-download-drop-down {
     left: -100px;
   }
 }
+
 .bi-arrow-down {
   transition: transform 0.5s;
   transform: rotate(180deg);
@@ -547,29 +581,34 @@
   border-radius: 50%;
 
 }
+
 .bi-arrow-down-1 {
   transition: transform 0.5s;
   transform: rotate(0deg);
   background-color: #fff;
   border-radius: 50%;
 }
-.bi-arrow-down-1:hover{
+
+.bi-arrow-down-1:hover {
   color: #000;
 }
-.bi-excel-download-icon{
+
+.bi-excel-download-icon {
   color: #08af24;
   width: 25px;
   height: 25px;
   margin-top: 4px;
 }
-.bi-excel-icon{
+
+.bi-excel-icon {
   /* font-size: 16px; */
   color: #08af24;
   width: 22px;
   height: 22px;
   margin-left: 4px;
 }
-.bi-spinner{
+
+.bi-spinner {
   /* margin: 20px auto; */
   width: 20px;
   height: 20px;
@@ -580,11 +619,12 @@
   /* position: fixed; */
 }
 
-@keyframes spin{
-  0%{
+@keyframes spin {
+  0% {
     transform: rotate(0deg);
   }
-  100%{
+
+  100% {
     transform: rotate(360deg);
   }
 }
