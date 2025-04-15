@@ -17,6 +17,7 @@
   font-size: 28px;
 }
 
+
 .power-bi-dashboards {
   display: flex;
   flex-direction: column;
@@ -337,6 +338,13 @@
   padding: 6px;
   border-radius: 5px;
   box-shadow: 3px 3px 0px #000;
+}
+
+.bi-user-icon:hover {
+  background-color: black;
+  color: #fff;
+  box-shadow: 3px 3px 0px #000;
+  cursor: pointer;
 }
 
 .bi-tabs-list {
