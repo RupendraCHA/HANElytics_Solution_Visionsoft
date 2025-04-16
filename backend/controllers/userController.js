@@ -110,32 +110,28 @@ export const registerUser = async (req, res) => {
 
         // Checking, is user already exists
 
-            const rawNumber = `${countryPhoneCode}${contact.replace(/[^0-9]/g, '')}`;
-
-            const phoneNumber = parsePhoneNumberFromString(rawNumber);
-
-            // Validate number existence, format, and match with expected country
-            if (
+            if (/[a-zA-Z]/.test(contact)) {
+                return res.json({
+                  success: false,
+                  message: 'Phone number must not contain letters.',
+                });
+              }
+              
+              // Step 2: Combine and parse
+              const rawNumber = `${countryPhoneCode}${contact}`;
+              const phoneNumber = parsePhoneNumberFromString(rawNumber);
+              
+              // Step 3: Validate with libphonenumber-js
+              if (
                 !phoneNumber ||
                 !phoneNumber.isValid() ||
                 (countryCode && phoneNumber.country !== countryCode.toUpperCase())
-            ) {
+              ) {
                 return res.json({
-                success: false,
-                message: `Invalid phone number for ${countryCode || 'selected country'}`,
+                  success: false,
+                  message: `Invalid phone number for ${countryCode || 'selected country'}`,
                 });
-            }
-
-            // ✅ If everything is valid, return success
-            // if (phoneNumber.isValid() && (phoneNumber.country === countryCode)) {
-            //     return res.json({
-            //     success: false,
-            //     message: 'Valid phone number',
-            //     formatted: phoneNumber.formatInternational(),
-            //     nationalFormat: phoneNumber.formatNational(),
-            //     country: phoneNumber.country,
-            //     });
-            // }
+              }
 
 
         if (exists) {

@@ -9,7 +9,7 @@ const userSchema = new mongoose.Schema({
     contact: {type: String, required: true},
     countryPhoneCode: {type: String, required: true},
     countryCode: {type: String, required: true},
-    role: {type: String, required: true},
+    role: {type: String, required: true, uppercase: true},
     position: {type: String, required: true},
     city: {type: String, required: true},
     street: {type: String, required: true},
