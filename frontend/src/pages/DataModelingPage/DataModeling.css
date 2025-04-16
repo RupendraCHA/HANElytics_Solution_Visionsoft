@@ -37,7 +37,7 @@
   justify-content: space-between;
   align-items: center;
   /* border: 2px solid white; */
-  background-color: #2431c3;
+  background-color: #5b7dcd;
   padding: 10px 10px;
 }
 
@@ -63,6 +63,10 @@
   border-radius: 6px;
   background-color: #fff;
   letter-spacing: 2;
+}
+
+.datamodels-website-heading h1:hover {
+  transform: scale(0.9);
 }
 
 @media (max-width: 768px) {
@@ -102,7 +106,7 @@
   left: 0;
   right: 0px;
   z-index: 100;
-  background-color: #0451e0;
+  background-color: #5b7dcd;
   margin: 10px 0px;
 
   .mobile-model-migrate-tabs {

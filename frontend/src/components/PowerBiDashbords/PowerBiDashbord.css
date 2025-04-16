@@ -17,6 +17,9 @@
   font-size: 28px;
 }
 
+.bi-home-heading h1:hover {
+  transform: scale(0.9);
+}
 
 .power-bi-dashboards {
   display: flex;
@@ -424,7 +427,7 @@
   justify-content: space-between;
   align-items: center;
   /* border: 2px solid white; */
-  background-color: #2431c3;
+  background-color: #5b7dcd;
   padding: 10px 10px;
 }
 
@@ -474,7 +477,7 @@
   right: 0;
   z-index: 100;
   /* background-color: red; */
-  background-color: #0451e0;
+  background-color: #5b7dcd;
   margin: 14px 0px;
   padding: 10px;
 
