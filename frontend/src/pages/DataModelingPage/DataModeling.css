@@ -65,10 +65,6 @@
   letter-spacing: 2;
 }
 
-.datamodels-website-heading h1:hover {
-  transform: scale(0.9);
-}
-
 @media (max-width: 768px) {
   .datamodels-website-heading h1 {
     font-size: 18px;
@@ -1040,13 +1036,15 @@ ul {
     transform: rotate(360deg);
   }
 }
-.logged-user-name{
+
+.logged-user-name {
   font-size: 16px;
   font-weight: bold;
   margin: 0;
   padding: 0;
 }
-.logged-person-details{
+
+.logged-person-details {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -1060,18 +1058,19 @@ ul {
   width: 15vw;
 }
 
-.icon-username:hover .logged-person-details{
+.icon-username:hover .logged-person-details {
   display: block;
 }
-.user-info-section{
+
+.user-info-section {
   flex: 1;
 
-  label{
+  label {
     font-weight: 600;
     font-size: 14px;
   }
 
-  input{
+  input {
     font-weight: 600;
     font-size: 12px;
     padding: 4px;
@@ -1079,15 +1078,16 @@ ul {
     outline: none;
   }
 }
-.user-business-section{
+
+.user-business-section {
   flex: 1;
 
-  label{
+  label {
     font-weight: 600;
     font-size: 14px;
   }
 
-  input{
+  input {
     font-weight: 600;
     font-size: 12px;
     padding: 4px;
@@ -1097,7 +1097,7 @@ ul {
   }
 }
 
-.details-section{
+.details-section {
   display: flex;
   justify-content: space-between;
   align-items: center;
