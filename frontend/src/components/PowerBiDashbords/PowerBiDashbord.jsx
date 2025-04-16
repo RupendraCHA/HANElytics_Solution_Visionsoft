@@ -245,7 +245,7 @@ const PowerBiDashboard = () => {
       .map((item) => item.dashboardName.trim().toLowerCase())
   );
 
-  console.log("Allowed Names", allowedNames)
+  // console.log("Allowed Names", allowedNames)
 
   const allowedHANElyticsDashboards = HANElyticsDashboards.filter((item) =>
     allowedNames.has(item.headerText.trim().toLowerCase())
@@ -260,7 +260,7 @@ const PowerBiDashboard = () => {
     allowedNames.has(item.headerText.trim().toLowerCase())
   );
 
-  console.log("Allowed From Manufacture", allowedManufacturingDashboards)
+  // console.log("Allowed From Manufacture", allowedManufacturingDashboards)
   const allowedFinanceDashboards = finance.filter((item) =>
     allowedNames.has(item.headerText.trim().toLowerCase())
   );
@@ -505,13 +505,42 @@ const PowerBiDashboard = () => {
         setDownloadDataLoad(id);
         getInfoToast();
         const response = await axios.get(url + "/api/sales/vbak");
+        console.log("Response",response.data)
+
+        const keyMapping = {
+          VBELN: 'orderNumber',
+          POSNR: 'itemNumber',
+          MATNR: 'materialNumber',
+          ARKTX: 'description',
+          KWMENG: 'quantity',
+          KBMENG: 'confirmedQuantity',
+          VDATU_ANA: 'deliveryDate',
+          NETPR: 'netPrice',
+          NETWR: 'netValue',
+          VRKME: 'salesUnit',
+          WERKS: 'plant',
+          PSTYV: 'itemCategory',
+          FKREL: 'billingRelevance',
+        };
+        
+        const transformedArray = response.data.data.map((item, index) => {
+          const newItem = { "S.No": index + 1 };
+          for (const key in item) {
+            newItem[keyMapping[key] || key] = item[key];
+          }
+          return newItem;
+        });
+
+        // console.log("Transformed Array:", transformedArray)
 
         setDownloadDataLoad(false);
         downloadDataIntoExcel(
-          response.data.data,
+          // response.data.data,
+          transformedArray,
           "Sales Order Processing data",
           id
         );
+
       } catch (error) {
         console.log("Error while fetching", error);
       }
@@ -520,10 +549,37 @@ const PowerBiDashboard = () => {
         setDownloadDataLoad(id);
         getInfoToast();
         const response = await axios.get(url + "/api/sales/likp");
+        console.log(response.data)
+
+        const keyMapping = {
+          VBELN: 'Sales Document Number',
+          VSTEL: 'Shipping Point',
+          VKORG: 'Sales Organization',
+          LFART: 'Delivery Type',
+          WADAT: 'Delivery Date',
+          INCO1: 'Incoterms (Part 1)',
+          INCO2: 'Incoterms (Part 2 / Location)',
+          KUNAG: 'Sold-To Party',
+          KUNNR: 'Ship-To Party / Customer Number',
+          BTGEW: 'Gross Weight',
+          NTGEW: 'Net Weight',
+          WAERK: 'Currency',
+        };
+
+        const transformedArray = response.data.data.map((item, index) => {
+          const newItem = { "S.No": index + 1 };
+          for (const key in item) {
+            newItem[keyMapping[key] || key] = item[key];
+          }
+          return newItem;
+        });
+
+        // console.log("Transformed Array:", transformedArray)
 
         setDownloadDataLoad(false);
         downloadDataIntoExcel(
-          response.data.data,
+          // response.data.data,
+          transformedArray,
           "Outbound Delivery Processing data",
           id
         );
@@ -537,9 +593,35 @@ const PowerBiDashboard = () => {
         const response = await axios.get(url + "/api/sales/vbrk");
         console.log(response);
 
+        const keyMapping = {
+          VBELN: 'Sales Document Number',
+          FKART: 'Document Type',
+          VBTYP: 'Sales Document Category',
+          WAERK: 'Currency',
+          VKORG: 'Sales Organization',
+          VTWEG: 'Distribution Channel',
+          KONDA: 'Customer Group',
+          INCO1: 'Incoterms (Part 1)',
+          INCO2: 'Incoterms (Part 2 / Location)',
+          ZTERM: 'Payment Terms',
+          BUKRS: 'Company Code',
+          NETWR: 'Net Value',
+          KUNRG: 'Customer Group',
+          KUNAG: 'Sold-To Party',
+        };
+
+        const transformedArray = response.data.data.map((item, index) => {
+          const newItem = { "S.No": index + 1 };
+          for (const key in item) {
+            newItem[keyMapping[key] || key] = item[key];
+          }
+          return newItem;
+        });
+
         setDownloadDataLoad(false);
         downloadDataIntoExcel(
-          response.data.data,
+          // response.data.data,
+          transformedArray,
           "Billing & Invoicing data",
           id
         );
@@ -554,9 +636,29 @@ const PowerBiDashboard = () => {
         const response = await axios.get(url + "/api/sales/ekko");
         console.log(response);
 
+        const keyMapping = {
+          EBELN: 'Purchase Order Number',
+          BUKRS: 'Company Code',
+          BSTYP: 'Purchase Document Type',
+          BSART: 'Document Type',
+          LIFNR: 'Vendor Number',
+          MATNR: 'Material Number',
+          EKORG: 'Purchasing Organization',
+          EKGRP: 'Purchasing Group',
+        };
+
+        const transformedArray = response.data.data.map((item, index) => {
+          const newItem = { "S.No": index + 1 };
+          for (const key in item) {
+            newItem[keyMapping[key] || key] = item[key];
+          }
+          return newItem;
+        });
+
         setDownloadDataLoad(false);
         downloadDataIntoExcel(
-          response.data.data,
+          // response.data.data,
+          transformedArray,
           "Supplier Order Overview data",
           id
         );
@@ -571,9 +673,34 @@ const PowerBiDashboard = () => {
         const response = await axios.get(url + "/api/sales/eban");
         console.log(response);
 
+        const keyMapping = {
+          BANFN: 'Purchase Requisition Number',
+          BNFPO: 'Purchase Requisition Item',
+          BSART: 'Document Type',
+          EKGRP: 'Purchasing Group',
+          MATNR: 'Material Number',
+          WERKS: 'Plant',
+          LGORT: 'Storage Location',
+          LIFNR: 'Vendor Number',
+          EKORG: 'Purchasing Organization',
+          SAKTO: 'G/L Account',
+          KOSTL: 'Cost Center',
+          KOKRS: 'Controlling Area',
+        };
+
+        const transformedArray = response.data.data.map((item, index) => {
+          const newItem = { "S.No": index + 1 };
+          for (const key in item) {
+            newItem[keyMapping[key] || key] = item[key];
+          }
+          return newItem;
+        });
+        
+
         setDownloadDataLoad(false);
         downloadDataIntoExcel(
-          response.data.data,
+          // response.data.data,
+          transformedArray,
           "Purchase Requisition data",
           id
         );
@@ -588,8 +715,31 @@ const PowerBiDashboard = () => {
         const response = await axios.get(url + "/api/sales/matdoc");
         console.log(response);
 
+        const keyMapping = {
+          MATNR: 'Material Number',
+          WERKS: 'Plant',
+          LGORT: 'Storage Location',
+          BUKRS: 'Company Code',
+          SAKL3: 'G/L Account',
+          ERFME: 'Currency Unit',
+          MJAHR: 'Fiscal Year',
+          EBELN: 'Purchase Order Number',
+          LIFNR: 'Vendor Number',
+        };
+
+        const transformedArray = response.data.data.map((item, index) => {
+          const newItem = { "S.No": index + 1 };
+          for (const key in item) {
+            newItem[keyMapping[key] || key] = item[key];
+          }
+          return newItem;
+        });
+
         setDownloadDataLoad(false);
-        downloadDataIntoExcel(response.data.data, "Goods Receipt data", id);
+        downloadDataIntoExcel(
+          // response.data.data, 
+          transformedArray,
+          "Goods Receipt data", id);
       } catch (error) {
         console.log("Error while fetching", error);
       }
@@ -601,8 +751,31 @@ const PowerBiDashboard = () => {
         const response = await axios.get(url + "/api/sales/acdoca1");
         console.log(response);
 
+        const keyMapping = {
+          RLDNR: 'Document Number (RLDNR)',
+          RBUKRS: 'Company Code',
+          GJAHR: 'Fiscal Year',
+          BELNR: 'Accounting Document Number',
+          DOCLN: 'Document Line Item',
+          RACCT: 'Account Number',
+          DRCRK: 'Debit/Credit Indicator',
+          BUDAT: 'Posting Date',
+          BLDAT: 'Document Date',
+        };
+
+        const transformedArray = response.data.data.map((item, index) => {
+          const newItem = { "S.No": index + 1 };
+          for (const key in item) {
+            newItem[keyMapping[key] || key] = item[key];
+          }
+          return newItem;
+        });
+
         setDownloadDataLoad(false);
-        downloadDataIntoExcel(response.data.data, "General Ledger data", id);
+        downloadDataIntoExcel(
+          // response.data.data, 
+          transformedArray,
+          "General Ledger data", id);
       } catch (error) {
         console.log("Error while fetching", error);
       }
@@ -614,8 +787,43 @@ const PowerBiDashboard = () => {
         const response = await axios.get(url + "/api/sales/acdoca2");
         console.log(response);
 
+        const keyMapping = {
+          RLDNR: 'Document Number (RLDNR)',
+          RBUKRS: 'Company Code',
+          GJAHR: 'Fiscal Year',
+          BELNR: 'Accounting Document Number',
+          DOCLN: 'Document Line Item',
+          LIFNR: 'Vendor Number',
+          RACCT: 'Account Number',
+          DRCRK: 'Debit/Credit Indicator',
+          HSL: 'Local Currency Amount',
+          TSL: 'Tax Amount',
+          KSL: 'Tax Code',
+          BUDAT: 'Posting Date',
+          BLDAT: 'Document Date',
+          MONAT: 'Month',
+          UMSKZ: 'Special G/L Indicator',
+          AWTYP: 'Document Type',
+          AWKEY: 'Document Reference Key',
+          BUKRS: 'Company Code',
+          BLART: 'Document Type (BLART)',
+          CPUDT: 'Document Entry Date',
+        };
+
+        const transformedArray = response.data.data.map((item, index) => {
+          const newItem = { "S.No": index + 1 };
+          for (const key in item) {
+            newItem[keyMapping[key] || key] = item[key];
+          }
+          return newItem;
+        });
+        
+
         setDownloadDataLoad(false);
-        downloadDataIntoExcel(response.data.data, "Account Paybles data", id);
+        downloadDataIntoExcel(
+          // response.data.data, 
+          transformedArray,
+          "Account Paybles data", id);
       } catch (error) {
         console.log("Error while fetching", error);
       }
@@ -627,9 +835,43 @@ const PowerBiDashboard = () => {
         const response = await axios.get(url + "/api/sales/acdoca3");
         console.log(response);
 
+        const keyMapping = {
+          RLDNR: 'Ledger',
+          RBUKRS: 'Company Code (RBUKRS)',
+          GJAHR: 'Fiscal Year',
+          BELNR: 'Accounting Document Number',
+          DOCLN: 'Document Line Item',
+          KUNNR: 'Customer Number',
+          RACCT: 'Account Number',
+          DRCRK: 'Debit/Credit Indicator',
+          HSL: 'Amount in Local Currency',
+          TSL: 'Amount in Transaction Currency',
+          KSL: 'Amount in Group Currency',
+          BUDAT: 'Posting Date',
+          BLDAT: 'Document Date',
+          MONAT: 'Posting Period (Month)',
+          UMSKZ: 'Special G/L Indicator',
+          AWTYP: 'Reference Transaction',
+          AWKEY: 'Reference Key',
+          BUKRS: 'Company Code (BUKRS)',
+          BLART: 'Document Type',
+          CPUDT: 'Entry Date',
+          BUZE: 'Line Item Number (BUZE)',
+        };
+
+        const transformedArray = response.data.data.map((item, index) => {
+          const newItem = { "S.No": index + 1 };
+          for (const key in item) {
+            newItem[keyMapping[key] || key] = item[key];
+          }
+          return newItem;
+        });
+        
+
         setDownloadDataLoad(false);
         downloadDataIntoExcel(
-          response.data.data,
+          // response.data.data,
+          transformedArray,
           "Account Receivables data",
           id
         );
@@ -644,9 +886,40 @@ const PowerBiDashboard = () => {
         const response = await axios.get(url + "/api/sales/plpo");
         console.log(response);
 
+        const keyMapping = {
+          PLNTY: 'Task List Type',
+          PLNNR: 'Task List Group',
+          ZAEHL: 'Group Counter',
+          DATUV: 'Valid From Date',
+          LOEKZ: 'Deletion Indicator',
+          PARKZ: 'Usage',
+          ANDAT: 'Created On',
+          ANNAM: 'Created By',
+          STEUS: 'Control Key',
+          ARBID: 'Internal Operation Number',
+          OBJTY: 'Object Type',
+          WERKS: 'Plant',
+          VINTV: 'Inspection Interval',
+          MEINH: 'Alternative Unit of Measure',
+          UMREN: 'Denominator for Conversion',
+          UMREZ: 'Numerator for Conversion',
+          BMSCH: 'Base Quantity'
+        };
+
+        const transformedArray = response.data.data.map((item, index) => {
+          const newItem = { "S.No": index + 1 };
+          for (const key in item) {
+            newItem[keyMapping[key] || key] = item[key];
+          }
+          return newItem;
+        });
+        
+        
+
         setDownloadDataLoad(false);
         downloadDataIntoExcel(
-          response.data.data,
+          // response.data.data,
+          transformedArray,
           "Manufacturing Master data",
           id
         );
@@ -660,10 +933,35 @@ const PowerBiDashboard = () => {
         getInfoToast();
         const response = await axios.get(url + "/api/sales/afvc");
         console.log(response);
+        const keyMapping = {
+          AUFPL: 'Routing Number of Operations',
+          PLNFL: 'Sequence',
+          PLNKN: 'Node Number',
+          PLNAL: 'Group Counter (Alternative)',
+          PLNTY: 'Task List Type',
+          VINTV: 'Inspection Interval',
+          PLNNR: 'Task List Group',
+          ZAEHL: 'Group Counter',
+          VORNR: 'Operation/Activity Number',
+          STEUS: 'Control Key',
+          ARBID: 'Internal Operation Number',
+          WERKS: 'Plant',
+          LTXA1: 'Operation Short Text'
+        };
+
+        const transformedArray = response.data.data.map((item, index) => {
+          const newItem = { "S.No": index + 1 };
+          for (const key in item) {
+            newItem[keyMapping[key] || key] = item[key];
+          }
+          return newItem;
+        });
+        
 
         setDownloadDataLoad(false);
         downloadDataIntoExcel(
-          response.data.data,
+          // response.data.data,
+          transformedArray,
           "Manufacturing Orders data",
           id
         );
@@ -678,8 +976,37 @@ const PowerBiDashboard = () => {
         const response = await axios.get(url + "/api/sales/mkal");
         console.log(response);
 
+        const keyMapping = {
+          MATNR: 'Material Number',
+          WERKS: 'Plant',
+          VERID: 'Production Version',
+          BDATU: 'Valid From Date',
+          ADATU: 'Changed On Date',
+          STLAL: 'Alternative BOM',
+          STLAN: 'BOM Usage',
+          PLNTY: 'Task List Type',
+          PLNNR: 'Task List Group',
+          ALNAL: 'Group Counter (Alternative Task List)',
+          LOSGR: 'Lot Size',
+          TEXT1: 'Description',
+          BSTMI: 'Minimum Lot Size',
+          BSTMA: 'Maximum Lot Size'
+        };
+        
+        const transformedArray = response.data.data.map((item, index) => {
+          const newItem = { "S.No": index + 1 };
+          for (const key in item) {
+            newItem[keyMapping[key] || key] = item[key];
+          }
+          return newItem;
+        });
+        
+
         setDownloadDataLoad(false);
-        downloadDataIntoExcel(response.data.data, "Production Planning", id);
+        downloadDataIntoExcel(
+          // response.data.data, 
+          transformedArray,
+          "Production Planning", id);
       } catch (error) {
         console.log("Error while fetching", error);
       }
