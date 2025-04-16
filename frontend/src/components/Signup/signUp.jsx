@@ -9,6 +9,8 @@ import { toast } from "react-toastify";
 import { StoreContext } from "../../context/StoreContext";
 import Footer from "../Footer/Footer";
 import { MuiTelInput } from "mui-tel-input";
+import { BiSolidShow } from "react-icons/bi";
+import { BiSolidHide } from "react-icons/bi";
 
 function SignUp() {
 
@@ -42,7 +44,8 @@ function SignUp() {
   const [codeError, setCodeError] = useState(false);
   const [openNextPage, setOpenNextPage] = useState(false);
 
-  const { url, setToken, setUsername, setUserRole } = useContext(StoreContext);
+  const { url, setToken, setUsername, setUserRole,showHidePassword,
+    setShowHidePassword } = useContext(StoreContext);
 
   // useEffect(() => {
   //   const response = "http://localhost:3001"
@@ -373,6 +376,19 @@ function SignUp() {
                           />
                         </div>
 
+                        {/* {showHidePassword === true ? (
+                    <BiSolidHide
+                      className="hide-show-icon"
+                      onClick={() => {
+                        setShowHidePassword(!showHidePassword)}}
+                    />
+                  ) : (
+                    <BiSolidShow
+                      className="hide-show-icon"
+                      onClick={() => {
+                        setShowHidePassword(!showHidePassword)}}
+                    />
+                  )} */}
                         <div className="register-input-label">
                           <label htmlFor="city">
                             <strong>CITY</strong>
