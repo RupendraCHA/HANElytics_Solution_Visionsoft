@@ -16,9 +16,9 @@ const StoreContextProvider = (props) => {
     const [accessNameInput, setAccessNameInput] = useState("")
     const [allDashboards, setAllDashboards] = useState([])
     const [dashUpdateId, setDashUpdateId] = useState("")
-    const [storeUserDashboardData, setStoreUserDashboardData] = useState([]) 
+    const [storeUserDashboardData, setStoreUserDashboardData] = useState([])
     const [loggedUserEmail, setLoggedUserEmail] = useState("")
-  const [loggedInUserDetails, setLoggedInUserDetails] = useState([]);
+    const [loggedInUserDetails, setLoggedInUserDetails] = useState([]);
 
 
     const getAllUsersList = async () => {
@@ -69,7 +69,7 @@ const StoreContextProvider = (props) => {
         <StoreContext.Provider value={contextValue}>
             {props.children}
         </StoreContext.Provider>
-    ) 
+    )
 }
 
 export default StoreContextProvider

@@ -245,7 +245,7 @@ const PowerBiDashboard = () => {
       .map((item) => item.dashboardName.trim().toLowerCase())
   );
 
-  console.log("Allowed Names",allowedNames)
+  console.log("Allowed Names", allowedNames)
 
   const allowedHANElyticsDashboards = HANElyticsDashboards.filter((item) =>
     allowedNames.has(item.headerText.trim().toLowerCase())
@@ -260,7 +260,7 @@ const PowerBiDashboard = () => {
     allowedNames.has(item.headerText.trim().toLowerCase())
   );
 
-  console.log("Allowed From Manufacture",allowedManufacturingDashboards)
+  console.log("Allowed From Manufacture", allowedManufacturingDashboards)
   const allowedFinanceDashboards = finance.filter((item) =>
     allowedNames.has(item.headerText.trim().toLowerCase())
   );
@@ -697,9 +697,8 @@ const PowerBiDashboard = () => {
           >
             <IoIosArrowDropup
               title="Select Dashboard"
-              className={`select-model ${
-                isIconClicked === true ? "bi-arrow-down" : "bi-arrow-down-1"
-              }`}
+              className={`select-model ${isIconClicked === true ? "bi-arrow-down" : "bi-arrow-down-1"
+                }`}
             />
             {isIconClicked && (
               <div
@@ -779,8 +778,8 @@ const PowerBiDashboard = () => {
 
           <div>
             {loggedInUserRole === "COO" ||
-            loggedInUserRole === "CTO" ||
-            loggedInUserRole === "CEO" ? (
+              loggedInUserRole === "CTO" ||
+              loggedInUserRole === "CEO" ? (
               <div className="dashboard-section">
                 {HANElyticsDashboards.map((type) => {
                   return (
@@ -884,8 +883,8 @@ const PowerBiDashboard = () => {
             Order to Cash:
           </h1>
           {loggedInUserRole === "COO" ||
-          loggedInUserRole === "CTO" ||
-          loggedInUserRole === "CEO" ? (
+            loggedInUserRole === "CTO" ||
+            loggedInUserRole === "CEO" ? (
             <div className="dashboard-section">
               {orderToCash.map((type) => {
                 {
@@ -996,8 +995,8 @@ const PowerBiDashboard = () => {
             Procurement:
           </h1>
           {loggedInUserRole === "COO" ||
-          loggedInUserRole === "CTO" ||
-          loggedInUserRole === "CEO" ? (
+            loggedInUserRole === "CTO" ||
+            loggedInUserRole === "CEO" ? (
             <div className="dashboard-section">
               {procurement.map((type) => {
                 return (
@@ -1100,8 +1099,8 @@ const PowerBiDashboard = () => {
             Manufacturing:
           </h1>
           {loggedInUserRole === "COO" ||
-          loggedInUserRole === "CTO" ||
-          loggedInUserRole === "CEO" ? (
+            loggedInUserRole === "CTO" ||
+            loggedInUserRole === "CEO" ? (
             <div className="dashboard-section">
               {manufacturing.map((type) => {
                 return (
@@ -1207,8 +1206,8 @@ const PowerBiDashboard = () => {
           </h1>
 
           {loggedInUserRole === "COO" ||
-          loggedInUserRole === "CTO" ||
-          loggedInUserRole === "CEO" ? (
+            loggedInUserRole === "CTO" ||
+            loggedInUserRole === "CEO" ? (
             <div className="dashboard-section">
               {finance.map((type) => {
                 return (
@@ -1337,11 +1336,10 @@ const PowerBiDashboard = () => {
             <h1
               key={index}
               onClick={() => showDashboards(`${eachTab.activeText}`)}
-              className={`powerbi-dashboard-tab-item ${
-                activeDashboard === `${eachTab.activeText}`
+              className={`powerbi-dashboard-tab-item ${activeDashboard === `${eachTab.activeText}`
                   ? "active-dashboard-btn"
                   : ""
-              }`}
+                }`}
             >
               <img
                 src={eachTab.imageUrl}
@@ -1350,18 +1348,17 @@ const PowerBiDashboard = () => {
               />
               {eachTab.tabName}
               <MdKeyboardArrowUp
-                className={`bi-arrow ${
-                  activeDashboard === `${eachTab.activeText}`
+                className={`bi-arrow ${activeDashboard === `${eachTab.activeText}`
                     ? "bi-arrow-down"
                     : ""
-                }`}
+                  }`}
               />
             </h1>
           ))}
           <h1
             className="insights-btn"
             onClick={() => navigate("/dataModeling")}
-            // onClick={() => navigate("/assignRoles")}
+          // onClick={() => navigate("/assignRoles")}
           >
             Data Modeling
             <LuArrowUpRight className="insights-icon" />
@@ -1375,14 +1372,14 @@ const PowerBiDashboard = () => {
               <div
                 key={index}
                 style={{ position: "absolute" }}
-                className="logged-person-details"
+                className="bi-logged-person-details"
               >
                 <h3 className="logged-user-name">Hi, {user.firstname} {user.lastname}</h3>
-                <hr style={{margin: "5px 0px",}}/>
+                <hr style={{ margin: "5px 0px", }} />
                 <div className="user-info-section">
                   <div
 
-                  className="details-section"
+                    className="details-section"
                   >
                     <label id="email">Email:</label>
                     <input type="text" value={user.email} />
@@ -1398,8 +1395,8 @@ const PowerBiDashboard = () => {
                   </div>
                 </div>
 
-                <h3 className="logged-user-name" style={{marginTop: "25px"}}>Business Info</h3>
-                <hr style={{margin: "5px 0px",}}/>
+                <h3 className="logged-user-name" style={{ marginTop: "25px" }}>Business Info</h3>
+                <hr style={{ margin: "5px 0px", }} />
 
                 <div className="user-business-section">
                   <div
@@ -1432,7 +1429,7 @@ const PowerBiDashboard = () => {
                       value={user.state}
                     />
                   </div>
-                  
+
                   <div
                     className="details-section"
                   >
@@ -1460,11 +1457,11 @@ const PowerBiDashboard = () => {
                       value={user.street}
                     />
                   </div>
-                  <div style={{marginBottom: "20px"}}>
-            <button onClick={handleModelLogout}>Logout</button>
-          </div>
+                  <div style={{ marginBottom: "20px" }}>
+                    <button onClick={handleModelLogout}>Logout</button>
+                  </div>
                 </div>
-                
+
               </div>
             ))}
           </div>
@@ -1493,11 +1490,10 @@ const PowerBiDashboard = () => {
                   <h1
                     key={index}
                     onClick={() => showDashboards(`${eachTab.activeText}`)}
-                    className={`powerbi-dashboard-tab-item ${
-                      activeDashboard === `${eachTab.activeText}`
+                    className={`powerbi-dashboard-tab-item ${activeDashboard === `${eachTab.activeText}`
                         ? "active-dashboard-btn"
                         : ""
-                    }`}
+                      }`}
                   >
                     <img
                       src={eachTab.imageUrl}
@@ -1506,11 +1502,10 @@ const PowerBiDashboard = () => {
                     />
                     {eachTab.tabName}
                     <MdKeyboardArrowUp
-                      className={`bi-arrow ${
-                        activeDashboard === `${eachTab.activeText}`
+                      className={`bi-arrow ${activeDashboard === `${eachTab.activeText}`
                           ? "bi-arrow-down"
                           : ""
-                      }`}
+                        }`}
                     />
                   </h1>
                 ))}

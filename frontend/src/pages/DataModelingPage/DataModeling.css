@@ -1044,7 +1044,7 @@ ul {
   padding: 0;
 }
 
-.logged-person-details {
+.data-logged-person-details {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -1055,10 +1055,10 @@ ul {
   padding: 5px 20px;
   color: #fff;
   border-radius: 6px;
-  width: 15vw;
+  width: 20vw;
 }
 
-.icon-username:hover .logged-person-details {
+.icon-username:hover .data-logged-person-details {
   display: block;
 }
 

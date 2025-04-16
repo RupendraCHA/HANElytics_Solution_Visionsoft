@@ -250,21 +250,22 @@
   padding: 0;
 }
 
-.logged-person-details {
+.header-logged-person-details {
   display: flex;
   align-items: center;
   justify-content: center;
   top: 80%;
-  right: -35px;
+  /* right: -50px; */
+  left: -100px;
   display: none;
   background-color: #000000d6;
   padding: 5px 20px;
   color: #fff;
   border-radius: 6px;
-  width: 15vw;
+  width: 20vw;
 }
 
-.icon-username1:hover .logged-person-details {
+.icon-username1:hover .header-logged-person-details {
   display: block;
 }
 

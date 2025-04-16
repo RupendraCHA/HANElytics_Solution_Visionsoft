@@ -680,21 +680,22 @@
   padding: 0;
 }
 
-.logged-person-details {
+.bi-logged-person-details {
   display: flex;
   align-items: center;
   justify-content: center;
   top: 80%;
   right: -35px;
+  /* left: -100px; */
   display: none;
   background-color: #000000d6;
   padding: 5px 20px;
   color: #fff;
   border-radius: 6px;
-  width: 15vw;
+  width: 20vw;
 }
 
-.bi-icon-username:hover .logged-person-details {
+.bi-icon-username:hover .bi-logged-person-details {
   display: block;
 }
 
