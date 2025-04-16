@@ -16,7 +16,7 @@ const Header = ({ page = "" }) => {
   const [isMenuOpened, setIsMenuOpened] = useState(false);
 
   const navigate = useNavigate();
-  const { username, token, setToken, setUsername, userRole, setUserRole,loggedInUserDetails,
+  const { username, token, setToken, setUsername, userRole, setUserRole, loggedInUserDetails,
     setLoggedInUserDetails } =
     useContext(StoreContext);
 
@@ -45,7 +45,7 @@ const Header = ({ page = "" }) => {
 
   useEffect(() => {
     getLoggedUserInfo()
-  },[])
+  }, [])
 
 
   const handleLogout = () => {
@@ -82,25 +82,25 @@ const Header = ({ page = "" }) => {
           )}
         </>
       );
-    }else{
+    } else {
       return (<>
-      <div className="roles-header-tabs">
-        
+        <div className="roles-header-tabs">
+
           <Link to="/dataModeling">
-                <button className="assign-roles">
-                  Data Modeling
-                  <LuArrowUpRight className="roles-insights-icon" />
-                </button>
+            <button className="assign-roles">
+              Data Modeling
+              <LuArrowUpRight className="roles-insights-icon" />
+            </button>
           </Link>
           <Link to="/dashboards">
-                <button className="assign-roles">
-                  PowerBI Dashboards
-                  <LuArrowUpRight className="roles-insights-icon" />
-                </button>
+            <button className="assign-roles">
+              PowerBI Dashboards
+              <LuArrowUpRight className="roles-insights-icon" />
+            </button>
           </Link>
-      </div>
+        </div>
       </>
-        
+
       )
     }
   };
@@ -109,30 +109,30 @@ const Header = ({ page = "" }) => {
     if (page !== "Grant Access") {
       return (
         <>
-        {userRole === "CEO" || userRole === "COO" || userRole === "CTO"  ? <Link to="/assignRoles">
-          <button className="assign-roles">
-            Assign Access
-            <LuArrowUpRight className="roles-insights-icon" />
-          </button></Link> : ""}
+          {userRole === "CEO" || userRole === "COO" || userRole === "CTO" ? <Link to="/assignRoles">
+            <button className="assign-roles">
+              Assign Access
+              <LuArrowUpRight className="roles-insights-icon" />
+            </button></Link> : ""}
         </>
       );
-    }else {
+    } else {
       return (
-      <div className="roles-mobile-header-tabs">
+        <div className="roles-mobile-header-tabs">
 
-      <Link to="/dataModeling">
-                <button className="assign-roles">
-                  Data Modeling
-                  <LuArrowUpRight className="roles-insights-icon" />
-                </button>
+          <Link to="/dataModeling">
+            <button className="assign-roles">
+              Data Modeling
+              <LuArrowUpRight className="roles-insights-icon" />
+            </button>
           </Link>
           <Link to="/dashboards">
-          <button className="assign-roles">
-            Power BI Dashboards
-            <LuArrowUpRight className="roles-insights-icon" />
-          </button></Link>
-      </div>
-        
+            <button className="assign-roles">
+              Power BI Dashboards
+              <LuArrowUpRight className="roles-insights-icon" />
+            </button></Link>
+        </div>
+
       )
     }
   };
@@ -145,24 +145,24 @@ const Header = ({ page = "" }) => {
         </Link>
         <div>
           {userRole === "CTO" ||
-                userRole === "CEO" ||
-                userRole === "COO" ? <>{getGrantButtons()}</> : ""}</div>
+            userRole === "CEO" ||
+            userRole === "COO" ? <>{getGrantButtons()}</> : ""}</div>
         <div className="drop-down1">
-          <div className="icon-username1" style={{position: "relative"}}>
+          <div className="icon-username1" style={{ position: "relative" }}>
             <FaRegCircleUser className="user-icon1" />
             <p className="username-text1">{firstname}</p>
             {loggedInUserDetails.map((user, index) => (
               <div
                 key={index}
                 style={{ position: "absolute" }}
-                className="logged-person-details"
+                className="header-logged-person-details"
               >
                 <h3 className="logged-user-name">Hi, {user.firstname} {user.lastname}</h3>
-                <hr style={{margin: "5px 0px",}}/>
+                <hr style={{ margin: "5px 0px", }} />
                 <div className="user-info-section">
                   <div
 
-                  className="details-section"
+                    className="details-section"
                   >
                     <label id="email">Email:</label>
                     <input type="text" value={user.email} />
@@ -178,8 +178,8 @@ const Header = ({ page = "" }) => {
                   </div>
                 </div>
 
-                <h3 className="logged-user-name" style={{marginTop: "25px"}}>Business Info</h3>
-                <hr style={{margin: "5px 0px",}}/>
+                <h3 className="logged-user-name" style={{ marginTop: "25px" }}>Business Info</h3>
+                <hr style={{ margin: "5px 0px", }} />
 
                 <div className="user-business-section">
                   <div
@@ -212,7 +212,7 @@ const Header = ({ page = "" }) => {
                       value={user.state}
                     />
                   </div>
-                  
+
                   <div
                     className="details-section"
                   >
@@ -240,16 +240,16 @@ const Header = ({ page = "" }) => {
                       value={user.street}
                     />
                   </div>
-                  
+
                 </div>
-                
+
                 <button id="bth-for-logout" onClick={handleLogout}>Logout</button>
-                
+
               </div>
             ))}
           </div>
           <button id="bth-for-logout" onClick={handleLogout}>Logout</button>
-          
+
         </div>
       </div>
       <div
@@ -269,8 +269,8 @@ const Header = ({ page = "" }) => {
             <div className="mobile-roles-menu-home-container">
               <div className="mobile-roles-home-page">
                 {userRole === "CTO" ||
-                userRole === "CEO" ||
-                userRole === "COO" ? (
+                  userRole === "CEO" ||
+                  userRole === "COO" ? (
                   <>{getMobileResponsiveButtons()}</>
                 ) : (
                   ""
