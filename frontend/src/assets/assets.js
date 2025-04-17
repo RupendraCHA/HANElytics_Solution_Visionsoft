@@ -28,6 +28,7 @@ import Inventory_model from "./Inventory_model.png"
 import Clinical_model from "./Clinical.png"
 import Equipment_model from "./Equipment.png"
 import Revenue_model from "./Revenue_model.png"
+import PaperInk_model from "./PaperInk.png"
 
 
 
@@ -60,5 +61,6 @@ export const assets = {
     Inventory_model,
     Clinical_model,
     Equipment_model,
-    Revenue_model
+    Revenue_model,
+    PaperInk_model
 }

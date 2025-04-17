@@ -116,6 +116,13 @@ function InitialPage() {
         "Ensure availability of critical clinical medicines by forecasting demand and recommending adequate buffer stock levels without interrupting the patient care.",
       image: `${assets.Revenue_model}`
     },
+    {
+      modelId: 5,
+      title: "5. Predicting Reams of Paper & Ink (Liters)",
+      description:
+        "This model forecasts the future consumption of reams of paper and liters of ink using historical usage data and printing trends.",
+      image: `${assets.PaperInk_model}`
+    },
 
   ];
 
