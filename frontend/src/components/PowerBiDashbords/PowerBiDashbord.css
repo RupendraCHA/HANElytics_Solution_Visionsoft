@@ -235,7 +235,7 @@
   border-bottom: 1px solid #fff;
 }
 
-@media (max-width: 576px) {
+@media (max-width: 768px) {
   .bi-home-container {
     display: none;
   }
@@ -431,7 +431,7 @@
   padding: 10px 10px;
 }
 
-@media (min-width: 576px) {
+@media (min-width: 769px) {
   .bi-mobile-header-container {
     display: none;
   }
