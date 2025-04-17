@@ -107,7 +107,7 @@ function Login() {
             }}>
               {/* Explore Our HANElytics AI/ML Solutions */}
             {/* <h4 style={{fontSize: "16px"}}>Explore Our HANElytics AI/ML Solutions</h4> */}
-            <h4 style={{fontSize: "22px"}}>HANElytics simplifies predictive insights by turning complex data into clear dashboards, intuitive graphs, and structured tables and many more.</h4>
+            <h4 style={{fontSize: "18px"}}>HANElytics simplifies predictive insights by turning complex data into clear dashboards, intuitive graphs, and structured tables and many more.</h4>
           </div>
           <div
             className="p-4  login-card"

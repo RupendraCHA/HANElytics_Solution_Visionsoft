@@ -507,9 +507,7 @@ function SignUp() {
               <div className="login-details">
                 {/* <div> */}
                 <p className="opening-text">
-                  With HANElytics, we help businesses predict, optimize, and
-                  automate operations using AI, machine learning, and advanced
-                  analytics.
+                HANElytics simplifies predictive insights by turning complex data into clear dashboards, intuitive graphs, and structured tables and many more.
                 </p>
                 <div>
                   <p>Already have an account?</p>
