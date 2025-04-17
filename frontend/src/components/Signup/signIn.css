@@ -199,13 +199,16 @@ font-weight: 700;
 .button-to-register{
   /* width: 96%; */
   padding: 10px;
-  color: #fff;
+  /* color: #fff; */
+  color: #000;
   font-weight: 600;
   border: none;
   outline: none;
   border-radius: 6px;
   font-size: 18px;
   width: 94%;
+  box-shadow: 2px 2px 2px #000;
+
 }
 .back-to-register{
   /* width: 96%; */
@@ -215,11 +218,13 @@ font-weight: 700;
   border: none;
   outline: none;
   border-radius: 6px;
-  font-size: 18px;
+  font-size: 14px;
   width: 50%;
+  box-shadow: 2px 2px 2px #000;
 }
 .register-bg{
-  background-color: red;
+  /* background-color: red; */
+  background-color: #ffc107;
 
 }
 

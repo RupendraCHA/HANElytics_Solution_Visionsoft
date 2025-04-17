@@ -483,7 +483,7 @@ function SignUp() {
                           style={{ backgroundColor: "#082ccd" }}
                           className="back-to-register"
                         >
-                          Back
+                          Go Back
                         </button>
 
                         {/* <div className="next-text-container" onClick={handleNextRegisterPage}>
@@ -514,7 +514,7 @@ function SignUp() {
                 <div>
                   <p>Already have an account?</p>
                   <Link to="/login">
-                    <button>Login</button>
+                    <button style={{boxShadow: "2px 2px 2px #000", padding: "10px 5px"}}>Login</button>
                   </Link>
                 </div>
                 {/* </div> */}
