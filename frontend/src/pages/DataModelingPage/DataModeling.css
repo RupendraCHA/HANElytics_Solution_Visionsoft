@@ -20,8 +20,9 @@
   justify-content: space-between;
   align-items: center;
   /* border: 2px solid white; */
-  border-bottom: none;
-  background-color: #5b7dcd;
+  background-color: #2b59c5;
+  /* border-bottom: 1px solid #fff; */
+
   /* background-color: #5b7dcd; */
   padding: 0px 10px;
 }
@@ -37,7 +38,8 @@
   justify-content: space-between;
   align-items: center;
   /* border: 2px solid white; */
-  background-color: #5b7dcd;
+  background-color: #2b59c5;
+  border-bottom: 1px solid #fff;
   padding: 10px 10px;
 }
 
@@ -266,7 +268,7 @@
   /* align-items: center; */
   background-color: #fff;
   height: auto;
-  border-top: 2px solid #000;
+  /* border-top: 2px solid #000; */
   max-height: 100vh;
   width: 100%;
   overflow: auto;

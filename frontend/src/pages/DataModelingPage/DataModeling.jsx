@@ -831,7 +831,7 @@ const DataModeling = () => {
       <div className="data-modeling-container">
         <header className="website-header1">
           {/* container */}
-          <div className="header-container">
+          <div className="header-container" style={{ border: "1px solid #fff" }}>
             <Link to="/home" className="datamodels-website-heading">
               <h1>HANELYTICS</h1>
             </Link>
@@ -1110,8 +1110,8 @@ const DataModeling = () => {
                         <MdKeyboardArrowUp
                           style={{ fontSize: "28px" }}
                           className={`${migrateModelOpen === "migrate-data"
-                              ? "arrow-down"
-                              : ""
+                            ? "arrow-down"
+                            : ""
                             }`}
                         />
                       </h4>
