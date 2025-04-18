@@ -35,7 +35,7 @@ const PowerBiDashboard = () => {
     setStoreUserDashboardData,
     loggedUserEmail,
     loggedInUserDetails,
-    setLoggedInUserDetails
+    setLoggedInUserDetails,
   } = useContext(StoreContext);
 
   const [isMenuOpened, setIsMenuOpened] = useState(false);
@@ -45,7 +45,7 @@ const PowerBiDashboard = () => {
   const [downloadDataLoad, setDownloadDataLoad] = useState(0);
   const [userAccessingDashboards, setUserAccessingDashboards] = useState([]);
   const [loggedInUserRole, setLoggedInUserRole] = useState("");
-  const [isUserDashLoaded, setIsUserDashLoaded] = useState(true)
+  const [isUserDashLoaded, setIsUserDashLoaded] = useState(true);
 
   const username1 = username.split(" ");
   const firstname = username1[0];
@@ -69,7 +69,7 @@ const PowerBiDashboard = () => {
   };
 
   const getUserAccessingDashboards = async () => {
-    setIsUserDashLoaded(true)
+    setIsUserDashLoaded(true);
     const email = localStorage.getItem("email");
 
     const userData = {
@@ -81,7 +81,7 @@ const PowerBiDashboard = () => {
     );
 
     console.log(userAccessingDashboards.data);
-    setIsUserDashLoaded(false)
+    setIsUserDashLoaded(false);
     setUserAccessingDashboards(userAccessingDashboards.data.userDashboards);
     console.log(userAccessingDashboards.data.userDashboards);
   };
@@ -508,24 +508,24 @@ const PowerBiDashboard = () => {
         setDownloadDataLoad(id);
         getInfoToast();
         const response = await axios.get(url + "/api/sales/vbak");
-        console.log("Response",response.data)
+        console.log("Response", response.data);
 
         const keyMapping = {
-          VBELN: 'orderNumber',
-          POSNR: 'itemNumber',
-          MATNR: 'materialNumber',
-          ARKTX: 'description',
-          KWMENG: 'quantity',
-          KBMENG: 'confirmedQuantity',
-          VDATU_ANA: 'deliveryDate',
-          NETPR: 'netPrice',
-          NETWR: 'netValue',
-          VRKME: 'salesUnit',
-          WERKS: 'plant',
-          PSTYV: 'itemCategory',
-          FKREL: 'billingRelevance',
+          VBELN: "orderNumber",
+          POSNR: "itemNumber",
+          MATNR: "materialNumber",
+          ARKTX: "description",
+          KWMENG: "quantity",
+          KBMENG: "confirmedQuantity",
+          VDATU_ANA: "deliveryDate",
+          NETPR: "netPrice",
+          NETWR: "netValue",
+          VRKME: "salesUnit",
+          WERKS: "plant",
+          PSTYV: "itemCategory",
+          FKREL: "billingRelevance",
         };
-        
+
         const transformedArray = response.data.data.map((item, index) => {
           const newItem = { "S.No": index + 1 };
           for (const key in item) {
@@ -543,7 +543,6 @@ const PowerBiDashboard = () => {
           "Sales Order Processing data",
           id
         );
-
       } catch (error) {
         console.log("Error while fetching", error);
       }
@@ -552,21 +551,21 @@ const PowerBiDashboard = () => {
         setDownloadDataLoad(id);
         getInfoToast();
         const response = await axios.get(url + "/api/sales/likp");
-        console.log(response.data)
+        console.log(response.data);
 
         const keyMapping = {
-          VBELN: 'Sales Document Number',
-          VSTEL: 'Shipping Point',
-          VKORG: 'Sales Organization',
-          LFART: 'Delivery Type',
-          WADAT: 'Delivery Date',
-          INCO1: 'Incoterms (Part 1)',
-          INCO2: 'Incoterms (Part 2 / Location)',
-          KUNAG: 'Sold-To Party',
-          KUNNR: 'Ship-To Party / Customer Number',
-          BTGEW: 'Gross Weight',
-          NTGEW: 'Net Weight',
-          WAERK: 'Currency',
+          VBELN: "Sales Document Number",
+          VSTEL: "Shipping Point",
+          VKORG: "Sales Organization",
+          LFART: "Delivery Type",
+          WADAT: "Delivery Date",
+          INCO1: "Incoterms (Part 1)",
+          INCO2: "Incoterms (Part 2 / Location)",
+          KUNAG: "Sold-To Party",
+          KUNNR: "Ship-To Party / Customer Number",
+          BTGEW: "Gross Weight",
+          NTGEW: "Net Weight",
+          WAERK: "Currency",
         };
 
         const transformedArray = response.data.data.map((item, index) => {
@@ -597,20 +596,20 @@ const PowerBiDashboard = () => {
         console.log(response);
 
         const keyMapping = {
-          VBELN: 'Sales Document Number',
-          FKART: 'Document Type',
-          VBTYP: 'Sales Document Category',
-          WAERK: 'Currency',
-          VKORG: 'Sales Organization',
-          VTWEG: 'Distribution Channel',
-          KONDA: 'Customer Group',
-          INCO1: 'Incoterms (Part 1)',
-          INCO2: 'Incoterms (Part 2 / Location)',
-          ZTERM: 'Payment Terms',
-          BUKRS: 'Company Code',
-          NETWR: 'Net Value',
-          KUNRG: 'Customer Group',
-          KUNAG: 'Sold-To Party',
+          VBELN: "Sales Document Number",
+          FKART: "Document Type",
+          VBTYP: "Sales Document Category",
+          WAERK: "Currency",
+          VKORG: "Sales Organization",
+          VTWEG: "Distribution Channel",
+          KONDA: "Customer Group",
+          INCO1: "Incoterms (Part 1)",
+          INCO2: "Incoterms (Part 2 / Location)",
+          ZTERM: "Payment Terms",
+          BUKRS: "Company Code",
+          NETWR: "Net Value",
+          KUNRG: "Customer Group",
+          KUNAG: "Sold-To Party",
         };
 
         const transformedArray = response.data.data.map((item, index) => {
@@ -640,14 +639,14 @@ const PowerBiDashboard = () => {
         console.log(response);
 
         const keyMapping = {
-          EBELN: 'Purchase Order Number',
-          BUKRS: 'Company Code',
-          BSTYP: 'Purchase Document Type',
-          BSART: 'Document Type',
-          LIFNR: 'Vendor Number',
-          MATNR: 'Material Number',
-          EKORG: 'Purchasing Organization',
-          EKGRP: 'Purchasing Group',
+          EBELN: "Purchase Order Number",
+          BUKRS: "Company Code",
+          BSTYP: "Purchase Document Type",
+          BSART: "Document Type",
+          LIFNR: "Vendor Number",
+          MATNR: "Material Number",
+          EKORG: "Purchasing Organization",
+          EKGRP: "Purchasing Group",
         };
 
         const transformedArray = response.data.data.map((item, index) => {
@@ -677,18 +676,18 @@ const PowerBiDashboard = () => {
         console.log(response);
 
         const keyMapping = {
-          BANFN: 'Purchase Requisition Number',
-          BNFPO: 'Purchase Requisition Item',
-          BSART: 'Document Type',
-          EKGRP: 'Purchasing Group',
-          MATNR: 'Material Number',
-          WERKS: 'Plant',
-          LGORT: 'Storage Location',
-          LIFNR: 'Vendor Number',
-          EKORG: 'Purchasing Organization',
-          SAKTO: 'G/L Account',
-          KOSTL: 'Cost Center',
-          KOKRS: 'Controlling Area',
+          BANFN: "Purchase Requisition Number",
+          BNFPO: "Purchase Requisition Item",
+          BSART: "Document Type",
+          EKGRP: "Purchasing Group",
+          MATNR: "Material Number",
+          WERKS: "Plant",
+          LGORT: "Storage Location",
+          LIFNR: "Vendor Number",
+          EKORG: "Purchasing Organization",
+          SAKTO: "G/L Account",
+          KOSTL: "Cost Center",
+          KOKRS: "Controlling Area",
         };
 
         const transformedArray = response.data.data.map((item, index) => {
@@ -698,7 +697,6 @@ const PowerBiDashboard = () => {
           }
           return newItem;
         });
-        
 
         setDownloadDataLoad(false);
         downloadDataIntoExcel(
@@ -719,15 +717,15 @@ const PowerBiDashboard = () => {
         console.log(response);
 
         const keyMapping = {
-          MATNR: 'Material Number',
-          WERKS: 'Plant',
-          LGORT: 'Storage Location',
-          BUKRS: 'Company Code',
-          SAKL3: 'G/L Account',
-          ERFME: 'Currency Unit',
-          MJAHR: 'Fiscal Year',
-          EBELN: 'Purchase Order Number',
-          LIFNR: 'Vendor Number',
+          MATNR: "Material Number",
+          WERKS: "Plant",
+          LGORT: "Storage Location",
+          BUKRS: "Company Code",
+          SAKL3: "G/L Account",
+          ERFME: "Currency Unit",
+          MJAHR: "Fiscal Year",
+          EBELN: "Purchase Order Number",
+          LIFNR: "Vendor Number",
         };
 
         const transformedArray = response.data.data.map((item, index) => {
@@ -740,9 +738,11 @@ const PowerBiDashboard = () => {
 
         setDownloadDataLoad(false);
         downloadDataIntoExcel(
-          // response.data.data, 
+          // response.data.data,
           transformedArray,
-          "Goods Receipt data", id);
+          "Goods Receipt data",
+          id
+        );
       } catch (error) {
         console.log("Error while fetching", error);
       }
@@ -755,15 +755,15 @@ const PowerBiDashboard = () => {
         console.log(response);
 
         const keyMapping = {
-          RLDNR: 'Document Number (RLDNR)',
-          RBUKRS: 'Company Code',
-          GJAHR: 'Fiscal Year',
-          BELNR: 'Accounting Document Number',
-          DOCLN: 'Document Line Item',
-          RACCT: 'Account Number',
-          DRCRK: 'Debit/Credit Indicator',
-          BUDAT: 'Posting Date',
-          BLDAT: 'Document Date',
+          RLDNR: "Document Number (RLDNR)",
+          RBUKRS: "Company Code",
+          GJAHR: "Fiscal Year",
+          BELNR: "Accounting Document Number",
+          DOCLN: "Document Line Item",
+          RACCT: "Account Number",
+          DRCRK: "Debit/Credit Indicator",
+          BUDAT: "Posting Date",
+          BLDAT: "Document Date",
         };
 
         const transformedArray = response.data.data.map((item, index) => {
@@ -776,9 +776,11 @@ const PowerBiDashboard = () => {
 
         setDownloadDataLoad(false);
         downloadDataIntoExcel(
-          // response.data.data, 
+          // response.data.data,
           transformedArray,
-          "General Ledger data", id);
+          "General Ledger data",
+          id
+        );
       } catch (error) {
         console.log("Error while fetching", error);
       }
@@ -791,26 +793,26 @@ const PowerBiDashboard = () => {
         console.log(response);
 
         const keyMapping = {
-          RLDNR: 'Document Number (RLDNR)',
-          RBUKRS: 'Company Code',
-          GJAHR: 'Fiscal Year',
-          BELNR: 'Accounting Document Number',
-          DOCLN: 'Document Line Item',
-          LIFNR: 'Vendor Number',
-          RACCT: 'Account Number',
-          DRCRK: 'Debit/Credit Indicator',
-          HSL: 'Local Currency Amount',
-          TSL: 'Tax Amount',
-          KSL: 'Tax Code',
-          BUDAT: 'Posting Date',
-          BLDAT: 'Document Date',
-          MONAT: 'Month',
-          UMSKZ: 'Special G/L Indicator',
-          AWTYP: 'Document Type',
-          AWKEY: 'Document Reference Key',
-          BUKRS: 'Company Code',
-          BLART: 'Document Type (BLART)',
-          CPUDT: 'Document Entry Date',
+          RLDNR: "Document Number (RLDNR)",
+          RBUKRS: "Company Code",
+          GJAHR: "Fiscal Year",
+          BELNR: "Accounting Document Number",
+          DOCLN: "Document Line Item",
+          LIFNR: "Vendor Number",
+          RACCT: "Account Number",
+          DRCRK: "Debit/Credit Indicator",
+          HSL: "Local Currency Amount",
+          TSL: "Tax Amount",
+          KSL: "Tax Code",
+          BUDAT: "Posting Date",
+          BLDAT: "Document Date",
+          MONAT: "Month",
+          UMSKZ: "Special G/L Indicator",
+          AWTYP: "Document Type",
+          AWKEY: "Document Reference Key",
+          BUKRS: "Company Code",
+          BLART: "Document Type (BLART)",
+          CPUDT: "Document Entry Date",
         };
 
         const transformedArray = response.data.data.map((item, index) => {
@@ -820,13 +822,14 @@ const PowerBiDashboard = () => {
           }
           return newItem;
         });
-        
 
         setDownloadDataLoad(false);
         downloadDataIntoExcel(
-          // response.data.data, 
+          // response.data.data,
           transformedArray,
-          "Account Paybles data", id);
+          "Account Paybles data",
+          id
+        );
       } catch (error) {
         console.log("Error while fetching", error);
       }
@@ -839,27 +842,27 @@ const PowerBiDashboard = () => {
         console.log(response);
 
         const keyMapping = {
-          RLDNR: 'Ledger',
-          RBUKRS: 'Company Code (RBUKRS)',
-          GJAHR: 'Fiscal Year',
-          BELNR: 'Accounting Document Number',
-          DOCLN: 'Document Line Item',
-          KUNNR: 'Customer Number',
-          RACCT: 'Account Number',
-          DRCRK: 'Debit/Credit Indicator',
-          HSL: 'Amount in Local Currency',
-          TSL: 'Amount in Transaction Currency',
-          KSL: 'Amount in Group Currency',
-          BUDAT: 'Posting Date',
-          BLDAT: 'Document Date',
-          MONAT: 'Posting Period (Month)',
-          UMSKZ: 'Special G/L Indicator',
-          AWTYP: 'Reference Transaction',
-          AWKEY: 'Reference Key',
-          BUKRS: 'Company Code (BUKRS)',
-          BLART: 'Document Type',
-          CPUDT: 'Entry Date',
-          BUZE: 'Line Item Number (BUZE)',
+          RLDNR: "Ledger",
+          RBUKRS: "Company Code (RBUKRS)",
+          GJAHR: "Fiscal Year",
+          BELNR: "Accounting Document Number",
+          DOCLN: "Document Line Item",
+          KUNNR: "Customer Number",
+          RACCT: "Account Number",
+          DRCRK: "Debit/Credit Indicator",
+          HSL: "Amount in Local Currency",
+          TSL: "Amount in Transaction Currency",
+          KSL: "Amount in Group Currency",
+          BUDAT: "Posting Date",
+          BLDAT: "Document Date",
+          MONAT: "Posting Period (Month)",
+          UMSKZ: "Special G/L Indicator",
+          AWTYP: "Reference Transaction",
+          AWKEY: "Reference Key",
+          BUKRS: "Company Code (BUKRS)",
+          BLART: "Document Type",
+          CPUDT: "Entry Date",
+          BUZE: "Line Item Number (BUZE)",
         };
 
         const transformedArray = response.data.data.map((item, index) => {
@@ -869,7 +872,6 @@ const PowerBiDashboard = () => {
           }
           return newItem;
         });
-        
 
         setDownloadDataLoad(false);
         downloadDataIntoExcel(
@@ -890,23 +892,23 @@ const PowerBiDashboard = () => {
         console.log(response);
 
         const keyMapping = {
-          PLNTY: 'Task List Type',
-          PLNNR: 'Task List Group',
-          ZAEHL: 'Group Counter',
-          DATUV: 'Valid From Date',
-          LOEKZ: 'Deletion Indicator',
-          PARKZ: 'Usage',
-          ANDAT: 'Created On',
-          ANNAM: 'Created By',
-          STEUS: 'Control Key',
-          ARBID: 'Internal Operation Number',
-          OBJTY: 'Object Type',
-          WERKS: 'Plant',
-          VINTV: 'Inspection Interval',
-          MEINH: 'Alternative Unit of Measure',
-          UMREN: 'Denominator for Conversion',
-          UMREZ: 'Numerator for Conversion',
-          BMSCH: 'Base Quantity'
+          PLNTY: "Task List Type",
+          PLNNR: "Task List Group",
+          ZAEHL: "Group Counter",
+          DATUV: "Valid From Date",
+          LOEKZ: "Deletion Indicator",
+          PARKZ: "Usage",
+          ANDAT: "Created On",
+          ANNAM: "Created By",
+          STEUS: "Control Key",
+          ARBID: "Internal Operation Number",
+          OBJTY: "Object Type",
+          WERKS: "Plant",
+          VINTV: "Inspection Interval",
+          MEINH: "Alternative Unit of Measure",
+          UMREN: "Denominator for Conversion",
+          UMREZ: "Numerator for Conversion",
+          BMSCH: "Base Quantity",
         };
 
         const transformedArray = response.data.data.map((item, index) => {
@@ -916,8 +918,6 @@ const PowerBiDashboard = () => {
           }
           return newItem;
         });
-        
-        
 
         setDownloadDataLoad(false);
         downloadDataIntoExcel(
@@ -937,19 +937,19 @@ const PowerBiDashboard = () => {
         const response = await axios.get(url + "/api/sales/afvc");
         console.log(response);
         const keyMapping = {
-          AUFPL: 'Routing Number of Operations',
-          PLNFL: 'Sequence',
-          PLNKN: 'Node Number',
-          PLNAL: 'Group Counter (Alternative)',
-          PLNTY: 'Task List Type',
-          VINTV: 'Inspection Interval',
-          PLNNR: 'Task List Group',
-          ZAEHL: 'Group Counter',
-          VORNR: 'Operation/Activity Number',
-          STEUS: 'Control Key',
-          ARBID: 'Internal Operation Number',
-          WERKS: 'Plant',
-          LTXA1: 'Operation Short Text'
+          AUFPL: "Routing Number of Operations",
+          PLNFL: "Sequence",
+          PLNKN: "Node Number",
+          PLNAL: "Group Counter (Alternative)",
+          PLNTY: "Task List Type",
+          VINTV: "Inspection Interval",
+          PLNNR: "Task List Group",
+          ZAEHL: "Group Counter",
+          VORNR: "Operation/Activity Number",
+          STEUS: "Control Key",
+          ARBID: "Internal Operation Number",
+          WERKS: "Plant",
+          LTXA1: "Operation Short Text",
         };
 
         const transformedArray = response.data.data.map((item, index) => {
@@ -959,7 +959,6 @@ const PowerBiDashboard = () => {
           }
           return newItem;
         });
-        
 
         setDownloadDataLoad(false);
         downloadDataIntoExcel(
@@ -980,22 +979,22 @@ const PowerBiDashboard = () => {
         console.log(response);
 
         const keyMapping = {
-          MATNR: 'Material Number',
-          WERKS: 'Plant',
-          VERID: 'Production Version',
-          BDATU: 'Valid From Date',
-          ADATU: 'Changed On Date',
-          STLAL: 'Alternative BOM',
-          STLAN: 'BOM Usage',
-          PLNTY: 'Task List Type',
-          PLNNR: 'Task List Group',
-          ALNAL: 'Group Counter (Alternative Task List)',
-          LOSGR: 'Lot Size',
-          TEXT1: 'Description',
-          BSTMI: 'Minimum Lot Size',
-          BSTMA: 'Maximum Lot Size'
+          MATNR: "Material Number",
+          WERKS: "Plant",
+          VERID: "Production Version",
+          BDATU: "Valid From Date",
+          ADATU: "Changed On Date",
+          STLAL: "Alternative BOM",
+          STLAN: "BOM Usage",
+          PLNTY: "Task List Type",
+          PLNNR: "Task List Group",
+          ALNAL: "Group Counter (Alternative Task List)",
+          LOSGR: "Lot Size",
+          TEXT1: "Description",
+          BSTMI: "Minimum Lot Size",
+          BSTMA: "Maximum Lot Size",
         };
-        
+
         const transformedArray = response.data.data.map((item, index) => {
           const newItem = { "S.No": index + 1 };
           for (const key in item) {
@@ -1003,13 +1002,14 @@ const PowerBiDashboard = () => {
           }
           return newItem;
         });
-        
 
         setDownloadDataLoad(false);
         downloadDataIntoExcel(
-          // response.data.data, 
+          // response.data.data,
           transformedArray,
-          "Production Planning", id);
+          "Production Planning",
+          id
+        );
       } catch (error) {
         console.log("Error while fetching", error);
       }
@@ -1027,8 +1027,9 @@ const PowerBiDashboard = () => {
           >
             <IoIosArrowDropup
               title="Select Dashboard"
-              className={`select-model ${isIconClicked === true ? "bi-arrow-down" : "bi-arrow-down-1"
-                }`}
+              className={`select-model ${
+                isIconClicked === true ? "bi-arrow-down" : "bi-arrow-down-1"
+              }`}
             />
             {isIconClicked && (
               <div
@@ -1103,16 +1104,28 @@ const PowerBiDashboard = () => {
               alt="AIMLImage"
               className="dashboard-data-model-image"
             />
-            Supply Chain Models: 
-            <span style={{fontSize: "20px", marginLeft: "5px"}}> ({allowedHANElyticsDashboards.length} / {HANElyticsDashboards.length})</span>
-
+            Supply Chain Models:
+            {loggedInUserRole === "COO" ||
+            loggedInUserRole === "CTO" ||
+            loggedInUserRole === "CEO" ? (
+              <span style={{ fontSize: "20px", marginLeft: "5px" }}>
+                {" "}
+                ({HANElyticsDashboards.length} / {HANElyticsDashboards.length})
+              </span>
+            ) : (
+              <span style={{ fontSize: "20px", marginLeft: "5px" }}>
+                {" "}
+                ({allowedHANElyticsDashboards.length} /{" "}
+                {HANElyticsDashboards.length})
+              </span>
+            )}
           </h1>
           {/* <div className="roles-spinner"></div> */}
 
           <div>
             {loggedInUserRole === "COO" ||
-              loggedInUserRole === "CTO" ||
-              loggedInUserRole === "CEO" ? (
+            loggedInUserRole === "CTO" ||
+            loggedInUserRole === "CEO" ? (
               <div className="dashboard-section">
                 {HANElyticsDashboards.map((type) => {
                   return (
@@ -1214,12 +1227,23 @@ const PowerBiDashboard = () => {
               className="dashboard-data-model-image"
             />
             Order to Cash:
-            <span style={{fontSize: "20px", marginLeft: "5px"}}> ({allowedOrderToCashDashboards.length} / {orderToCash.length})</span>
-            
-          </h1>
-          {loggedInUserRole === "COO" ||
+            {loggedInUserRole === "COO" ||
             loggedInUserRole === "CTO" ||
             loggedInUserRole === "CEO" ? (
+              <span style={{ fontSize: "20px", marginLeft: "5px" }}>
+                {" "}
+                ({orderToCash.length} / {orderToCash.length})
+              </span>
+            ) : (
+              <span style={{ fontSize: "20px", marginLeft: "5px" }}>
+                {" "}
+                ({allowedOrderToCashDashboards.length} / {orderToCash.length})
+              </span>
+            )}
+          </h1>
+          {loggedInUserRole === "COO" ||
+          loggedInUserRole === "CTO" ||
+          loggedInUserRole === "CEO" ? (
             <div className="dashboard-section">
               {orderToCash.map((type) => {
                 {
@@ -1327,12 +1351,24 @@ const PowerBiDashboard = () => {
               alt="OrderToCashImage"
               className="dashboard-data-model-image"
             />
-            Procurement: 
-            <span style={{fontSize: "20px", marginLeft: "5px"}}> ({allowedProcurementDashboards.length} / {procurement.length})</span>
-          </h1>
-          {loggedInUserRole === "COO" ||
+            Procurement:
+            {loggedInUserRole === "COO" ||
             loggedInUserRole === "CTO" ||
             loggedInUserRole === "CEO" ? (
+              <span style={{ fontSize: "20px", marginLeft: "5px" }}>
+                {" "}
+                ({procurement.length} / {procurement.length})
+              </span>
+            ) : (
+              <span style={{ fontSize: "20px", marginLeft: "5px" }}>
+                {" "}
+                ({allowedProcurementDashboards.length} / {procurement.length})
+              </span>
+            )}
+          </h1>
+          {loggedInUserRole === "COO" ||
+          loggedInUserRole === "CTO" ||
+          loggedInUserRole === "CEO" ? (
             <div className="dashboard-section">
               {procurement.map((type) => {
                 return (
@@ -1433,12 +1469,24 @@ const PowerBiDashboard = () => {
               className="dashboard-data-model-image"
             />
             Manufacturing:
-            <span style={{fontSize: "20px", marginLeft: "5px"}}> ({allowedManufacturingDashboards.length} / {manufacturing.length})</span>
-
-          </h1>
-          {loggedInUserRole === "COO" ||
+            {loggedInUserRole === "COO" ||
             loggedInUserRole === "CTO" ||
             loggedInUserRole === "CEO" ? (
+              <span style={{ fontSize: "20px", marginLeft: "5px" }}>
+                {" "}
+                ({manufacturing.length} / {manufacturing.length})
+              </span>
+            ) : (
+              <span style={{ fontSize: "20px", marginLeft: "5px" }}>
+                {" "}
+                ({allowedManufacturingDashboards.length} /{" "}
+                {manufacturing.length})
+              </span>
+            )}
+          </h1>
+          {loggedInUserRole === "COO" ||
+          loggedInUserRole === "CTO" ||
+          loggedInUserRole === "CEO" ? (
             <div className="dashboard-section">
               {manufacturing.map((type) => {
                 return (
@@ -1541,13 +1589,24 @@ const PowerBiDashboard = () => {
               className="dashboard-data-model-image"
             />
             Finance:
-            <span style={{fontSize: "20px", marginLeft: "5px"}}> ({allowedFinanceDashboards.length} / {finance.length})</span>
-
+            {loggedInUserRole === "COO" ||
+            loggedInUserRole === "CTO" ||
+            loggedInUserRole === "CEO" ? (
+              <span style={{ fontSize: "20px", marginLeft: "5px" }}>
+                {" "}
+                ({finance.length} / {finance.length})
+              </span>
+            ) : (
+              <span style={{ fontSize: "20px", marginLeft: "5px" }}>
+                {" "}
+                ({allowedFinanceDashboards.length} / {finance.length})
+              </span>
+            )}
           </h1>
 
           {loggedInUserRole === "COO" ||
-            loggedInUserRole === "CTO" ||
-            loggedInUserRole === "CEO" ? (
+          loggedInUserRole === "CTO" ||
+          loggedInUserRole === "CEO" ? (
             <div className="dashboard-section">
               {finance.map((type) => {
                 return (
@@ -1676,10 +1735,11 @@ const PowerBiDashboard = () => {
             <h1
               key={index}
               onClick={() => showDashboards(`${eachTab.activeText}`)}
-              className={`powerbi-dashboard-tab-item ${activeDashboard === `${eachTab.activeText}`
+              className={`powerbi-dashboard-tab-item ${
+                activeDashboard === `${eachTab.activeText}`
                   ? "active-dashboard-btn"
                   : ""
-                }`}
+              }`}
             >
               <img
                 src={eachTab.imageUrl}
@@ -1688,17 +1748,18 @@ const PowerBiDashboard = () => {
               />
               {eachTab.tabName}
               <MdKeyboardArrowUp
-                className={`bi-arrow ${activeDashboard === `${eachTab.activeText}`
+                className={`bi-arrow ${
+                  activeDashboard === `${eachTab.activeText}`
                     ? "bi-arrow-down"
                     : ""
-                  }`}
+                }`}
               />
             </h1>
           ))}
           <h1
             className="insights-btn"
             onClick={() => navigate("/dataModeling")}
-          // onClick={() => navigate("/assignRoles")}
+            // onClick={() => navigate("/assignRoles")}
           >
             Data Modeling
             <LuArrowUpRight className="insights-icon" />
@@ -1714,19 +1775,16 @@ const PowerBiDashboard = () => {
                 style={{ position: "absolute" }}
                 className="bi-logged-person-details"
               >
-                <h3 className="logged-user-name">Hi, {user.firstname} {user.lastname}</h3>
-                <hr style={{ margin: "5px 0px", }} />
+                <h3 className="logged-user-name">
+                  Hi, {user.firstname} {user.lastname}
+                </h3>
+                <hr style={{ margin: "5px 0px" }} />
                 <div className="user-info-section">
-                  <div
-
-                    className="details-section"
-                  >
+                  <div className="details-section">
                     <label id="email">Email:</label>
                     <input type="text" value={user.email} />
                   </div>
-                  <div
-                    className="details-section"
-                  >
+                  <div className="details-section">
                     <label id="email">Contact:</label>
                     <input
                       type="text"
@@ -1735,73 +1793,45 @@ const PowerBiDashboard = () => {
                   </div>
                 </div>
 
-                <h3 className="logged-user-name" style={{ marginTop: "25px" }}>Business Info</h3>
-                <hr style={{ margin: "5px 0px", }} />
+                <h3 className="logged-user-name" style={{ marginTop: "25px" }}>
+                  Business Info
+                </h3>
+                <hr style={{ margin: "5px 0px" }} />
 
                 <div className="user-business-section">
-                  <div
-                    className="details-section"
-                  >
+                  <div className="details-section">
                     <label id="email">Name:</label>
                     <input type="text" value={user.businessName} />
                   </div>
-                  <div
-                    className="details-section"
-                  >
+                  <div className="details-section">
                     <label id="email">Role:</label>
                     <input type="text" value={user.role} />
                   </div>
-                  <div
-                    className="details-section"
-                  >
+                  <div className="details-section">
                     <label id="email">Country:</label>
-                    <input
-                      type="text"
-                      value={user.country}
-                    />
+                    <input type="text" value={user.country} />
                   </div>
-                  <div
-                    className="details-section"
-                  >
+                  <div className="details-section">
                     <label id="email">State:</label>
-                    <input
-                      type="text"
-                      value={user.state}
-                    />
+                    <input type="text" value={user.state} />
                   </div>
 
-                  <div
-                    className="details-section"
-                  >
+                  <div className="details-section">
                     <label id="email">City:</label>
-                    <input
-                      type="text"
-                      value={user.city}
-                    />
+                    <input type="text" value={user.city} />
                   </div>
-                  <div
-                    className="details-section"
-                  >
+                  <div className="details-section">
                     <label id="email">Zipcode:</label>
-                    <input
-                      type="text"
-                      value={user.zipcode}
-                    />
+                    <input type="text" value={user.zipcode} />
                   </div>
-                  <div
-                    className="details-section"
-                  >
+                  <div className="details-section">
                     <label id="email">Street:</label>
-                    <input
-                      type="text"
-                      value={user.street}
-                    />
+                    <input type="text" value={user.street} />
                   </div>
                   <div style={{ marginBottom: "20px" }}>
                     <button onClick={handleModelLogout}>Logout</button>
                   </div>
                 </div>
-
               </div>
             ))}
           </div>
@@ -1830,10 +1860,11 @@ const PowerBiDashboard = () => {
                   <h1
                     key={index}
                     onClick={() => showDashboards(`${eachTab.activeText}`)}
-                    className={`powerbi-dashboard-tab-item ${activeDashboard === `${eachTab.activeText}`
+                    className={`powerbi-dashboard-tab-item ${
+                      activeDashboard === `${eachTab.activeText}`
                         ? "active-dashboard-btn"
                         : ""
-                      }`}
+                    }`}
                   >
                     <img
                       src={eachTab.imageUrl}
@@ -1842,10 +1873,11 @@ const PowerBiDashboard = () => {
                     />
                     {eachTab.tabName}
                     <MdKeyboardArrowUp
-                      className={`bi-arrow ${activeDashboard === `${eachTab.activeText}`
+                      className={`bi-arrow ${
+                        activeDashboard === `${eachTab.activeText}`
                           ? "bi-arrow-down"
                           : ""
-                        }`}
+                      }`}
                     />
                   </h1>
                 ))}
@@ -1880,17 +1912,21 @@ const PowerBiDashboard = () => {
       <div className="bi-reporting-dashboards">
         <div className="container bi-reporting-dashboards-sections">
           <div>
-            {isUserDashLoaded ? <div className="roles-spinner"></div>:<div>
-              {activeDashboard === "" && (
-                <>
-                  {getDashboards("HANElytics")}
-                  {getDashboards("OrderToCash")}
-                  {getDashboards("Procurement")}
-                  {getDashboards("Manufacturing")}
-                  {getDashboards("Finance")}
-                </>
-              )}
-            </div>}
+            {isUserDashLoaded ? (
+              <div className="bi-roles-spinner"></div>
+            ) : (
+              <div>
+                {activeDashboard === "" && (
+                  <>
+                    {getDashboards("HANElytics")}
+                    {getDashboards("OrderToCash")}
+                    {getDashboards("Procurement")}
+                    {getDashboards("Finance")}
+                    {getDashboards("Manufacturing")}
+                  </>
+                )}
+              </div>
+            )}
             {activeDashboard === "HANElytics" && (
               <>{getDashboards("HANElytics")}</>
             )}
