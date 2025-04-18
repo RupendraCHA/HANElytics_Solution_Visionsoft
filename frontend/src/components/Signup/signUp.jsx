@@ -11,6 +11,7 @@ import Footer from "../Footer/Footer";
 import { MuiTelInput } from "mui-tel-input";
 import { BiSolidShow } from "react-icons/bi";
 import { BiSolidHide } from "react-icons/bi";
+import { BsInfoCircle } from "react-icons/bs";
 
 function SignUp() {
 
@@ -22,7 +23,7 @@ function SignUp() {
     lastname: "",
     businessName: "",
     contact: "",
-    role: "",
+    role: "Employee",
     position: "",
     email: "",
     password: "",
@@ -314,7 +315,12 @@ function SignUp() {
                     <div className="register-input-label">
                       <label htmlFor="role">
                         <strong>ROLE</strong>
-                        <span className="required-mark">*</span>
+                        <span className="required-mark">*
+                          <BsInfoCircle
+                          title="By Default Role is Employee. You can't change it."
+                           className="hover-icon" style={{fontSize: "14px", color: "#fff", fontWeight: "bold", 
+                           marginLeft: "5px", boxShadow: "1px 1px 1px #000", borderRadius: "50%"}}/>
+                        </span>
                       </label>
                       <input
                         type="text"
@@ -322,7 +328,7 @@ function SignUp() {
                         autoComplete="off"
                         required
                         name="role"
-                        onChange={handleInputChange}
+                        // onChange={handleInputChange}
                         value={data.role}
                       />
                     </div>
