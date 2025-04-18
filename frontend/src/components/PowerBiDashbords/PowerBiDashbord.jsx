@@ -1100,7 +1100,9 @@ const PowerBiDashboard = () => {
               alt="AIMLImage"
               className="dashboard-data-model-image"
             />
-            Supply Chain Models
+            Supply Chain Models: 
+            <span style={{fontSize: "20px", marginLeft: "5px"}}> ({allowedHANElyticsDashboards.length} / {HANElyticsDashboards.length})</span>
+
           </h1>
 
           <div>
@@ -1208,6 +1210,8 @@ const PowerBiDashboard = () => {
               className="dashboard-data-model-image"
             />
             Order to Cash:
+            <span style={{fontSize: "20px", marginLeft: "5px"}}> ({allowedOrderToCashDashboards.length} / {orderToCash.length})</span>
+            
           </h1>
           {loggedInUserRole === "COO" ||
             loggedInUserRole === "CTO" ||
@@ -1319,7 +1323,8 @@ const PowerBiDashboard = () => {
               alt="OrderToCashImage"
               className="dashboard-data-model-image"
             />
-            Procurement:
+            Procurement: 
+            <span style={{fontSize: "20px", marginLeft: "5px"}}> ({allowedProcurementDashboards.length} / {procurement.length})</span>
           </h1>
           {loggedInUserRole === "COO" ||
             loggedInUserRole === "CTO" ||
@@ -1424,6 +1429,8 @@ const PowerBiDashboard = () => {
               className="dashboard-data-model-image"
             />
             Manufacturing:
+            <span style={{fontSize: "20px", marginLeft: "5px"}}> ({allowedManufacturingDashboards.length} / {manufacturing.length})</span>
+
           </h1>
           {loggedInUserRole === "COO" ||
             loggedInUserRole === "CTO" ||
@@ -1530,6 +1537,8 @@ const PowerBiDashboard = () => {
               className="dashboard-data-model-image"
             />
             Finance:
+            <span style={{fontSize: "20px", marginLeft: "5px"}}> ({allowedFinanceDashboards.length} / {finance.length})</span>
+
           </h1>
 
           {loggedInUserRole === "COO" ||
