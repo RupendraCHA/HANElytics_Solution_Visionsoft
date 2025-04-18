@@ -45,6 +45,7 @@ const PowerBiDashboard = () => {
   const [downloadDataLoad, setDownloadDataLoad] = useState(0);
   const [userAccessingDashboards, setUserAccessingDashboards] = useState([]);
   const [loggedInUserRole, setLoggedInUserRole] = useState("");
+  const [isUserDashLoaded, setIsUserDashLoaded] = useState(true)
 
   const username1 = username.split(" ");
   const firstname = username1[0];
@@ -68,6 +69,7 @@ const PowerBiDashboard = () => {
   };
 
   const getUserAccessingDashboards = async () => {
+    setIsUserDashLoaded(true)
     const email = localStorage.getItem("email");
 
     const userData = {
@@ -79,6 +81,7 @@ const PowerBiDashboard = () => {
     );
 
     console.log(userAccessingDashboards.data);
+    setIsUserDashLoaded(false)
     setUserAccessingDashboards(userAccessingDashboards.data.userDashboards);
     console.log(userAccessingDashboards.data.userDashboards);
   };
@@ -1104,6 +1107,7 @@ const PowerBiDashboard = () => {
             <span style={{fontSize: "20px", marginLeft: "5px"}}> ({allowedHANElyticsDashboards.length} / {HANElyticsDashboards.length})</span>
 
           </h1>
+          {/* <div className="roles-spinner"></div> */}
 
           <div>
             {loggedInUserRole === "COO" ||
@@ -1876,15 +1880,17 @@ const PowerBiDashboard = () => {
       <div className="bi-reporting-dashboards">
         <div className="container bi-reporting-dashboards-sections">
           <div>
-            {activeDashboard === "" && (
-              <>
-                {getDashboards("HANElytics")}
-                {getDashboards("OrderToCash")}
-                {getDashboards("Procurement")}
-                {getDashboards("Manufacturing")}
-                {getDashboards("Finance")}
-              </>
-            )}
+            {isUserDashLoaded ? <div className="roles-spinner"></div>:<div>
+              {activeDashboard === "" && (
+                <>
+                  {getDashboards("HANElytics")}
+                  {getDashboards("OrderToCash")}
+                  {getDashboards("Procurement")}
+                  {getDashboards("Manufacturing")}
+                  {getDashboards("Finance")}
+                </>
+              )}
+            </div>}
             {activeDashboard === "HANElytics" && (
               <>{getDashboards("HANElytics")}</>
             )}
