@@ -1114,8 +1114,7 @@ const PowerBiDashboard = () => {
               </span>
             ) : (
               <span style={{ fontSize: "20px", marginLeft: "5px" }}>
-                {" "}
-                ({allowedHANElyticsDashboards.length} /{" "}
+                ({allowedHANElyticsDashboards.length} /
                 {HANElyticsDashboards.length})
               </span>
             )}
@@ -1231,12 +1230,10 @@ const PowerBiDashboard = () => {
             loggedInUserRole === "CTO" ||
             loggedInUserRole === "CEO" ? (
               <span style={{ fontSize: "20px", marginLeft: "5px" }}>
-                {" "}
                 ({orderToCash.length} / {orderToCash.length})
               </span>
             ) : (
               <span style={{ fontSize: "20px", marginLeft: "5px" }}>
-                {" "}
                 ({allowedOrderToCashDashboards.length} / {orderToCash.length})
               </span>
             )}

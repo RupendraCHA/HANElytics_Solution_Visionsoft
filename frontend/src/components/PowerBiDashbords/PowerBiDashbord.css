@@ -644,12 +644,11 @@
   font-weight: bold;
   display: flex;
   justify-content: flex-start;
+  /* justify-content: center; */
   align-items: center;
   width: 100%;
   gap: 10px;
   transform: all 2s ease-in-out;
-
-
 
   p {
 
@@ -672,8 +671,16 @@
   }
 }
 
-.no-access-view-text:hover {
-  transform: scale(1.01);
+/* .no-access-view-text:hover {
+  p{
+
+    transform: scale(1.01);
+  }
+  
+} */
+button:hover{
+  transform: scale(1.05);
+
 }
 
 .logged-user-name {

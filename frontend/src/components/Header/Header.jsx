@@ -16,7 +16,7 @@ const Header = ({ page = "" }) => {
   const [isMenuOpened, setIsMenuOpened] = useState(false);
 
   const navigate = useNavigate();
-  const { username, token, setToken, setUsername, userRole, setUserRole, loggedInUserDetails,
+  const {url, username, token, setToken, setUsername, userRole, setUserRole, loggedInUserDetails,
     setLoggedInUserDetails } =
     useContext(StoreContext);
 
@@ -150,6 +150,7 @@ const Header = ({ page = "" }) => {
         <div className="drop-down1">
           <div className="icon-username1" style={{ position: "relative" }}>
             <FaRegCircleUser className="user-icon1" />
+            {/* <p className="username-text1">{username}</p> */}
             <p className="username-text1">{firstname}</p>
             {loggedInUserDetails.map((user, index) => (
               <div
