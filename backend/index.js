@@ -10,12 +10,18 @@ import procurementRouter from "./routes/procurementTableDataRoute.js";
 import multer from "multer";
 import dashboardUploadRouter from "./routes/DashboardUploadRoute.js";
 
+import bodyParser from "body-parser";
+import embedPowerbiRouter from "./routes/EmbedPowerBIRoute.js";
+
 
 const app = express();
+
 const port = process.env.PORT;
 
 
 app.use(express.json());
+app.use(bodyParser.json());
+
 app.use(
   cors({
     origin: ["http://localhost:5173",
@@ -31,6 +37,7 @@ app.use("/api/model", dataModelResultsRouter);
 app.use("/api/sales", salesRouter);
 app.use("/api/procurement", procurementRouter);
 app.use("/api/dashboard", dashboardUploadRouter)
+app.use("/powerbi/embed", embedPowerbiRouter)
 
 const upload = multer({
   storage: multer.memoryStorage(),
