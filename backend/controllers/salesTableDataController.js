@@ -25,7 +25,7 @@ export const getSalesTableDataFromVBAK = async (req, res) => {
     const result = await clientConn.exec(query);
     // const result = await clientConn.exec("SELECT * FROM VBAK");
     const resultData = result.map(({VBELN, POSNR, MATNR, ARKTX, KWMENG,KBMENG,VDATU_ANA, NETPR,NETWR,VRKME, WERKS, PSTYV,FKREL}) => ({VBELN, POSNR, MATNR, ARKTX, KWMENG,KBMENG,VDATU_ANA, NETPR,NETWR,VRKME, WERKS, PSTYV,FKREL}))
-    console.log(resultData)
+    // console.log(resultData)
     res.status(200).json({ success: true, data: resultData });
   } catch (error) {
     console.error(error);
@@ -126,7 +126,12 @@ export const getFilesDataFromEKKO = async (req, res) => {
     //   JOIN VBKD ON VBAP.VBELN = VBKD.VBELN
     // `;
     // const result = await clientConn.exec(query);
-    const resultData = result.map(({EBELN,BUKRS,BSTYP,BSART,LIFNR,MATNR,EKORG,EKGRP}) => ({EBELN,BUKRS,BSTYP,BSART,LIFNR,MATNR,EKORG,EKGRP}))
+    // const resultData = result.map(({EBELN,BUKRS,BSTYP,BSART,LIFNR,MATNR,EKORG,EKGRP}) => ({EBELN,BUKRS,BSTYP,BSART,LIFNR,MATNR,EKORG,EKGRP}))
+    const resultData = result.map(({EBELN, BUKRS, BSTYP, BSART, STATU, AEDAT, ERNAM, LASTCHANGEDATETIME, PINCR, LPONR, LIFNR, SPRAS, ZBD1T, ZBD2T, ZBD3T, ZBD1P, ZBD2P, EKORG, EKGRP, WAERS, WKURS, BEDAT, RESWK, KTWRT, KNUMV, KALSM, STAFO, UPINC, LANDS, STCEG_L, ABSGR, MEMORY, PROCSTAT
+    }) => ({EBELN, BUKRS, BSTYP, BSART, STATU, AEDAT, ERNAM, LASTCHANGEDATETIME, PINCR, LPONR, LIFNR, SPRAS, ZBD1T, ZBD2T, ZBD3T, ZBD1P, ZBD2P, EKORG, EKGRP, WAERS, WKURS, BEDAT, RESWK, KTWRT, KNUMV, KALSM, STAFO, UPINC, LANDS, STCEG_L, ABSGR, MEMORY, PROCSTAT
+    }))
+
+    // console.log(resultData1)
     res.status(200).json({ success: true, data: resultData });
   } catch (error) {
     console.log(error);
@@ -148,8 +153,13 @@ export const getFilesDataFromEBAN = async (req, res) => {
     //   JOIN VBKD ON VBAP.VBELN = VBKD.VBELN
     // `;
     // const result = await clientConn.exec(query);
-    const resultData = result.map(({BANFN,BNFPO,BSART,EKGRP,MATNR,WERKS,LGORT,LIFNR,EKORG, SAKTO, KOSTL, KOKRS}) => ({BANFN,BNFPO,BSART,EKGRP,MATNR,WERKS,LGORT,LIFNR,EKORG, SAKTO, KOSTL, KOKRS}))
+    // const resultData = result.map(({BANFN,BNFPO,BSART,EKGRP,MATNR,WERKS,LGORT,LIFNR,EKORG, SAKTO, KOSTL, KOKRS}) => ({BANFN,BNFPO,BSART,EKGRP,MATNR,WERKS,LGORT,LIFNR,EKORG, SAKTO, KOSTL, KOKRS}))
+    const resultData = result.map(({BANFN, BNFPO, BSART, BSTYP, STATU, ESTKZ, EKGRP, ERNAM, ERDAT, TXZ01, MATNR, WERKS, MATKL, MENGE, MEINS, BUMNG, BADAT, LPEIN, LFDAT, FRGDT, WEBAZ, PREIS, PEINH, PSTYP, WEPOS, REPOS, KTPNR, QUPOS, BATOL, BVDRK, EBELN, EBELP, BEDAT, BSMNG, LIMIT_CONSUMPTION_VALUE, RSNUM, ARSNR, ARSPS, PACKNO, CUOBJ, MNG02
+    }) => ({BANFN, BNFPO, BSART, BSTYP, STATU, ESTKZ, EKGRP, ERNAM, ERDAT, TXZ01, MATNR, WERKS, MATKL, MENGE, MEINS, BUMNG, BADAT, LPEIN, LFDAT, FRGDT, WEBAZ, PREIS, PEINH, PSTYP, WEPOS, REPOS, KTPNR, QUPOS, BATOL, BVDRK, EBELN, EBELP, BEDAT, BSMNG, LIMIT_CONSUMPTION_VALUE, RSNUM, ARSNR, ARSPS, PACKNO, CUOBJ, MNG02
+    }))
 
+    // console.log(resultData1)
+  
     res.status(200).json({ success: true, data: resultData });
   } catch (error) {
     console.log(error);

@@ -1,6 +1,8 @@
 import React, { useContext, useEffect, useState } from "react";
 import "./PowerBiDashbord.css";
 import Header from "../Header/Header";
+import { models } from "powerbi-client";
+import 'powerbi-client/dist/powerbi';
 import { Link, useNavigate } from "react-router-dom";
 import { Dropdown } from "antd";
 import { FaRegUserCircle } from "react-icons/fa";
@@ -19,6 +21,8 @@ import * as XLSX from "xlsx";
 import { saveAs } from "file-saver";
 import { toast } from "react-toastify";
 import { BiSolidHide } from "react-icons/bi";
+
+
 
 // import {OTCOrderData} from "../../pages/SAPData/OTCOrderHeaderData.js"
 const PowerBiDashboard = () => {
@@ -46,6 +50,11 @@ const PowerBiDashboard = () => {
   const [userAccessingDashboards, setUserAccessingDashboards] = useState([]);
   const [loggedInUserRole, setLoggedInUserRole] = useState("");
   const [isUserDashLoaded, setIsUserDashLoaded] = useState(true);
+
+  const [activeDashBoardID, setActiveDashboardID] = useState("")
+  const [activeDashBoardIDText, setActiveDashboardIDText] = useState("")
+  const [activeDashboardName, setActiveDashboardName] = useState("")
+
 
   const username1 = username.split(" ");
   const firstname = username1[0];
@@ -129,6 +138,8 @@ const PowerBiDashboard = () => {
       dataText: "revenue",
       url: "https://app.powerbi.com/groups/me/reports/31dc0bfe-4eec-4dbd-b418-c7e969f7d2f4/3610dece708b751eba90?experience=power-bi&clientSideAuth=0",
       image: `${assets.Revenue_pic}`,
+      groupID: "0800dc12-04e5-484e-b15e-ba0a27efa5c2", 
+        reportId: "e0d44e90-be86-4d65-973e-59f1a17f6b26",
     },
     {
       id: 2,
@@ -136,6 +147,8 @@ const PowerBiDashboard = () => {
       dataText: "inventory",
       url: "https://app.powerbi.com/groups/me/reports/629c6dc2-6b0d-4c68-9e54-c2a47600a03b/df6b1d7bb0643125b744?experience=power-bi&clientSideAuth=0",
       image: `${assets.Inventory_pic}`,
+      groupID: "0800dc12-04e5-484e-b15e-ba0a27efa5c2", 
+      reportId: "e6d17e90-cf61-4364-a160-f0f76b014929",
     },
 
     {
@@ -144,8 +157,11 @@ const PowerBiDashboard = () => {
       dataText: "reports",
       url: "https://app.powerbi.com/groups/7235dce4-8159-49bc-ab3f-223406e7937b/reports/cdc28a63-1551-4b0c-8385-1150e1dd46ce/8c4854b8de780c3490e6?experience=power-bi&clientSideAuth=0",
       image: `${assets.Paper_ink_pic}`,
+      groupID: "7235dce4-8159-49bc-ab3f-223406e7937b", 
+      reportId: "cdc28a63-1551-4b0c-8385-1150e1dd46ce",
     },
   ];
+
 
   const orderToCash = [
     {
@@ -154,22 +170,26 @@ const PowerBiDashboard = () => {
       dataText: "order",
       url: "https://app.powerbi.com/groups/84691a96-fa30-4e99-8ebf-da73b935661b/reports/12256cd6-0191-4734-b9e2-26fb5da6f018/519f2f1b088001690a92?experience=power-bi&clientSideAuth=0",
       image: `${assets.sales_pic}`,
+      groupID: "84691a96-fa30-4e99-8ebf-da73b935661b", 
+      reportId: "12256cd6-0191-4734-b9e2-26fb5da6f018",
     },
-
     {
       id: 5,
       headerText: "Outbound Delivery Processing",
       dataText: "delivery",
       url: "https://app.powerbi.com/groups/84691a96-fa30-4e99-8ebf-da73b935661b/reports/a55c32db-32a9-42d9-8a3b-b4acb5d156c3/aa6705bbc3b7ef0d4147?experience=power-bi&clientSideAuth=0",
       image: `${assets.Outbound_Delivery_pic}`,
+      groupID: "84691a96-fa30-4e99-8ebf-da73b935661b", 
+      reportId: "a55c32db-32a9-42d9-8a3b-b4acb5d156c3",
     },
-
     {
       id: 6,
       headerText: "Billing & Invoicing",
       dataText: "billing",
       url: "https://app.powerbi.com/groups/84691a96-fa30-4e99-8ebf-da73b935661b/reports/39b627f4-0188-4651-890f-d03aa68c9ab3/ce8017ebff5ddce17665?experience=power-bi&clientSideAuth=0",
       image: `${assets.Billing_pic}`,
+      groupID: "84691a96-fa30-4e99-8ebf-da73b935661b", 
+      reportId: "39b627f4-0188-4651-890f-d03aa68c9ab3",
     },
   ];
   const procurement = [
@@ -179,6 +199,8 @@ const PowerBiDashboard = () => {
       dataText: "purchase",
       url: "https://app.powerbi.com/groups/84691a96-fa30-4e99-8ebf-da73b935661b/reports/0c34af53-228f-49e3-a217-c7942da55d86/9399d3c37b14e9f48649?experience=power-bi&clientSideAuth=0",
       image: `${assets.Supplier_Order_pic}`,
+      groupID: "84691a96-fa30-4e99-8ebf-da73b935661b", 
+      reportId: "0c34af53-228f-49e3-a217-c7942da55d86",
     },
     {
       id: 8,
@@ -186,6 +208,8 @@ const PowerBiDashboard = () => {
       dataText: "purchase",
       url: "https://app.powerbi.com/groups/me/reports/d88fd1c6-d635-4ead-864c-b4971b81e11b/153be76ec304a615ddb5?experience=power-bi&clientSideAuth=0",
       image: `${assets.Goods_Receipt_pic}`,
+      groupID: "84691a96-fa30-4e99-8ebf-da73b935661b", 
+      reportId: "0c34af53-228f-49e3-a217-c7942da55d86",
     },
     {
       id: 9,
@@ -193,6 +217,8 @@ const PowerBiDashboard = () => {
       dataText: "purchase",
       url: "https://app.powerbi.com/groups/me/reports/092a96f6-27cd-41fd-9d6c-798733cfd586/f3156d802d9e138dabba?experience=power-bi&clientSideAuth=0",
       image: `${assets.Purchase_Requisition_pic}`,
+      groupID: "84691a96-fa30-4e99-8ebf-da73b935661b", 
+      reportId: "0c34af53-228f-49e3-a217-c7942da55d86",
     },
   ];
   const manufacturing = [
@@ -202,6 +228,8 @@ const PowerBiDashboard = () => {
       dataText: "purchase",
       url: "https://app.powerbi.com/groups/84691a96-fa30-4e99-8ebf-da73b935661b/reports/bad34a0b-01fa-4257-9e3f-9fec93098e18/96656c8ea0626564d181?experience=power-bi",
       image: `${assets.Controlling_pic}`,
+      groupID: "84691a96-fa30-4e99-8ebf-da73b935661b", 
+      reportId: "df3ab764-9488-4e8c-a116-15f45ddf85b4",
     },
     {
       id: 11,
@@ -209,6 +237,8 @@ const PowerBiDashboard = () => {
       dataText: "purchase",
       url: "https://app.powerbi.com/groups/84691a96-fa30-4e99-8ebf-da73b935661b/reports/df3ab764-9488-4e8c-a116-15f45ddf85b4/e107815aa0ee97c749a3?experience=power-bi&clientSideAuth=0",
       image: `${assets.Material_management_pic}`,
+      groupID: "84691a96-fa30-4e99-8ebf-da73b935661b", 
+      reportId: "df3ab764-9488-4e8c-a116-15f45ddf85b4",
     },
     {
       id: 12,
@@ -216,8 +246,11 @@ const PowerBiDashboard = () => {
       dataText: "purchase",
       url: "https://app.powerbi.com/groups/84691a96-fa30-4e99-8ebf-da73b935661b/reports/41761ec2-cb0f-43c0-9219-d31f2acc352b/34ada5fd2d2e43cf537e?experience=power-bi",
       image: `${assets.Production_planning_pic}`,
+      groupID: "84691a96-fa30-4e99-8ebf-da73b935661b", 
+      reportId: "41761ec2-cb0f-43c0-9219-d31f2acc352b",
     },
   ];
+
   const finance = [
     {
       id: 13,
@@ -225,6 +258,8 @@ const PowerBiDashboard = () => {
       dataText: "purchase",
       url: "https://app.powerbi.com/groups/me/reports/00fc9305-da2e-48e8-b53e-16ec28203cb1/0409b2205d1103030976?experience=power-bi&clientSideAuth=0",
       image: `${assets.General_Ledger_pic}`,
+      groupID: "84691a96-fa30-4e99-8ebf-da73b935661b", 
+      reportId: "0c34af53-228f-49e3-a217-c7942da55d86",
     },
     {
       id: 14,
@@ -232,6 +267,8 @@ const PowerBiDashboard = () => {
       dataText: "purchase",
       url: "https://app.powerbi.com/groups/me/reports/61332e4f-41f9-45f2-bf2b-28f6508591ae/1f55804984a696482416?experience=power-bi&clientSideAuth=0",
       image: `${assets.Accounts_receivable_pic}`,
+      groupID: "84691a96-fa30-4e99-8ebf-da73b935661b", 
+      reportId: "0c34af53-228f-49e3-a217-c7942da55d86",
     },
     {
       id: 15,
@@ -239,6 +276,8 @@ const PowerBiDashboard = () => {
       dataText: "purchase",
       url: "https://app.powerbi.com/groups/me/reports/0ac0709f-27ee-42f9-93d8-069096fa3d39/7fccc7b61a81e7e7a21c?experience=power-bi&clientSideAuth=0",
       image: `${assets.Accounts_payable_pic}`,
+      groupID: "84691a96-fa30-4e99-8ebf-da73b935661b", 
+      reportId: "0c34af53-228f-49e3-a217-c7942da55d86",
     },
   ];
 
@@ -315,6 +354,7 @@ const PowerBiDashboard = () => {
   ];
 
   const showDashboards = (activeTab) => {
+    setActiveDashboardID("")
     setActiveDashboard(activeTab);
     setMsgOpened(false);
     setIsMenuOpened(false);
@@ -679,16 +719,46 @@ const PowerBiDashboard = () => {
           BANFN: "Purchase Requisition Number",
           BNFPO: "Purchase Requisition Item",
           BSART: "Document Type",
+          BSTYP: "Purchase Document Category",
+          STATU: "Processing Status",
+          ESTKZ: "Creation Indicator",
           EKGRP: "Purchasing Group",
+          ERNAM: "Created By",
+          ERDAT: "Changed On",
+          TXZ01: "Short Text",
           MATNR: "Material Number",
           WERKS: "Plant",
-          LGORT: "Storage Location",
-          LIFNR: "Vendor Number",
-          EKORG: "Purchasing Organization",
-          SAKTO: "G/L Account",
-          KOSTL: "Cost Center",
-          KOKRS: "Controlling Area",
+          MATKL: "Material Group",
+          MENGE: "Quantity Requested",
+          MEINS: "Unit of Measure",
+          BUMNG: "Shortage Quantity",
+          BADAT: "Requisition Date",
+          LPEIN: "Delivery Date Category",
+          LFDAT: "Delivery Date",
+          FRGDT: "Release Date",
+          WEBAZ: "GR Processing Time",
+          PREIS: "Valuation Price",
+          PEINH: "Price Unit",
+          PSTYP: "Item Category",
+          WEPOS: "Goods Receipt",
+          REPOS: "Invoice Receipt",
+          KTPNR: "Principal Agreement Item",
+          QUPOS: "Quota Arrangement Item",
+          BATOL: "Resubmission",
+          BVDRK: "Number of Resubmissions",
+          EBELN: "Purchase Order Number",
+          EBELP: "Purchase Order Item",
+          BEDAT: "Purchase Order Date",
+          BSMNG: "Quantity Ordered",
+          LIMIT_CONSUMPTION_VALUE: "Consumption Value for Limit Items",
+          RSNUM: "Reservation",
+          ARSNR: "Settlement Reservation Number",
+          ARSPS: "Item of Settlement Reservation",
+          PACKNO: "Package Number",
+          CUOBJ: "Internal Object Number",
+          MNG02: "Committed Quantity",
         };
+        
 
         const transformedArray = response.data.data.map((item, index) => {
           const newItem = { "S.No": index + 1 };
@@ -1094,6 +1164,65 @@ const PowerBiDashboard = () => {
     );
   };
 
+
+
+  const getReportSpecificData = async (id, groupID, reportID, dashName) => {
+    console.log(dashName)
+    setActiveDashboardName(dashName)
+    setActiveDashboardID(id)
+    try {
+
+      const dashIdsData = {
+        groupID: groupID,
+        reportID: reportID
+      }
+    const response = await axios.post(url+"/powerbi/embed/getdashboard", dashIdsData);
+    // const data = await response.json();
+    console.log(response.data)
+    const data = response.data
+
+      const embedConfig = {
+        type: "report",
+        tokenType: models.TokenType.Embed, 
+        accessToken: data.token.token,
+        embedUrl: data.token.embedUrl,
+        id: data.reportId,
+        settings: {
+          panes: {
+            filters: { visible: false },
+            pageNavigation: { visible: true }
+          },
+          navContentPaneEnabled: true
+        }
+      };
+
+      // Use global powerbi object
+      // const report = window.powerbi.embed(reportRef.current, embedConfig);
+
+      const containerID = `report-container-${id}`
+
+      const reportContainer = document.getElementById(containerID)
+
+      // const report = window.powerbi.embed(reportContainer,embedConfig);
+      const report = window.powerbi.embed(reportContainer,embedConfig);
+      // reportRef.current, 
+
+      setActiveDashboardIDText("Report loaded successfully")
+
+      report.on("loaded", () => {
+
+        toast.success("Report loaded successfully")
+        console.log("Report loaded successfully");
+      });
+
+      report.on("error", (event) => {
+        console.error("Power BI error:", event.detail);
+      });
+    } catch (error) {
+      console.error("Error embedding Power BI report:", error);
+    }
+  }
+
   const getDashboards = (activeDash) => {
     if (activeDash === "HANElytics") {
       return (
@@ -1145,9 +1274,12 @@ const PowerBiDashboard = () => {
                         // onClick={() => login(`${type.dataText}, ${type.url}`)}
                         style={{ position: "relative" }}
                       >
-                        <a href={type.url} target="_blank">
+                        {/* <a href={type.url} target="_blank">
                           View Dashboard
-                        </a>
+                        </a> */}
+                        <p onClick={() => getReportSpecificData(type.id, type.groupID, type.reportId, type.headerText)}>
+                        View Dashboard
+                        </p>
                         <p
                           style={{
                             position: "absolute",
@@ -1190,9 +1322,13 @@ const PowerBiDashboard = () => {
                             // onClick={() => login(`${type.dataText}, ${type.url}`)}
                             style={{ position: "relative" }}
                           >
-                            <a href={type.url} target="_blank">
+                            {/* <a href={type.url} target="_blank">
                               View Dashboard
-                            </a>
+                            </a> */}
+                        <p onClick={() => getReportSpecificData(type.id, type.groupID, type.reportId,type.headerText)}>
+                        View Dashboard
+                        </p>
+
                             <p
                               style={{
                                 position: "absolute",
@@ -1269,6 +1405,9 @@ const PowerBiDashboard = () => {
                       <a href={type.url} target="_blank">
                         View Dashboard
                       </a>
+                      {/* <p onClick={() => getReportSpecificData(type.id, type.groupID, type.reportId,type.headerText)}>
+                        View Dashboard
+                        </p> */}
                       <p
                         style={{
                           position: "absolute",
@@ -1311,12 +1450,14 @@ const PowerBiDashboard = () => {
                         <button
                           className="bi-dashboard-button"
                           // onClick={() => login(`${type.dataText}, ${type.url}`)}
-
                           style={{ position: "relative" }}
                         >
                           <a href={type.url} target="_blank">
                             View Dashboard
                           </a>
+                          {/* <p onClick={() => getReportSpecificData(type.id, type.groupID, type.reportId,type.headerText)}>
+                        View Dashboard
+                        </p> */}
                           <p
                             style={{
                               position: "absolute",
@@ -1353,12 +1494,10 @@ const PowerBiDashboard = () => {
             loggedInUserRole === "CTO" ||
             loggedInUserRole === "CEO" ? (
               <span style={{ fontSize: "20px", marginLeft: "5px" }}>
-                {" "}
                 ({procurement.length} / {procurement.length})
               </span>
             ) : (
               <span style={{ fontSize: "20px", marginLeft: "5px" }}>
-                {" "}
                 ({allowedProcurementDashboards.length} / {procurement.length})
               </span>
             )}
@@ -1389,6 +1528,9 @@ const PowerBiDashboard = () => {
                       <a href={type.url} target="_blank">
                         View Dashboard
                       </a>
+                      {/* <p onClick={() => getReportSpecificData(type.id, type.groupID, type.reportId,type.headerText)}>
+                        View Dashboard
+                        </p> */}
                       <p
                         style={{
                           position: "absolute",
@@ -1434,6 +1576,9 @@ const PowerBiDashboard = () => {
                           <a href={type.url} target="_blank">
                             View Dashboard
                           </a>
+                          {/* <p onClick={() => getReportSpecificData(type.id, type.groupID, type.reportId,type.headerText)}>
+                        View Dashboard
+                        </p> */}
                           <p
                             style={{
                               position: "absolute",
@@ -1508,6 +1653,9 @@ const PowerBiDashboard = () => {
                       <a href={type.url} target="_blank">
                         View Dashboard
                       </a>
+                      {/* <p onClick={() => getReportSpecificData(type.id, type.groupID, type.reportId,type.headerText)}>
+                        View Dashboard
+                        </p> */}
                       <p
                         style={{
                           position: "absolute",
@@ -1554,6 +1702,9 @@ const PowerBiDashboard = () => {
                           <a href={type.url} target="_blank">
                             View Dashboard
                           </a>
+                          {/* <p onClick={() => getReportSpecificData(type.id, type.groupID, type.reportId,type.headerText)}>
+                        View Dashboard
+                        </p> */}
                           <p
                             style={{
                               position: "absolute",
@@ -1628,6 +1779,9 @@ const PowerBiDashboard = () => {
                       <a href={type.url} target="_blank">
                         View Dashboard
                       </a>
+                      {/* <p onClick={() => getReportSpecificData(type.id, type.groupID, type.reportId,type.headerText)}>
+                        View Dashboard
+                        </p> */}
                       <p
                         style={{
                           position: "absolute",
@@ -1674,6 +1828,9 @@ const PowerBiDashboard = () => {
                           <a href={type.url} target="_blank">
                             View Dashboard
                           </a>
+                          {/* <p onClick={() => getReportSpecificData(type.id, type.groupID, type.reportId,type.headerText)}>
+                        View Dashboard
+                        </p> */}
                           <p
                             style={{
                               position: "absolute",
@@ -1906,7 +2063,7 @@ const PowerBiDashboard = () => {
         </div>
       </div>
 
-      <div className="bi-reporting-dashboards">
+      {activeDashBoardID === "" && activeDashBoardIDText === "" &&<div className="bi-reporting-dashboards">
         <div className="container bi-reporting-dashboards-sections">
           <div>
             {isUserDashLoaded ? (
@@ -1940,7 +2097,26 @@ const PowerBiDashboard = () => {
             )}
           </div>
         </div>
-      </div>
+      </div>}
+      {activeDashBoardID === "" ? "" :
+        <div className="container bi-embedding-container" >
+
+        <div className="bi-dash-name-container" 
+        >
+            <h1 className="bi-embed-heading">{activeDashboardName}</h1>
+            <button
+             onClick={() => {
+              setActiveDashboardID("")
+              setActiveDashboardIDText("")
+            }}>Go Back</button>
+          </div>
+          <div
+          id={`report-container-${activeDashBoardID}`}
+          className="bi-report-embedding"
+            >
+
+            </div>
+        </div>}
       <Footer />
     </div>
   );

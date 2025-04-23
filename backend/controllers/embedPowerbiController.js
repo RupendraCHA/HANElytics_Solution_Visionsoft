@@ -35,6 +35,7 @@ const clientSecret = process.env.CLIENT_SECRET;
     );
 
     const embedUrl = reportResponse.data.embedUrl; 
+    console.log(embedUrl)
 
     // Generate Embed token
     const embedTokenResponse = await axios.post(
