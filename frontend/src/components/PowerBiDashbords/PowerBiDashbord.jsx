@@ -209,7 +209,7 @@ const PowerBiDashboard = () => {
       url: "https://app.powerbi.com/groups/me/reports/d88fd1c6-d635-4ead-864c-b4971b81e11b/153be76ec304a615ddb5?experience=power-bi&clientSideAuth=0",
       image: `${assets.Goods_Receipt_pic}`,
       groupID: "84691a96-fa30-4e99-8ebf-da73b935661b", 
-      reportId: "0c34af53-228f-49e3-a217-c7942da55d86",
+      reportId: "da752be3-4bdd-46b9-a8b0-167c3afb4611",
     },
     {
       id: 9,
@@ -218,7 +218,7 @@ const PowerBiDashboard = () => {
       url: "https://app.powerbi.com/groups/me/reports/092a96f6-27cd-41fd-9d6c-798733cfd586/f3156d802d9e138dabba?experience=power-bi&clientSideAuth=0",
       image: `${assets.Purchase_Requisition_pic}`,
       groupID: "84691a96-fa30-4e99-8ebf-da73b935661b", 
-      reportId: "0c34af53-228f-49e3-a217-c7942da55d86",
+      reportId: "03fdc7e7-08f2-461c-a07f-9caffceaf864",
     },
   ];
   const manufacturing = [
@@ -259,7 +259,7 @@ const PowerBiDashboard = () => {
       url: "https://app.powerbi.com/groups/me/reports/00fc9305-da2e-48e8-b53e-16ec28203cb1/0409b2205d1103030976?experience=power-bi&clientSideAuth=0",
       image: `${assets.General_Ledger_pic}`,
       groupID: "84691a96-fa30-4e99-8ebf-da73b935661b", 
-      reportId: "0c34af53-228f-49e3-a217-c7942da55d86",
+      reportId: "c5da2b12-6f92-4bf9-979a-73c2900812a2",
     },
     {
       id: 14,
@@ -268,7 +268,7 @@ const PowerBiDashboard = () => {
       url: "https://app.powerbi.com/groups/me/reports/61332e4f-41f9-45f2-bf2b-28f6508591ae/1f55804984a696482416?experience=power-bi&clientSideAuth=0",
       image: `${assets.Accounts_receivable_pic}`,
       groupID: "84691a96-fa30-4e99-8ebf-da73b935661b", 
-      reportId: "0c34af53-228f-49e3-a217-c7942da55d86",
+      reportId: "58746290-3ce7-4092-b86e-619523d16c54",
     },
     {
       id: 15,
@@ -277,7 +277,7 @@ const PowerBiDashboard = () => {
       url: "https://app.powerbi.com/groups/me/reports/0ac0709f-27ee-42f9-93d8-069096fa3d39/7fccc7b61a81e7e7a21c?experience=power-bi&clientSideAuth=0",
       image: `${assets.Accounts_payable_pic}`,
       groupID: "84691a96-fa30-4e99-8ebf-da73b935661b", 
-      reportId: "0c34af53-228f-49e3-a217-c7942da55d86",
+      reportId: "0fece05d-b9c9-4ec9-b490-e673d708f360",
     },
   ];
 
@@ -423,6 +423,39 @@ const PowerBiDashboard = () => {
       },
     });
   };
+
+  const getInfoDashboardLoadToast = (dashName) => {
+    return toast.info(`Dashboard is Loading...`, {
+      position: "top-center",
+      closeButton: CustomCloseIcon,
+      style: {
+        fontSize: "16px",
+        padding: "8px 12px",
+        height: "30px",
+        borderRadius: "8px",
+        color: "#fff",
+        backgroundColor: "#000",
+        fontWeight: "600",
+      },
+    });
+  };
+
+  const getSuccessDashLoadToast = (toastMsg) => {
+    return toast.success(`${toastMsg}`, {
+      position: "top-center",
+      closeButton: CustomCloseIcon,
+      style: {
+        fontSize: "16px",
+        padding: "8px 12px",
+        height: "30px",
+        borderRadius: "8px",
+        color: "#fff",
+        backgroundColor: "#000",
+        fontWeight: "600",
+      },
+    });
+  }
+
 
   const downloadDataIntoExcel = (Array, fileName, id) => {
     console.log(id);
@@ -1153,7 +1186,7 @@ const PowerBiDashboard = () => {
   };
 
   const getNoAccessViewInfo = () => {
-    return (
+    return(
       <div className="no-access-view-text">
         <p>
           <BiSolidHide className="no-access-icon" />
@@ -1170,6 +1203,9 @@ const PowerBiDashboard = () => {
     console.log(dashName)
     setActiveDashboardName(dashName)
     setActiveDashboardID(id)
+    getInfoDashboardLoadToast(dashName)
+    
+
     try {
 
       const dashIdsData = {
@@ -1208,10 +1244,10 @@ const PowerBiDashboard = () => {
       // reportRef.current, 
 
       setActiveDashboardIDText("Report loaded successfully")
+      // Loading your dashboard...
 
       report.on("loaded", () => {
-
-        toast.success("Report loaded successfully")
+        getSuccessDashLoadToast("Dashboard Loaded Successfully.")
         console.log("Report loaded successfully");
       });
 
@@ -1402,12 +1438,12 @@ const PowerBiDashboard = () => {
 
                       style={{ position: "relative" }}
                     >
-                      <a href={type.url} target="_blank">
+                      {/* <a href={type.url} target="_blank">
                         View Dashboard
-                      </a>
-                      {/* <p onClick={() => getReportSpecificData(type.id, type.groupID, type.reportId,type.headerText)}>
+                      </a> */}
+                      <p onClick={() => getReportSpecificData(type.id, type.groupID, type.reportId,type.headerText)}>
                         View Dashboard
-                        </p> */}
+                        </p>
                       <p
                         style={{
                           position: "absolute",
@@ -1452,12 +1488,12 @@ const PowerBiDashboard = () => {
                           // onClick={() => login(`${type.dataText}, ${type.url}`)}
                           style={{ position: "relative" }}
                         >
-                          <a href={type.url} target="_blank">
+                          {/* <a href={type.url} target="_blank">
                             View Dashboard
-                          </a>
-                          {/* <p onClick={() => getReportSpecificData(type.id, type.groupID, type.reportId,type.headerText)}>
+                          </a> */}
+                          <p onClick={() => getReportSpecificData(type.id, type.groupID, type.reportId,type.headerText)}>
                         View Dashboard
-                        </p> */}
+                        </p>
                           <p
                             style={{
                               position: "absolute",

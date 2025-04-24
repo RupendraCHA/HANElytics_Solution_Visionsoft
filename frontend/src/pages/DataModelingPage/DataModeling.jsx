@@ -424,6 +424,7 @@ const DataModeling = () => {
         headers: { token: jwtToken },
       });
       const Array = response.data;
+      console.log(Array)
 
       if (Array) {
         setIsLoadingTrue(false);

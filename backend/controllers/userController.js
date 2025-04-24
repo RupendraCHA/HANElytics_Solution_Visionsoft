@@ -6,7 +6,7 @@ import { parsePhoneNumberFromString } from 'libphonenumber-js';
 // import nodemailer from "nodemailer"
 
 const createToken = (id) => {
-    return jwt.sign({id}, process.env.JWT_SECRET, {expiresIn: '1d'})
+    return jwt.sign({id}, process.env.JWT_SECRET)
 }
 
 // export const registerUser = async (req, res) => {
