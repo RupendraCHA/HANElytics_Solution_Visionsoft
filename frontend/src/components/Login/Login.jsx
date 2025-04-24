@@ -21,6 +21,11 @@ function Login() {
 
     const startTheServer = async () => {
       const response = await axios.get( url);
+      if (response.data.message){
+            toast.success("All setup done, Proceed now.")
+          }else{
+            toast.info("Give us a minute to setup things for you, then you can proceed")
+          }
       console.log(response.data.message)
 
   }
