@@ -48,8 +48,6 @@ const DataModeling = () => {
   const { url, username, loggedInUserDetails,
     setLoggedInUserDetails } = useContext(StoreContext);
 
-  const username1 = username.split(" ");
-  const firstname = username1[0];
 
   const startTheServer = async () => {
     const response = await axios.get(url);
@@ -930,7 +928,7 @@ const DataModeling = () => {
               <div>
                 <div className="icon-username" style={{ position: "relative" }}>
                   <FaRegCircleUser className="user-icon" />
-                  <p className="username-text">{firstname}</p>
+                  <p className="username-text">{username}</p>
                   {loggedInUserDetails.map((user, index) => (
                     <div
                       key={index}

@@ -16,28 +16,70 @@ function Login() {
   const navigate = useNavigate();
   const [isHovered, setIsHovered] = useState(false);
 
-  const { url, setToken, setUsername, token, username, setUserRole } =
-    useContext(StoreContext);
+  const {
+    url,
+    setToken,
+    setUsername,
+    token,
+    username,
+    setUserRole,
+    
+  } = useContext(StoreContext);
 
-    const startTheServer = async () => {
-      const response = await axios.get( url);
-      if (response.data.message){
-            toast.success("All setup done, Proceed now.")
-          }else{
-            toast.info("Give us a minute to setup things for you, then you can proceed")
-          }
-      console.log(response.data.message)
+  const CustomCloseIcon = ({ closeToast }) => (
+    <span
+      onClick={closeToast}
+      style={{
+        color: "red",
+        cursor: "pointer",
+        fontWeight: "bold",
+        display: "flex",
+        alignItems: "center",
+      }}
+    >
+      ✖
+    </span>
+  );
 
-  }
+  const getInfoToast = (toastText) => {
+    return toast.info(`${toastText}`, {
+      position: "top-center",
+      closeButton: CustomCloseIcon,
+      style: {
+        fontSize: "16px",
+        padding: "8px 12px",
+        height: "30px",
+        borderRadius: "8px",
+        color: "#000",
+        backgroundColor: "#fff",
+        fontWeight: "600",
+      },
+    });
+  };
+
+
+  const startTheServer = async () => {
+    const response = await axios.get(url);
+    if (response.data.message) {
+      // toast.success("");
+      getInfoToast("All setup done, You can Login now.");
+    } else {
+      getInfoToast("Give us a minute to setup things for you, then you can proceed.");
+
+    }
+    console.log(response.data.message);
+  };
+
+
   useEffect(() => {
-      startTheServer()
-      const jwtToken = localStorage.getItem("token")
-      if (jwtToken) {
-          navigate("/home")
-      }else {
-          navigate("/login")
-      }
-  },[])
+    startTheServer();
+    const jwtToken = localStorage.getItem("token");
+    if (jwtToken) {
+      navigate("/home");
+    } else {
+      navigate("/login");
+    }
+  }, []);
 
   const handleInputChange = (e) => {
     setExist(false);
@@ -59,19 +101,22 @@ function Login() {
     // console.log(data)
     setExist(false);
     const response = await axios.post(url + "/api/user/login", data);
-    console.log(response.data)
+    console.log(response.data);
 
     if (response.data.success) {
       setExist(false);
       setToken(response.data.token);
+      const expiresIn = 10 * 60 * 1000; // 10 min expiry
+      const expiryTime = Date.now() + expiresIn;
       localStorage.setItem("token", response.data.token);
       localStorage.setItem("username", response.data.name);
       localStorage.setItem("role", response.data.role);
       localStorage.setItem("email", response.data.email);
+      localStorage.setItem("tokenExpiry", expiryTime.toString());
 
       setUsername(response.data.name);
-      setUserRole(response.data.role)
-      console.log(response.data.role)
+      setUserRole(response.data.role);
+      console.log(response.data.role);
       toast.success(response.data.name + " " + response.data.message);
       navigate("/home");
     } else {
@@ -105,27 +150,35 @@ function Login() {
     <>
       {changePassword && (
         <div className="bg-container-login d-flex justify-content-center align-items-center bg-secondary vh-100">
-          <div 
-          className="login-page" style={{ 
-            // backgroundColor: "#0787e3",
-            backgroundColor: "#fff",
-            }}>
-              {/* Explore Our HANElytics AI/ML Solutions */}
+          <div
+            className="login-page"
+            style={{
+              // backgroundColor: "#0787e3",
+              backgroundColor: "#fff",
+            }}
+          >
+            {/* Explore Our HANElytics AI/ML Solutions */}
             {/* <h4 style={{fontSize: "16px"}}>Explore Our HANElytics AI/ML Solutions</h4> */}
-            <h4 style={{fontSize: "18px"}}>HANElytics simplifies predictive insights by turning complex data into clear dashboards, intuitive graphs, and structured tables and many more.</h4>
+            <h4 style={{ fontSize: "18px" }}>
+              HANElytics simplifies predictive insights by turning complex data
+              into clear dashboards, intuitive graphs, and structured tables and
+              many more.
+            </h4>
           </div>
           <div
             className="p-4  login-card"
-            style={{ height: "60vh",
+            style={{
+              height: "60vh",
               //  backgroundColor: "#1e66d9",
-               backgroundColor: "#fff",
-              }}
+              backgroundColor: "#fff",
+            }}
           >
             <h2 style={{ textAlign: "center", fontWeight: "600" }}>Login</h2>
             <form onSubmit={handleSubmit}>
               <div className="mb-3">
-                <label htmlFor="email" style={{color: "#000"}}>
-                  <strong>Email</strong><span className="required-mark">*</span>
+                <label htmlFor="email" style={{ color: "#000" }}>
+                  <strong>Email</strong>
+                  <span className="required-mark">*</span>
                 </label>
                 <input
                   type="text"
@@ -138,8 +191,9 @@ function Login() {
                 />
               </div>
               <div className="mb-3">
-                <label htmlFor="password" style={{color: "#000"}}>
-                  <strong>Password</strong><span className="required-mark">*</span>
+                <label htmlFor="password" style={{ color: "#000" }}>
+                  <strong>Password</strong>
+                  <span className="required-mark">*</span>
                 </label>
                 <input
                   type="password"
@@ -168,7 +222,7 @@ function Login() {
               <Link
                 to="/register"
                 className="register bg-warning btn btn-default border w-100 rounded-0 text-decoration-none"
-                style={{ fontWeight: "600", opacity: "0.7"}}
+                style={{ fontWeight: "600", opacity: "0.7" }}
               >
                 Register
               </Link>
@@ -227,7 +281,7 @@ function Login() {
           </form>
         </div>
       )}
-      <Footer/>
+      <Footer />
     </>
   );
 }

@@ -20,8 +20,7 @@ const Header = ({ page = "" }) => {
     setLoggedInUserDetails } =
     useContext(StoreContext);
 
-  const username1 = username.split(" ")
-  const firstname = username1[0]
+  
 
   const getLoggedUserInfo = async () => {
     const email = localStorage.getItem("email");
@@ -151,7 +150,7 @@ const Header = ({ page = "" }) => {
           <div className="icon-username1" style={{ position: "relative" }}>
             <FaRegCircleUser className="user-icon1" />
             {/* <p className="username-text1">{username}</p> */}
-            <p className="username-text1">{firstname}</p>
+            <p className="username-text1">{username}</p>
             {loggedInUserDetails.map((user, index) => (
               <div
                 key={index}

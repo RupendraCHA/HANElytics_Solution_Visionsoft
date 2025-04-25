@@ -14,7 +14,6 @@ import { BiSolidHide } from "react-icons/bi";
 import { BsInfoCircle } from "react-icons/bs";
 
 function SignUp() {
-
   const [countryPhoneCode, setCountryPhoneCode] = useState("+1");
   const [countryCode, setCountryCode] = useState("US");
 
@@ -35,7 +34,6 @@ function SignUp() {
   });
   const navigate = useNavigate();
 
-
   const [isExist, setExist] = useState(false);
   const [errorMsg, setErrorMsg] = useState("");
   const [existedEmail, accessEmail] = useState("");
@@ -45,23 +43,55 @@ function SignUp() {
   const [codeError, setCodeError] = useState(false);
   const [openNextPage, setOpenNextPage] = useState(false);
 
-  const { url, setToken, setUsername, setUserRole,showHidePassword,
-    setShowHidePassword } = useContext(StoreContext);
+  const {
+    url,
+    setToken,
+    setUsername,
+    setUserRole,
+    showHidePassword,
+    setShowHidePassword,
+  } = useContext(StoreContext);
 
-  // useEffect(() => {
-  //   const response = "http://localhost:3001"
-  //   // const response = "https://hanelytics-solution-visionsoft.onrender.com"
-  //   console.log(response.data)
-  // }, [])
+  const CustomCloseIcon = ({ closeToast }) => (
+      <span
+        onClick={closeToast}
+        style={{
+          color: "red",
+          cursor: "pointer",
+          fontWeight: "bold",
+          display: "flex",
+          alignItems: "center",
+        }}
+      >
+        ✖
+      </span>
+    );
+  
+    const getInfoToast = (toastText) => {
+      return toast.info(`${toastText}`, {
+        position: "top-center",
+        closeButton: CustomCloseIcon,
+        style: {
+          fontSize: "16px",
+          padding: "8px 12px",
+          height: "30px",
+          borderRadius: "8px",
+          color: "#000",
+          backgroundColor: "#fff",
+          fontWeight: "600",
+        },
+      });
+    };
 
   const startTheServer = async () => {
     const response = await axios.get(url);
 
-    if (response.data.message){
-                toast.success("All setup done, Proceed now.")
-              }else{
-                toast.info("Give us a minute to setup things for you, then you can proceed")
-              }
+    if (response.data.message) {
+      getInfoToast("All setup done, You can register now if not Registered.")
+      // toast.success("");
+    } else {
+      getInfoToast("Give us a minute to setup things for you, then you can proceed")
+    }
     console.log(response.data.message);
   };
   useEffect(() => {
@@ -93,10 +123,10 @@ function SignUp() {
     const data1 = {
       ...data,
       countryPhoneCode: countryPhoneCode,
-      countryCode: countryCode
-    }
+      countryCode: countryCode,
+    };
 
-    console.log(data1)
+    console.log(data1);
 
     const response = await axios.post(url + "/api/user/register", data1);
 
@@ -237,7 +267,6 @@ function SignUp() {
                         />
                       </div>
                       <div className="register-input-label">
-                        
                         <label htmlFor="contact">
                           <strong>CONTACT NUMBER</strong>
                           <span className="required-mark">*</span>
@@ -245,7 +274,11 @@ function SignUp() {
 
                         <div className="country-contact-container">
                           <MuiTelInput
-                            style={{ outline: "none", borderRadius: "6px", color: "#fff"}}
+                            style={{
+                              outline: "none",
+                              borderRadius: "6px",
+                              color: "#fff",
+                            }}
                             value={countryPhoneCode}
                             onChange={handleChange}
                             defaultCountry="US"
@@ -256,9 +289,9 @@ function SignUp() {
                                 height: "30px",
                                 borderRadius: "6px",
                                 padding: "16px 0px",
-                                '& fieldset': {
-                                      border: 'none', // ✅ removes the black outline
-                                    },
+                                "& fieldset": {
+                                  border: "none", // ✅ removes the black outline
+                                },
                               },
                               "& input": {
                                 // padding: "10px 12px",
@@ -266,15 +299,13 @@ function SignUp() {
                                 // fontSize: "14px",
                                 color: "#000",
                                 height: "30px",
-
-
                               },
                               // Reduce flag icon size
                               "& .MuiTelInput-FlagButton": {
                                 width: "16px",
                                 // padding: "0 6px",
                                 marginLeft: "-40px",
-                                paddingLeft: "2px"
+                                paddingLeft: "2px",
                               },
                               "& .MuiTelInput-Flag": {
                                 width: "18px",
@@ -284,8 +315,7 @@ function SignUp() {
                               "& .MuiTelInput-CountryCallingCode": {
                                 fontSize: "120px",
                                 marginRight: "10px",
-                                backgroundColor: '#f0f0f0',
-
+                                backgroundColor: "#f0f0f0",
                               },
                             }}
                           />
@@ -323,9 +353,17 @@ function SignUp() {
                         <strong>ROLE</strong>
                         <span className="required-mark">
                           <BsInfoCircle
-                          title="By Default Role is Employee. You can't change it."
-                           className="hover-icon" style={{fontSize: "14px", color: "#fff", fontWeight: "bold", 
-                           marginLeft: "5px", boxShadow: "1px 1px 1px #000", borderRadius: "50%"}}/>
+                            title="By Default Role is Employee. You can't change it."
+                            className="hover-icon"
+                            style={{
+                              fontSize: "14px",
+                              color: "#fff",
+                              fontWeight: "bold",
+                              marginLeft: "5px",
+                              boxShadow: "1px 1px 1px #000",
+                              borderRadius: "50%",
+                            }}
+                          />
                         </span>
                       </label>
                       <input
@@ -519,12 +557,21 @@ function SignUp() {
               <div className="login-details">
                 {/* <div> */}
                 <p className="opening-text">
-                HANElytics simplifies predictive insights by turning complex data into clear dashboards, intuitive graphs, and structured tables and many more.
+                  HANElytics simplifies predictive insights by turning complex
+                  data into clear dashboards, intuitive graphs, and structured
+                  tables and many more.
                 </p>
                 <div>
                   <p>Already have an account?</p>
                   <Link to="/login">
-                    <button style={{boxShadow: "2px 2px 2px #000", padding: "10px 5px"}}>Login</button>
+                    <button
+                      style={{
+                        boxShadow: "2px 2px 2px #000",
+                        padding: "10px 5px",
+                      }}
+                    >
+                      Login
+                    </button>
                   </Link>
                 </div>
                 {/* </div> */}

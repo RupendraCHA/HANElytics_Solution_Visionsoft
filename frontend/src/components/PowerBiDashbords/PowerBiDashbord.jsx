@@ -56,9 +56,6 @@ const PowerBiDashboard = () => {
   const [activeDashboardName, setActiveDashboardName] = useState("")
 
 
-  const username1 = username.split(" ");
-  const firstname = username1[0];
-
   const startTheServer = async () => {
     const response = await axios.get(url);
     console.log(response.data.message);
@@ -1958,7 +1955,7 @@ const PowerBiDashboard = () => {
         <div className="bi-drop-down">
           <div className="bi-icon-username" style={{ position: "relative" }}>
             <FaRegUserCircle className="bi-user-icon" />
-            <p className="bi-username-text">{firstname}</p>
+            <p className="bi-username-text">{username}</p>
             {loggedInUserDetails.map((user, index) => (
               <div
                 key={index}
