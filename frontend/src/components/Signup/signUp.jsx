@@ -69,7 +69,23 @@ function SignUp() {
   
     const getInfoToast = (toastText) => {
       return toast.info(`${toastText}`, {
-        position: "top-center",
+        position: "top-right",
+        closeButton: CustomCloseIcon,
+        style: {
+          fontSize: "16px",
+          padding: "8px 12px",
+          height: "30px",
+          borderRadius: "8px",
+          color: "#000",
+          backgroundColor: "#fff",
+          fontWeight: "600",
+        },
+      });
+    };
+
+    const getSuccessToast = (toastText) => {
+      return toast.info(`${toastText}`, {
+        position: "top-right",
         closeButton: CustomCloseIcon,
         style: {
           fontSize: "16px",
@@ -84,15 +100,20 @@ function SignUp() {
     };
 
   const startTheServer = async () => {
-    const response = await axios.get(url);
+
+    try {
+      const response = await axios.get(url);
+    console.log(response.data.message);
 
     if (response.data.message) {
-      getInfoToast("All setup done, You can register now if not Registered.")
+      getInfoToast("All setup completed, You can register now if not Registered.")
       // toast.success("");
-    } else {
+    } 
+    } catch (error) {
       getInfoToast("Give us a minute to setup things for you, then you can proceed")
+      
     }
-    console.log(response.data.message);
+    
   };
   useEffect(() => {
     startTheServer();
@@ -141,7 +162,7 @@ function SignUp() {
       // console.log(response.data.verificationCode)
       setUsername(response.data.firstname);
       setUserRole(response.data.role);
-
+      getSuccessToast("Registration successful.")
       setRegisterClick(false);
       // navigate("/home")
     } else {

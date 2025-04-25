@@ -1558,12 +1558,12 @@ const PowerBiDashboard = () => {
                       // onClick={() => login(`${type.dataText}, ${type.url}`)}
                       style={{ position: "relative" }}
                     >
-                      <a href={type.url} target="_blank">
+                      {/* <a href={type.url} target="_blank">
                         View Dashboard
-                      </a>
-                      {/* <p onClick={() => getReportSpecificData(type.id, type.groupID, type.reportId,type.headerText)}>
+                      </a> */}
+                      <p onClick={() => getReportSpecificData(type.id, type.groupID, type.reportId,type.headerText)}>
                         View Dashboard
-                        </p> */}
+                        </p>
                       <p
                         style={{
                           position: "absolute",
@@ -1606,12 +1606,12 @@ const PowerBiDashboard = () => {
                           // onClick={() => login(`${type.dataText}, ${type.url}`)}
                           style={{ position: "relative" }}
                         >
-                          <a href={type.url} target="_blank">
+                          {/* <a href={type.url} target="_blank">
                             View Dashboard
-                          </a>
-                          {/* <p onClick={() => getReportSpecificData(type.id, type.groupID, type.reportId,type.headerText)}>
+                          </a> */}
+                          <p onClick={() => getReportSpecificData(type.id, type.groupID, type.reportId,type.headerText)}>
                         View Dashboard
-                        </p> */}
+                        </p>
                           <p
                             style={{
                               position: "absolute",
@@ -1683,12 +1683,12 @@ const PowerBiDashboard = () => {
                       // onClick={() => login(`${type.dataText}, ${type.url}`)}
                       style={{ position: "relative" }}
                     >
-                      <a href={type.url} target="_blank">
+                      {/* <a href={type.url} target="_blank">
                         View Dashboard
-                      </a>
-                      {/* <p onClick={() => getReportSpecificData(type.id, type.groupID, type.reportId,type.headerText)}>
+                      </a> */}
+                      <p onClick={() => getReportSpecificData(type.id, type.groupID, type.reportId,type.headerText)}>
                         View Dashboard
-                        </p> */}
+                        </p>
                       <p
                         style={{
                           position: "absolute",
@@ -1732,12 +1732,12 @@ const PowerBiDashboard = () => {
                           // onClick={() => login(`${type.dataText}, ${type.url}`)}
                           style={{ position: "relative" }}
                         >
-                          <a href={type.url} target="_blank">
+                          {/* <a href={type.url} target="_blank">
                             View Dashboard
-                          </a>
-                          {/* <p onClick={() => getReportSpecificData(type.id, type.groupID, type.reportId,type.headerText)}>
+                          </a> */}
+                          <p onClick={() => getReportSpecificData(type.id, type.groupID, type.reportId,type.headerText)}>
                         View Dashboard
-                        </p> */}
+                        </p>
                           <p
                             style={{
                               position: "absolute",
@@ -1809,12 +1809,12 @@ const PowerBiDashboard = () => {
                       // onClick={() => login(`${type.dataText}, ${type.url}`)}
                       style={{ position: "relative" }}
                     >
-                      <a href={type.url} target="_blank">
+                      {/* <a href={type.url} target="_blank">
                         View Dashboard
-                      </a>
-                      {/* <p onClick={() => getReportSpecificData(type.id, type.groupID, type.reportId,type.headerText)}>
+                      </a> */}
+                      <p onClick={() => getReportSpecificData(type.id, type.groupID, type.reportId,type.headerText)}>
                         View Dashboard
-                        </p> */}
+                        </p>
                       <p
                         style={{
                           position: "absolute",
@@ -1858,12 +1858,12 @@ const PowerBiDashboard = () => {
                           // onClick={() => login(`${type.dataText}, ${type.url}`)}
                           style={{ position: "relative" }}
                         >
-                          <a href={type.url} target="_blank">
+                          {/* <a href={type.url} target="_blank">
                             View Dashboard
-                          </a>
-                          {/* <p onClick={() => getReportSpecificData(type.id, type.groupID, type.reportId,type.headerText)}>
+                          </a> */}
+                          <p onClick={() => getReportSpecificData(type.id, type.groupID, type.reportId,type.headerText)}>
                         View Dashboard
-                        </p> */}
+                        </p>
                           <p
                             style={{
                               position: "absolute",

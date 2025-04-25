@@ -49,18 +49,75 @@ function Home() {
     } else {
       toast.error(response.data.message);
     }
-
-    // console.log("Logged User Details", response.data)
   };
+
+  const CustomCloseIcon = ({ closeToast }) => (
+      <span
+        onClick={closeToast}
+        style={{
+          color: "red",
+          cursor: "pointer",
+          fontWeight: "bold",
+          display: "flex",
+          alignItems: "center",
+        }}
+      >
+        ✖
+      </span>
+    );
+  
+    const getWarnToast = (toastText) => {
+      return toast.warn(`${toastText}`, {
+        position: "top-center",
+        closeButton: CustomCloseIcon,
+        style: {
+          fontSize: "16px",
+          padding: "8px 12px",
+          height: "30px",
+          borderRadius: "8px",
+          color: "#000",
+          backgroundColor: "#fff",
+          fontWeight: "600",
+        },
+      });
+    };
+
+  // const checkTokenExpiry = () => {
+  //   const expiryTime = localStorage.getItem("tokenExpiry")
+
+  //   if (expiryTime && Date.now() > Number(expiryTime)) {
+  //     getWarnToast("Your session has been expired. Please Login again.")
+
+  //     localStorage.removeItem("token");
+  //     localStorage.removeItem("username");
+  //     localStorage.removeItem("role");
+  //     localStorage.removeItem("email");
+  //     localStorage.removeItem("tokenExpiry");
+
+  //     setTimeout(() => {
+  //       navigate("/login")
+  //     }, 1000)
+  //   }
+  // }
+
   useEffect(() => {
     startTheServer();
     getLoggedUserInfo()
+    // const interval = setInterval(() => {
+    //   checkTokenExpiry()
+    //   console.log("Checking token Expiry")
+    // }, 60 * 1000)
+
+    // checkTokenExpiry()
+
     const jwtToken = localStorage.getItem("token");
     if (jwtToken) {
       navigate("/home");
     } else {
       navigate("/");
     }
+    // return clearInterval(interval)
+
   }, []);
 
   const handleIsMenuOpened = () => {

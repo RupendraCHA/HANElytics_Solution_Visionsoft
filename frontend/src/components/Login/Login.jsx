@@ -43,7 +43,23 @@ function Login() {
 
   const getInfoToast = (toastText) => {
     return toast.info(`${toastText}`, {
-      position: "top-center",
+      position: "top-right",
+      closeButton: CustomCloseIcon,
+      style: {
+        fontSize: "16px",
+        padding: "8px 12px",
+        height: "30px",
+        borderRadius: "8px",
+        color: "#000",
+        backgroundColor: "#fff",
+        fontWeight: "600",
+      },
+    });
+  };
+
+  const getSuccessToast = (toastText) => {
+    return toast.success(`${toastText}`, {
+      position: "top-right",
       closeButton: CustomCloseIcon,
       style: {
         fontSize: "16px",
@@ -62,7 +78,7 @@ function Login() {
     const response = await axios.get(url);
     if (response.data.message) {
       // toast.success("");
-      getInfoToast("All setup done, You can Login now.");
+      getInfoToast("All setup completed, You can Login now.");
     } else {
       getInfoToast("Give us a minute to setup things for you, then you can proceed.");
 
@@ -106,7 +122,7 @@ function Login() {
     if (response.data.success) {
       setExist(false);
       setToken(response.data.token);
-      const expiresIn = 10 * 60 * 1000; // 10 min expiry
+      const expiresIn = 360 * 60 * 1000; // 10 min expiry
       const expiryTime = Date.now() + expiresIn;
       localStorage.setItem("token", response.data.token);
       localStorage.setItem("username", response.data.name);
@@ -117,7 +133,7 @@ function Login() {
       setUsername(response.data.name);
       setUserRole(response.data.role);
       console.log(response.data.role);
-      toast.success(response.data.name + " " + response.data.message);
+      getSuccessToast(response.data.name + " " + response.data.message);
       navigate("/home");
     } else {
       setErrorMsg(response.data.message);

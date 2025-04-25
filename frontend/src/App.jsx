@@ -1,8 +1,10 @@
-import React, { useContext } from 'react'
+import React, { useContext, useEffect } from 'react'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import { Routes, Route } from 'react-router-dom'
+import { Routes, Route, useNavigate } from 'react-router-dom'
+import { toast } from "react-toastify";
+
 
 //Pages
 import Login from './components/Login/Login'
@@ -24,6 +26,67 @@ import { StoreContext } from './context/StoreContext';
 const App = () => {
 
     const { userRole } = useContext(StoreContext);
+
+    const navigate = useNavigate();
+
+     const CustomCloseIcon = ({ closeToast }) => (
+        <span
+          onClick={closeToast}
+          style={{
+            color: "red",
+            cursor: "pointer",
+            fontWeight: "bold",
+            display: "flex",
+            alignItems: "center",
+          }}
+        >
+          ✖
+        </span>
+      );
+    
+      const getWarnToast = (toastText) => {
+        return toast.info(`${toastText}`, {
+          position: "top-right",
+          closeButton: CustomCloseIcon,
+          style: {
+            fontSize: "16px",
+            padding: "8px 12px",
+            height: "30px",
+            borderRadius: "8px",
+            color: "#000",
+            backgroundColor: "#ccc395",
+            fontWeight: "600",
+          },
+        });
+      };
+
+  useEffect(() => {
+    const checkTokenExpiry = () => {
+      const expiry = localStorage.getItem("tokenExpiry");
+
+      if (expiry && Date.now() > Number(expiry)) {
+
+        localStorage.removeItem("token");
+        localStorage.removeItem("username");
+        localStorage.removeItem("role");
+        localStorage.removeItem("email");
+        localStorage.removeItem("tokenExpiry");
+        getWarnToast("Your session has expired. Please login again.")
+
+        setTimeout(() => {
+          navigate("/login");
+        }, 1000);
+      }
+    };
+
+    const interval = setInterval(() => {
+      checkTokenExpiry();
+    }, 60 * 1000);
+
+    checkTokenExpiry(); // immediate check
+
+    return () => clearInterval(interval);
+  }, [navigate]);
   
   return (<>
     <ToastContainer />

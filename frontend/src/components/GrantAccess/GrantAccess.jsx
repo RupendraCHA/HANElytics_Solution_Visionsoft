@@ -1179,7 +1179,7 @@ const GrantAccess = () => {
                                 value={uploadData.dashboardName}
                               />
                             </div>
-                            <div
+                            {/* <div
                               className="dashboards-search-container"
                               style={{ marginTop: "5px" }}
                             >
@@ -1193,7 +1193,7 @@ const GrantAccess = () => {
                                 name="uploadedBy"
                                 value={uploadData.uploadedBy}
                               />
-                            </div>
+                            </div> */}
                             <div
                               className="dashboards-search-container"
                               style={{ marginTop: "5px" }}
@@ -1814,7 +1814,7 @@ const GrantAccess = () => {
                                 value={uploadData.dashboardName}
                               />
                             </div>
-                            <div
+                            {/* <div
                               className="dashboards-search-container"
                               style={{ marginTop: "5px" }}
                             >
@@ -1828,7 +1828,7 @@ const GrantAccess = () => {
                                 name="uploadedBy"
                                 value={uploadData.uploadedBy}
                               />
-                            </div>
+                            </div> */}
                             <div
                               className="dashboards-search-container"
                               style={{ marginTop: "5px" }}
