@@ -20,6 +20,7 @@ import AssignRoles from './pages/AssignRoles/AssignRoles';
 import Header from './components/Header/Header';
 import Footer from './components/Footer/Footer';
 import { StoreContext } from './context/StoreContext';
+import UpdateRoles from './pages/UpdateRoles/UpdateRoles';
 
 
 
@@ -117,6 +118,11 @@ const App = () => {
         <AssignRoles />
         <Footer/></>
         }></Route>
+      {/* <Route exact path='/updateRoles' element={
+        <><Header page="UpdateRoles"/>
+        <UpdateRoles />
+        <Footer/></>
+        }></Route> */}
       <Route path="*" element={<NotFound />}></Route>
     </Routes>
   </>

@@ -29,6 +29,8 @@ import Clinical_model from "./Clinical.png"
 import Equipment_model from "./Equipment.png"
 import Revenue_model from "./Revenue_model.png"
 import PaperInk_model from "./PaperInk.png"
+import User_Role_lock from "./User-role-locked.png"
+import User_Role_unlock from "./user-role-unlock.webp"
 
 
 
@@ -62,5 +64,7 @@ export const assets = {
     Clinical_model,
     Equipment_model,
     Revenue_model,
-    PaperInk_model
+    PaperInk_model,
+    User_Role_lock,
+    User_Role_unlock
 }

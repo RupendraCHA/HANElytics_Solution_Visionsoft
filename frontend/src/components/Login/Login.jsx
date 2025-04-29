@@ -122,7 +122,7 @@ function Login() {
     if (response.data.success) {
       setExist(false);
       setToken(response.data.token);
-      const expiresIn = 60 * 60 * 1000; // One hour expairy
+      const expiresIn = 180 * 60 * 1000; // One hour expairy
       const expiryTime = Date.now() + expiresIn;
       localStorage.setItem("token", response.data.token);
       localStorage.setItem("username", response.data.name);

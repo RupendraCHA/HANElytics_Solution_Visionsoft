@@ -51,6 +51,8 @@ const Header = ({ page = "" }) => {
     localStorage.removeItem("token");
     localStorage.removeItem("username");
     localStorage.removeItem("role");
+    localStorage.removeItem("email");
+    localStorage.removeItem("tokenExpiry");
     setToken("");
     setUsername("");
     setUserRole("");
@@ -69,22 +71,32 @@ const Header = ({ page = "" }) => {
     if (page !== "Grant Access") {
       return (
         <>
-          {userRole === "CEO" || userRole === "COO" || userRole === "CTO" ? (
-            <Link to="/assignRoles">
+          <div className="roles-header-tabs">
+            {userRole === "CEO" || userRole === "COO" || userRole === "CTO" ? ( <>
+              <Link to="/assignRoles">
+                <button className="assign-roles">
+                  Assign Access
+                  <LuArrowUpRight className="roles-insights-icon" />
+                </button>
+              </Link>
+              {/* <Link to="/updateRoles">
               <button className="assign-roles">
-                Assign Access
+                Manage Roles
                 <LuArrowUpRight className="roles-insights-icon" />
               </button>
-            </Link>
-          ) : (
-            ""
-          )}
+            </Link> */}
+              </>
+            ) : (
+              ""
+            )}
+          </div>
         </>
       );
-    } else {
+    } 
+    else {
       return (<>
         <div className="roles-header-tabs">
-
+        
           <Link to="/dataModeling">
             <button className="assign-roles">
               Data Modeling
@@ -97,6 +109,12 @@ const Header = ({ page = "" }) => {
               <LuArrowUpRight className="roles-insights-icon" />
             </button>
           </Link>
+          {/* <Link to="/updateRoles">
+            <button className="assign-roles">
+              Manage Roles
+              <LuArrowUpRight className="roles-insights-icon" />
+            </button>
+          </Link> */}
         </div>
       </>
 

@@ -1,0 +1,141 @@
+.update-roles-bg-container{
+    min-height: 100vh;
+    padding: 20px;
+    /* background-color: #cdd3e1da; */
+    background-color: #5b7dcd;
+
+}
+@media (max-width: 768px){
+    .update-roles-bg-container{
+        overflow: auto;
+    }
+}
+.update-roles-section-container{
+    display: flex;
+    flex-wrap: wrap;
+}
+
+@media (max-width: 768px){
+    .update-roles-section-container{
+        justify-content: center;
+    }
+}
+.user-role-card{
+    display: flex;
+    /* justify-content: space-between; */
+    flex-direction: column;
+    width: 30%;
+    background-color: #fff;
+    height: 25vh;
+    margin: 10px;
+    color: #000;
+    box-shadow: 2px 2px 2px #000;
+    border-radius: 8px;
+    padding: 20px;
+}
+.user-role-card:hover{
+    transform: scale(1.02);
+}
+@media (max-width: 576px){
+    .user-role-card{
+        width: 100%;
+    }
+}
+@media (min-width: 568px) and (max-width: 768px){
+    .user-role-card{
+        width: 60%;
+    }
+}
+
+.user-role-data{
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    /* align-items: center; */
+}
+.user-card-name{
+    font-size: 22px;
+    font-weight: bold;
+    color: #0a47d5;
+}
+.user-additional-info{
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+.user-role-card-email{
+    font-size: 14px;
+    font-weight: 600;
+    /* background-color: antiquewhite; */
+}
+.user-role-info1{
+    font-size: 16px;
+    color: #000;
+}
+.user-role-info{
+    font-size: 14px;
+    color: #808080;
+}
+.update-roles-icon{
+    color: #000;
+    font-size: 20px;
+}
+.update-roles-icon:hover{
+    transform: scale(1.1);
+}
+.update-roles-section-container{
+    background-color: #fff;
+    /* border-radius: 12px; */
+    padding: 20px;
+    box-shadow: 2px 2px 2px #000;
+    width: 100vw;
+    overflow: auto;
+
+    
+}
+
+@media (max-width: 768px){
+    .update-roles-section-container{
+        width: 300%;
+    }
+}
+.update-roles-table{
+    display: grid;
+    grid-template-columns: 0.3fr 1fr 1fr 1.5fr 1fr;
+    /* width: 180%; */
+    margin-top: 10px;
+    padding: 10px;
+    overflow: auto;
+
+
+}
+
+@media (max-width:768px){
+    .update-roles-table{
+        width: 250%;
+    }
+}
+.update-table-header{
+    font-size: 16px;
+    font-weight: 600;
+}
+.update-roles-icon{
+    font-size: 16px;
+    cursor: pointer;
+    margin-right: 5px;
+
+
+}
+.user-name-icon{
+    /* color: #0c2cbd; */
+    color: #000;
+}
+.user-email-icon{
+    color: #db1010;
+}
+.role-icon{
+    margin-right: 5px;
+}
+.unlock{
+    color: green;
+}
