@@ -32,6 +32,7 @@ import PaperInk_model from "./PaperInk.png"
 import User_Role_lock from "./User-role-locked.png"
 import User_Role_unlock from "./user-role-unlock.webp"
 import Customer_Sales_Data from "./Customer.jpg"
+import Transport_SupplyChain from "./Transport_SupplyChain.jpg"
 
 
 export const assets = {
@@ -67,5 +68,7 @@ export const assets = {
     PaperInk_model,
     User_Role_lock,
     User_Role_unlock,
-    Customer_Sales_Data
+    Customer_Sales_Data,
+    Transport_SupplyChain
+
 }

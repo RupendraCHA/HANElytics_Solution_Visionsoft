@@ -288,6 +288,18 @@ const PowerBiDashboard = () => {
       reportId: "2633c0bf-c0d6-4d46-be9e-1a52f829653e",
     },
   ];
+  const tsc = [
+    {
+      id: 17,
+      headerText: "Transport SupplyChain",
+      dataText: "Transport SupplyChain",
+      image: `${assets.Transport_SupplyChain}`,
+      embedUrl: "https://app.powerbi.com/groups/1e60d1df-dcd0-42d3-91ea-55de4ba61701/reports/b310f403-af86-44de-9217-5ceb10e1705c?experience=power-bi&clientSideAuth=0",
+      groupID: "1e60d1df-dcd0-42d3-91ea-55de4ba61701",
+      reportId: "b310f403-af86-44de-9217-5ceb10e1705c",
+    },
+  ];
+
 
   const allowedNames = new Set(
     userAccessingDashboards
@@ -315,6 +327,10 @@ const PowerBiDashboard = () => {
     allowedNames.has(item.headerText.trim().toLowerCase())
   );
   const allowedCSDDashboards = csd.filter((item) =>
+    allowedNames.has(item.headerText.trim().toLowerCase())
+  );
+
+  const allowedTSCDashboards = tsc.filter((item) =>
     allowedNames.has(item.headerText.trim().toLowerCase())
   );
 
@@ -367,6 +383,12 @@ const PowerBiDashboard = () => {
       imageUrl: `${assets.Manufacturing_pic}`,
       altText: "CSDImage",
       tabName: "Customer Sales Data",
+    },
+    {
+      activeText: "TransportSupplyChain",
+      imageUrl: `${assets.Transport_SupplyChain}`,
+      altText: "TSCImage",
+      tabName: "TransportSupplyChain",
     },
   ];
 
@@ -1409,55 +1431,238 @@ const PowerBiDashboard = () => {
         <div>
           <h1 className="dashboard-title">
             <img
-              src={assets.OrderToCash_pic}
-              alt="OrderToCashImage"
+              src={assets.Customer_Sales_Data}
+              alt="CSDImage"
               className="dashboard-data-model-image"
             />
-            Customer Sales Data
-            <span style={{ fontSize: "20px", marginLeft: "5px" }}>
-              ({csd.length} / {csd.length})
-            </span>
+            Customer Sales Data:
+            {loggedInUserRole === "COO" ||
+              loggedInUserRole === "CTO" ||
+              loggedInUserRole === "CEO" ? (
+              <span style={{ fontSize: "20px", marginLeft: "5px" }}>
+                ({csd.length} / {csd.length})
+              </span>
+            ) : (
+              <span style={{ fontSize: "20px", marginLeft: "5px" }}>
+                ({allowedCSDDashboards.length} / {csd.length})
+              </span>
+            )}
           </h1>
 
           <div className="dashboard-section">
-            {csd.map((type) => (
-              <div key={type.headerText} className="dashboard-card">
-                <div className="bi-header-text">
-                  <h1 className="card-title">{type.headerText}</h1>
-                </div>
-
-                <div width={"100vw"}>
-                  <img
-                    style={{ filter: "brightness(95%)" }}
-                    src={type.image}
-                    alt={type.headerText}
-                    width={"100%"}
-                  />
-                </div>
-
-                <button
-                  className="bi-dashboard-button"
-                  style={{ position: "relative" }}
-                >
-                  <p onClick={() => getReportSpecificData(type.id, type.groupID, type.reportId, type.headerText)}>
-                    View Dashboard
-                  </p>
-                  <p
-                    style={{
-                      position: "absolute",
-                      top: "6px",
-                      right: "8px",
-                    }}
+            {loggedInUserRole === "COO" ||
+              loggedInUserRole === "CTO" ||
+              loggedInUserRole === "CEO" ? (
+              csd.map((type) => (
+                <div key={type.headerText} className="dashboard-card">
+                  <div className="bi-header-text">
+                    <h1 className="card-title">{type.headerText}</h1>
+                  </div>
+                  <div width={"100vw"}>
+                    <img
+                      style={{ filter: "brightness(95%)" }}
+                      src={type.image}
+                      alt={type.headerText}
+                      width={"100%"}
+                    />
+                  </div>
+                  <button
+                    className="bi-dashboard-button"
+                    style={{ position: "relative" }}
                   >
-                    {getResultsAndDownloadElement(type.headerText, type.id)}
-                  </p>
-                </button>
-              </div>
-            ))}
+                    <p
+                      onClick={() =>
+                        getReportSpecificData(
+                          type.id,
+                          type.groupID,
+                          type.reportId,
+                          type.headerText
+                        )
+                      }
+                    >
+                      View Dashboard
+                    </p>
+                    <p
+                      style={{
+                        position: "absolute",
+                        top: "6px",
+                        right: "8px",
+                      }}
+                    >
+                      {getResultsAndDownloadElement(type.headerText, type.id)}
+                    </p>
+                  </button>
+                </div>
+              ))
+            ) : allowedCSDDashboards.length === 0 ? (
+              getNoAccessViewInfo()
+            ) : (
+              allowedCSDDashboards.map((type) => (
+                <div key={type.headerText} className="dashboard-card">
+                  <div className="bi-header-text">
+                    <h1 className="card-title">{type.headerText}</h1>
+                  </div>
+                  <div width={"100vw"}>
+                    <img
+                      style={{ filter: "brightness(95%)" }}
+                      src={type.image}
+                      alt={type.headerText}
+                      width={"100%"}
+                    />
+                  </div>
+                  <button
+                    className="bi-dashboard-button"
+                    style={{ position: "relative" }}
+                  >
+                    <p
+                      onClick={() =>
+                        getReportSpecificData(
+                          type.id,
+                          type.groupID,
+                          type.reportId,
+                          type.headerText
+                        )
+                      }
+                    >
+                      View Dashboard
+                    </p>
+                    <p
+                      style={{
+                        position: "absolute",
+                        top: "6px",
+                        right: "8px",
+                      }}
+                    >
+                      {getResultsAndDownloadElement(type.headerText, type.id)}
+                    </p>
+                  </button>
+                </div>
+              ))
+            )}
           </div>
         </div>
       );
-    } else if (activeDash === "OrderToCash") {
+    }
+
+
+    else if (activeDash === "TransportSupplyChain") {
+      return (
+        <div>
+          <h1 className="dashboard-title">
+            <img
+              src={assets.Transport_SupplyChain}
+              alt="TSCImage"
+              className="dashboard-data-model-image"
+            />
+            Transport Supply Chain:
+            {loggedInUserRole === "COO" ||
+              loggedInUserRole === "CTO" ||
+              loggedInUserRole === "CEO" ? (
+              <span style={{ fontSize: "20px", marginLeft: "5px" }}>
+                ({tsc.length} / {tsc.length})
+              </span>
+            ) : (
+              <span style={{ fontSize: "20px", marginLeft: "5px" }}>
+                ({allowedTSCDashboards.length} / {tsc.length})
+              </span>
+            )}
+          </h1>
+
+          <div className="dashboard-section">
+            {loggedInUserRole === "COO" ||
+              loggedInUserRole === "CTO" ||
+              loggedInUserRole === "CEO" ? (
+              tsc.map((type) => (
+                <div key={type.headerText} className="dashboard-card">
+                  <div className="bi-header-text">
+                    <h1 className="card-title">{type.headerText}</h1>
+                  </div>
+                  <div width={"100vw"}>
+                    <img
+                      style={{ filter: "brightness(95%)" }}
+                      src={type.image}
+                      alt={type.headerText}
+                      width={"100%"}
+                    />
+                  </div>
+                  <button
+                    className="bi-dashboard-button"
+                    style={{ position: "relative" }}
+                  >
+                    <p
+                      onClick={() =>
+                        getReportSpecificData(
+                          type.id,
+                          type.groupID,
+                          type.reportId,
+                          type.headerText
+                        )
+                      }
+                    >
+                      View Dashboard
+                    </p>
+                    <p
+                      style={{
+                        position: "absolute",
+                        top: "6px",
+                        right: "8px",
+                      }}
+                    >
+                      {getResultsAndDownloadElement(type.headerText, type.id)}
+                    </p>
+                  </button>
+                </div>
+              ))
+            ) : allowedTSCDashboards.length === 0 ? (
+              getNoAccessViewInfo()
+            ) : (
+              allowedTSCDashboards.map((type) => (
+                <div key={type.headerText} className="dashboard-card">
+                  <div className="bi-header-text">
+                    <h1 className="card-title">{type.headerText}</h1>
+                  </div>
+                  <div width={"100vw"}>
+                    <img
+                      style={{ filter: "brightness(95%)" }}
+                      src={type.image}
+                      alt={type.headerText}
+                      width={"100%"}
+                    />
+                  </div>
+                  <button
+                    className="bi-dashboard-button"
+                    style={{ position: "relative" }}
+                  >
+                    <p
+                      onClick={() =>
+                        getReportSpecificData(
+                          type.id,
+                          type.groupID,
+                          type.reportId,
+                          type.headerText
+                        )
+                      }
+                    >
+                      View Dashboard
+                    </p>
+                    <p
+                      style={{
+                        position: "absolute",
+                        top: "6px",
+                        right: "8px",
+                      }}
+                    >
+                      {getResultsAndDownloadElement(type.headerText, type.id)}
+                    </p>
+                  </button>
+                </div>
+              ))
+            )}
+          </div>
+        </div>
+      );
+    }
+    else if (activeDash === "OrderToCash") {
       return (
         <div>
           <h1 className="dashboard-title">
@@ -2181,6 +2386,7 @@ const PowerBiDashboard = () => {
                     {getDashboards("Finance")}
                     {getDashboards("Manufacturing")}
                     {getDashboards("CustomerSalesData")}
+                    {getDashboards("TransportSupplyChain")}
 
                   </>
                 )}
@@ -2202,6 +2408,9 @@ const PowerBiDashboard = () => {
             )}
             {activeDashboard === "CustomerSalesData" && (
               <>{getDashboards("CustomerSalesData")}</>
+            )}
+            {activeDashboard === "TransportSupplyChain" && (
+              <>{getDashboards("TransportSupplyChain")}</>
             )}
           </div>
         </div>
