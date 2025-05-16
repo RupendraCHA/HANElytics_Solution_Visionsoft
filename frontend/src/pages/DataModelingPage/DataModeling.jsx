@@ -479,17 +479,43 @@ const DataModeling = () => {
     // }];
     let sapFields1 = [];
 
+    let id;
     const addObjectsData = (data) => {
-      for (let i = 0; i < data.length; i++) {
+
+      for (let i = 0; i < 4; i++) {
+        
+        if (i === 0){
+          id = "PUID1"
+        }else if (i === 1){
+          id = "PUID4"
+        }else if (i === 2){
+          id = "PUID5"
+        }else{
+          id = "PUID6"
+        }
         const record = data[i];
         sapFields.push({
-          Product_ID: record.Product_ID,
+          // Product_ID: record.Product_ID,
+          Product_ID: id,
           Product_name: record.Product_Name,
           Distribution_Center: record.Distribution_Center,
-          Quantity:
-            record.Reorder_Quantity_Prediction_with_live_data.toString(),
+          Quantity:`${record.Reorder_Quantity_Prediction_with_live_data}`,
+            // record.Reorder_Quantity_Prediction_with_live_data,
         });
       }
+      // for (let i = 0; i < data.length; i++) {
+        
+      //   
+      //   const record = data[i];
+      //   sapFields.push({
+      //     // Product_ID: record.Product_ID,
+          
+      //     Product_name: record.Product_Name,
+      //     Distribution_Center: record.Distribution_Center,
+      //     Quantity:`${record.Reorder_Quantity_Prediction_with_live_data}`,
+      //       // record.Reorder_Quantity_Prediction_with_live_data,
+      //   });
+      // }
       return sapFields.slice(0, 4);
     };
     // const addObjectsData1 = (data) => {
