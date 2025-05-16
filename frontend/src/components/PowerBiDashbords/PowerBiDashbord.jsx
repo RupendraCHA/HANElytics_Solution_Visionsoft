@@ -288,6 +288,7 @@ const PowerBiDashboard = () => {
       reportId: "2633c0bf-c0d6-4d46-be9e-1a52f829653e",
     },
   ];
+<<<<<<< Updated upstream
   const tsc = [
     {
       id: 17,
@@ -300,6 +301,19 @@ const PowerBiDashboard = () => {
     },
   ];
 
+=======
+  const ts = [
+    {
+      id: 17,
+      headerText: "Transshipment",
+      dataText: "Transshipment",
+      image: `${assets.Trans_shipment}`,
+      embedUrl: "https://app.powerbi.com/groups/1e60d1df-dcd0-42d3-91ea-55de4ba61701/reports/7df8c75f-6cb9-44cb-9f85-00d25c1b8d88?experience=power-bi&clientSideAuth=0",
+      groupID: "1e60d1df-dcd0-42d3-91ea-55de4ba61701",
+      reportId: "7df8c75f-6cb9-44cb-9f85-00d25c1b8d88",
+    },
+  ];
+>>>>>>> Stashed changes
 
   const allowedNames = new Set(
     userAccessingDashboards
@@ -327,6 +341,9 @@ const PowerBiDashboard = () => {
     allowedNames.has(item.headerText.trim().toLowerCase())
   );
   const allowedCSDDashboards = csd.filter((item) =>
+    allowedNames.has(item.headerText.trim().toLowerCase())
+  );
+  const allowedTSDashboards = ts.filter((item) =>
     allowedNames.has(item.headerText.trim().toLowerCase())
   );
 
@@ -385,10 +402,17 @@ const PowerBiDashboard = () => {
       tabName: "Customer Sales Data",
     },
     {
+<<<<<<< Updated upstream
       activeText: "TransportSupplyChain",
       imageUrl: `${assets.Transport_SupplyChain}`,
       altText: "TSCImage",
       tabName: "TransportSupplyChain",
+=======
+      activeText: "Transshipment",
+      imageUrl: `${assets.Trans_shipment}`,
+      altText: "CSDImage",
+      tabName: "Transshipment",
+>>>>>>> Stashed changes
     },
   ];
 
@@ -1911,28 +1935,28 @@ const PowerBiDashboard = () => {
           )}
         </div>
       );
-    } else if (activeDash === "Manufacturing") {
+    } else if (activeDash === "Transshipment") {
       return (
         <div>
           <h1 className="dashboard-title">
             <img
-              src={assets.Manufacturing_pic}
+              src={assets.Trans_shipment}
               alt="OrderToCashImage"
               className="dashboard-data-model-image"
             />
-            Manufacturing:
+            Transshipment
             {loggedInUserRole === "COO" ||
               loggedInUserRole === "CTO" ||
               loggedInUserRole === "CEO" ? (
               <span style={{ fontSize: "20px", marginLeft: "5px" }}>
                 {" "}
-                ({manufacturing.length} / {manufacturing.length})
+                ({ts.length} / {ts.length})
               </span>
             ) : (
               <span style={{ fontSize: "20px", marginLeft: "5px" }}>
                 {" "}
-                ({allowedManufacturingDashboards.length} /{" "}
-                {manufacturing.length})
+                ({allowedTSDashboards.length} /{" "}
+                {ts.length})
               </span>
             )}
           </h1>
@@ -1940,7 +1964,7 @@ const PowerBiDashboard = () => {
             loggedInUserRole === "CTO" ||
             loggedInUserRole === "CEO" ? (
             <div className="dashboard-section">
-              {manufacturing.map((type) => {
+              {ts.map((type) => {
                 return (
                   <div key={type.headerText} className="dashboard-card">
                     <div className="bi-header-text">
@@ -1985,11 +2009,11 @@ const PowerBiDashboard = () => {
             </div>
           ) : (
             <div className="dashboard-section">
-              {allowedManufacturingDashboards.length === 0 ? (
+              {allowedTSDashboards.length === 0 ? (
                 getNoAccessViewInfo()
               ) : (
                 <>
-                  {allowedManufacturingDashboards.map((type) => {
+                  {allowedTSDashboards.map((type) => {
                     return (
                       <div key={type.headerText} className="dashboard-card">
                         <div className="bi-header-text">
@@ -2386,7 +2410,11 @@ const PowerBiDashboard = () => {
                     {getDashboards("Finance")}
                     {getDashboards("Manufacturing")}
                     {getDashboards("CustomerSalesData")}
+<<<<<<< Updated upstream
                     {getDashboards("TransportSupplyChain")}
+=======
+                    {getDashboards("Transshipment")}
+>>>>>>> Stashed changes
 
                   </>
                 )}
@@ -2409,8 +2437,13 @@ const PowerBiDashboard = () => {
             {activeDashboard === "CustomerSalesData" && (
               <>{getDashboards("CustomerSalesData")}</>
             )}
+<<<<<<< Updated upstream
             {activeDashboard === "TransportSupplyChain" && (
               <>{getDashboards("TransportSupplyChain")}</>
+=======
+            {activeDashboard === "Transshipment" && (
+              <>{getDashboards("Transshipment")}</>
+>>>>>>> Stashed changes
             )}
           </div>
         </div>
