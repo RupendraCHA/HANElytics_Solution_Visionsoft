@@ -288,7 +288,6 @@ const PowerBiDashboard = () => {
       reportId: "2633c0bf-c0d6-4d46-be9e-1a52f829653e",
     },
   ];
-<<<<<<< Updated upstream
   const tsc = [
     {
       id: 17,
@@ -301,7 +300,6 @@ const PowerBiDashboard = () => {
     },
   ];
 
-=======
   const ts = [
     {
       id: 17,
@@ -313,7 +311,6 @@ const PowerBiDashboard = () => {
       reportId: "7df8c75f-6cb9-44cb-9f85-00d25c1b8d88",
     },
   ];
->>>>>>> Stashed changes
 
   const allowedNames = new Set(
     userAccessingDashboards
@@ -402,18 +399,17 @@ const PowerBiDashboard = () => {
       tabName: "Customer Sales Data",
     },
     {
-<<<<<<< Updated upstream
       activeText: "TransportSupplyChain",
       imageUrl: `${assets.Transport_SupplyChain}`,
       altText: "TSCImage",
       tabName: "TransportSupplyChain",
-=======
+    },
+    {
       activeText: "Transshipment",
       imageUrl: `${assets.Trans_shipment}`,
       altText: "CSDImage",
       tabName: "Transshipment",
->>>>>>> Stashed changes
-    },
+    }
   ];
 
   const showDashboards = (activeTab) => {
@@ -2410,11 +2406,8 @@ const PowerBiDashboard = () => {
                     {getDashboards("Finance")}
                     {getDashboards("Manufacturing")}
                     {getDashboards("CustomerSalesData")}
-<<<<<<< Updated upstream
                     {getDashboards("TransportSupplyChain")}
-=======
                     {getDashboards("Transshipment")}
->>>>>>> Stashed changes
 
                   </>
                 )}
@@ -2437,13 +2430,11 @@ const PowerBiDashboard = () => {
             {activeDashboard === "CustomerSalesData" && (
               <>{getDashboards("CustomerSalesData")}</>
             )}
-<<<<<<< Updated upstream
             {activeDashboard === "TransportSupplyChain" && (
               <>{getDashboards("TransportSupplyChain")}</>
-=======
+            )}
             {activeDashboard === "Transshipment" && (
               <>{getDashboards("Transshipment")}</>
->>>>>>> Stashed changes
             )}
           </div>
         </div>

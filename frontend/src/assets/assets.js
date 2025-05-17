@@ -32,12 +32,9 @@ import PaperInk_model from "./PaperInk.png"
 import User_Role_lock from "./User-role-locked.png"
 import User_Role_unlock from "./user-role-unlock.webp"
 import Customer_Sales_Data from "./Customer.jpg"
-<<<<<<< Updated upstream
 import Transport_SupplyChain from "./Transport_SupplyChain.jpg"
-=======
 import Trans_shipment from "./TS.png"
 
->>>>>>> Stashed changes
 
 
 export const assets = {
@@ -74,11 +71,7 @@ export const assets = {
     User_Role_lock,
     User_Role_unlock,
     Customer_Sales_Data,
-<<<<<<< Updated upstream
-    Transport_SupplyChain
-
-=======
+    Transport_SupplyChain,
     Trans_shipment
    
->>>>>>> Stashed changes
 }
