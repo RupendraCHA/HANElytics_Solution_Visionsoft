@@ -295,8 +295,10 @@ const PowerBiDashboard = () => {
       dataText: "Transport SupplyChain",
       image: `${assets.Transport_SupplyChain}`,
       embedUrl: "https://app.powerbi.com/groups/1e60d1df-dcd0-42d3-91ea-55de4ba61701/reports/b310f403-af86-44de-9217-5ceb10e1705c?experience=power-bi&clientSideAuth=0",
-      groupID: "1e60d1df-dcd0-42d3-91ea-55de4ba61701",
-      reportId: "b310f403-af86-44de-9217-5ceb10e1705c",
+      // groupID: "1e60d1df-dcd0-42d3-91ea-55de4ba61701",
+      // reportId: "b310f403-af86-44de-9217-5ceb10e1705c",
+      groupID: "7235dce4-8159-49bc-ab3f-223406e7937b",
+      reportId: "20a97f0d-4fa2-4696-8c36-e41982a0a0ad",
     },
   ];
 
@@ -307,8 +309,11 @@ const PowerBiDashboard = () => {
       dataText: "Transshipment",
       image: `${assets.Trans_shipment}`,
       embedUrl: "https://app.powerbi.com/groups/1e60d1df-dcd0-42d3-91ea-55de4ba61701/reports/7df8c75f-6cb9-44cb-9f85-00d25c1b8d88?experience=power-bi&clientSideAuth=0",
-      groupID: "1e60d1df-dcd0-42d3-91ea-55de4ba61701",
-      reportId: "7df8c75f-6cb9-44cb-9f85-00d25c1b8d88",
+      // groupID: "1e60d1df-dcd0-42d3-91ea-55de4ba61701",
+      // reportId: "7df8c75f-6cb9-44cb-9f85-00d25c1b8d88",
+      groupID: "7235dce4-8159-49bc-ab3f-223406e7937b",
+      reportId: "5551c84f-c7fc-4e52-8a34-d30dd41f601f",
+            
     },
   ];
 
