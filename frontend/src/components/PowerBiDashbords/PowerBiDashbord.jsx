@@ -414,7 +414,8 @@ const PowerBiDashboard = () => {
       imageUrl: `${assets.Trans_shipment}`,
       altText: "CSDImage",
       tabName: "Transshipment",
-    }
+
+    },
   ];
 
   const showDashboards = (activeTab) => {
@@ -1686,8 +1687,134 @@ const PowerBiDashboard = () => {
           </div>
         </div>
       );
-    }
-    else if (activeDash === "OrderToCash") {
+    }else if (activeDash === "Manufacturing") {
+      return (
+        <div>
+          <h1 className="dashboard-title">
+            <img
+              src={assets.Manufacturing_pic}
+              alt="OrderToCashImage"
+              className="dashboard-data-model-image"
+            />
+            Manufacturing:
+            {loggedInUserRole === "COO" ||
+            loggedInUserRole === "CTO" ||
+            loggedInUserRole === "CEO" ? (
+              <span style={{ fontSize: "20px", marginLeft: "5px" }}>
+                {" "}
+                ({manufacturing.length} / {manufacturing.length})
+              </span>
+            ) : (
+              <span style={{ fontSize: "20px", marginLeft: "5px" }}>
+                {" "}
+                ({allowedManufacturingDashboards.length} /{" "}
+                {manufacturing.length})
+              </span>
+            )}
+          </h1>
+          {loggedInUserRole === "COO" ||
+          loggedInUserRole === "CTO" ||
+          loggedInUserRole === "CEO" ? (
+            <div className="dashboard-section">
+              {manufacturing.map((type) => {
+                return (
+                  <div key={type.headerText} className="dashboard-card">
+                    <div className="bi-header-text">
+                      <h1 className="card-title">{type.headerText}</h1>
+                    </div>
+                    <div width={"100vw"}>
+                      <img
+                        style={{ filter: "brightness(95%)" }}
+                        src={type.image}
+                        alt={type.headerText}
+                        width={"100%"}
+                      />
+                    </div>
+
+                    <button
+                      className="bi-dashboard-button"
+                      // onClick={() => login(`${type.dataText}, ${type.url}`)}
+                      style={{ position: "relative" }}
+                    >
+                      {/* <a href={type.url} target="_blank">
+                        View Dashboard
+                      </a> */}
+                      <p onClick={() => getReportSpecificData(type.id, type.groupID, type.reportId,type.headerText)}>
+                        View Dashboard
+                        </p>
+                      <p
+                        style={{
+                          position: "absolute",
+                          top: "6px",
+                          right: "8px",
+                        }}
+                      >
+                        {getResultsAndDownloadElement(
+                          `${type.headerText}`,
+                          `${type.id}`
+                        )}
+                      </p>
+                    </button>
+                  </div>
+                );
+              })}
+            </div>
+          ) : (
+            <div className="dashboard-section">
+              {allowedManufacturingDashboards.length === 0 ? (
+                getNoAccessViewInfo()
+              ) : (
+                <>
+                  {allowedManufacturingDashboards.map((type) => {
+                    return (
+                      <div key={type.headerText} className="dashboard-card">
+                        <div className="bi-header-text">
+                          <h1 className="card-title">{type.headerText}</h1>
+                        </div>
+                        <div width={"100vw"}>
+                          <img
+                            style={{ filter: "brightness(95%)" }}
+                            src={type.image}
+                            alt={type.headerText}
+                            width={"100%"}
+                          />
+                        </div>
+
+                        <button
+                          className="bi-dashboard-button"
+                          // onClick={() => login(`${type.dataText}, ${type.url}`)}
+                          style={{ position: "relative" }}
+                        >
+                          {/* <a href={type.url} target="_blank">
+                            View Dashboard
+                          </a> */}
+                          <p onClick={() => getReportSpecificData(type.id, type.groupID, type.reportId,type.headerText)}>
+                        View Dashboard
+                        </p>
+                          <p
+                            style={{
+                              position: "absolute",
+                              top: "6px",
+                              right: "8px",
+                            }}
+                          >
+                            {getResultsAndDownloadElement(
+                              `${type.headerText}`,
+                              `${type.id}`
+                            )}
+                          </p>
+                        </button>
+                      </div>
+                    );
+                  })}
+                </>
+              )}
+            </div>
+          )}
+        </div>
+      );
+    } 
+  else if (activeDash === "OrderToCash") {
       return (
         <div>
           <h1 className="dashboard-title">
