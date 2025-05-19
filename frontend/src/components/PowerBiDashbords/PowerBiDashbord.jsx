@@ -294,9 +294,9 @@ const PowerBiDashboard = () => {
       headerText: "Transport SupplyChain",
       dataText: "Transport SupplyChain",
       image: `${assets.Transport_SupplyChain}`,
-      embedUrl: "https://app.powerbi.com/groups/1e60d1df-dcd0-42d3-91ea-55de4ba61701/reports/b310f403-af86-44de-9217-5ceb10e1705c?experience=power-bi&clientSideAuth=0",
-      groupID: "1e60d1df-dcd0-42d3-91ea-55de4ba61701",
-      reportId: "b310f403-af86-44de-9217-5ceb10e1705c",
+      embedUrl: "https://app.powerbi.com/groups/7235dce4-8159-49bc-ab3f-223406e7937b/reports/20a97f0d-4fa2-4696-8c36-e41982a0a0ad?experience=power-bi&clientSideAuth=0",
+      groupID: "7235dce4-8159-49bc-ab3f-223406e7937b",
+      reportId: "20a97f0d-4fa2-4696-8c36-e41982a0a0ad",
     },
   ];
 
@@ -306,9 +306,9 @@ const PowerBiDashboard = () => {
       headerText: "Transshipment",
       dataText: "Transshipment",
       image: `${assets.Trans_shipment}`,
-      embedUrl: "https://app.powerbi.com/groups/1e60d1df-dcd0-42d3-91ea-55de4ba61701/reports/7df8c75f-6cb9-44cb-9f85-00d25c1b8d88?experience=power-bi&clientSideAuth=0",
-      groupID: "1e60d1df-dcd0-42d3-91ea-55de4ba61701",
-      reportId: "7df8c75f-6cb9-44cb-9f85-00d25c1b8d88",
+      embedUrl: "https://app.powerbi.com/groups/7235dce4-8159-49bc-ab3f-223406e7937b/reports/5551c84f-c7fc-4e52-8a34-d30dd41f601f?experience=power-bi&clientSideAuth=0",
+      groupID: "7235dce4-8159-49bc-ab3f-223406e7937b",
+      reportId: "5551c84f-c7fc-4e52-8a34-d30dd41f601f",
     },
   ];
 
@@ -409,7 +409,8 @@ const PowerBiDashboard = () => {
       imageUrl: `${assets.Trans_shipment}`,
       altText: "CSDImage",
       tabName: "Transshipment",
-    }
+
+    },
   ];
 
   const showDashboards = (activeTab) => {
@@ -1681,8 +1682,134 @@ const PowerBiDashboard = () => {
           </div>
         </div>
       );
-    }
-    else if (activeDash === "OrderToCash") {
+    }else if (activeDash === "Manufacturing") {
+      return (
+        <div>
+          <h1 className="dashboard-title">
+            <img
+              src={assets.Manufacturing_pic}
+              alt="OrderToCashImage"
+              className="dashboard-data-model-image"
+            />
+            Manufacturing:
+            {loggedInUserRole === "COO" ||
+            loggedInUserRole === "CTO" ||
+            loggedInUserRole === "CEO" ? (
+              <span style={{ fontSize: "20px", marginLeft: "5px" }}>
+                {" "}
+                ({manufacturing.length} / {manufacturing.length})
+              </span>
+            ) : (
+              <span style={{ fontSize: "20px", marginLeft: "5px" }}>
+                {" "}
+                ({allowedManufacturingDashboards.length} /{" "}
+                {manufacturing.length})
+              </span>
+            )}
+          </h1>
+          {loggedInUserRole === "COO" ||
+          loggedInUserRole === "CTO" ||
+          loggedInUserRole === "CEO" ? (
+            <div className="dashboard-section">
+              {manufacturing.map((type) => {
+                return (
+                  <div key={type.headerText} className="dashboard-card">
+                    <div className="bi-header-text">
+                      <h1 className="card-title">{type.headerText}</h1>
+                    </div>
+                    <div width={"100vw"}>
+                      <img
+                        style={{ filter: "brightness(95%)" }}
+                        src={type.image}
+                        alt={type.headerText}
+                        width={"100%"}
+                      />
+                    </div>
+
+                    <button
+                      className="bi-dashboard-button"
+                      // onClick={() => login(`${type.dataText}, ${type.url}`)}
+                      style={{ position: "relative" }}
+                    >
+                      {/* <a href={type.url} target="_blank">
+                        View Dashboard
+                      </a> */}
+                      <p onClick={() => getReportSpecificData(type.id, type.groupID, type.reportId,type.headerText)}>
+                        View Dashboard
+                        </p>
+                      <p
+                        style={{
+                          position: "absolute",
+                          top: "6px",
+                          right: "8px",
+                        }}
+                      >
+                        {getResultsAndDownloadElement(
+                          `${type.headerText}`,
+                          `${type.id}`
+                        )}
+                      </p>
+                    </button>
+                  </div>
+                );
+              })}
+            </div>
+          ) : (
+            <div className="dashboard-section">
+              {allowedManufacturingDashboards.length === 0 ? (
+                getNoAccessViewInfo()
+              ) : (
+                <>
+                  {allowedManufacturingDashboards.map((type) => {
+                    return (
+                      <div key={type.headerText} className="dashboard-card">
+                        <div className="bi-header-text">
+                          <h1 className="card-title">{type.headerText}</h1>
+                        </div>
+                        <div width={"100vw"}>
+                          <img
+                            style={{ filter: "brightness(95%)" }}
+                            src={type.image}
+                            alt={type.headerText}
+                            width={"100%"}
+                          />
+                        </div>
+
+                        <button
+                          className="bi-dashboard-button"
+                          // onClick={() => login(`${type.dataText}, ${type.url}`)}
+                          style={{ position: "relative" }}
+                        >
+                          {/* <a href={type.url} target="_blank">
+                            View Dashboard
+                          </a> */}
+                          <p onClick={() => getReportSpecificData(type.id, type.groupID, type.reportId,type.headerText)}>
+                        View Dashboard
+                        </p>
+                          <p
+                            style={{
+                              position: "absolute",
+                              top: "6px",
+                              right: "8px",
+                            }}
+                          >
+                            {getResultsAndDownloadElement(
+                              `${type.headerText}`,
+                              `${type.id}`
+                            )}
+                          </p>
+                        </button>
+                      </div>
+                    );
+                  })}
+                </>
+              )}
+            </div>
+          )}
+        </div>
+      );
+    } 
+  else if (activeDash === "OrderToCash") {
       return (
         <div>
           <h1 className="dashboard-title">
