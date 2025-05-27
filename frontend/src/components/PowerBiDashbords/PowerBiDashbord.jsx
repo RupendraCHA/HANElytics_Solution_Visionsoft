@@ -544,10 +544,14 @@ const PowerBiDashboard = () => {
   ];
 
   const showDashboards = (activeTab) => {
-    setActiveDashboardID("")
+    setActiveDashboardID("");
+    setActiveDashboardIDText("");
     setActiveDashboard(activeTab);
     setMsgOpened(false);
     setIsMenuOpened(false);
+    // Clear persisted dashboard state
+  localStorage.removeItem("activeDashboardID");
+  localStorage.removeItem("activeDashboardIDText");
   };
 
   const check = (file) => {

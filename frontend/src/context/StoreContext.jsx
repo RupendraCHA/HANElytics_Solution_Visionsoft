@@ -1,6 +1,8 @@
+/* eslint-disable react/prop-types */
 import { createContext, useEffect, useState } from "react";
 import axios from "axios"
 
+// eslint-disable-next-line react-refresh/only-export-components
 export const StoreContext = createContext(null)
 
 const StoreContextProvider = (props) => {
@@ -8,7 +10,6 @@ const StoreContextProvider = (props) => {
     // let url = "http://localhost:3001" // Local
     // let url = "https://hanelytics-solution-visionsoft.onrender.com" // RCHA
     let url = "https://hanelytics-ai-ml-solutions-backend.onrender.com" // Vsoft//
-
     const [token, setToken] = useState("")
     const [username, setUsername] = useState("")
     const [userRole, setUserRole] = useState("")
@@ -38,6 +39,7 @@ const StoreContextProvider = (props) => {
         }
         setLoggedUserEmail(localStorage.getItem("email"))
         getAllUsersList()
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
 
     // console.log(storeUserDashboardData)
