@@ -55,6 +55,131 @@ const PowerBiDashboard = () => {
   const [activeDashBoardIDText, setActiveDashboardIDText] = useState("")
   const [activeDashboardName, setActiveDashboardName] = useState("")
 
+  
+
+
+
+ const handleExcelDownload = (e) => {
+  e.preventDefault();
+
+  toast.info("Download initiated. It should be ready shortly.", {
+    position: "top-center",
+    style: {
+      fontSize: "16px",
+      padding: "8px 12px",
+      borderRadius: "8px",
+      color: "#fff",
+      backgroundColor: "#000",
+      fontWeight: "600",
+    },
+  });
+
+  fetch("/downloads/final_transport_predictions_with_new_features.xlsx")
+    .then((response) => {
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
+      return response.blob();
+    })
+    .then((blob) => {
+      let saved = false; // Track if saveAs was "successful" (initiated)
+      try {
+        saveAs(blob, "final_transport_predictions_with_new_features.xlsx", {
+          onSaveAsComplete: () => {
+            saved = true; // Set the flag
+          },
+        });
+        saved = true; // Assume success if saveAs doesn't have a callback
+      } catch (error) {
+        console.error("saveAs error", error);
+        toast.error("Failed to save the file.");
+        return; // IMPORTANT: Exit the outer then block on error
+      }
+
+      // Use a setTimeout to check if the file was saved, and show message
+        setTimeout(() => {
+            if (saved) {
+                toast.success("File downloaded.", {
+                position: "top-center",
+                style: {
+                    fontSize: "16px",
+                    padding: "8px 12px",
+                    borderRadius: "8px",
+                    color: "#fff",
+                    backgroundColor: "#000",
+                    fontWeight: "600",
+                },
+                });
+            }
+        }, 2000); 
+    })
+    .catch((error) => {
+      console.error("Download error:", error);
+      toast.error("Failed to download the file.");
+    });
+};
+
+ const handleExcelDownload1 = (e) => {
+  e.preventDefault();
+
+  toast.info("Download initiated. It should be ready shortly.", {
+    position: "top-center",
+    style: {
+      fontSize: "16px",
+      padding: "8px 12px",
+      borderRadius: "8px",
+      color: "#fff",
+      backgroundColor: "#000",
+      fontWeight: "600",
+    },
+  });
+
+  fetch("/downloads/all_transshipment_predictions.xlsx")
+    .then((response) => {
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
+      return response.blob();
+    })
+    .then((blob) => {
+      let saved = false; // Track if saveAs was "successful" (initiated)
+      try {
+        saveAs(blob, "all_transshipment_predictions.xlsx", {
+          onSaveAsComplete: () => {
+            saved = true; // Set the flag
+          },
+        });
+        saved = true; 
+      } catch (error) {
+        console.error("saveAs error", error);
+        toast.error("Failed to save the file.");
+        return; 
+      }
+
+        setTimeout(() => {
+            if (saved) {
+                toast.success("File downloaded.", {
+                position: "top-center",
+                style: {
+                    fontSize: "16px",
+                    padding: "8px 12px",
+                    borderRadius: "8px",
+                    color: "#fff",
+                    backgroundColor: "#000",
+                    fontWeight: "600",
+                },
+                });
+            }
+        }, 2000); 
+    })
+    .catch((error) => {
+      console.error("Download error:", error);
+      toast.error("Failed to download the file.");
+    });
+};
+
+
+
 
   const startTheServer = async () => {
     const response = await axios.get(url);
@@ -1571,123 +1696,134 @@ const PowerBiDashboard = () => {
     }
 
 
-    else if (activeDash === "TransportSupplyChain") {
-      return (
-        <div>
-          <h1 className="dashboard-title">
-            <img
-              src={assets.Transport_SupplyChain}
-              alt="TSCImage"
-              className="dashboard-data-model-image"
-            />
-            Transport Supply Chain:
-            {loggedInUserRole === "COO" ||
-              loggedInUserRole === "CTO" ||
-              loggedInUserRole === "CEO" ? (
-              <span style={{ fontSize: "20px", marginLeft: "5px" }}>
-                ({tsc.length} / {tsc.length})
-              </span>
-            ) : (
-              <span style={{ fontSize: "20px", marginLeft: "5px" }}>
-                ({allowedTSCDashboards.length} / {tsc.length})
-              </span>
-            )}
-          </h1>
+   else if (activeDash === "TransportSupplyChain") {
+  return (
+    <div>
+      <h1 className="dashboard-title">
+        <img
+          src={assets.Transport_SupplyChain}
+          alt="TSCImage"
+          className="dashboard-data-model-image"
+        />
+        Transport Supply Chain:
+        {loggedInUserRole === "COO" ||
+        loggedInUserRole === "CTO" ||
+        loggedInUserRole === "CEO" ? (
+          <span style={{ fontSize: "20px", marginLeft: "5px" }}>
+            ({tsc.length} / {tsc.length})
+          </span>
+        ) : (
+          <span style={{ fontSize: "20px", marginLeft: "5px" }}>
+            ({allowedTSCDashboards.length} / {tsc.length})
+          </span>
+        )}
+      </h1>
 
-          <div className="dashboard-section">
-            {loggedInUserRole === "COO" ||
-              loggedInUserRole === "CTO" ||
-              loggedInUserRole === "CEO" ? (
-              tsc.map((type) => (
-                <div key={type.headerText} className="dashboard-card">
-                  <div className="bi-header-text">
-                    <h1 className="card-title">{type.headerText}</h1>
-                  </div>
-                  <div width={"100vw"}>
-                    <img
-                      style={{ filter: "brightness(95%)" }}
-                      src={type.image}
-                      alt={type.headerText}
-                      width={"100%"}
-                    />
-                  </div>
-                  <button
-                    className="bi-dashboard-button"
-                    style={{ position: "relative" }}
+      <div className="dashboard-section">
+        {loggedInUserRole === "COO" ||
+        loggedInUserRole === "CTO" ||
+        loggedInUserRole === "CEO" ? (
+          tsc.map((type) => (
+            <div key={type.headerText} className="dashboard-card">
+              <div className="bi-header-text">
+                <h1 className="card-title">{type.headerText}</h1>
+              </div>
+              <div width={"100vw"}>
+                <img
+                  style={{ filter: "brightness(95%)" }}
+                  src={type.image}
+                  alt={type.headerText}
+                  width={"100%"}
+                />
+              </div>
+              <button
+                className="bi-dashboard-button"
+                style={{ position: "relative" }}
+              >
+                <p
+                  onClick={() =>
+                    getReportSpecificData(
+                      type.id,
+                      type.groupID,
+                      type.reportId,
+                      type.headerText
+                    )
+                  }
+                >
+                  View Dashboard
+                </p>
+                <p
+                  style={{
+                    position: "absolute",
+                    top: "6px",
+                    right: "8px",
+                  }}
+                >
+                  {getResultsAndDownloadElement(type.headerText, type.id)}
+                </p>
+              </button>
+            </div>
+          ))
+        ) : allowedTSCDashboards.length === 0 ? (
+          getNoAccessViewInfo()
+        ) : (
+          allowedTSCDashboards.map((type) => (
+            <div key={type.headerText} className="dashboard-card">
+              <div className="bi-header-text">
+                <h1 className="card-title">{type.headerText}</h1>
+              </div>
+              <div width={"100vw"}>
+                <img
+                  style={{ filter: "brightness(95%)" }}
+                  src={type.image}
+                  alt={type.headerText}
+                  width={"100%"}
+                />
+              </div>
+              <button
+                className="bi-dashboard-button"
+                style={{ position: "relative" }}
+              >
+                <p
+                  onClick={() =>
+                    getReportSpecificData(
+                      type.id,
+                      type.groupID,
+                      type.reportId,
+                      type.headerText
+                    )
+                  }
+                >
+                  View Dashboard
+                </p>
+                <p
+                  style={{
+                    position: "absolute",
+                    top: "6px",
+                    right: "8px",
+                  }}
+                >
+                  <a
+                    href="#"
+                    onClick={handleExcelDownload}
+                    className="bi-excel-download-btn"
+                    title="Download Transport Supply Chain Data"
                   >
-                    <p
-                      onClick={() =>
-                        getReportSpecificData(
-                          type.id,
-                          type.groupID,
-                          type.reportId,
-                          type.headerText
-                        )
-                      }
-                    >
-                      View Dashboard
-                    </p>
-                    <p
-                      style={{
-                        position: "absolute",
-                        top: "6px",
-                        right: "8px",
-                      }}
-                    >
-                      {getResultsAndDownloadElement(type.headerText, type.id)}
-                    </p>
-                  </button>
-                </div>
-              ))
-            ) : allowedTSCDashboards.length === 0 ? (
-              getNoAccessViewInfo()
-            ) : (
-              allowedTSCDashboards.map((type) => (
-                <div key={type.headerText} className="dashboard-card">
-                  <div className="bi-header-text">
-                    <h1 className="card-title">{type.headerText}</h1>
-                  </div>
-                  <div width={"100vw"}>
-                    <img
-                      style={{ filter: "brightness(95%)" }}
-                      src={type.image}
-                      alt={type.headerText}
-                      width={"100%"}
-                    />
-                  </div>
-                  <button
-                    className="bi-dashboard-button"
-                    style={{ position: "relative" }}
-                  >
-                    <p
-                      onClick={() =>
-                        getReportSpecificData(
-                          type.id,
-                          type.groupID,
-                          type.reportId,
-                          type.headerText
-                        )
-                      }
-                    >
-                      View Dashboard
-                    </p>
-                    <p
-                      style={{
-                        position: "absolute",
-                        top: "6px",
-                        right: "8px",
-                      }}
-                    >
-                      {getResultsAndDownloadElement(type.headerText, type.id)}
-                    </p>
-                  </button>
-                </div>
-              ))
-            )}
-          </div>
-        </div>
-      );
-    }else if (activeDash === "Manufacturing") {
+                    <span className="bi-excel-download-icon-wrapper">
+                      <MdOutlineDownload className="bi-excel-download-icon" />
+                      <RiFileExcel2Fill className="bi-excel-icon" />
+                    </span>
+                  </a>
+                </p>
+              </button>
+            </div>
+          ))
+        )}
+      </div>
+    </div>
+  );
+}
+else if (activeDash === "Manufacturing") {
       return (
         <div>
           <h1 className="dashboard-title">
@@ -2064,35 +2200,85 @@ const PowerBiDashboard = () => {
         </div>
       );
     } else if (activeDash === "Transshipment") {
-      return (
-        <div>
-          <h1 className="dashboard-title">
-            <img
-              src={assets.Trans_shipment}
-              alt="OrderToCashImage"
-              className="dashboard-data-model-image"
-            />
-            Transshipment
-            {loggedInUserRole === "COO" ||
-              loggedInUserRole === "CTO" ||
-              loggedInUserRole === "CEO" ? (
-              <span style={{ fontSize: "20px", marginLeft: "5px" }}>
-                {" "}
-                ({ts.length} / {ts.length})
-              </span>
-            ) : (
-              <span style={{ fontSize: "20px", marginLeft: "5px" }}>
-                {" "}
-                ({allowedTSDashboards.length} /{" "}
-                {ts.length})
-              </span>
-            )}
-          </h1>
-          {loggedInUserRole === "COO" ||
-            loggedInUserRole === "CTO" ||
-            loggedInUserRole === "CEO" ? (
-            <div className="dashboard-section">
-              {ts.map((type) => {
+  return (
+    <div>
+      <h1 className="dashboard-title">
+        <img
+          src={assets.Trans_shipment}
+          alt="OrderToCashImage"
+          className="dashboard-data-model-image"
+        />
+        Transshipment
+        {loggedInUserRole === "COO" ||
+        loggedInUserRole === "CTO" ||
+        loggedInUserRole === "CEO" ? (
+          <span style={{ fontSize: "20px", marginLeft: "5px" }}>
+            {" "}
+            ({ts.length} / {ts.length})
+          </span>
+        ) : (
+          <span style={{ fontSize: "20px", marginLeft: "5px" }}>
+            {" "}
+            ({allowedTSDashboards.length} / {ts.length})
+          </span>
+        )}
+      </h1>
+      {loggedInUserRole === "COO" ||
+      loggedInUserRole === "CTO" ||
+      loggedInUserRole === "CEO" ? (
+        <div className="dashboard-section">
+          {ts.map((type) => {
+            return (
+              <div key={type.headerText} className="dashboard-card">
+                <div className="bi-header-text">
+                  <h1 className="card-title">{type.headerText}</h1>
+                </div>
+                <div width={"100vw"}>
+                  <img
+                    style={{ filter: "brightness(95%)" }}
+                    src={type.image}
+                    alt={type.headerText}
+                    width={"100%"}
+                  />
+                </div>
+
+                <button
+                  className="bi-dashboard-button"
+                  style={{ position: "relative" }}
+                >
+                  <p
+                    onClick={() =>
+                      getReportSpecificData(
+                        type.id,
+                        type.groupID,
+                        type.reportId,
+                        type.headerText
+                      )
+                    }
+                  >
+                    View Dashboard
+                  </p>
+                  <p
+                    style={{
+                      position: "absolute",
+                      top: "6px",
+                      right: "8px",
+                    }}
+                  >
+                    {getResultsAndDownloadElement(type.headerText, type.id)}
+                  </p>
+                </button>
+              </div>
+            );
+          })}
+        </div>
+      ) : (
+        <div className="dashboard-section">
+          {allowedTSDashboards.length === 0 ? (
+            getNoAccessViewInfo()
+          ) : (
+            <>
+              {allowedTSDashboards.map((type) => {
                 return (
                   <div key={type.headerText} className="dashboard-card">
                     <div className="bi-header-text">
@@ -2109,13 +2295,18 @@ const PowerBiDashboard = () => {
 
                     <button
                       className="bi-dashboard-button"
-                      // onClick={() => login(`${type.dataText}, ${type.url}`)}
                       style={{ position: "relative" }}
                     >
-                      {/* <a href={type.url} target="_blank">
-                        View Dashboard
-                      </a> */}
-                      <p onClick={() => getReportSpecificData(type.id, type.groupID, type.reportId, type.headerText)}>
+                      <p
+                        onClick={() =>
+                          getReportSpecificData(
+                            type.id,
+                            type.groupID,
+                            type.reportId,
+                            type.headerText
+                          )
+                        }
+                      >
                         View Dashboard
                       </p>
                       <p
@@ -2125,71 +2316,29 @@ const PowerBiDashboard = () => {
                           right: "8px",
                         }}
                       >
-                        {getResultsAndDownloadElement(
-                          `${type.headerText}`,
-                          `${type.id}`
-                        )}
+                        <a
+                          href="#"
+                          onClick={handleExcelDownload1}
+                          className="bi-excel-download-btn"
+                          title="Download Transshipment Data"
+                        >
+                          <span className="bi-excel-download-icon-wrapper">
+                            <MdOutlineDownload className="bi-excel-download-icon" />
+                            <RiFileExcel2Fill className="bi-excel-icon" />
+                          </span>
+                        </a>
                       </p>
                     </button>
                   </div>
                 );
               })}
-            </div>
-          ) : (
-            <div className="dashboard-section">
-              {allowedTSDashboards.length === 0 ? (
-                getNoAccessViewInfo()
-              ) : (
-                <>
-                  {allowedTSDashboards.map((type) => {
-                    return (
-                      <div key={type.headerText} className="dashboard-card">
-                        <div className="bi-header-text">
-                          <h1 className="card-title">{type.headerText}</h1>
-                        </div>
-                        <div width={"100vw"}>
-                          <img
-                            style={{ filter: "brightness(95%)" }}
-                            src={type.image}
-                            alt={type.headerText}
-                            width={"100%"}
-                          />
-                        </div>
-
-                        <button
-                          className="bi-dashboard-button"
-                          // onClick={() => login(`${type.dataText}, ${type.url}`)}
-                          style={{ position: "relative" }}
-                        >
-                          {/* <a href={type.url} target="_blank">
-                            View Dashboard
-                          </a> */}
-                          <p onClick={() => getReportSpecificData(type.id, type.groupID, type.reportId, type.headerText)}>
-                            View Dashboard
-                          </p>
-                          <p
-                            style={{
-                              position: "absolute",
-                              top: "6px",
-                              right: "8px",
-                            }}
-                          >
-                            {getResultsAndDownloadElement(
-                              `${type.headerText}`,
-                              `${type.id}`
-                            )}
-                          </p>
-                        </button>
-                      </div>
-                    );
-                  })}
-                </>
-              )}
-            </div>
+            </>
           )}
         </div>
-      );
-    } else if (activeDash === "Finance") {
+      )}
+    </div>
+  );
+}else if (activeDash === "Finance") {
       return (
         <div>
           <h1 className="dashboard-title">

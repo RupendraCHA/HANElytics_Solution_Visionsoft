@@ -888,3 +888,42 @@
   font-size: 20px;
   font-weight: 600;
 }
+
+/* PowerBiDashbord.css */
+
+/* Style for the download button container */
+.bi-excel-download-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #fff; /* White background */
+  border-radius: 8px; /* Rounded corners */
+  padding: 4px 8px; /* Padding for the button */
+  text-decoration: none; /* Remove underline from link */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+  transition: background-color 0.3s ease; /* Smooth hover effect */
+}
+
+/* Hover effect for the button */
+.bi-excel-download-btn:hover {
+  background-color: #f0f0f0; /* Light gray on hover */
+}
+
+/* Wrapper for the icons inside the button */
+.bi-excel-download-icon-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 4px; /* Space between icons */
+}
+
+/* Style for the download icon */
+.bi-excel-download-icon {
+  font-size: 16px; /* Size of the download arrow */
+  color: #000; /* Black color for the download icon */
+}
+
+/* Style for the Excel icon */
+.bi-excel-icon {
+  font-size: 16px; /* Size of the Excel icon */
+  color: #28a745; /* Green color for the Excel icon */
+}
