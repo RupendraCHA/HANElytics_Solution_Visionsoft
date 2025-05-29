@@ -67,7 +67,7 @@ const PowerBiDashboard = () => {
       },
     });
 
-    fetch("/downloads/final_transport_predictions_with_new_features.xlsx")
+    fetch("/downloads/customer_sales_data.xlsx")
       .then((response) => {
         if (!response.ok) {
           throw new Error(`HTTP error! status: ${response.status}`);
@@ -77,7 +77,7 @@ const PowerBiDashboard = () => {
       .then((blob) => {
         let saved = false; // Track if saveAs was "successful" (initiated)
         try {
-          saveAs(blob, "final_transport_predictions_with_new_features.xlsx", {
+          saveAs(blob, "customer_sales_data.xlsx", {
             onSaveAsComplete: () => {
               saved = true; // Set the flag
             },
