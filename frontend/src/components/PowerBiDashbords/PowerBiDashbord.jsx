@@ -52,7 +52,65 @@ const PowerBiDashboard = () => {
   const [activeDashBoardID, setActiveDashboardID] = useState("");
   const [activeDashBoardIDText, setActiveDashboardIDText] = useState("");
   const [activeDashboardName, setActiveDashboardName] = useState("");
+  const handleExcelDownload2 = (e) => {
+    e.preventDefault();
 
+    toast.info("Download initiated. It should be ready shortly.", {
+      position: "top-center",
+      style: {
+        fontSize: "16px",
+        padding: "8px 12px",
+        borderRadius: "8px",
+        color: "#fff",
+        backgroundColor: "#000",
+        fontWeight: "600",
+      },
+    });
+
+    fetch("/downloads/final_transport_predictions_with_new_features.xlsx")
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error(`HTTP error! status: ${response.status}`);
+        }
+        return response.blob();
+      })
+      .then((blob) => {
+        let saved = false; // Track if saveAs was "successful" (initiated)
+        try {
+          saveAs(blob, "final_transport_predictions_with_new_features.xlsx", {
+            onSaveAsComplete: () => {
+              saved = true; // Set the flag
+            },
+          });
+          saved = true; // Assume success if saveAs doesn't have a callback
+        } catch (error) {
+          console.error("saveAs error", error);
+          toast.error("Failed to save the file.");
+          return; // IMPORTANT: Exit the outer then block on error
+        }
+
+        // Use a setTimeout to check if the file was saved, and show message
+        setTimeout(() => {
+          if (saved) {
+            toast.success("File downloaded.", {
+              position: "top-center",
+              style: {
+                fontSize: "16px",
+                padding: "8px 12px",
+                borderRadius: "8px",
+                color: "#fff",
+                backgroundColor: "#000",
+                fontWeight: "600",
+              },
+            });
+          }
+        }, 2000);
+      })
+      .catch((error) => {
+        console.error("Download error:", error);
+        toast.error("Failed to download the file.");
+      });
+  };
   const handleExcelDownload = (e) => {
     e.preventDefault();
 
@@ -1646,14 +1704,24 @@ const PowerBiDashboard = () => {
                         View Dashboard
                       </p>
                       <p
-                        style={{
-                          position: "absolute",
-                          top: "6px",
-                          right: "8px",
-                        }}
-                      >
-                        {getResultsAndDownloadElement(type.headerText, type.id)}
-                      </p>
+                            style={{
+                              position: "absolute",
+                              top: "6px",
+                              right: "8px",
+                            }}
+                          >
+                            <a
+                              href="#"
+                              onClick={handleExcelDownload2}
+                              className="bi-excel-download-btn"
+                              title="Download Customer Sales Data"
+                            >
+                              <span className="bi-excel-download-icon-wrapper">
+                                <MdOutlineDownload className="bi-excel-download-icon" />
+                                <RiFileExcel2Fill className="bi-excel-icon" />
+                              </span>
+                            </a>
+                          </p>
                     </button>
                   </div>
                 ))
@@ -1689,14 +1757,24 @@ const PowerBiDashboard = () => {
                         View Dashboard
                       </p>
                       <p
-                        style={{
-                          position: "absolute",
-                          top: "6px",
-                          right: "8px",
-                        }}
-                      >
-                        {getResultsAndDownloadElement(type.headerText, type.id)}
-                      </p>
+                            style={{
+                              position: "absolute",
+                              top: "6px",
+                              right: "8px",
+                            }}
+                          >
+                            <a
+                              href="#"
+                              onClick={handleExcelDownload2}
+                              className="bi-excel-download-btn"
+                              title="Download Customer Sales Data"
+                            >
+                              <span className="bi-excel-download-icon-wrapper">
+                                <MdOutlineDownload className="bi-excel-download-icon" />
+                                <RiFileExcel2Fill className="bi-excel-icon" />
+                              </span>
+                            </a>
+                          </p>
                     </button>
                   </div>
                 ))}
@@ -1766,7 +1844,17 @@ const PowerBiDashboard = () => {
                           right: "8px",
                         }}
                       >
-                        {getResultsAndDownloadElement(type.headerText, type.id)}
+                        <a
+                          href="#"
+                          onClick={handleExcelDownload}
+                          className="bi-excel-download-btn"
+                          title="Download Transport Supply Chain Data"
+                        >
+                          <span className="bi-excel-download-icon-wrapper">
+                            <MdOutlineDownload className="bi-excel-download-icon" />
+                            <RiFileExcel2Fill className="bi-excel-icon" />
+                          </span>
+                        </a>
                       </p>
                     </button>
                   </div>
@@ -2316,14 +2404,24 @@ const PowerBiDashboard = () => {
                         View Dashboard
                       </p>
                       <p
-                        style={{
-                          position: "absolute",
-                          top: "6px",
-                          right: "8px",
-                        }}
-                      >
-                        {getResultsAndDownloadElement(type.headerText, type.id)}
-                      </p>
+                            style={{
+                              position: "absolute",
+                              top: "6px",
+                              right: "8px",
+                            }}
+                          >
+                            <a
+                              href="#"
+                              onClick={handleExcelDownload1}
+                              className="bi-excel-download-btn"
+                              title="Download Transshipment Data"
+                            >
+                              <span className="bi-excel-download-icon-wrapper">
+                                <MdOutlineDownload className="bi-excel-download-icon" />
+                                <RiFileExcel2Fill className="bi-excel-icon" />
+                              </span>
+                            </a>
+                          </p>
                     </button>
                   </div>
                 );
