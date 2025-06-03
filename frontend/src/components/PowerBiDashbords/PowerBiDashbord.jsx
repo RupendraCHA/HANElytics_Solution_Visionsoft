@@ -318,8 +318,14 @@ const PowerBiDashboard = () => {
       dataText: "inventory",
       url: "https://app.powerbi.com/groups/me/reports/629c6dc2-6b0d-4c68-9e54-c2a47600a03b/df6b1d7bb0643125b744?experience=power-bi&clientSideAuth=0",
       image: `${assets.Inventory_pic}`,
+      // groupID: "0800dc12-04e5-484e-b15e-ba0a27efa5c2",
+      // reportId: "e6d17e90-cf61-4364-a160-f0f76b014929",
+
+      // groupID: "84691a96-fa30-4e99-8ebf-da73b935661b",
+      // reportId: "7604094-37e9-48d9-a04e-0e542a0c8c05",
+
       groupID: "0800dc12-04e5-484e-b15e-ba0a27efa5c2",
-      reportId: "e6d17e90-cf61-4364-a160-f0f76b014929",
+      reportId: "9c2ca189-f231-4e7f-8ef0-f02794ac2158",
     },
 
     {
