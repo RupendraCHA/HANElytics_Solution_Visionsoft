@@ -7,7 +7,7 @@ import Finance_pic from "./Finance.webp"
 import ViewAll_pic from "./viewAll.webp"
 import powerBiBG_pic from "./PowerBIBg.jpg"
 import Inventory_pic from "./Inventory.jpg"
-import Revenue_pic from "./Revenue.jpg"
+import revenue_pic from "./Revenue.jpg"
 import Paper_ink_pic from "./Paper_ink.jpg"
 import sales_pic from "./SalesOrder.jpg"
 import Outbound_Delivery_pic from "./OutboundDelivery.png"
@@ -48,7 +48,7 @@ export const assets = {
     ViewAll_pic,
     powerBiBG_pic,
     Inventory_pic,
-    Revenue_pic,
+    revenue_pic,
     Paper_ink_pic,
     sales_pic,
     Outbound_Delivery_pic,

@@ -329,7 +329,7 @@ const PowerBiDashboard = () => {
       headerText: "Revenue",
       dataText: "revenue",
       url: "https://app.powerbi.com/groups/me/reports/_revenue_results/ReportSection?experience=power-bi&clientSideAuth=0", // Placeholder URL, update with actual URL
-      image: `${assets.Revenue_pic}`,
+      image: `${assets.revenue_pic}`,
       groupID: "0800dc12-04e5-484e-b15e-ba0a27efa5c2",
       reportId: "c97fde5b-750d-4da3-9180-01b9058fc030",
     },
