@@ -75,21 +75,20 @@ const PowerBiDashboard = () => {
         return response.blob();
       })
       .then((blob) => {
-        let saved = false; // Track if saveAs was "successful" (initiated)
+        let saved = false;
         try {
           saveAs(blob, "customer_sales_data.xlsx", {
             onSaveAsComplete: () => {
-              saved = true; // Set the flag
+              saved = true;
             },
           });
-          saved = true; // Assume success if saveAs doesn't have a callback
+          saved = true;
         } catch (error) {
           console.error("saveAs error", error);
           toast.error("Failed to save the file.");
-          return; // IMPORTANT: Exit the outer then block on error
+          return;
         }
 
-        // Use a setTimeout to check if the file was saved, and show message
         setTimeout(() => {
           if (saved) {
             toast.success("File downloaded.", {
@@ -134,21 +133,20 @@ const PowerBiDashboard = () => {
         return response.blob();
       })
       .then((blob) => {
-        let saved = false; // Track if saveAs was "successful" (initiated)
+        let saved = false;
         try {
           saveAs(blob, "final_transport_predictions_with_new_features.xlsx", {
             onSaveAsComplete: () => {
-              saved = true; // Set the flag
+              saved = true;
             },
           });
-          saved = true; // Assume success if saveAs doesn't have a callback
+          saved = true;
         } catch (error) {
           console.error("saveAs error", error);
           toast.error("Failed to save the file.");
-          return; // IMPORTANT: Exit the outer then block on error
+          return;
         }
 
-        // Use a setTimeout to check if the file was saved, and show message
         setTimeout(() => {
           if (saved) {
             toast.success("File downloaded.", {
@@ -194,11 +192,11 @@ const PowerBiDashboard = () => {
         return response.blob();
       })
       .then((blob) => {
-        let saved = false; // Track if saveAs was "successful" (initiated)
+        let saved = false;
         try {
           saveAs(blob, "all_transshipment_predictions.xlsx", {
             onSaveAsComplete: () => {
-              saved = true; // Set the flag
+              saved = true;
             },
           });
           saved = true;
@@ -282,8 +280,6 @@ const PowerBiDashboard = () => {
     } else {
       toast.error(response.data.message);
     }
-
-    // console.log("Logged User Details", response.data)
   };
 
   useEffect(() => {
@@ -303,27 +299,18 @@ const PowerBiDashboard = () => {
   }, []);
 
   const HANElyticsDashboards = [
+    
     {
       id: 1,
-      headerText: "Revenue, Clinical and Equipment Failure",
-      dataText: "revenue",
-      url: "https://app.powerbi.com/groups/me/reports/31dc0bfe-4eec-4dbd-b418-c7e969f7d2f4/3610dece708b751eba90?experience=power-bi&clientSideAuth=0",
-      image: `${assets.Revenue_pic}`,
-      groupID: "0800dc12-04e5-484e-b15e-ba0a27efa5c2",
-      reportId: "e0d44e90-be86-4d65-973e-59f1a17f6b26",
-    },
-    {
-      id: 2,
-      headerText: "Inventory Reorder Point & Safety Stock predictions",
+      headerText: "Inventory and Sales Forecast Using Live Data Predictions",
       dataText: "inventory",
       url: "https://app.powerbi.com/groups/me/reports/629c6dc2-6b0d-4c68-9e54-c2a47600a03b/df6b1d7bb0643125b744?experience=power-bi&clientSideAuth=0",
       image: `${assets.Inventory_pic}`,
       groupID: "0800dc12-04e5-484e-b15e-ba0a27efa5c2",
-      reportId: "e6d17e90-cf61-4364-a160-f0f76b014929",
+      reportId: "9c2ca189-f231-4e7f-8ef0-f02794ac2158",
     },
-
     {
-      id: 3,
+      id: 2,
       headerText: "Predicted Reams of Paper & Ink",
       dataText: "reports",
       url: "https://app.powerbi.com/groups/7235dce4-8159-49bc-ab3f-223406e7937b/reports/cdc28a63-1551-4b0c-8385-1150e1dd46ce/8c4854b8de780c3490e6?experience=power-bi&clientSideAuth=0",
@@ -331,11 +318,38 @@ const PowerBiDashboard = () => {
       groupID: "7235dce4-8159-49bc-ab3f-223406e7937b",
       reportId: "cdc28a63-1551-4b0c-8385-1150e1dd46ce",
     },
+    {
+      id: 3,
+      headerText: "Revenue",
+      dataText: "revenue",
+      url: "https://app.powerbi.com/groups/me/reports/_revenue_results/ReportSection?experience=power-bi&clientSideAuth=0", // Placeholder URL, update with actual URL
+      image: `${assets.Revenue_pic}`,
+      groupID: "0800dc12-04e5-484e-b15e-ba0a27efa5c2",
+      reportId: "c97fde5b-750d-4da3-9180-01b9058fc030",
+    },
+    {
+      id: 4,
+      headerText: "Clinical",
+      dataText: "clinical",
+      url: "https://app.powerbi.com/groups/me/reports/clinical_data/ReportSection?experience=power-bi&clientSideAuth=0", // Placeholder URL, update with actual URL
+      image: `${assets.Clinical_Pic}`, // Ensure this asset exists
+      groupID: "0800dc12-04e5-484e-b15e-ba0a27efa5c2",
+      reportId: "62511fec-eac4-4638-bde4-49e724c5fa4a",
+    },
+    {
+      id: 5,
+      headerText: "Equipment Failure",
+      dataText: "equipment",
+      url: "https://app.powerbi.com/groups/me/reports/Equipment_Failure/ReportSection?experience=power-bi&clientSideAuth=0", // Placeholder URL, update with actual URL
+      image: `${assets.Equipment_Failure}`, // Ensure this asset exists
+      groupID: "0800dc12-04e5-484e-b15e-ba0a27efa5c2",
+      reportId: "1cb81cf2-450f-4779-9d92-be42bd020611",
+    },
   ];
 
   const orderToCash = [
     {
-      id: 4,
+      id: 6,
       headerText: "Sales Order Processing",
       dataText: "order",
       url: "https://app.powerbi.com/groups/84691a96-fa30-4e99-8ebf-da73b935661b/reports/12256cd6-0191-4734-b9e2-26fb5da6f018/519f2f1b088001690a92?experience=power-bi&clientSideAuth=0",
@@ -344,7 +358,7 @@ const PowerBiDashboard = () => {
       reportId: "12256cd6-0191-4734-b9e2-26fb5da6f018",
     },
     {
-      id: 5,
+      id: 7,
       headerText: "Outbound Delivery Processing",
       dataText: "delivery",
       url: "https://app.powerbi.com/groups/84691a96-fa30-4e99-8ebf-da73b935661b/reports/a55c32db-32a9-42d9-8a3b-b4acb5d156c3/aa6705bbc3b7ef0d4147?experience=power-bi&clientSideAuth=0",
@@ -353,7 +367,7 @@ const PowerBiDashboard = () => {
       reportId: "a55c32db-32a9-42d9-8a3b-b4acb5d156c3",
     },
     {
-      id: 6,
+      id: 8,
       headerText: "Billing & Invoicing",
       dataText: "billing",
       url: "https://app.powerbi.com/groups/84691a96-fa30-4e99-8ebf-da73b935661b/reports/39b627f4-0188-4651-890f-d03aa68c9ab3/ce8017ebff5ddce17665?experience=power-bi&clientSideAuth=0",
@@ -364,7 +378,7 @@ const PowerBiDashboard = () => {
   ];
   const procurement = [
     {
-      id: 7,
+      id: 9,
       headerText: "Supplier Order Overview",
       dataText: "purchase",
       url: "https://app.powerbi.com/groups/84691a96-fa30-4e99-8ebf-da73b935661b/reports/0c34af53-228f-49e3-a217-c7942da55d86/9399d3c37b14e9f48649?experience=power-bi&clientSideAuth=0",
@@ -373,7 +387,7 @@ const PowerBiDashboard = () => {
       reportId: "0c34af53-228f-49e3-a217-c7942da55d86",
     },
     {
-      id: 8,
+      id: 10,
       headerText: "Goods Receipt",
       dataText: "purchase",
       url: "https://app.powerbi.com/groups/me/reports/d88fd1c6-d635-4ead-864c-b4971b81e11b/153be76ec304a615ddb5?experience=power-bi&clientSideAuth=0",
@@ -382,7 +396,7 @@ const PowerBiDashboard = () => {
       reportId: "da752be3-4bdd-46b9-a8b0-167c3afb4611",
     },
     {
-      id: 9,
+      id: 11,
       headerText: "Purchase Requisition",
       dataText: "purchase",
       url: "https://app.powerbi.com/groups/me/reports/092a96f6-27cd-41fd-9d6c-798733cfd586/f3156d802d9e138dabba?experience=power-bi&clientSideAuth=0",
@@ -393,7 +407,7 @@ const PowerBiDashboard = () => {
   ];
   const manufacturing = [
     {
-      id: 10,
+      id: 12,
       headerText: "Manufacturing Master Data",
       dataText: "purchase",
       url: "https://app.powerbi.com/groups/84691a96-fa30-4e99-8ebf-da73b935661b/reports/bad34a0b-01fa-4257-9e3f-9fec93098e18/96656c8ea0626564d181?experience=power-bi",
@@ -402,7 +416,7 @@ const PowerBiDashboard = () => {
       reportId: "df3ab764-9488-4e8c-a116-15f45ddf85b4",
     },
     {
-      id: 11,
+      id: 13,
       headerText: "Manufacturing Orders",
       dataText: "purchase",
       url: "https://app.powerbi.com/groups/84691a96-fa30-4e99-8ebf-da73b935661b/reports/df3ab764-9488-4e8c-a116-15f45ddf85b4/e107815aa0ee97c749a3?experience=power-bi&clientSideAuth=0",
@@ -411,7 +425,7 @@ const PowerBiDashboard = () => {
       reportId: "df3ab764-9488-4e8c-a116-15f45ddf85b4",
     },
     {
-      id: 12,
+      id: 14,
       headerText: "Production Planning",
       dataText: "purchase",
       url: "https://app.powerbi.com/groups/84691a96-fa30-4e99-8ebf-da73b935661b/reports/41761ec2-cb0f-43c0-9219-d31f2acc352b/34ada5fd2d2e43cf537e?experience=power-bi",
@@ -423,7 +437,7 @@ const PowerBiDashboard = () => {
 
   const finance = [
     {
-      id: 13,
+      id: 15,
       headerText: "General Ledger",
       dataText: "purchase",
       url: "https://app.powerbi.com/groups/me/reports/00fc9305-da2e-48e8-b53e-16ec28203cb1/0409b2205d1103030976?experience=power-bi&clientSideAuth=0",
@@ -432,7 +446,7 @@ const PowerBiDashboard = () => {
       reportId: "c5da2b12-6f92-4bf9-979a-73c2900812a2",
     },
     {
-      id: 14,
+      id: 16,
       headerText: "Account Receivables",
       dataText: "purchase",
       url: "https://app.powerbi.com/groups/me/reports/61332e4f-41f9-45f2-bf2b-28f6508591ae/1f55804984a696482416?experience=power-bi&clientSideAuth=0",
@@ -441,7 +455,7 @@ const PowerBiDashboard = () => {
       reportId: "58746290-3ce7-4092-b86e-619523d16c54",
     },
     {
-      id: 15,
+      id: 17,
       headerText: "Account Paybles",
       dataText: "purchase",
       url: "https://app.powerbi.com/groups/me/reports/0ac0709f-27ee-42f9-93d8-069096fa3d39/7fccc7b61a81e7e7a21c?experience=power-bi&clientSideAuth=0",
@@ -452,7 +466,7 @@ const PowerBiDashboard = () => {
   ];
   const csd = [
     {
-      id: 16,
+      id: 18,
       headerText: "Customer Sales Data",
       dataText: "purchase",
       image: `${assets.Customer_Sales_Data}`,
@@ -464,7 +478,7 @@ const PowerBiDashboard = () => {
   ];
   const tsc = [
     {
-      id: 17,
+      id: 19,
       headerText: "Transport SupplyChain",
       dataText: "Transport SupplyChain",
       image: `${assets.Transport_SupplyChain}`,
@@ -479,7 +493,7 @@ const PowerBiDashboard = () => {
 
   const ts = [
     {
-      id: 17,
+      id: 20,
       headerText: "Transshipment",
       dataText: "Transshipment",
       image: `${assets.Trans_shipment}`,
@@ -512,8 +526,6 @@ const PowerBiDashboard = () => {
   const allowedManufacturingDashboards = manufacturing.filter((item) =>
     allowedNames.has(item.headerText.trim().toLowerCase())
   );
-
-  // console.log("Allowed From Manufacture", allowedManufacturingDashboards)
   const allowedFinanceDashboards = finance.filter((item) =>
     allowedNames.has(item.headerText.trim().toLowerCase())
   );
@@ -523,15 +535,10 @@ const PowerBiDashboard = () => {
   const allowedTSDashboards = ts.filter((item) =>
     allowedNames.has(item.headerText.trim().toLowerCase())
   );
-
   const allowedTSCDashboards = tsc.filter((item) =>
     allowedNames.has(item.headerText.trim().toLowerCase())
   );
 
-  // console.log(allowedHANElyticsDashboards)
-
-  // url: "https://app.powerbi.com/groups/me/reports/3219fe8c-78e4-479a-bcdf-b5c77866a05d/052aa96850be00c14191?experience=power-bi&clientSideAuth=0",
-  //     image: `${assets.Production_planning_pic}`,
   const tabsList = [
     {
       activeText: "",
@@ -543,10 +550,8 @@ const PowerBiDashboard = () => {
       activeText: "HANElytics",
       imageUrl: `${assets.AiMl_pic}`,
       altText: "AIMLImage",
-      // tabName: "AI/ML Models"
       tabName: "Supply Chain Models",
     },
-
     {
       activeText: "OrderToCash",
       imageUrl: `${assets.OrderToCash_pic}`,
@@ -594,13 +599,12 @@ const PowerBiDashboard = () => {
 
   const showDashboards = (activeTab) => {
     setActiveDashboardID("");
-    setActiveDashboardIDText("");;
+    setActiveDashboardIDText("");
     setActiveDashboard(activeTab);
     setMsgOpened(false);
     setIsMenuOpened(false);
-    // Clear persisted dashboard state
-  localStorage.removeItem("activeDashboardID");
-  localStorage.removeItem("activeDashboardIDText");
+    localStorage.removeItem("activeDashboardID");
+    localStorage.removeItem("activeDashboardIDText");
   };
 
   const check = (file) => {
@@ -781,9 +785,7 @@ const PowerBiDashboard = () => {
       } catch (error) {
         console.log("Error while fetching", error);
       }
-    } else if (
-      dashName === "Inventory Reorder Point & Safety Stock predictions"
-    ) {
+    } else if (dashName === "Inventory and Sales Forecast Using Live Data Predictions") {
       try {
         setDownloadDataLoad(id);
         getInfoToast();
@@ -796,7 +798,7 @@ const PowerBiDashboard = () => {
         const result = response.data;
         downloadDataIntoExcel(
           result,
-          "Inventory Reorder Point & Safety Stock predictions",
+          "Inventory and Sales Forecast Using Live Data Predictions",
           id
         );
       } catch (error) {
@@ -815,6 +817,51 @@ const PowerBiDashboard = () => {
         const result = response.data;
         console.log(result);
         downloadDataIntoExcel(result, "Predicted Reams of Paper & Ink", id);
+      } catch (error) {
+        console.log("Error while fetching", error);
+      }
+    } else if (dashName === "Revenue") {
+      try {
+        setDownloadDataLoad(id);
+        getInfoToast();
+
+        const jwtToken = localStorage.getItem("token");
+        const response = await axios.get(url + "/api/model/revenue", {
+          headers: { token: jwtToken },
+        });
+
+        const result = response.data;
+        downloadDataIntoExcel(result, "Revenue Data", id);
+      } catch (error) {
+        console.log("Error while fetching", error);
+      }
+    } else if (dashName === "Clinical") {
+      try {
+        setDownloadDataLoad(id);
+        getInfoToast();
+
+        const jwtToken = localStorage.getItem("token");
+        const response = await axios.get(url + "/api/model/clinical", {
+          headers: { token: jwtToken },
+        });
+
+        const result = response.data;
+        downloadDataIntoExcel(result, "Clinical Data", id);
+      } catch (error) {
+        console.log("Error while fetching", error);
+      }
+    } else if (dashName === "Equipment Failure") {
+      try {
+        setDownloadDataLoad(id);
+        getInfoToast();
+
+        const jwtToken = localStorage.getItem("token");
+        const response = await axios.get(url + "/api/model/equipment", {
+          headers: { token: jwtToken },
+        });
+
+        const result = response.data;
+        downloadDataIntoExcel(result, "Equipment Failure Data", id);
       } catch (error) {
         console.log("Error while fetching", error);
       }
@@ -849,11 +896,8 @@ const PowerBiDashboard = () => {
           return newItem;
         });
 
-        // console.log("Transformed Array:", transformedArray)
-
         setDownloadDataLoad(false);
         downloadDataIntoExcel(
-          // response.data.data,
           transformedArray,
           "Sales Order Processing data",
           id
@@ -891,11 +935,8 @@ const PowerBiDashboard = () => {
           return newItem;
         });
 
-        // console.log("Transformed Array:", transformedArray)
-
         setDownloadDataLoad(false);
         downloadDataIntoExcel(
-          // response.data.data,
           transformedArray,
           "Outbound Delivery Processing data",
           id
@@ -937,7 +978,6 @@ const PowerBiDashboard = () => {
 
         setDownloadDataLoad(false);
         downloadDataIntoExcel(
-          // response.data.data,
           transformedArray,
           "Billing & Invoicing data",
           id
@@ -974,7 +1014,6 @@ const PowerBiDashboard = () => {
 
         setDownloadDataLoad(false);
         downloadDataIntoExcel(
-          // response.data.data,
           transformedArray,
           "Supplier Order Overview data",
           id
@@ -1044,7 +1083,6 @@ const PowerBiDashboard = () => {
 
         setDownloadDataLoad(false);
         downloadDataIntoExcel(
-          // response.data.data,
           transformedArray,
           "Purchase Requisition data",
           id
@@ -1081,12 +1119,7 @@ const PowerBiDashboard = () => {
         });
 
         setDownloadDataLoad(false);
-        downloadDataIntoExcel(
-          // response.data.data,
-          transformedArray,
-          "Goods Receipt data",
-          id
-        );
+        downloadDataIntoExcel(transformedArray, "Goods Receipt data", id);
       } catch (error) {
         console.log("Error while fetching", error);
       }
@@ -1119,12 +1152,7 @@ const PowerBiDashboard = () => {
         });
 
         setDownloadDataLoad(false);
-        downloadDataIntoExcel(
-          // response.data.data,
-          transformedArray,
-          "General Ledger data",
-          id
-        );
+        downloadDataIntoExcel(transformedArray, "General Ledger data", id);
       } catch (error) {
         console.log("Error while fetching", error);
       }
@@ -1168,12 +1196,7 @@ const PowerBiDashboard = () => {
         });
 
         setDownloadDataLoad(false);
-        downloadDataIntoExcel(
-          // response.data.data,
-          transformedArray,
-          "Account Paybles data",
-          id
-        );
+        downloadDataIntoExcel(transformedArray, "Account Paybles data", id);
       } catch (error) {
         console.log("Error while fetching", error);
       }
@@ -1219,7 +1242,6 @@ const PowerBiDashboard = () => {
 
         setDownloadDataLoad(false);
         downloadDataIntoExcel(
-          // response.data.data,
           transformedArray,
           "Account Receivables data",
           id
@@ -1265,7 +1287,6 @@ const PowerBiDashboard = () => {
 
         setDownloadDataLoad(false);
         downloadDataIntoExcel(
-          // response.data.data,
           transformedArray,
           "Manufacturing Master data",
           id
@@ -1306,7 +1327,6 @@ const PowerBiDashboard = () => {
 
         setDownloadDataLoad(false);
         downloadDataIntoExcel(
-          // response.data.data,
           transformedArray,
           "Manufacturing Orders data",
           id
@@ -1348,12 +1368,7 @@ const PowerBiDashboard = () => {
         });
 
         setDownloadDataLoad(false);
-        downloadDataIntoExcel(
-          // response.data.data,
-          transformedArray,
-          "Production Planning",
-          id
-        );
+        downloadDataIntoExcel(transformedArray, "Production Planning", id);
       } catch (error) {
         console.log("Error while fetching", error);
       }
@@ -1399,6 +1414,22 @@ const PowerBiDashboard = () => {
               onClick={() =>
                 downloadReportData(selectedReport, dataModelName, id)
               }
+              className="bi-excel-download-btn"
+            >
+              <MdOutlineDownload className="bi-excel-download-icon" />
+              <RiFileExcel2Fill className="bi-excel-icon" />
+            </button>
+          )}
+        </div>
+      );
+    } else if (dataModelName === "Revenue" || dataModelName === "Clinical" || dataModelName === "Equipment Failure") {
+      return (
+        <div className="bi-excel-download">
+          {downloadDataLoad === id ? (
+            <div className="bi-spinner"></div>
+          ) : (
+            <button
+              onClick={() => downloadReportData("", dataModelName, id)}
               className="bi-excel-download-btn"
             >
               <MdOutlineDownload className="bi-excel-download-icon" />
@@ -1453,7 +1484,6 @@ const PowerBiDashboard = () => {
         url + "/powerbi/embed/getdashboard",
         dashIdsData
       );
-      // const data = await response.json();
       console.log(response.data);
       const data = response.data;
 
@@ -1472,19 +1502,11 @@ const PowerBiDashboard = () => {
         },
       };
 
-      // Use global powerbi object
-      // const report = window.powerbi.embed(reportRef.current, embedConfig);
-
       const containerID = `report-container-${id}`;
-
       const reportContainer = document.getElementById(containerID);
-
-      // const report = window.powerbi.embed(reportContainer,embedConfig);
       const report = window.powerbi.embed(reportContainer, embedConfig);
-      // reportRef.current,
 
       setActiveDashboardIDText("Report loaded successfully");
-      // Loading your dashboard...
 
       report.on("loaded", () => {
         getSuccessDashLoadToast("Dashboard Loaded Successfully.");
@@ -1500,39 +1522,86 @@ const PowerBiDashboard = () => {
   };
 
   const getDashboards = (activeDash) => {
-    if (activeDash === "HANElytics") {
-      return (
-        <div>
-          <h1 className="dashboard-title">
-            <img
-              src={assets.AiMl_pic}
-              alt="AIMLImage"
-              className="dashboard-data-model-image"
-            />
-            Supply Chain Models:
-            {loggedInUserRole === "COO" ||
-            loggedInUserRole === "CTO" ||
-            loggedInUserRole === "CEO" ? (
-              <span style={{ fontSize: "20px", marginLeft: "5px" }}>
-                {" "}
-                ({HANElyticsDashboards.length} / {HANElyticsDashboards.length})
-              </span>
-            ) : (
-              <span style={{ fontSize: "20px", marginLeft: "5px" }}>
-                ({allowedHANElyticsDashboards.length} /
-                {HANElyticsDashboards.length})
-              </span>
-            )}
-          </h1>
-          {/* <div className="roles-spinner"></div> */}
+  if (activeDash === "HANElytics") {
+    return (
+      <div>
+        <h1 className="dashboard-title">
+          <img
+            src={assets.AiMl_pic}
+            alt="AIMLImage"
+            className="dashboard-data-model-image"
+          />
+          Supply Chain Models:
+          {loggedInUserRole === "COO" ||
+          loggedInUserRole === "CTO" ||
+          loggedInUserRole === "CEO" ? (
+            <span style={{ fontSize: "20px", marginLeft: "5px" }}>
+              ({HANElyticsDashboards.length} / {HANElyticsDashboards.length})
+            </span>
+          ) : (
+            <span style={{ fontSize: "20px", marginLeft: "5px" }}>
+              ({allowedHANElyticsDashboards.length} / {HANElyticsDashboards.length})
+            </span>
+          )}
+        </h1>
 
-          <div>
-            {loggedInUserRole === "COO" ||
-            loggedInUserRole === "CTO" ||
-            loggedInUserRole === "CEO" ? (
-              <div className="dashboard-section">
-                {HANElyticsDashboards.map((type) => {
-                  return (
+        <div>
+          {loggedInUserRole === "COO" ||
+          loggedInUserRole === "CTO" ||
+          loggedInUserRole === "CEO" ? (
+            <div className="dashboard-section">
+              {HANElyticsDashboards.map((type) => (
+                <div key={type.headerText} className="dashboard-card">
+                  <div className="bi-header-text">
+                    <h1 className="card-title">{type.headerText}</h1>
+                  </div>
+                  <div width={"100vw"}>
+                    <img
+                      style={{ filter: "brightness(95%)" }}
+                      src={type.image}
+                      alt={type.headerText}
+                      width={"100%"}
+                    />
+                  </div>
+                  <button
+                    className="bi-dashboard-button"
+                    style={{ position: "relative" }}
+                  >
+                    <p
+                      onClick={() =>
+                        getReportSpecificData(
+                          type.id,
+                          type.groupID,
+                          type.reportId,
+                          type.headerText
+                        )
+                      }
+                    >
+                      View Dashboard
+                    </p>
+                    <p
+                      style={{
+                        position: "absolute",
+                        top: "6px",
+                        right: "8px",
+                      }}
+                    >
+                      {getResultsAndDownloadElement(
+                        `${type.headerText}`,
+                        `${type.id}`
+                      )}
+                    </p>
+                  </button>
+                </div>
+              ))}
+            </div>
+          ) : (
+            <div className="dashboard-section">
+              {allowedHANElyticsDashboards.length === 0 ? (
+                getNoAccessViewInfo()
+              ) : (
+                <>
+                  {allowedHANElyticsDashboards.map((type) => (
                     <div key={type.headerText} className="dashboard-card">
                       <div className="bi-header-text">
                         <h1 className="card-title">{type.headerText}</h1>
@@ -1547,12 +1616,8 @@ const PowerBiDashboard = () => {
                       </div>
                       <button
                         className="bi-dashboard-button"
-                        // onClick={() => login(`${type.dataText}, ${type.url}`)}
                         style={{ position: "relative" }}
                       >
-                        {/* <a href={type.url} target="_blank">
-                          View Dashboard
-                        </a> */}
                         <p
                           onClick={() =>
                             getReportSpecificData(
@@ -1579,74 +1644,15 @@ const PowerBiDashboard = () => {
                         </p>
                       </button>
                     </div>
-                  );
-                })}
-              </div>
-            ) : (
-              <div className="dashboard-section">
-                {allowedHANElyticsDashboards.length === 0 ? (
-                  getNoAccessViewInfo()
-                ) : (
-                  <>
-                    {allowedHANElyticsDashboards.map((type) => {
-                      return (
-                        <div key={type.headerText} className="dashboard-card">
-                          <div className="bi-header-text">
-                            <h1 className="card-title">{type.headerText}</h1>
-                          </div>
-                          <div width={"100vw"}>
-                            <img
-                              style={{ filter: "brightness(95%)" }}
-                              src={type.image}
-                              alt={type.headerText}
-                              width={"100%"}
-                            />
-                          </div>
-                          <button
-                            className="bi-dashboard-button"
-                            // onClick={() => login(`${type.dataText}, ${type.url}`)}
-                            style={{ position: "relative" }}
-                          >
-                            {/* <a href={type.url} target="_blank">
-                              View Dashboard
-                            </a> */}
-                            <p
-                              onClick={() =>
-                                getReportSpecificData(
-                                  type.id,
-                                  type.groupID,
-                                  type.reportId,
-                                  type.headerText
-                                )
-                              }
-                            >
-                              View Dashboard
-                            </p>
-
-                            <p
-                              style={{
-                                position: "absolute",
-                                top: "6px",
-                                right: "8px",
-                              }}
-                            >
-                              {getResultsAndDownloadElement(
-                                `${type.headerText}`,
-                                `${type.id}`
-                              )}
-                            </p>
-                          </button>
-                        </div>
-                      );
-                    })}
-                  </>
-                )}
-              </div>
-            )}
-          </div>
+                  ))}
+                </>
+              )}
+            </div>
+          )}
         </div>
-      );
-    } 
+      </div>
+    );
+  } 
     else if (activeDash === "CustomerSalesData") {
       return (
         <div>

@@ -1569,7 +1569,7 @@ const DataModeling = () => {
                       <>
                         {/* <h1 className="results-heading">Results:</h1> */}
                         {getResultsAndDownloadElement(
-                          "Inventory Reorder Point & Safety Stock results"
+                          "Inventory and Sales Forecast Using Live Data Predicions"
                         )}
 
                         <div className="table-container">

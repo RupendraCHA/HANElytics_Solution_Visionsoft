@@ -7,7 +7,7 @@ import Finance_pic from "./Finance.webp"
 import ViewAll_pic from "./viewAll.webp"
 import powerBiBG_pic from "./PowerBIBg.jpg"
 import Inventory_pic from "./Inventory.jpg"
-import Revenue_pic from "./Revenue.avif"
+import Revenue_pic from "./Revenue.jpg"
 import Paper_ink_pic from "./Paper_ink.jpg"
 import sales_pic from "./SalesOrder.jpg"
 import Outbound_Delivery_pic from "./OutboundDelivery.png"
@@ -34,6 +34,8 @@ import User_Role_unlock from "./user-role-unlock.webp"
 import Customer_Sales_Data from "./Customer.jpg"
 import Transport_SupplyChain from "./Transport_SupplyChain.jpg"
 import Trans_shipment from "./TS.png"
+import Equipment_Failure from "./Equipment_Failure.jpg"
+import Clinical_Pic from "./Clinical.avif"
 
 
 
@@ -72,6 +74,8 @@ export const assets = {
     User_Role_unlock,
     Customer_Sales_Data,
     Transport_SupplyChain,
-    Trans_shipment
+    Trans_shipment,
+    Equipment_Failure,
+    Clinical_Pic
    
 }
