@@ -317,12 +317,15 @@ const PowerBiDashboard = () => {
     },
     {
       id: 2,
-      headerText: "Predicted Reams of Paper & Ink",
+      headerText: "News Paper Quantity Predictions",
       dataText: "reports",
       url: "https://app.powerbi.com/groups/7235dce4-8159-49bc-ab3f-223406e7937b/reports/cdc28a63-1551-4b0c-8385-1150e1dd46ce/8c4854b8de780c3490e6?experience=power-bi&clientSideAuth=0",
       image: `${assets.Paper_ink_pic}`,
-      groupID: "7235dce4-8159-49bc-ab3f-223406e7937b",
-      reportId: "cdc28a63-1551-4b0c-8385-1150e1dd46ce",
+      //groupID: "7235dce4-8159-49bc-ab3f-223406e7937b",
+      //reportId: "cdc28a63-1551-4b0c-8385-1150e1dd46ce",
+
+      groupID: "0800dc12-04e5-484e-b15e-ba0a27efa5c2",
+      reportId: "5e87f3e3-ca2d-4ca8-ae80-4305d4dffad4",
     },
     {
       id: 3,
