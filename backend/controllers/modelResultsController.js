@@ -5,6 +5,8 @@ import axios from "axios";
 export const transferDataToSAP = async (req, res) => {
   // const {objectData} = req.body
   const { odataPayload } = req.body;
+  console.log("Procurement To Vendor", odataPayload)
+  console.log("_------------")
 
 //   const odataPayload = {
 //     "Process" : "Create",
@@ -68,7 +70,7 @@ export const transferDataToSAP = async (req, res) => {
 export const transferDataToSAP1 = async (req, res) => {
   // const {objectData} = req.body
   const { odataPayload1 } = req.body;
-  console.log(odataPayload1)
+  console.log("Inter Company Sales", odataPayload1)
 
 //   const odataPayload = {
 //     "Process" : "Create",

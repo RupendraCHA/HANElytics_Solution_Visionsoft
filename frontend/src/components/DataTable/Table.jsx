@@ -188,8 +188,8 @@ const Table = (props) => {
                                 <tr key={index}>
                                     <td>{index + 1}</td>
                                     {/* {eachRow.Product_ID} */}
-                                    <td>{eachRow.Product_ID}</td>
-                                    <td>{eachRow.Product_Name}</td>
+                                    <td>{eachRow.PRODUCT_ID}</td>
+                                    <td>{eachRow.PRODUCT_NAME}</td>
                                     <td>{eachRow.Distribution_Center}</td>
                                     <td>{getDisCenter(eachRow.Distribution_Center_ID)}</td>
                                     {/* <td>0002</td>

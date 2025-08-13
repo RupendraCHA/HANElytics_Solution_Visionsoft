@@ -26,7 +26,7 @@ function InventoryPieChart({ data }) {
 
     const [userData1, setUserData1] = useState({
         // 
-        labels: slicedData.map((data) => data.Product_Name),
+        labels: slicedData.map((data) => data.PRODUCT_NAME),
         datasets: [{
             // label: "Sales Data",
             data: slicedData.map((data) => data.Order_Fulfillment_Time_in_days),

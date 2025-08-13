@@ -388,9 +388,10 @@ const DataModeling = () => {
           id = "PUID6";
         }
         const record = data[i];
+        console.log(record)
         sapFields.push({
           Product_ID: id,
-          Product_name: record.Product_Name,
+          Product_name: record.PRODUCT_NAME,
           Distribution_Center: record.Distribution_Center,
           Quantity: `${record.Reorder_Quantity_Prediction_with_live_data}`,
         });

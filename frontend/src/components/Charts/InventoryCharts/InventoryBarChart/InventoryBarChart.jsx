@@ -18,7 +18,7 @@ function InventoryBarChart({ barChartText, barChartData, labelsData, data }) {
     const slicedData = data.slice(0,11)
 
     const [userData1, setUserData1] = useState({
-        labels: slicedData.map((data) => data.Product_Name),
+        labels: slicedData.map((data) => data.PRODUCT_NAME),
         datasets: [{
             label: "Historical Monthly Sales",
             data: slicedData.map((data) => data.Historical_Monthly_Sales),
@@ -37,7 +37,7 @@ function InventoryBarChart({ barChartText, barChartData, labelsData, data }) {
     })
 
     const [userData2, setUserData2] = useState({
-        labels: slicedData.map((data) => data.Product_Name),
+        labels: slicedData.map((data) => data.PRODUCT_NAME),
         datasets: [{
             label: "Safety Stock Prediction Without Live Data",
             data: slicedData.map((data) => data.Safety_Stock_without_live_data),
@@ -59,7 +59,7 @@ function InventoryBarChart({ barChartText, barChartData, labelsData, data }) {
     })
 
     const [userData3, setUserData3] = useState({
-        labels: slicedData.map((data) => data.Product_Name),
+        labels: slicedData.map((data) => data.PRODUCT_NAME),
         datasets: [{
             label: "Daily Sales Without Live Data",
             data: slicedData.map((data) => data.Daily_Sales_Prediction_without_live_data),
