@@ -1,7 +1,5 @@
 import React, { useContext, useEffect, useState } from "react";
-
 import { FaRegCircleUser } from "react-icons/fa6";
-
 import "./Header.css";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
@@ -13,53 +11,61 @@ import { RxCross1 } from "react-icons/rx";
 import { LuArrowUpRight } from "react-icons/lu";
 
 const Header = ({ page = "" }) => {
-  const [isMenuOpened, setIsMenuOpened] = useState(false);
+    const [isMenuOpened, setIsMenuOpened] = useState(false);
+    const [showProfileDetails, setShowProfileDetails] = useState(false);
 
-  const navigate = useNavigate();
-  const {url, username, token, setToken, setUsername, userRole, setUserRole, loggedInUserDetails,
-    setLoggedInUserDetails } =
-    useContext(StoreContext);
+    const navigate = useNavigate();
+    const {
+        url,
+        username,
+        token,
+        setToken,
+        setUsername,
+        userRole,
+        setUserRole,
+        loggedInUserDetails,
+        setLoggedInUserDetails
+    } = useContext(StoreContext);
 
-  
-
-  const getLoggedUserInfo = async () => {
-    const email = localStorage.getItem("email");
-    const data = {
-      email: email,
+    const getLoggedUserInfo = async () => {
+        const email = localStorage.getItem("email");
+        if (!email) return;
+        try {
+            const response = await axios.post(`${url}/api/user/getLoggedUserDetails`, { email });
+            if (response.data.success) {
+                setLoggedInUserDetails(response.data.userLoggedData || []);
+            } else {
+                toast.error(response.data.message);
+            }
+        } catch (error) {
+            console.error(error);
+            toast.error("Failed to fetch user details");
+        }
     };
-    const response = await axios.post(
-      url + "/api/user/getLoggedUserDetails",
-      data
-    );
-    console.log(response.data.userLoggedData);
 
-    if (response.data.success) {
-      setLoggedInUserDetails(response.data.userLoggedData);
-    } else {
-      toast.error(response.data.message);
-    }
+    useEffect(() => {
+        getLoggedUserInfo();
+    }, []);
 
-    // console.log("Logged User Details", response.data)
-  };
-
-  useEffect(() => {
-    getLoggedUserInfo()
-  }, [])
-
-
-  const handleLogout = () => {
-    localStorage.removeItem("token");
-    localStorage.removeItem("username");
-    localStorage.removeItem("role");
-    localStorage.removeItem("email");
-    localStorage.removeItem("tokenExpiry");
+    const handleLogout = () => {
+    // clear everything
+    localStorage.clear();
     setToken("");
     setUsername("");
     setUserRole("");
-    navigate("/");
-  };
 
-  const handleIsMenuOpened = () => {
+    const isSSOLogin = localStorage.getItem("isSSOLogin");
+
+    // fallback to referrer check
+    if (isSSOLogin === "true" || document.referrer.includes("localhost:3000")) {
+        window.location.href = "http://localhost:3000/login"; // your SSO login URL
+    } else {
+        navigate("/login");
+    }
+};
+
+
+    const handleIsMenuOpened = () => {
     if (isMenuOpened === false) {
       setIsMenuOpened(true);
     } else {
@@ -67,104 +73,46 @@ const Header = ({ page = "" }) => {
     }
   };
 
-  const getGrantButtons = () => {
-    if (page !== "Grant Access") {
-      return (
+    const getGrantButtons = () => (
+        page !== "Grant Access" ? (
+            <div className="roles-header-tabs">
+                {(userRole === "CEO" || userRole === "COO" || userRole === "CTO") && (
+                    <Link to="/assignRoles">
+                        <button className="assign-roles">
+                            Assign Access
+                            <LuArrowUpRight className="roles-insights-icon" />
+                        </button>
+                    </Link>
+                )}
+            </div>
+        ) : (
+            <div className="roles-header-tabs">
+                <Link to="/dataModeling">
+                    <button className="assign-roles">
+                        Data Modeling
+                        <LuArrowUpRight className="roles-insights-icon" />
+                    </button>
+                </Link>
+                <Link to="/dashboards">
+                    <button className="assign-roles">
+                        PowerBI Dashboards
+                        <LuArrowUpRight className="roles-insights-icon" />
+                    </button>
+                </Link>
+            </div>
+        )
+    );
+
+    return (
         <>
-          <div className="roles-header-tabs">
-            {userRole === "CEO" || userRole === "COO" || userRole === "CTO" ? ( <>
-              <Link to="/assignRoles">
-                <button className="assign-roles">
-                  Assign Access
-                  <LuArrowUpRight className="roles-insights-icon" />
-                </button>
-              </Link>
-              {/* <Link to="/updateRoles">
-              <button className="assign-roles">
-                Manage Roles
-                <LuArrowUpRight className="roles-insights-icon" />
-              </button>
-            </Link> */}
-              </>
-            ) : (
-              ""
-            )}
-          </div>
-        </>
-      );
-    } 
-    else {
-      return (<>
-        <div className="roles-header-tabs">
-        
-          <Link to="/dataModeling">
-            <button className="assign-roles">
-              Data Modeling
-              <LuArrowUpRight className="roles-insights-icon" />
-            </button>
-          </Link>
-          <Link to="/dashboards">
-            <button className="assign-roles">
-              PowerBI Dashboards
-              <LuArrowUpRight className="roles-insights-icon" />
-            </button>
-          </Link>
-          {/* <Link to="/updateRoles">
-            <button className="assign-roles">
-              Manage Roles
-              <LuArrowUpRight className="roles-insights-icon" />
-            </button>
-          </Link> */}
-        </div>
-      </>
+            <div className="home-container">
+                <Link to="/home" className="header-home-heading">
+                    <h1 className="header-home-text">HANELYTICS</h1>
+                </Link>
 
-      )
-    }
-  };
+                {(userRole === "CTO" || userRole === "CEO" || userRole === "COO") && getGrantButtons()}
 
-  const getMobileResponsiveButtons = () => {
-    if (page !== "Grant Access") {
-      return (
-        <>
-          {userRole === "CEO" || userRole === "COO" || userRole === "CTO" ? <Link to="/assignRoles">
-            <button className="assign-roles">
-              Assign Access
-              <LuArrowUpRight className="roles-insights-icon" />
-            </button></Link> : ""}
-        </>
-      );
-    } else {
-      return (
-        <div className="roles-mobile-header-tabs">
-
-          <Link to="/dataModeling">
-            <button className="assign-roles">
-              Data Modeling
-              <LuArrowUpRight className="roles-insights-icon" />
-            </button>
-          </Link>
-          <Link to="/dashboards">
-            <button className="assign-roles">
-              Power BI Dashboards
-              <LuArrowUpRight className="roles-insights-icon" />
-            </button></Link>
-        </div>
-
-      )
-    }
-  };
-
-  return (
-    <>
-      <div className="home-container">
-        <Link to="/home" className="header-home-heading">
-          <h1 className="header-home-text">HANELYTICS</h1>
-        </Link>
-        <div>
-          {userRole === "CTO" ||
-            userRole === "CEO" ||
-            userRole === "COO" ? <>{getGrantButtons()}</> : ""}</div>
-        <div className="drop-down1">
+                <div className="drop-down1">
           <div className="icon-username1" style={{ position: "relative" }}>
             <FaRegCircleUser className="user-icon1" />
             {/* <p className="username-text1">{username}</p> */}

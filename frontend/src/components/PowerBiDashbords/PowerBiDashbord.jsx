@@ -2655,14 +2655,33 @@ const PowerBiDashboard = () => {
     }
   };
 
-  const handleModelLogout = async () => {
+  /*const handleModelLogout = async () => {
     localStorage.removeItem("token");
     localStorage.removeItem("username");
     localStorage.removeItem("role");
     localStorage.removeItem("email");
     localStorage.removeItem("tokenExpiry");
     navigate("/");
+  };*/
+
+  const handleModelLogout = () => {
+    // Clear local storage
+    localStorage.clear();
+    // Clear context state
+    setToken("");
+    setUsername(""); 
+    setLoggedInUserDetails([]);
+
+    const isSSOLogin = localStorage.getItem("isSSOLogin");
+
+    // Fallback to referrer check
+    if (isSSOLogin === "true" || document.referrer.includes("localhost:3000")) {
+      window.location.href = "http://localhost:3000/login"; // SSO login URL
+    } else {
+      navigate("/login");
+    }
   };
+
 
   const openMsg = () => {
     if (isMsgOpened === false) {

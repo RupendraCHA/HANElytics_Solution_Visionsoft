@@ -1,7 +1,6 @@
 import React, { useState, useEffect, useContext } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
 import "./logIn.css";
 import Navbar from "../Navbar/Navbar";
 import { toast } from "react-toastify";
@@ -9,54 +8,34 @@ import { StoreContext } from "../../context/StoreContext";
 import Footer from "../Footer/Footer";
 
 function Login() {
-  const [data, setData] = useState({
-    email: "",
-    password: "",
-  });
+  const [data, setData] = useState({ email: "", password: "" });
   const navigate = useNavigate();
   const [isHovered, setIsHovered] = useState(false);
-
-  const {
-    url,
-    setToken,
-    setUsername,
-    token,
-    username,
-    setUserRole,
-    
-  } = useContext(StoreContext);
+  const { url, setToken, setUsername, setUserRole } = useContext(StoreContext);
+  const [isExist, setExist] = useState(false);
+  const [errorMsg, setErrorMsg] = useState("");
+  const [changePassword, setChangePassword] = useState(true);
 
   const CustomCloseIcon = ({ closeToast }) => (
-    <span
-      onClick={closeToast}
-      style={{
-        color: "red",
-        cursor: "pointer",
-        fontWeight: "bold",
-        display: "flex",
-        alignItems: "center",
-      }}
-    >
+    <span onClick={closeToast} style={{ color: "red", cursor: "pointer", fontWeight: "bold" }}>
       ✖
     </span>
   );
 
-  const getInfoToast = (toastText) => {
-    return toast.info(`${toastText}`, {
+  const getToast = (msg, type = "info") => {
+    toast[type](msg, {
       position: "top-right",
       closeButton: CustomCloseIcon,
       style: {
         fontSize: "16px",
         padding: "8px 12px",
-        height: "30px",
         borderRadius: "8px",
         color: "#000",
-        backgroundColor: "#fff",
+        backgroundColor: type === "success" ? "#d4edda" : "#fff",
         fontWeight: "600",
       },
     });
   };
-
   const getSuccessToast = (toastText) => {
     return toast.success(`${toastText}`, {
       position: "top-right",
@@ -72,123 +51,109 @@ function Login() {
       },
     });
   };
-
-
-  const startTheServer = async () => {
-    const response = await axios.get(url);
-    if (response.data.message) {
-      // toast.success("");
-      getInfoToast("All setup completed, You can Login now.");
-    } else {
-      getInfoToast("Give us a minute to setup things for you, then you can proceed.");
-
+  const startServer = async () => {
+    try {
+      const { data } = await axios.get(url);
+      if (data.message) {
+        getToast("All setup completed, you can login now.", "success");
+      } else {
+        getToast("Setting up the server, please wait...", "info");
+      }
+    } catch (error) {
+      console.error(error);
+      getToast("Server setup failed. Please try again.", "error");
     }
-    console.log(response.data.message);
   };
 
-
   useEffect(() => {
-    startTheServer();
+    startServer();
     const jwtToken = localStorage.getItem("token");
-    if (jwtToken) {
-      navigate("/home");
+    const expiry = localStorage.getItem("tokenExpiry");
+
+    if (jwtToken && expiry && parseInt(expiry) > Date.now()) {
+        navigate("/home");
     } else {
-      navigate("/login");
+        // Token expired, clear storage
+        localStorage.removeItem("token");
+        localStorage.removeItem("username");
+        localStorage.removeItem("role");
+        localStorage.removeItem("email");
+        localStorage.removeItem("tokenExpiry");
     }
-  }, []);
+}, []);
+
 
   const handleInputChange = (e) => {
     setExist(false);
-    const name = e.target.name;
-    const value = e.target.value;
-
-    setData((data) => ({
-      ...data,
-      [name]: value,
-    }));
+    const { name, value } = e.target;
+    setData((prev) => ({ ...prev, [name]: value }));
   };
-
-  const [isExist, setExist] = useState(false);
-  const [errorMsg, setErrorMsg] = useState("");
-  const [changePassword, setChangePassword] = useState(true);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    // console.log(data)
     setExist(false);
-    const response = await axios.post(url + "/api/user/login", data);
-    console.log(response.data);
+    try {
+      const { data: res } = await axios.post(`${url}/api/user/login`, data);
+      if (res.success) {
+        setToken(res.token);
+        const expiresIn = 30 * 60 * 1000; // 30 minutes expiry
+        const expiryTime = Date.now() + expiresIn;
+        localStorage.setItem("token", res.token);
+        localStorage.setItem("username", res.name);
+        localStorage.setItem("role", res.role);
+        localStorage.setItem("email", res.email);
+        localStorage.setItem("tokenExpiry", expiryTime.toString());
+        localStorage.setItem("isSSOLogin", "true");
 
-    if (response.data.success) {
-      setExist(false);
-      setToken(response.data.token);
-      const expiresIn = 180 * 60 * 1000; // One hour expairy
-      const expiryTime = Date.now() + expiresIn;
-      localStorage.setItem("token", response.data.token);
-      localStorage.setItem("username", response.data.name);
-      localStorage.setItem("role", response.data.role);
-      localStorage.setItem("email", response.data.email);
-      localStorage.setItem("tokenExpiry", expiryTime.toString());
-
-      setUsername(response.data.name);
-      setUserRole(response.data.role);
-      console.log(response.data.role);
-      getSuccessToast(response.data.name + " " + response.data.message);
-      navigate("/home");
-    } else {
-      setErrorMsg(response.data.message);
-      setExist(true);
+        setUsername(res.name);
+        setUserRole(res.role);
+        getToast(`${res.name} ${res.message}`, "success");
+        navigate("/home");
+      } else {
+        setErrorMsg(res.message);
+        setExist(true);
+      }
+    } catch (error) {
+      console.error(error);
+      getToast("Login failed. Please try again.", "error");
     }
   };
 
-  const handleForgotPassword = (boolValue) => {
-    setChangePassword(boolValue);
-  };
+  const handleForgotPassword = () => setChangePassword(false);
 
   const handleUpdatePassword = async (e) => {
     e.preventDefault();
-
     try {
-      const response = await axios.post(url + "/api/user/updatePassword", data);
-      // navigate("/login")
-      if (response.data.success) {
+      const { data: res } = await axios.post(`${url}/api/user/updatePassword`, data);
+      if (res.success) {
         setChangePassword(true);
-        toast.success(response.data.message);
+        getToast(res.message, "success");
       } else {
-        toast.error(response.data.message);
+        getToast(res.message, "error");
       }
     } catch (error) {
-      console.log(`Error: ${error.message}`);
+      console.error(error);
+      getToast("Error updating password.", "error");
     }
   };
 
   return (
     <>
       {changePassword && (
-        <div className="bg-container-login d-flex justify-content-center align-items-center bg-secondary vh-100">
-          <div
-            className="login-page"
-            style={{
+        <div className="bg-container-login d-flex justify-content-center align-items-center vh-100">
+          <div className="login-page" style={{
               // backgroundColor: "#0787e3",
               backgroundColor: "#fff",
-            }}
-          >
-            {/* Explore Our HANElytics AI/ML Solutions */}
-            {/* <h4 style={{fontSize: "16px"}}>Explore Our HANElytics AI/ML Solutions</h4> */}
-            <h4 style={{ fontSize: "18px" }}>
-              HANElytics simplifies predictive insights by turning complex data
+            }}>
+            <h4 style={{ fontSize: "18px" }}>HANElytics simplifies predictive insights by turning complex data
               into clear dashboards, intuitive graphs, and structured tables and
-              many more.
-            </h4>
+              many more.</h4>
           </div>
-          <div
-            className="p-4  login-card"
-            style={{
+          <div className="p-4 login-card" style={{
               height: "60vh",
               //  backgroundColor: "#1e66d9",
               backgroundColor: "#fff",
-            }}
-          >
+            }}>
             <h2 style={{ textAlign: "center", fontWeight: "600" }}>Login</h2>
             <form onSubmit={handleSubmit}>
               <div className="mb-3">
@@ -301,5 +266,4 @@ function Login() {
     </>
   );
 }
-
 export default Login;
