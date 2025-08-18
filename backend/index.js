@@ -24,7 +24,12 @@ app.use(bodyParser.json());
 
 
 
-app.use(cors());
+app.use(cors(
+  {
+  origin: ["http://localhost:5173", "http://localhost:5174", "https://hanelytics-solution-visionsoft-1.onrender.com", "https://hanelytics-ai-ml-solutions-frontend.onrender.com"],
+  credentials: true
+}
+));
 
 app.use("/api/user", userRouter);
 app.use("/api/model", dataModelResultsRouter);
