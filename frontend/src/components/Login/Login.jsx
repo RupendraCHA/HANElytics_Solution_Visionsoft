@@ -96,7 +96,7 @@ function Login() {
       const { data: res } = await axios.post(`${url}/api/user/login`, data);
       if (res.success) {
         setToken(res.token);
-        const expiresIn = 30 * 60 * 1000; // 30 minutes expiry
+        const expiresIn = 480 * 60 * 1000; // 8hrs expiry
         const expiryTime = Date.now() + expiresIn;
         localStorage.setItem("token", res.token);
         localStorage.setItem("username", res.name);
