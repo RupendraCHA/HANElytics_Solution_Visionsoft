@@ -1,9 +1,9 @@
 .grant-access-bg-container {
   padding: 0px 100px;
-  background-color: #dadae3;
+  background-color: #84a4b938;
   height: 100vh;
   overflow: auto;
-  padding-top: 10px;
+  padding-top: 100px;
   
 }
 
@@ -17,7 +17,7 @@
   flex-direction: column;
 }
 .grant-access-page-heading {
-  font-size: 22px;
+  font-size: 16px;
   color: #000;
   font-weight: 600;
 }
@@ -71,9 +71,9 @@
     display: flex;
     align-items: center;
     gap: 5px;
-
+  font-size: 12px;
     span{
-        color:#0c2cbd ;
+        color:#044973 ;
     }
   }
 
@@ -107,12 +107,13 @@
     width: 100%;
     border: none;
     outline: none;
-    padding: 4px 10px ;
+    padding: 2px 10px ;
     cursor: pointer;
     font-weight: 600;
+    font-size: 12px;
 }
 .user-search-icon{
-    font-size: 16px;
+    font-size: 14px;
     cursor: pointer;
     color: #0c2cbd;
     /* border: 1px solid #0c2cbd; */
@@ -121,12 +122,13 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background-color: #1d58c54c;
+    background-color: #1d58c51e;
     padding:6px;
     border-radius: 6px;
     cursor: pointer;
     box-shadow: 3px 3px 3px #0000005c;
     color: #000;
+    border: 1px solid #044973;
 
     .card-name-icon{
       display: flex;
@@ -135,8 +137,9 @@
 }
 
 .users-card:hover{
-  background-color: #353ccb96;
-  transform: scale(1.04);
+  /* background-color: #8195a2; */
+  transform: scale(1.01);
+  /* color: #fff; */
 }
 .highlight-user{
   background-color:#000000ca !important;
@@ -155,7 +158,7 @@
     justify-content: center;
     gap: 2px;
     font-weight: 600;
-    font-size: 16px;
+    font-size: 10px;
 
     
 }
@@ -177,8 +180,7 @@ color: #0c2cbd;
     /* opacity: 0.8; */
     color: #808080d1;
     margin: 0;
-    font-size: 13px;
-
+    font-size: 10px;
 }
 @media (max-width: 576px){
     .users-card{
@@ -275,12 +277,12 @@ color: #0c2cbd;
 
 .upload-shortcut{
   font-weight: 600;
-  color: red;
+  color: #044973;
   /* border: 1px solid #1d58c5; */
   border: 1px solid black;
   border-radius: 4px;
   padding: 2px 4px;
-  font-size: 16px;
+  font-size: 12px;
   cursor: pointer;
   display: flex;
   align-items: center;
@@ -296,7 +298,7 @@ color: #0c2cbd;
   color: red;
 
   font-weight: 600;
-  font-size: 16px;
+  font-size: 12px;
 }
 .upload-btn{
   padding: 4px 10px;
@@ -327,7 +329,7 @@ color: #0c2cbd;
 .dashboard-details-section{
   display: grid;
   /* justify-content: space-between; */
-  grid-template-columns: 0.6fr 0.8fr 3.5fr 2fr 2fr 3fr 0.6fr 1fr;
+  grid-template-columns: 0.3fr 0.5fr 3fr 1.5fr 1fr 1.8fr 0.4fr 0.4fr;
   padding: 4px 8px 0px 8px;
   border: 1px solid #80808094;
   /* border-bottom: none; */
@@ -335,11 +337,12 @@ color: #0c2cbd;
   background-color: #e2e3e586;
 
   h3{
-  font-size: 14px;
+  font-size: 10px;
   font-weight: 600;
-  height: 40px;
+  /* height: 40px; */
   display: flex;
   align-items: center;
+  padding: 3px 0px;
   /* text-align: center; */
   }
 }
@@ -406,11 +409,13 @@ color: #0c2cbd;
 }
 .table-header-icon{
   color: #1d58c5;
+  font-size: 13px;
 }
 .grant-access-page-info{
-  font-size: 13px;
+  font-size: 11px;
   padding: 0;
   margin: 0;
+  font-weight: 500;
 }
 .active-user-details{
   display: flex;
@@ -421,12 +426,15 @@ color: #0c2cbd;
   width: 110%;
 
   h1{
-    font-size: 18px;
+    font-size: 14px;
     font-weight: 600;
     span{
       color: #0522e1;
 
     }
+  }
+  p{
+    font-weight: 500;
   }
   button{
     font-size: 12px;

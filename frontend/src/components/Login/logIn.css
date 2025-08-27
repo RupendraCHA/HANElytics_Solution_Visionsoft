@@ -4,15 +4,13 @@
   box-sizing: border-box;
 }
 .bg-container-login {
-  /* background-image: url("https://res.cloudinary.com/dvxkeeeqs/image/upload/v1729229000/image3_1_ac1jk3.jpg"); */
-  /* background-image: linear-gradient(to bottom, #0c1ee2, #5b7dcd); */
-  background-image: linear-gradient(to bottom, #5b7dcd);
+  /* background-image: linear-gradient(to bottom, #0598f32e); */
 
+  background-color: #0598f32e;
   min-height: 100vh;
   background-size: cover;
   overflow: auto;
   padding-bottom: 100px;
-  background-color: #000;
 }
 .login-page {
   /* background-image: linear-gradient(to right, #000, green, #000); */
@@ -26,8 +24,9 @@
   h4 {
     /* width: 180px; */
     text-align: center;
-    color: white;
-    background-color: #000;
+    /* color: white; */
+    color: #fff;
+    background-color: #044973;
     padding: 15px;
     border-radius: 6px;
     box-shadow: 2px 2px 2px #c6ccc6;
@@ -66,11 +65,22 @@
   font-weight: 700;
   padding-left: 10px;
   color: black !important;
+  font-size: 12px;
+}
+
+form {
+  div{
+    label{
+      strong{
+        font-size: 12px;
+      }
+    }
+  }
 }
 .forgot-password {
   display: flex;
   justify-content: flex-end;
-  font-size: 14px;
+  font-size: 10px;
   font-weight: 600;
   cursor: pointer;
 
@@ -83,7 +93,7 @@
   }
   span:hover {
     text-decoration: underline;
-    color: blue;
+    /* color: blue; */
   }
 }
 .error-msg {
@@ -110,7 +120,7 @@
   color: white;
 
   .change-password-card {
-    background-color: #000;
+    background-color: #0000007b;
     padding: 40px 30px;
     border-radius: 12px;
     /* height: 40vh; */
@@ -126,15 +136,15 @@
       flex-direction: column;
 
       label {
-        font-size: 16px;
+        font-size: 12px;
         font-weight: 500;
       }
 
       input {
-        font-size: 16px;
-        padding: 10px;
+        font-size: 12px;
+        padding: 6px;
         border-radius: 6px;
-        border: 3px solid red;
+        border: 3px solid #ff000052;
         outline: none;
         font-weight: 600;
         color: blue;
@@ -142,12 +152,12 @@
     }
   }
   button {
-    background-color: blue;
+    background-color: #0000ffba;
     color: white;
     border: none;
     outline: none;
-    padding: 12px;
-    font-size: 16px;
+    padding: 8px;
+    font-size: 12px;
     font-weight: bold;
   }
   .go-to-login {
@@ -180,6 +190,8 @@
 }
 .register{
   background-color: #2c8cb88e;
+  font-size: 12px;
+
 }
 .register:hover{
   background-color: #000;
@@ -190,6 +202,7 @@
   /* background-color: #0e91d7; */
   background-color: #082ccd;
   color: #fff;
+  font-size: 12px;
 
 }
 .login:hover{

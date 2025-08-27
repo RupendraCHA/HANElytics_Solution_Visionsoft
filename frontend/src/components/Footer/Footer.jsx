@@ -38,16 +38,6 @@ const Footer = () => {
               className="website-logo"
             />
           </a>
-          {/* <a
-            href="https://www.quantumvision.com/it-consulting-and-staffing-solutions-about-us"
-            target="_blank"
-          >
-            <img
-              // src="https://res.cloudinary.com/dvxkeeeqs/image/upload/v1736189097/QVLogo_yifukr.jpg"
-              src="https://res.cloudinary.com/dvxkeeeqs/image/upload/v1736189593/QVLogo1_odx3v3.jpg"
-              className="website-logo"
-            />
-          </a> */}
         </div>
       </div>
       {/* <hr /> */}

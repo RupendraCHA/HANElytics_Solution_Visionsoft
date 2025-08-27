@@ -440,7 +440,7 @@ const GrantAccess = () => {
           <h1 className="grant-access-page-heading">
             User Dashboard Management <br />
             <span className="grant-access-page-info">
-              Efficiently manage accessing users to the dashboards. Select a
+              Efficiently manage users accessing to the dashboards. Select a
               user from users list and update the dashboards visibility to them
               accordingly to the requirements.
             </span>
@@ -728,7 +728,7 @@ const GrantAccess = () => {
                               <div className="dashboard-details-section">
                                 <h3
                                   className="table-header-icon"
-                                  style={{ fontSize: "16px" }}
+                                  style={{ fontSize: "13px" }}
                                 >
                                   S.No
                                 </h3>
@@ -743,38 +743,38 @@ const GrantAccess = () => {
                                   className="table-header-icon"
                                   style={{
                                     marginLeft: "5px",
-                                    fontSize: "16px",
+                                    fontSize: "13px",
                                   }}
                                 >
                                   Dashboard
                                 </h3>
                                 <h3
                                   className="table-header-icon"
-                                  style={{ fontSize: "16px" }}
+                                  style={{ fontSize: "13px" }}
                                 >
                                   Category
                                 </h3>
                                 <h3
                                   className="table-header-icon"
-                                  style={{ fontSize: "16px" }}
+                                  style={{ fontSize: "13px" }}
                                 >
                                   Uploaded By
                                 </h3>
                                 <h3
                                   className="table-header-icon"
-                                  style={{ fontSize: "16px" }}
+                                  style={{ fontSize: "13px" }}
                                 >
                                   Time of Upload
                                 </h3>
                                 <h3
                                   className="table-header-icon"
-                                  style={{ fontSize: "16px" }}
+                                  style={{ fontSize: "13px" }}
                                 >
                                   Edit
                                 </h3>
                                 <h3
                                   className="table-header-icon"
-                                  style={{ fontSize: "16px" }}
+                                  style={{ fontSize: "13px" }}
                                 >
                                   Delete
                                 </h3>
@@ -808,7 +808,7 @@ const GrantAccess = () => {
                                       <img
                                         src={`${assets.DashboardImage}`}
                                         alt="DashboardImage"
-                                        width={35}
+                                        width={25}
                                       />
                                       {dashboard.dashboardName}
                                     </h3>
@@ -822,7 +822,7 @@ const GrantAccess = () => {
                                         src={assets.CalenderClock}
                                         alt={`${dashboard.createdAt}Image`}
                                         className="time-icon"
-                                        width={30}
+                                        width={25}
                                       />
                                       {`${new Date(
                                         dashboard.createdAt
@@ -866,6 +866,7 @@ const GrantAccess = () => {
                                 }`}
                                 onClick={() => goToPage(currentPage - 1)}
                                 disabled={currentPage === 1}
+                                style={{fontSize: "12px", padding: "3px 10px" }}
                               >
                                 Prev
                               </button>
@@ -875,7 +876,7 @@ const GrantAccess = () => {
                                   key={i}
                                   onClick={() => goToPage(i + 1)}
                                   style={{
-                                    padding: "5px 10px",
+                                    padding: "2px 10px",
                                     backgroundColor:
                                       currentPage === i + 1
                                         ? "#007bff"
@@ -886,7 +887,8 @@ const GrantAccess = () => {
                                     borderRadius: "4px",
                                     cursor: "pointer",
                                     fontWeight: "600",
-                                    boxShadow: "2px 2px 2px #000"
+                                    boxShadow: "2px 2px 2px #000",
+                                    fontSize: "12px"
                                   }}
                                 >
                                   {i + 1}
@@ -901,6 +903,8 @@ const GrantAccess = () => {
                                 }`}
                                 onClick={() => goToPage(currentPage + 1)}
                                 disabled={currentPage === totalPages}
+                                style={{fontSize: "12px", padding: "3px 10px" }}
+
                               >
                                 Next
                               </button>

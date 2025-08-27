@@ -664,12 +664,12 @@ const DataModeling = () => {
               <div style={{ position: "relative" }}>
                 <h4
                   onClick={() => handleIsOpened("data-models")}
-                  style={{ color: "#000", fontSize: "13px" }}
+                  style={{ color: "#000", fontSize: "10px" }}
                   className={`tabHeading ${dataModelOpen === "data-models" && "tab-heading"}`}
                 >
                   Data Models
                   <MdKeyboardArrowUp
-                    style={{ fontSize: "28px" }}
+                    style={{ fontSize: "16px" }}
                     className={`"arrow" ${dataModelOpen === "data-models" ? "arrow-down" : ""}`}
                   />
                 </h4>
@@ -701,12 +701,12 @@ const DataModeling = () => {
               <div style={{ position: "relative" }}>
                 <h4
                   onClick={() => handleMigrateData("migrate-data")}
-                  style={{ color: "#000", fontSize: "13px" }}
+                  style={{ color: "#000", fontSize: "10px" }}
                   className={`tabHeading ${migrateModelOpen === "migrate-data" && "tab-heading"}`}
                 >
                   Data Feedback
                   <MdKeyboardArrowUp
-                    style={{ fontSize: "28px" }}
+                    style={{ fontSize: "16px" }}
                     className={`${migrateModelOpen === "migrate-data" ? "arrow-down" : ""}`}
                   />
                 </h4>
@@ -730,9 +730,9 @@ const DataModeling = () => {
               <h4
                 onClick={() => navigate("/dashboards")}
                 className="tabHeading tab-heding"
-                style={{ color: "#000", fontSize: "13px", display: "flex", alignItems: "center" }}
+                style={{ color: "#000", fontSize: "10px", display: "flex", alignItems: "center" }}
               >
-                Power BI Dashboards
+                View BI Dashboards
                 <LuArrowUpRight className="roles-insights-icon" />
               </h4>
             </div>
@@ -967,7 +967,7 @@ const DataModeling = () => {
             </div>
           </section>
           {hideShow && (
-            <div className="charts-section select-model-name empty-bg-image" style={{ backgroundColor: "#5b7dcd" }}>
+            <div className="charts-section select-model-name empty-bg-image" style={{ backgroundColor: "#044973" }}>
               <h2 className="select-text">
                 Select a Tab, to view Data Model Insights or for Data Feedback
               </h2>
@@ -976,7 +976,7 @@ const DataModeling = () => {
           {loadModelData && (
             <div
               className="charts-section select-model-name empty-bg-image"
-              style={{ backgroundImage: "none", backgroundColor: "#fff" }}
+              style={{ backgroundImage: "none", backgroundColor: "#044973" }}
             >
               <div>
                 {isLoadingTrue && <div className="spinner"></div>}
@@ -989,7 +989,7 @@ const DataModeling = () => {
           {!sendData1 && (
             <div
               className="charts-section select-model-name empty-bg-image"
-              style={{ backgroundImage: "none", backgroundColor: "#fff" }}
+              style={{ backgroundImage: "none", backgroundColor: "#044973" }}
             >
               <div>
                 {isLoadingTrue && <div className="spinner"></div>}
@@ -1000,7 +1000,7 @@ const DataModeling = () => {
           {!sendData && (
             <div
               className="charts-section select-model-name empty-bg-image"
-              style={{ backgroundImage: "none", backgroundColor: "#fff" }}
+              style={{ backgroundImage: "none", backgroundColor: "#044973" }}
             >
               <div>
                 {isLoadingTrue && <div className="spinner"></div>}
@@ -1011,7 +1011,7 @@ const DataModeling = () => {
           {!sendData2 && (
             <div
               className="charts-section select-model-name empty-bg-image"
-              style={{ backgroundImage: "none", backgroundColor: "#fff" }}
+              style={{ backgroundImage: "none", backgroundColor: "#044973" }}
             >
               <div>
                 {isLoadingTrue && <div className="spinner"></div>}

@@ -145,19 +145,19 @@ function Login() {
               // backgroundColor: "#0787e3",
               backgroundColor: "#fff",
             }}>
-            <h4 style={{ fontSize: "18px" }}>HANElytics simplifies predictive insights by turning complex data
+            <h4 style={{ fontSize: "14px" }}>HANElytics simplifies predictive insights by turning complex data
               into clear dashboards, intuitive graphs, and structured tables and
               many more.</h4>
           </div>
           <div className="p-4 login-card" style={{
               height: "60vh",
-              //  backgroundColor: "#1e66d9",
-              backgroundColor: "#fff",
+               backgroundColor: "#044973",
+              // backgroundColor: "#fff",
             }}>
-            <h2 style={{ textAlign: "center", fontWeight: "600" }}>Login</h2>
+            {/* <h2 style={{ textAlign: "center", fontWeight: "600", fontSize: "16px" }}>Login</h2> */}
             <form onSubmit={handleSubmit}>
               <div className="mb-3">
-                <label htmlFor="email" style={{ color: "#000" }}>
+                <label htmlFor="email" style={{ color: "#fff" }}>
                   <strong>Email</strong>
                   <span className="required-mark">*</span>
                 </label>
@@ -172,7 +172,7 @@ function Login() {
                 />
               </div>
               <div className="mb-3">
-                <label htmlFor="password" style={{ color: "#000" }}>
+                <label htmlFor="password" style={{ color: "#fff" }}>
                   <strong>Password</strong>
                   <span className="required-mark">*</span>
                 </label>
@@ -254,11 +254,13 @@ function Login() {
             <button type="submit" className="update-password-button">
               Update Password
             </button>
-            <div className="go-to-login">
-              <span onClick={() => handleForgotPassword(true)}>
+            {/* <div className="go-to-login">
+              <span onClick={() => 
+                handleForgotPassword(false)
+                }>
                 Go to Login
               </span>
-            </div>
+            </div> */}
           </form>
         </div>
       )}

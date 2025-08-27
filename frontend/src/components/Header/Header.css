@@ -1,15 +1,17 @@
 .home-container {
-  /* width: 80%; */
   margin: auto;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 10px 100px 0px 100px;
-  /* background-color: #2431c3; */
-  background-color: #2b59c5;
+  padding: 0px 100px;
+  /* background-color: #2b59c5; */
+  background-color: #044973;
   color: #fff;
   border-bottom: 1px solid #fff;
-  gap: 10px;
+  /* gap: 10px; */
+  position: fixed;
+  z-index: 1000;
+  width: 100%;
 }
 
 @media (max-width: 768px) {
@@ -93,7 +95,7 @@
 .header-home-heading .header-home-text {
   color: #000;
   font-family: "Roboto";
-  font-size: 28px;
+  font-size: 16px;
   font-weight: 600;
   cursor: pointer;
   border: 2px solid #000;
@@ -121,8 +123,8 @@
 
 
 .drop-down1 button {
-  width: 80px;
-  height: 40px;
+  /* width: 80px;
+  height: 40px; */
   border: 1px solid #0e0e0e;
   background-color: #fff;
   color: red;
@@ -130,6 +132,8 @@
   border-radius: 6px;
   box-shadow: 3px 3px 0px #fff;
   margin-bottom: 30px;
+  font-size: 12px;
+  padding: 4px 12px;
 }
 
 @media (max-width:768px) {
@@ -159,7 +163,7 @@
 
 .username-text1 {
   color: #fff;
-  font-size: 13px;
+  font-size: 10px;
   font-weight: 600;
 }
 
@@ -190,34 +194,39 @@
 
 .user-icon1 {
 
-  width: 40px;
-  height: 40px;
+  width: 25px;
+  height: 25px;
   color: #000;
   background-color: #fff;
-  padding: 6px;
+  padding: 3px;
   border-radius: 5px;
   box-shadow: 3px 3px 0px #000;
   /* margin-top: 30px; */
 }
 
+.bth-for-logout{
+  font-size: 12px;
+}
+
 @media (max-width: 768px) {
   .user-icon1 {
-    width: 30px;
-    height: 30px;
+    width: 20px;
+    height: 20px;
   }
 }
 
 .assign-roles {
-  background-color: #fff;
+  /* background-color: #fff; */
   box-shadow: 2px 2px 2px #0e0e0e;
-  border-radius: 8px;
-  font-size: 13px;
+  border-radius: 4px;
+  font-size: 10px;
   font-weight: 600;
   padding: 4px 12px;
   border: 1px solid #fff;
   display: flex;
   align-items: center;
 }
+
 
 .assign-roles:hover {
   text-decoration: underline;
@@ -237,6 +246,10 @@
 .roles-header-tabs {
   display: flex;
   gap: 10px;
+
+  button{
+    font-size: 10px;
+  }
 }
 
 .roles-mobile-header-tabs {
@@ -246,7 +259,7 @@
 }
 
 .logged-user-name {
-  font-size: 16px;
+  font-size: 10px;
   font-weight: bold;
   margin: 0;
   padding: 0;
@@ -315,4 +328,15 @@
 
 #btn-for-logout {
   font-size: 12px;
+}
+.assign-roles1 {
+  /* background-color: #fff; */
+  box-shadow: 2px 2px 2px #0e0e0e;
+  border-radius: 4px;
+  font-size: 10px;
+  font-weight: 600;
+  padding: 4px 12px;
+  border: 1px solid #fff;
+  display: flex;
+  align-items: center;
 }

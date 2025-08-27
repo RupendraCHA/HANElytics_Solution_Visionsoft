@@ -15,6 +15,7 @@ import { FaHandPointRight } from "react-icons/fa";
 import { assets } from "../../assets/assets";
 import { IoIosArrowDown } from "react-icons/io";
 
+
 function InitialPage() {
   const navigate = useNavigate();
   const { url } = useContext(StoreContext);
@@ -34,7 +35,7 @@ function InitialPage() {
     if (jwtToken) {
       navigate("/home");
     } else {
-      navigate("/");
+      navigate("/login");
     }
   }, []);
 
@@ -47,12 +48,10 @@ function InitialPage() {
   };
 
   const viewAnswerOnClick = (id) => {
-    setAnswerId(answerId === id ? null : id)
-  }
+    setAnswerId(answerId === id ? null : id);
+  };
 
-  const setActiveSectionText = (section) => {
-
-  }
+  const setActiveSectionText = (section) => {};
 
   const keyFeatures = [
     {
@@ -90,147 +89,157 @@ function InitialPage() {
   const modelsOverview = [
     {
       modelId: 1,
-      title: "1. Inventory Reorder Point & Safety Stock Prediction - With and Without Live Data",
+      title:
+        "1. Inventory Reorder Point & Safety Stock Prediction - With and Without Live Data",
       description:
         "Predict optimal reorder points and safety stock levels using AI/ML to prevent stockouts or overstock situations—improving supply chain efficiency.",
-      image: `${assets.Inventory_model}`
+      image: `${assets.Inventory_model}`,
     },
     {
       modelId: 2,
       title: "2. Revenue & Demand Sensing for Pharmaceuticals",
       description:
         "Forecasts revenue generation based on market behavior, seasonal trends, and historical sales data to get insight on which category giving more profits.",
-      image: `${assets.Clinical_model}`
+      image: `${assets.Clinical_model}`,
     },
     {
       modelId: 3,
       title: "3. Medical Equipment Risk Detection & Failure Prevention",
       description:
         "Predicted results are displayed in a clean, structured table format, showcasing each key metric individually for easy review and interpretation.",
-      image: `${assets.Equipment_model}`
+      image: `${assets.Equipment_model}`,
     },
     {
       modelId: 4,
-      title: "4. Reorder Point & Safety Stock Predictions for Clinical Drugs/Medicine",
+      title:
+        "4. Reorder Point & Safety Stock Predictions for Clinical Drugs/Medicine",
       description:
         "Ensure availability of critical clinical medicines by forecasting demand and recommending adequate buffer stock levels without interrupting the patient care.",
-      image: `${assets.Revenue_model}`
+      image: `${assets.Revenue_model}`,
     },
     {
       modelId: 5,
       title: "5. Predicting Reams of Paper & Ink (Liters)",
       description:
         "This model forecasts the future consumption of reams of paper and liters of ink using historical usage data and printing trends.",
-      image: `${assets.PaperInk_model}`
+      image: `${assets.PaperInk_model}`,
     },
-
   ];
 
   const capabilities = [
     {
       id: 1,
-      text: "Multi-Model Integration"
+      text: "Multi-Model Integration",
     },
     {
       id: 2,
-      text: "User-Centric Design"
+      text: "User-Centric Design",
     },
     {
       id: 3,
-      text: "Data Transparency & Drill-Down"
+      text: "Data Transparency & Drill-Down",
     },
     {
       id: 4,
-      text: "Enterprise Scalability"
+      text: "Enterprise Scalability",
     },
     {
       id: 5,
-      text: "Role-based access (Admin/User) for controlled experience"
+      text: "Role-based access (Admin/User) for controlled experience",
     },
     {
       id: 6,
-      text: "No-Code Visualization Integration"
+      text: "No-Code Visualization Integration",
     },
     {
       id: 7,
-      text: "Unified view of datasets, predictions, graphs, and dashboards"
+      text: "Unified view of datasets, predictions, graphs, and dashboards",
     },
     {
       id: 8,
-      text: "Downloadable results for portability and analysis"
+      text: "Downloadable results for portability and analysis",
     },
     {
       id: 9,
-      text: "Quick Deployment & Easy Adoption"
+      text: "Quick Deployment & Easy Adoption",
     },
     {
       id: 10,
-      text: "Many more in progress..."
+      text: "Many more in progress...",
     },
-  ]
+  ];
 
   const whyChooseHANElytics = [
     {
       id: 1,
       text: "Smart Predictions, Simplified Interface",
-      description: "Built for business and no technical knowledge needed."
+      description: "Built for business and no technical knowledge needed.",
     },
     {
       id: 2,
       text: "Unified Data Platform",
-      description: "Say goodbye to scattered tools. Hanelytics brings data, intelligence, and action under one roof."
+      description:
+        "Say goodbye to scattered tools. Hanelytics brings data, intelligence, and action under one roof.",
     },
     {
       id: 3,
       text: "Professional, Responsive Design",
-      description: "Fast, modern interface that works seamlessly across desktop and mobile devices."
+      description:
+        "Fast, modern interface that works seamlessly across desktop and mobile devices.",
     },
     {
       id: 4,
       text: "Secure & Scalable",
-      description: "Built on secure architecture with performance and scalability in mind"
+      description:
+        "Built on secure architecture with performance and scalability in mind",
     },
-  ]
+  ];
 
   const faqs = [
     {
       id: 1,
       question: "What is HANElytics?",
-      answer: "HANElytics is a unified analytics platform that leverages AI/ML models and interactive dashboards to help businesses make data-driven decisions. It simplifies forecasting, inventory planning, risk analysis, and demand sensing through an intuitive and user-friendly interface."
+      answer:
+        "HANElytics is a unified analytics platform that leverages AI/ML models and interactive dashboards to help businesses make data-driven decisions. It simplifies forecasting, inventory planning, risk analysis, and demand sensing through an intuitive and user-friendly interface.",
     },
     {
       id: 2,
       question: " Who can use HANElytics?",
-      answer: "HANElytics is designed for business analysts, supply chain managers, healthcare professionals, and anyone who needs predictive insights without diving deep into technical modeling."
+      answer:
+        "HANElytics is designed for business analysts, supply chain managers, healthcare professionals, and anyone who needs predictive insights without diving deep into technical modeling.",
     },
     {
       id: 3,
       question: "Do I need to install Power BI to view dashboards?",
-      answer: "No. Hanelytics comes with embedded Power BI dashboards."
+      answer: "No. Hanelytics comes with embedded Power BI dashboards.",
     },
     {
       id: 4,
       question: "Can I download the prediction results?",
-      answer: "Yes. You can export model insights and data in Excel format with just one click. This feature is useful for reports, meetings, or offline analysis."
+      answer:
+        "Yes. You can export model insights and data in Excel format with just one click. This feature is useful for reports, meetings, or offline analysis.",
     },
     {
       id: 5,
       question: "Is my data secure on HANElytics?",
-      answer: "Absolutely. HANElytics is built with secure authentication, role-based access, and encrypted data handling to ensure your information stays protected."
+      answer:
+        "Absolutely. HANElytics is built with secure authentication, role-based access, and encrypted data handling to ensure your information stays protected.",
     },
     {
       id: 6,
       question: "Can I try the platform before signing up?",
-      answer: "Yes you can request for demo using contact details in the footer section."
+      answer:
+        "Yes you can request for demo using contact details in the footer section.",
       // A live demo mode or preview is under development to allow users to explore basic features before registering."
       // You can also request a demo session via the contact page.
     },
     {
       id: 7,
       question: "What if I forget my login credentials?",
-      answer: "The login page includes a password recovery option. Just click Forgot Password and follow the instructions to reset your credentials securely."
+      answer:
+        "The login page includes a password recovery option. Just click Forgot Password and follow the instructions to reset your credentials securely.",
     },
-  ]
+  ];
 
   return (
     <>
@@ -238,7 +247,7 @@ function InitialPage() {
         <div className="bg-container-initial">
           <div
             className="responsive-container1"
-            style={{ position: "relative" }}
+            // style={{ position: "relative" }}
           >
             <div>
               {/* <img
@@ -249,23 +258,68 @@ function InitialPage() {
                 <h1 className="header-home-text">HANELYTICS</h1>
               </Link>
             </div>
-            <div className="initial-page-tab-buttons">
-              <a href="#keyFeatures"  >
-                <p className={`${activeSection === "keyFeatures" ? "text-underline" : "feature-section"}`} onClick={() => setActiveSectionText("keyFeatures")}>Key Features</p>
+            {/* <div className="initial-page-tab-buttons">
+              <a href="#keyFeatures">
+                <p
+                  className={`${
+                    activeSection === "keyFeatures"
+                      ? "text-underline"
+                      : "feature-section"
+                  }`}
+                  onClick={() => setActiveSectionText("keyFeatures")}
+                >
+                  Key Features
+                </p>
               </a>
               <a href="#modelsOverview">
-                <p className={`${activeSection === "modelsOverview" ? "text-underline" : "feature-section"}`} onClick={() => setActiveSectionText("modelsOverview")}>Models Overview</p>
+                <p
+                  className={`${
+                    activeSection === "modelsOverview"
+                      ? "text-underline"
+                      : "feature-section"
+                  }`}
+                  onClick={() => setActiveSectionText("modelsOverview")}
+                >
+                  Models Overview
+                </p>
               </a>
               <a href="#capabilities">
-                <p className={`${activeSection === "modelsOverview" ? "text-underline" : "feature-section"}`} onClick={() => setActiveSectionText("capabilities")}>Capabilities</p>
+                <p
+                  className={`${
+                    activeSection === "modelsOverview"
+                      ? "text-underline"
+                      : "feature-section"
+                  }`}
+                  onClick={() => setActiveSectionText("capabilities")}
+                >
+                  Capabilities
+                </p>
               </a>
               <a href="#whyChooseHanelytics">
-                <p className={`${activeSection === "modelsOverview" ? "text-underline" : "feature-section"}`} onClick={() => setActiveSectionText("whyChooseHanelytics")}>Why Choose HANElytics?</p>
+                <p
+                  className={`${
+                    activeSection === "modelsOverview"
+                      ? "text-underline"
+                      : "feature-section"
+                  }`}
+                  onClick={() => setActiveSectionText("whyChooseHanelytics")}
+                >
+                  Why Choose HANElytics?
+                </p>
               </a>
               <a href="#faqs">
-                <p className={`${activeSection === "modelsOverview" ? "text-underline" : "feature-section"}`} onClick={() => setActiveSectionText("faqs")}>FAQs</p>
+                <p
+                  className={`${
+                    activeSection === "modelsOverview"
+                      ? "text-underline"
+                      : "feature-section"
+                  }`}
+                  onClick={() => setActiveSectionText("faqs")}
+                >
+                  FAQs
+                </p>
               </a>
-            </div>
+            </div> */}
             <div className="login-register-buttons">
               <div className="button-size">
                 <Link
@@ -301,20 +355,67 @@ function InitialPage() {
               {isMenuOpened && (
                 <div className="initial-page-mobile-menu">
                   {/* <p>Key Features</p> */}
-                  <a href="#keyFeatures"  >
-                    <p className={`${activeSection === "keyFeatures" ? "text-underline" : "feature-section"}`} onClick={() => setActiveSectionText("keyFeatures")}>Key Features</p>
+                  <a href="#keyFeatures">
+                    <p
+                      className={`${
+                        activeSection === "keyFeatures"
+                          ? "text-underline"
+                          : "feature-section"
+                      }`}
+                      onClick={() => setActiveSectionText("keyFeatures")}
+                    >
+                      Key Features
+                    </p>
                   </a>
                   <a href="#modelsOverview">
-                    <p className={`${activeSection === "modelsOverview" ? "text-underline" : "feature-section"}`} onClick={() => setActiveSectionText("modelsOverview")}>Models Overview</p>
+                    <p
+                      className={`${
+                        activeSection === "modelsOverview"
+                          ? "text-underline"
+                          : "feature-section"
+                      }`}
+                      onClick={() => setActiveSectionText("modelsOverview")}
+                    >
+                      Models Overview
+                    </p>
                   </a>
                   <a href="#capabilities">
-                    <p className={`${activeSection === "modelsOverview" ? "text-underline" : "feature-section"}`} onClick={() => setActiveSectionText("capabilities")}>Capabilities</p>
+                    <p
+                      className={`${
+                        activeSection === "modelsOverview"
+                          ? "text-underline"
+                          : "feature-section"
+                      }`}
+                      onClick={() => setActiveSectionText("capabilities")}
+                    >
+                      Capabilities
+                    </p>
                   </a>
                   <a href="#whyChooseHanelytics">
-                    <p className={`${activeSection === "modelsOverview" ? "text-underline" : "feature-section"}`} onClick={() => setActiveSectionText("whyChooseHanelytics")}>Why Choose HANElytics?</p>
+                    <p
+                      className={`${
+                        activeSection === "modelsOverview"
+                          ? "text-underline"
+                          : "feature-section"
+                      }`}
+                      onClick={() =>
+                        setActiveSectionText("whyChooseHanelytics")
+                      }
+                    >
+                      Why Choose HANElytics?
+                    </p>
                   </a>
                   <a href="#faqs">
-                    <p className={`${activeSection === "modelsOverview" ? "text-underline" : "feature-section"}`} onClick={() => setActiveSectionText("faqs")}>FAQs</p>
+                    <p
+                      className={`${
+                        activeSection === "modelsOverview"
+                          ? "text-underline"
+                          : "feature-section"
+                      }`}
+                      onClick={() => setActiveSectionText("faqs")}
+                    >
+                      FAQs
+                    </p>
                   </a>
                   <Link
                     to="/register"
@@ -334,61 +435,73 @@ function InitialPage() {
               )}
             </div>
           </div>
-          <div className="hero-section">
+          <div className="hero-section" style={{paddingTop: "100px", 
+          }}>
             <h1>
               <FaFileAlt className="icon" />
               <AiTwotoneDatabase className="icon" />
-              HANElytics simplifies predictive insights by turning complex data into clear dashboards, intuitive graphs, and structured tables and many more.
+              HANElytics simplifies predictive insights by turning complex data
+              into clear dashboards, intuitive graphs, and structured tables and
+              many more.
               <FaChartBar className="icon" />
               <FaChartPie className="icon" />
             </h1>
+          </div>
+          <div className="model-overview-bg-container">
+            <div className="container key-features-section" id="modelsOverview">
+              <h1 className="">Models Overview:</h1>
+              <div className="model-features-items-container">
+                {modelsOverview.map((model) => (
+                  <div key={model.modelId} className="model-feature-card">
+                    <div>
+                      <h3 style={{color: "#fff"}}>{model.title}</h3>
+                      <p style={{color: "#fff"}}>{model.description}</p>
+                    </div>
+                    <a download href={model.image}>
+                      <img src={model.image} />
+                    </a>
+                  </div>
+                ))}
+              </div>
+          </div>
           </div>
           <div className="container key-features-section" id="keyFeatures">
             <h1 className="">Key Features:</h1>
             <div className="key-features-items-container">
               {keyFeatures.map((feature) => (
                 <div key={feature.featureId} className="feature-card">
-                  <h3>
+                  <h3 className="feature-title" style={{color: "#044973"}}>
                     <FaHandPointRight style={{ marginRight: "5px" }} />
-                    {feature.title}</h3>
+                    {feature.title}
+                  </h3>
                   <p>{feature.description}</p>
                 </div>
               ))}
             </div>
             <div></div>
           </div>
-          <div className="container key-features-section" id="modelsOverview">
-            <h1 className="">Models Overview:</h1>
-            <div className="model-features-items-container">
-              {modelsOverview.map((model) => (
-                <div key={model.modelId} className="model-feature-card">
-                  <div>
-                    <h3>
-                      {model.title}
-                    </h3>
-                    <p>{model.description}</p>
+          
+          <div className="capabilities-bg-container">
+            <div className="container key-features-section" id="capabilities">
+              <h1 className="">Platform Capabilities:</h1>
+              <div className="key-features-items-container">
+                {capabilities.map((item) => (
+                  <div key={item.id} className="feature-card">
+                    <div>
+                      <h3 style={{ fontSize: "12px", textAlign: "left" }}>
+                        <FaHandPointRight style={{ marginRight: "5px" }} />
+                        {item.text}
+                      </h3>
+                    </div>
                   </div>
-                  <a download href={model.image}><img src={model.image} /></a>
-                </div>
-              ))}
+                ))}
+              </div>
             </div>
           </div>
-          <div className="container key-features-section" id="capabilities">
-            <h1 className="">Platform Capabilities:</h1>
-            <div className="key-features-items-container">
-              {capabilities.map((item) => (
-                <div key={item.id} className="feature-card">
-                  <div>
-                    <h3 style={{ fontSize: "13px", textAlign: 'left' }}>
-                      <FaHandPointRight style={{ marginRight: "5px" }} />
-                      {item.text}
-                    </h3>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-          <div className="container key-features-section" id="whyChooseHanelytics">
+          <div
+            className="container key-features-section"
+            id="whyChooseHanelytics"
+          >
             <h1 className="">Why Choose HANElytics?:</h1>
             <div className="key-features-items-container">
               {whyChooseHANElytics.map((item) => (
@@ -404,13 +517,20 @@ function InitialPage() {
               ))}
             </div>
           </div>
-          <div className="container key-features-section" style={{ marginBottom: "0px" }} id="faqs">
+          <div
+            className="container key-features-section"
+            style={{ marginBottom: "0px" }}
+            id="faqs"
+          >
             <h1 className="">FAQs:</h1>
             <div className="faqs-features-items-container">
               {faqs.map((item) => (
                 <div key={item.id} className="feature-card">
                   <div>
-                    <div className="question-answer" onClick={() => viewAnswerOnClick(item.id)}>
+                    <div
+                      className="question-answer"
+                      onClick={() => viewAnswerOnClick(item.id)}
+                    >
                       <h3 style={{ fontSize: "14px" }}>
                         <FaHandPointRight style={{ marginRight: "5px" }} />
                         {item.question}
@@ -423,30 +543,7 @@ function InitialPage() {
               ))}
             </div>
           </div>
-          {/* <div className="d-flex flex-column justify-content-center align-items-center header-text-container">
-            <h1 className="initial-page-text">
-              Artificial Intelligence & Machine Learning Solutions in Supply
-              Chain, Injecting Data From Diverse ERP & Non-ERP Sources.
-            </h1>
-            <div className="text-center ">
-              <Link to="/register">
-                <button
-                  className="bg-warning rounded-2 p-2 text-white m-2"
-                  style={{ fontWeight: 700, border: "none" }}
-                >
-                  Register
-                </button>
-              </Link>
-              <Link to="/login">
-                <button
-                  className="bg-success rounded-2 p-2 text-white"
-                  style={{ fontWeight: 700, border: "none" }}
-                >
-                  Login
-                </button>
-              </Link>
-            </div>
-          </div> */}
+          
         </div>
         <Footer />
       </div>

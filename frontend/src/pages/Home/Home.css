@@ -1,13 +1,10 @@
 .home-bg{
-    /* background-image: url("https://res.cloudinary.com/dvxkeeeqs/image/upload/v1729244582/image4_wn3xcb.jpg"); */
-  /* background-image: linear-gradient(to bottom, #0c1ee2, #5b7dcd); */
-  background-image: linear-gradient(to bottom, #5b7dcd);
-
     background-size: cover;
     min-height: 100vh;
     display: flex;
-    padding: 30px;
+    padding-top: 130px;
     flex-direction: column;
+    background-color: #0598f32e;
 }
 .left{
     /* flex: 1; */
@@ -35,12 +32,12 @@
         color: #fff;
         background-color: black;
         /* background-color: #0384ed; */
-        border-radius: 15px;
+        border-radius: 6px;
         border: none;
-        padding: 12px;
-        margin: 12px;
+        padding: 6px;
+        /* margin: 12px; */
         font-weight: bold;
-        font-size: 20px;
+        font-size: 14px;
         border: 2px solid #fff;
     }
     b{
@@ -68,4 +65,54 @@
             font-size: 14px;
         }
     }
+}
+
+.model-overview-bg-container{
+  /* background-color: #fff; */
+  /* background-color: #578eb060; */
+  background-color: #0598f31c;
+  padding: 20px;
+  margin-bottom: 10px;
+}
+.capabilities-bg-container{
+  background-color: #fff;
+  padding: 20px;
+  margin-bottom: 10px;
+}
+.model-feature-card{
+    width: 300px;
+    height: 250px;
+    display: flex;
+    justify-content: center;
+}
+.model-feature-card:hover{
+    transform: scale(1.02);
+}
+.module-1{
+    background: 
+    linear-gradient(rgba(0, 0, 0, 0.186), rgba(0,0,0,0.5)),
+    url("../../assets/dataInsights.jpg")
+    ;
+    background-image: url("../../assets/dataInsights.jpg");
+    background-size: cover;
+}
+.module-2{
+    background: 
+    /* linear-gradient(rgba(0, 0, 0, 0.571), rgba(0,0,0,0.5)), */
+    url("../../assets/powerBIDash.webp")
+    ;
+    /* background-image: url("../../assets/powerBIDash.webp"); */
+    background-size: cover;
+}
+.module-3{
+    /* background-image: url("../../assets/access.webp"); */
+    background: 
+    linear-gradient(rgba(0, 0, 0, 0.186), rgba(0,0,0,0.5)),
+    url("../../assets/assignAccess.jpg")
+    ;
+    background-size: cover;
+
+    /* background-image: url("../../assets/assignAccess.jpg");
+    background-size: cover;
+    filter: brightness(10%); */
 }

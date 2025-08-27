@@ -13,7 +13,7 @@ import { toast } from "react-toastify";
 import { FaFacebookSquare } from "react-icons/fa";
 import { FaSquareXTwitter } from "react-icons/fa6";
 
-const Navbar = ({page=""}) => {
+const Navbar = ({ page = "" }) => {
   const navigate = useNavigate();
 
   return (
@@ -73,18 +73,34 @@ const Navbar = ({page=""}) => {
         <h1 className="heading-text1">HANELYTICS</h1>
       </Link>
       <div className="signup-register">
-      <Link to="/" className="bg-black rounded-2 p-2 text-white mobile-button" style={{marginRight: "10px"}}>
-        Home
-        </Link>
-        <Link to={`${page === "signup" ? "/login" : "/register"}`} style={{ fontWeight: "bold" }}>
-          <button style={{ fontWeight: "600", border: "none" }}
-          className={`${page === "signup" ? "bg-success rounded-2 p-2 text-white mobile-button" : "bg-warning rounded-2 p-2 text-black mobile-button"}`}>
+        {/* <Link
+          to="/"
+          className="bg-white rounded-2 p-2 mobile-button"
+          style={{
+            marginRight: "10px",
+            color: "black",
+            fontWeight: "bold",
+            textDecoration: "none",
+          }}
+        >
+          Home
+        </Link> */}
+        <Link
+          to={`${page === "signup" ? "/login" : "/register"}`}
+          style={{ fontWeight: "bold" }}
+        >
+          <button
+            style={{ fontWeight: "600", border: "none" }}
+            className={`${
+              page === "signup"
+                ? "bg-success rounded-2 p-2 text-white mobile-button"
+                : "bg-warning rounded-2 p-2 text-black mobile-button"
+            }`}
+          >
             {page === "signup" ? "Login" : "Register"}
-            </button>
+          </button>
         </Link>
-        
       </div>
-      
     </div>
   );
 };

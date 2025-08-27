@@ -18,6 +18,9 @@ import Header from './components/Header/Header';
 import Footer from './components/Footer/Footer';
 import { StoreContext } from './context/StoreContext';
 
+//   background-color: #0598f32e;
+
+
 const App = () => {
     const {
         setToken,

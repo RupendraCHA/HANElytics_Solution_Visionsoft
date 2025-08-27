@@ -14,7 +14,7 @@
   padding: 5px;
   border-radius: 6px;
   background-color: #fff;
-  font-size: 28px;
+  font-size: 16px;
 }
 
 
@@ -25,16 +25,11 @@
 }
 
 .bi-reporting-dashboards {
-  /* background-image: url("https://res.cloudinary.com/dvxkeeeqs/image/upload/v1727805691/futuristic-digital-user-interface-dashboard_53876-115871_xeeybu.jpg"); */
-  /* background-image: url("../../assets/BGImage.jpg"); */
-  /* background: linear-gradient(to left, #fff, #426fb2bf); */
-  /* background-color: #e6e3e3f7; */
-  background-color: #5b7dcd;
-  /* background-color: #0647df7a; */
-  /* background-image: linear-gradient(to bottom, #7f83ad, #5b7dcd); */
-
+  
+  background-color: #0598f32e;
   background-size: cover;
   object-fit: cover;
+  padding-top: 100px;
 }
 
 @media (max-width: 576px) {
@@ -46,12 +41,13 @@
 
 
 .dashboard-title {
-  font-size: 22px;
+  font-size: 16px;
   font-weight: 600;
-  margin-bottom: 20px;
+  margin-bottom: 10px;
   padding-top: 20px;
   /* color: #000; */
-  color: #fff;
+  /* color: #fff; */
+  color: #044973;
   display: flex;
   align-items: center;
 }
@@ -63,7 +59,7 @@
 .dashboard-section {
   display: flex;
   align-items: center;
-  gap: 50px;
+  gap: 40px;
   flex-wrap: wrap;
 }
 
@@ -95,7 +91,7 @@
 .dashboard-card {
   background-color: white;
   /* height: 65vh; */
-  width: 25%;
+  width: 20%;
   display: flex;
   align-items: center;
   flex-direction: column;
@@ -103,9 +99,15 @@
   border-radius: 16px;
   box-shadow: 0 4px 10px #4e4ec566;
   transition: transform 0.2s ease-in-out;
-  margin-bottom: 20px;
+  margin-bottom: 10px;
   /* padding: 10px 0px; */
   /* padding-top: 10px; */
+
+  button{
+    p{
+      font-size: 12px;
+    }
+  }
 }
 
 .dashboard-card:hover {
@@ -124,7 +126,7 @@
 }
 
 .card-title {
-  font-size: 16px;
+  font-size: 12px;
   font-weight: bold;
   text-align: center;
   padding: 12px;
@@ -133,9 +135,9 @@
 }
 
 .bi-header-text {
-  height: 8vh;
+  height: 6vh;
   /* border-bottom: 2px solid #0736df; */
-  border-bottom: 2px solid #000;
+  border-bottom: 2px solid #fff;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -146,10 +148,10 @@
 }
 
 .bi-dashboard-button {
-  padding: 12px;
+  padding: 6px;
   background-color: #0d62cb7e;
   font-weight: bold;
-  font-size: 16px;
+  font-size: 10px;
   box-shadow: 0 4px 6px #0000004d;
   border-bottom-left-radius: 12px;
   border-bottom-right-radius: 12px;
@@ -157,7 +159,7 @@
   cursor: pointer;
   transition: background-color 0.3s ease-in-out;
   width: 100%;
-  border-top: 2px solid #000;
+  border-top: 2px solid #fff;
   text-align: left;
 }
 
@@ -199,17 +201,17 @@
 }
 
 .powerbi-dashboard-tab-item {
-  padding: 4px 6px;
+  padding: 2px 4px;
   border-radius: 6px;
   font-weight: 600;
   color: #fff;
-  font-size: 13px;
+  font-size: 10px;
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 2px;
+  gap: 1px;
   cursor: pointer;
-  margin-top: 10px;
+  /* margin-top: 10px; */
 }
 
 @media (max-width: 576px) {
@@ -232,17 +234,17 @@
 }
 
 .bi-home-container {
-  /* margin: auto; */
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 0px 20px 0px 20px;
-  /* background-color: #2431c3; */
   /* background-color: #2b59c5; */
-  background-color: #2b59c5;
-  /* background-color: #0c1ee2; */
+  background-color: #044973;
   color: #fff;
   border-bottom: 1px solid #fff;
+  position: fixed;
+  z-index: 1000;
+  width: 100%;
 }
 
 @media (max-width: 768px) {
@@ -312,14 +314,16 @@
 }
 
 .bi-drop-down button {
-  width: 80px;
-  height: 40px;
+  /* width: 80px;
+  height: 40px; */
   border: 1px solid #0e0e0e;
   background-color: #fff;
   color: red;
   font-weight: 600;
   border-radius: 6px;
   box-shadow: 3px 3px 0px #fff;
+  font-size: 12px;
+  padding: 4px 12px;
 }
 
 .bi-drop-down button:hover {
@@ -337,16 +341,16 @@
 
 .bi-username-text {
   color: #fff;
-  font-size: 13px;
+  font-size: 10px;
   font-weight: 600;
 }
 
 .bi-user-icon {
-  width: 40px;
-  height: 40px;
+  width: 25px;
+  height: 25px;
   color: #000;
   background-color: #fff;
-  padding: 6px;
+  padding: 3px;
   border-radius: 5px;
   box-shadow: 3px 3px 0px #000;
 }
@@ -400,7 +404,7 @@
 .insights-btn {
   color: #fff;
   margin-left: 10px;
-  font-size: 13px;
+  font-size: 11px;
   padding: 2px 10px;
   border-radius: 8px;
   cursor: pointer;
@@ -538,16 +542,13 @@
 }
 
 .bi-excel-download-btn {
-  font-size: 12px;
-  /* margin-bottom: 10px; */
-  /* padding: 2px 6px; */
-  border-radius: 6px;
+  font-size: 10px;
+  
+  border-radius: 3px;
   background-color: #fff;
   font-weight: 600;
-  /* border: 2px solid #08af24; */
   border: 2px solid #fff;
-  /* box-shadow: 2px 2px 2px #002dce81; */
-  /* box-shadow: 1px 1px 1px #fff; */
+  
 
 }
 
@@ -616,16 +617,16 @@
 
 .bi-excel-download-icon {
   color: #08af24;
-  width: 25px;
-  height: 25px;
+  width: 15px;
+  height: 15px;
   margin-top: 4px;
 }
 
 .bi-excel-icon {
   /* font-size: 16px; */
   color: #08af24;
-  width: 22px;
-  height: 22px;
+  width: 14px;
+  height: 14px;
   margin-left: 4px;
 }
 
@@ -794,9 +795,10 @@
   overflow: auto;
   /* background-color: #2b59c5; */
   border: 2px solid #000;
-  margin: 20px auto;
+  margin: 120px auto;
   padding: 0px 20px;
   border-radius: 12px;
+  /* padding-top: 100px; */
   /* margin: auto; */
 }
 
@@ -896,12 +898,12 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  background-color: #fff; /* White background */
-  border-radius: 8px; /* Rounded corners */
-  padding: 4px 8px; /* Padding for the button */
-  text-decoration: none; /* Remove underline from link */
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Subtle shadow */
-  transition: background-color 0.3s ease; /* Smooth hover effect */
+  background-color: #fff;
+  border-radius: 3px; 
+  padding: 3px 5px; 
+  text-decoration: none; 
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); 
+  transition: background-color 0.3s ease; 
 }
 
 /* Hover effect for the button */

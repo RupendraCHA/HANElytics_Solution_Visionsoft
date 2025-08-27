@@ -154,17 +154,12 @@ function SignUp() {
     if (response.data.success) {
       setExist(false);
       setToken(response.data.token);
-      // localStorage.setItem("token", response.data.token);
-      // localStorage.setItem("username", response.data.firstname);
-      // localStorage.setItem("role", response.data.role);
-      // localStorage.setItem("email", response.data.email);
+      
       setResponseCode(response.data.verificationCode);
-      // console.log(response.data.verificationCode)
       setUsername(response.data.firstname);
       setUserRole(response.data.role);
       getSuccessToast("Registration successful.")
       setRegisterClick(false);
-      // navigate("/home")
     } else {
       setErrorMsg(response.data.message);
       accessEmail(response.data.email);
@@ -186,7 +181,7 @@ function SignUp() {
         responseCode,
       });
       if (response.data.success === true) {
-        toast.success(`${data.firstname} ${response.data.message}`);
+        toast.success(`${data.firstname} ${response.data.message}`, {style: {fontSize: "12px", fontWeight: "600"}});
         navigate("/login");
       } else {
         toast.error(`${response.data.message}`);
@@ -583,7 +578,7 @@ function SignUp() {
                   tables and many more.
                 </p>
                 <div>
-                  <p>Already have an account?</p>
+                  <p style={{fontSize: "12px"}}>Already have an account?</p>
                   <Link to="/login">
                     <button
                       style={{

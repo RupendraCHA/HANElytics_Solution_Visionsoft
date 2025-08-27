@@ -315,18 +315,7 @@ const PowerBiDashboard = () => {
       groupID: "0800dc12-04e5-484e-b15e-ba0a27efa5c2",
       reportId: "9c2ca189-f231-4e7f-8ef0-f02794ac2158",
     },
-    {
-      id: 2,
-      headerText: "News Paper Quantity Predictions",
-      dataText: "reports",
-      url: "https://app.powerbi.com/groups/7235dce4-8159-49bc-ab3f-223406e7937b/reports/cdc28a63-1551-4b0c-8385-1150e1dd46ce/8c4854b8de780c3490e6?experience=power-bi&clientSideAuth=0",
-      image: `${assets.Paper_ink_pic}`,
-      //groupID: "7235dce4-8159-49bc-ab3f-223406e7937b",
-      //reportId: "cdc28a63-1551-4b0c-8385-1150e1dd46ce",
-
-      groupID: "0800dc12-04e5-484e-b15e-ba0a27efa5c2",
-      reportId: "5e87f3e3-ca2d-4ca8-ae80-4305d4dffad4",
-    },
+    
     {
       id: 3,
       headerText: "Revenue",
@@ -353,6 +342,18 @@ const PowerBiDashboard = () => {
       image: `${assets.Equipment_Failure}`, // Ensure this asset exists
       groupID: "0800dc12-04e5-484e-b15e-ba0a27efa5c2",
       reportId: "1cb81cf2-450f-4779-9d92-be42bd020611",
+    },
+    {
+      id: 2,
+      headerText: "News Paper Quantity Predictions",
+      dataText: "reports",
+      url: "https://app.powerbi.com/groups/7235dce4-8159-49bc-ab3f-223406e7937b/reports/cdc28a63-1551-4b0c-8385-1150e1dd46ce/8c4854b8de780c3490e6?experience=power-bi&clientSideAuth=0",
+      image: `${assets.Paper_ink_pic}`,
+      //groupID: "7235dce4-8159-49bc-ab3f-223406e7937b",
+      //reportId: "cdc28a63-1551-4b0c-8385-1150e1dd46ce",
+
+      groupID: "0800dc12-04e5-484e-b15e-ba0a27efa5c2",
+      reportId: "5e87f3e3-ca2d-4ca8-ae80-4305d4dffad4",
     },
   ];
 
@@ -1544,11 +1545,11 @@ const PowerBiDashboard = () => {
           {loggedInUserRole === "COO" ||
           loggedInUserRole === "CTO" ||
           loggedInUserRole === "CEO" ? (
-            <span style={{ fontSize: "20px", marginLeft: "5px" }}>
+            <span style={{ fontSize: "16px", marginLeft: "5px" }}>
               ({HANElyticsDashboards.length} / {HANElyticsDashboards.length})
             </span>
           ) : (
-            <span style={{ fontSize: "20px", marginLeft: "5px" }}>
+            <span style={{ fontSize: "16px", marginLeft: "5px" }}>
               ({allowedHANElyticsDashboards.length} / {HANElyticsDashboards.length})
             </span>
           )}
@@ -1675,11 +1676,11 @@ const PowerBiDashboard = () => {
             {loggedInUserRole === "COO" ||
             loggedInUserRole === "CTO" ||
             loggedInUserRole === "CEO" ? (
-              <span style={{ fontSize: "20px", marginLeft: "5px" }}>
+              <span style={{ fontSize: "16px", marginLeft: "5px" }}>
                 ({csd.length} / {csd.length})
               </span>
             ) : (
-              <span style={{ fontSize: "20px", marginLeft: "5px" }}>
+              <span style={{ fontSize: "16px", marginLeft: "5px" }}>
                 ({allowedCSDDashboards.length} / {csd.length})
               </span>
             )}
@@ -1809,11 +1810,11 @@ const PowerBiDashboard = () => {
             {loggedInUserRole === "COO" ||
             loggedInUserRole === "CTO" ||
             loggedInUserRole === "CEO" ? (
-              <span style={{ fontSize: "20px", marginLeft: "5px" }}>
+              <span style={{ fontSize: "16px", marginLeft: "5px" }}>
                 ({tsc.length} / {tsc.length})
               </span>
             ) : (
-              <span style={{ fontSize: "20px", marginLeft: "5px" }}>
+              <span style={{ fontSize: "16px", marginLeft: "5px" }}>
                 ({allowedTSCDashboards.length} / {tsc.length})
               </span>
             )}
@@ -1943,12 +1944,12 @@ const PowerBiDashboard = () => {
             {loggedInUserRole === "COO" ||
             loggedInUserRole === "CTO" ||
             loggedInUserRole === "CEO" ? (
-              <span style={{ fontSize: "20px", marginLeft: "5px" }}>
+              <span style={{ fontSize: "16px", marginLeft: "5px" }}>
                 {" "}
                 ({manufacturing.length} / {manufacturing.length})
               </span>
             ) : (
-              <span style={{ fontSize: "20px", marginLeft: "5px" }}>
+              <span style={{ fontSize: "16px", marginLeft: "5px" }}>
                 {" "}
                 ({allowedManufacturingDashboards.length} /{" "}
                 {manufacturing.length})
@@ -2087,11 +2088,11 @@ const PowerBiDashboard = () => {
             {loggedInUserRole === "COO" ||
             loggedInUserRole === "CTO" ||
             loggedInUserRole === "CEO" ? (
-              <span style={{ fontSize: "20px", marginLeft: "5px" }}>
+              <span style={{ fontSize: "16px", marginLeft: "5px" }}>
                 ({orderToCash.length} / {orderToCash.length})
               </span>
             ) : (
-              <span style={{ fontSize: "20px", marginLeft: "5px" }}>
+              <span style={{ fontSize: "16px", marginLeft: "5px" }}>
                 ({allowedOrderToCashDashboards.length} / {orderToCash.length})
               </span>
             )}
@@ -2233,11 +2234,11 @@ const PowerBiDashboard = () => {
             {loggedInUserRole === "COO" ||
             loggedInUserRole === "CTO" ||
             loggedInUserRole === "CEO" ? (
-              <span style={{ fontSize: "20px", marginLeft: "5px" }}>
+              <span style={{ fontSize: "16px", marginLeft: "5px" }}>
                 ({procurement.length} / {procurement.length})
               </span>
             ) : (
-              <span style={{ fontSize: "20px", marginLeft: "5px" }}>
+              <span style={{ fontSize: "16px", marginLeft: "5px" }}>
                 ({allowedProcurementDashboards.length} / {procurement.length})
               </span>
             )}
@@ -2372,12 +2373,12 @@ const PowerBiDashboard = () => {
             {loggedInUserRole === "COO" ||
             loggedInUserRole === "CTO" ||
             loggedInUserRole === "CEO" ? (
-              <span style={{ fontSize: "20px", marginLeft: "5px" }}>
+              <span style={{ fontSize: "16px", marginLeft: "5px" }}>
                 {" "}
                 ({ts.length} / {ts.length})
               </span>
             ) : (
-              <span style={{ fontSize: "20px", marginLeft: "5px" }}>
+              <span style={{ fontSize: "16px", marginLeft: "5px" }}>
                 {" "}
                 ({allowedTSDashboards.length} / {ts.length})
               </span>
@@ -2521,12 +2522,12 @@ const PowerBiDashboard = () => {
             {loggedInUserRole === "COO" ||
             loggedInUserRole === "CTO" ||
             loggedInUserRole === "CEO" ? (
-              <span style={{ fontSize: "20px", marginLeft: "5px" }}>
+              <span style={{ fontSize: "16px", marginLeft: "5px" }}>
                 {" "}
                 ({finance.length} / {finance.length})
               </span>
             ) : (
-              <span style={{ fontSize: "20px", marginLeft: "5px" }}>
+              <span style={{ fontSize: "16px", marginLeft: "5px" }}>
                 {" "}
                 ({allowedFinanceDashboards.length} / {finance.length})
               </span>
@@ -2715,11 +2716,11 @@ const PowerBiDashboard = () => {
                   : ""
               }`}
             >
-              <img
+              {/* <img
                 src={eachTab.imageUrl}
                 alt={`${eachTab.altText}`}
                 className="dashboard-data-model-image-tab"
-              />
+              /> */}
               {eachTab.tabName}
               <MdKeyboardArrowUp
                 className={`bi-arrow ${
@@ -2735,7 +2736,7 @@ const PowerBiDashboard = () => {
             onClick={() => navigate("/dataModeling")}
             // onClick={() => navigate("/assignRoles")}
           >
-            Data Modeling
+            View Data Insights
             <LuArrowUpRight className="insights-icon" />
           </h1>
         </div>

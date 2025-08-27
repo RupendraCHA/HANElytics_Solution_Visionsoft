@@ -19,8 +19,14 @@ import { FaHandPointRight } from "react-icons/fa";
 import { IoIosArrowDown } from "react-icons/io";
 
 function Home() {
-  const { token, username, url, loggedInUserDetails,
-    setLoggedInUserDetails } = useContext(StoreContext);
+  const {
+    token,
+    username,
+    url,
+    loggedInUserDetails,
+    userRole,
+    setLoggedInUserDetails,
+  } = useContext(StoreContext);
 
   const [isMenuOpened, setIsMenuOpened] = useState(false);
   const [featureUniqueId, setFeatureUniqueId] = useState(0);
@@ -52,35 +58,35 @@ function Home() {
   };
 
   const CustomCloseIcon = ({ closeToast }) => (
-      <span
-        onClick={closeToast}
-        style={{
-          color: "red",
-          cursor: "pointer",
-          fontWeight: "bold",
-          display: "flex",
-          alignItems: "center",
-        }}
-      >
-        ✖
-      </span>
-    );
-  
-    const getWarnToast = (toastText) => {
-      return toast.warn(`${toastText}`, {
-        position: "top-center",
-        closeButton: CustomCloseIcon,
-        style: {
-          fontSize: "16px",
-          padding: "8px 12px",
-          height: "30px",
-          borderRadius: "8px",
-          color: "#000",
-          backgroundColor: "#fff",
-          fontWeight: "600",
-        },
-      });
-    };
+    <span
+      onClick={closeToast}
+      style={{
+        color: "red",
+        cursor: "pointer",
+        fontWeight: "bold",
+        display: "flex",
+        alignItems: "center",
+      }}
+    >
+      ✖
+    </span>
+  );
+
+  const getWarnToast = (toastText) => {
+    return toast.warn(`${toastText}`, {
+      position: "top-center",
+      closeButton: CustomCloseIcon,
+      style: {
+        fontSize: "16px",
+        padding: "8px 12px",
+        height: "30px",
+        borderRadius: "8px",
+        color: "#000",
+        backgroundColor: "#fff",
+        fontWeight: "600",
+      },
+    });
+  };
 
   // const checkTokenExpiry = () => {
   //   const expiryTime = localStorage.getItem("tokenExpiry")
@@ -102,7 +108,7 @@ function Home() {
 
   useEffect(() => {
     startTheServer();
-    getLoggedUserInfo()
+    getLoggedUserInfo();
     // const interval = setInterval(() => {
     //   checkTokenExpiry()
     //   console.log("Checking token Expiry")
@@ -117,7 +123,6 @@ function Home() {
       navigate("/");
     }
     // return clearInterval(interval)
-
   }, []);
 
   const handleIsMenuOpened = () => {
@@ -168,40 +173,54 @@ function Home() {
   const modelsOverview = [
     {
       modelId: 1,
-      title: "1. Inventory Reorder Point & Safety Stock Prediction - With and Without Live Data",
-      description:
-        "Predict optimal reorder points and safety stock levels using AI/ML to prevent stockouts or overstock situations—improving supply chain efficiency.",
-      image: `${assets.Inventory_model}`,
+      title: "Data Model Insights",
     },
     {
       modelId: 2,
-      title: "2. Revenue & Demand Sensing for Pharmaceuticals",
-      description:
-        "Forecasts revenue generation based on market behavior, seasonal trends, and historical sales data to get insight on which category giving more profits.",
-      image: `${assets.Clinical_model}`,
+      title: "Power BI Dashboards",
     },
     {
       modelId: 3,
-      title: "3. Medical Equipment Risk Detection & Failure Prevention",
-      description:
-        "Predicted results are displayed in a clean, structured table format, showcasing each key metric individually for easy review and interpretation.",
-      image: `${assets.Equipment_model}`,
+      title: "Assign BI Access",
     },
-    {
-      modelId: 4,
-      title: "4. Reorder Point & Safety Stock Predictions for Clinical Drugs/Medicine",
-      description:
-        "Ensure availability of critical clinical medicines by forecasting demand and recommending adequate buffer stock levels without interrupting the patient care.",
-      image: `${assets.Revenue_model}`,
-    },
-    {
-          modelId: 5,
-          title: "5. Predicting Reams of Paper & Ink (Liters)",
-          description:
-            "This model forecasts the future consumption of reams of paper and liters of ink using historical usage data and printing trends.",
-          image: `${assets.PaperInk_model}`
-        },
   ];
+  // const modelsOverview = [
+  //   {
+  //     modelId: 1,
+  //     title: "1. Inventory Reorder Point & Safety Stock Prediction - With and Without Live Data",
+  //     description:
+  //       "Predict optimal reorder points and safety stock levels using AI/ML to prevent stockouts or overstock situations—improving supply chain efficiency.",
+  //     image: `${assets.Inventory_model}`,
+  //   },
+  //   {
+  //     modelId: 2,
+  //     title: "2. Revenue & Demand Sensing for Pharmaceuticals",
+  //     description:
+  //       "Forecasts revenue generation based on market behavior, seasonal trends, and historical sales data to get insight on which category giving more profits.",
+  //     image: `${assets.Clinical_model}`,
+  //   },
+  //   {
+  //     modelId: 3,
+  //     title: "3. Medical Equipment Risk Detection & Failure Prevention",
+  //     description:
+  //       "Predicted results are displayed in a clean, structured table format, showcasing each key metric individually for easy review and interpretation.",
+  //     image: `${assets.Equipment_model}`,
+  //   },
+  //   {
+  //     modelId: 4,
+  //     title: "4. Reorder Point & Safety Stock Predictions for Clinical Drugs/Medicine",
+  //     description:
+  //       "Ensure availability of critical clinical medicines by forecasting demand and recommending adequate buffer stock levels without interrupting the patient care.",
+  //     image: `${assets.Revenue_model}`,
+  //   },
+  //   {
+  //         modelId: 5,
+  //         title: "5. Predicting Reams of Paper & Ink (Liters)",
+  //         description:
+  //           "This model forecasts the future consumption of reams of paper and liters of ink using historical usage data and printing trends.",
+  //         image: `${assets.PaperInk_model}`
+  //       },
+  // ];
 
   const capabilities = [
     {
@@ -302,14 +321,14 @@ function Home() {
       answer:
         "Absolutely. HANElytics is built with secure authentication, role-based access, and encrypted data handling to ensure your information stays protected.",
     },
-    {
-      id: 6,
-      question: "Can I try the platform before signing up?",
-      answer:
-        "Yes you can request for demo using contact details in the footer section.",
-      // A live demo mode or preview is under development to allow users to explore basic features before registering."
-      // You can also request a demo session via the contact page.
-    },
+    // {
+    //   id: 6,
+    //   question: "Can I try the platform before signing up?",
+    //   answer:
+    //     "Yes you can request for demo using contact details in the footer section.",
+    //   // A live demo mode or preview is under development to allow users to explore basic features before registering."
+    //   // You can also request a demo session via the contact page.
+    // },
     {
       id: 7,
       question: "What if I forget my login credentials?",
@@ -336,18 +355,7 @@ function Home() {
         </div> */}
       <Header />
       <div className="home-bg">
-        <div className="right">
-          {/* <h1 className="simplify-heading">
-            Simplify AI/ML predictions effortlessly with HANElytics.
-          </h1> */}
-          <Link to="/dataModeling" style={{ textDecoration: "none" }}>
-            <button className="button">
-              Start Viewing Data Model Insights and Work with Data feedback
-            </button>
-          </Link>
-          <b>*Click here</b>
-        </div>
-        <div className="hero-section">
+        <div className="hero-section" style={{ paddingBottom: "0px" }}>
           <h1>
             <FaFileAlt className="icon" />
             <AiTwotoneDatabase className="icon" />
@@ -359,7 +367,73 @@ function Home() {
           </h1>
         </div>
 
-        <div className="container key-features-section" id="keyFeatures">
+        {/* <div className="model-overview-bg-container">
+          <div className="container key-features-section" id="modelsOverview">
+            <h1 className="">Modules:</h1>
+            <div className="model-features-items-container">
+              {modelsOverview.map((model) => (
+                <div key={model.modelId} className="model-feature-card">
+                  <div>
+                    <h3 style={{color: "#fff"}}>{model.title}</h3>
+                    <p style={{color: "#fff"}}>{model.description}</p>
+                  </div>
+                  <a download href={model.image}>
+                    <img src={model.image} />
+                  </a>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div> */}
+        <div className="model-overview-bg-container">
+          <div className="container key-features-section" id="modelsOverview">
+            <h1 className="">Modules:</h1>
+            <div className="model-features-items-container">
+              {/* {modelsOverview.map((model) => (
+                <div key={model.modelId} className="model-feature-card">
+                  <div>
+                    <h3 style={{color: "#fff", backgroundImage: `url(data insights.jpg)`}}>{model.title}</h3>
+                  </div>
+                </div>
+              ))} */}
+              <Link to="/dataModeling">
+                <div
+                  className="model-feature-card module-1"
+                  title="View - Data Model Insights"
+                >
+                  <div>
+                    <h3 style={{ color: "#fff" }}>Data Model Insights</h3>
+                  </div>
+                </div>
+              </Link>
+              <Link to="/dashboards">
+                <div
+                  className="model-feature-card module-2"
+                  title="View - Power BI Dashboards"
+                >
+                  <div>
+                    <h3 style={{ color: "#fff" }}>Power BI Dashboards</h3>
+                  </div>
+                </div>
+              </Link>
+              {(userRole === "CTO" ||
+                userRole === "CEO" ||
+                userRole === "COO") && (
+                <Link to="/assignRoles">
+                  <div
+                    className="model-feature-card module-3"
+                    title="View - Assign Dashboard Access"
+                  >
+                    <div>
+                      <h3 style={{ color: "#fff" }}>Assign Dashboard Access</h3>
+                    </div>
+                  </div>
+                </Link>
+              )}
+            </div>
+          </div>
+        </div>
+        {/* <div className="container key-features-section" id="keyFeatures">
           <h1 className="">Key Features:</h1>
           <div className="key-features-items-container">
             {keyFeatures.map((feature) => (
@@ -373,39 +447,26 @@ function Home() {
             ))}
           </div>
           <div></div>
-        </div>
-        <div className="container key-features-section" id="modelsOverview">
-          <h1 className="">Models Overview:</h1>
-          <div className="model-features-items-container">
-            {modelsOverview.map((model) => (
-              <div key={model.modelId} className="model-feature-card">
-                <div>
-                  <h3>{model.title}</h3>
-                  <p>{model.description}</p>
+        </div> */}
+
+        {/* <div className="capabilities-bg-container">
+          <div className="container key-features-section" id="capabilities">
+            <h1 className="">Platform Capabilities:</h1>
+            <div className="key-features-items-container">
+              {capabilities.map((item) => (
+                <div key={item.id} className="feature-card">
+                  <div>
+                    <h3 style={{ fontSize: "13px", textAlign: "left" }}>
+                      <FaHandPointRight style={{ marginRight: "5px" }} />
+                      {item.text}
+                    </h3>
+                  </div>
                 </div>
-                <a download href={model.image}>
-                  <img src={model.image} />
-                </a>
-              </div>
-            ))}
+              ))}
+            </div>
           </div>
-        </div>
-        <div className="container key-features-section" id="capabilities">
-          <h1 className="">Platform Capabilities:</h1>
-          <div className="key-features-items-container">
-            {capabilities.map((item) => (
-              <div key={item.id} className="feature-card">
-                <div>
-                  <h3 style={{ fontSize: "13px", textAlign: "left" }}>
-                    <FaHandPointRight style={{ marginRight: "5px" }} />
-                    {item.text}
-                  </h3>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-        <div
+        </div> */}
+        {/* <div
           className="container key-features-section"
           id="whyChooseHanelytics"
         >
@@ -423,14 +484,17 @@ function Home() {
               </div>
             ))}
           </div>
-        </div>
+        </div> */}
         <div
           className="container key-features-section"
           style={{ marginBottom: "0px" }}
           id="faqs"
         >
           <h1 className="">FAQs:</h1>
-          <div className="faqs-features-items-container">
+          <div
+            className="faqs-features-items-container"
+            style={{ display: "flex", flexWrap: "wrap" }}
+          >
             {faqs.map((item) => (
               <div key={item.id} className="feature-card">
                 <div>
@@ -442,9 +506,10 @@ function Home() {
                       <FaHandPointRight style={{ marginRight: "5px" }} />
                       {item.question}
                     </h3>
-                    <IoIosArrowDown />
+                    {/* <IoIosArrowDown /> */}
                   </div>
-                  {item.id === answerId && <p>{item.answer}</p>}
+                  {/* {item.id === answerId && <p>{item.answer}</p>} */}
+                  <p style={{ color: "#fff" }}>{item.answer}</p>
                 </div>
               </div>
             ))}
