@@ -2721,7 +2721,7 @@ const PowerBiDashboard = () => {
                 alt={`${eachTab.altText}`}
                 className="dashboard-data-model-image-tab"
               /> */}
-              {eachTab.tabName}
+              {eachTab.tabName === "Transshipment" ?  "Transhipment" : `${eachTab.tabName}`}
               <MdKeyboardArrowUp
                 className={`bi-arrow ${
                   activeDashboard === `${eachTab.activeText}`
