@@ -90,11 +90,18 @@
 }
 .module-1{
     background: 
-    linear-gradient(rgba(0, 0, 0, 0.186), rgba(0,0,0,0.5)),
+    linear-gradient(rgba(0, 0, 0, 0.865), rgba(0, 0, 0, 0.532)),
     url("../../assets/dataInsights.jpg")
     ;
     background-image: url("../../assets/dataInsights.jpg");
     background-size: cover;
+
+    div{
+        h3{
+    text-align: center;
+
+        }
+    }
 }
 .module-2{
     background: 
@@ -103,6 +110,12 @@
     ;
     /* background-image: url("../../assets/powerBIDash.webp"); */
     background-size: cover;
+    div{
+        h3{
+            
+    text-align: center;
+        }
+    }
 }
 .module-3{
     /* background-image: url("../../assets/access.webp"); */
@@ -111,6 +124,13 @@
     url("../../assets/assignAccess.jpg")
     ;
     background-size: cover;
+    div{
+        h3{
+            
+    text-align: center;
+
+        }
+    }
 
     /* background-image: url("../../assets/assignAccess.jpg");
     background-size: cover;

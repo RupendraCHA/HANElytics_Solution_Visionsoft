@@ -402,7 +402,7 @@ function Home() {
                   title="View - Data Model Insights"
                 >
                   <div>
-                    <h3 style={{ color: "#fff" }}>Data Model Insights</h3>
+                    <h3 style={{ color: "#fff" }}>Supply Chain Predictive Computing</h3>
                   </div>
                 </div>
               </Link>
@@ -412,7 +412,7 @@ function Home() {
                   title="View - Power BI Dashboards"
                 >
                   <div>
-                    <h3 style={{ color: "#fff" }}>Power BI Dashboards</h3>
+                    <h3 style={{ color: "#fff" }}>Process Mining</h3>
                   </div>
                 </div>
               </Link>
@@ -425,7 +425,7 @@ function Home() {
                     title="View - Assign Dashboard Access"
                   >
                     <div>
-                      <h3 style={{ color: "#fff" }}>Assign Dashboard Access</h3>
+                      <h3 style={{ color: "#fff" }}>User Administration</h3>
                     </div>
                   </div>
                 </Link>
