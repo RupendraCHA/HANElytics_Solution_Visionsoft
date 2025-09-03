@@ -2703,7 +2703,16 @@ const PowerBiDashboard = () => {
     <div className="power-bi-dashboards">
       <div className="bi-home-container">
         <Link to="/home" className="bi-home-heading">
-          <h1>HANELYTICS</h1>
+          <h1 style={{position: "relative"}}>HANELYTICS
+            <span style={{position: "absolute", 
+            top: "3px", right: "-16px", 
+            color: "#fff", fontSize: "8px", 
+            borderRadius: "50%", 
+            border: "1px solid #fff",
+            padding: "1px 3px",
+            fontWeight: "700"
+            }}>R</span>
+          </h1>
         </Link>
         <div className="dashboard-tabs">
           {tabsList.map((eachTab, index) => (

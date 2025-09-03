@@ -658,7 +658,16 @@ const DataModeling = () => {
         <header className="website-header1">
           <div className="header-container" style={{ border: "1px solid #fff" }}>
             <Link to="/home" className="datamodels-website-heading">
-              <h1>HANELYTICS</h1>
+              <h1 style={{position: "relative"}}>HANELYTICS
+                <span style={{position: "absolute", 
+            top: "3px", right: "-16px", 
+            color: "#fff", fontSize: "8px", 
+            borderRadius: "50%", 
+            border: "1px solid #fff",
+            padding: "1px 3px",
+            fontWeight: "700"
+            }}>R</span>
+              </h1>
             </Link>
             <div className="model-migrate-tabs">
               <div style={{ position: "relative" }}>

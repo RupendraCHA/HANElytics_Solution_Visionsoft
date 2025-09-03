@@ -70,7 +70,17 @@ const Navbar = ({ page = "" }) => {
                 </div>
             </div> */}
       <Link to="/home" className="header-home-heading">
-        <h1 className="heading-text1">HANELYTICS</h1>
+        <h1 className="heading-text1" style={{position: "relative"}}>
+          HANELYTICS
+          <span style={{position: "absolute", 
+            top: "3px", right: "-16px", 
+            color: "#fff", fontSize: "8px", 
+            borderRadius: "50%", 
+            border: "1px solid #fff",
+            padding: "1px 3px",
+            fontWeight: "700"
+            }}>R</span>
+          </h1>
       </Link>
       <div className="signup-register">
         {/* <Link
